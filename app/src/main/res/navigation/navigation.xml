@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_champ">
+
+    <fragment
+        android:id="@+id/nav_champ"
+        android:name="com.example.firstapp.fragment.ChampionFragment"
+        android:label="챔피언"
+        tools:layout="@layout/fragment_champion" />
+    <fragment
+        android:id="@+id/nav_tier"
+        android:name="com.example.firstapp.fragment.TierFragment"
+        android:label="티어"
+        tools:layout="@layout/fragment_tier" />
+    <fragment
+        android:id="@+id/nav_item"
+        android:name="com.example.firstapp.fragment.ItemFragment"
+        android:label="ItemFragment" />
+    <fragment
+        android:id="@+id/nav_summoner"
+        android:name="com.example.firstapp.fragment.SummonerFragment"
+        android:label="SummonerFragment" />
+    <fragment
+        android:id="@+id/nav_summonerSpell"
+        android:name="com.example.firstapp.fragment.SummonerSpellFragment"
+        android:label="SummonerSpellFragment" />
+
+</navigation>
