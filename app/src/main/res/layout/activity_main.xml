@@ -130,7 +130,7 @@
 
     <!-- 점화 -->
     <ImageButton
-        android:id="@+id/fire"
+        android:id="@+id/btn_fire"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginLeft="15dp"
@@ -147,9 +147,9 @@
         android:text="@string/ignite"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintLeft_toLeftOf="@+id/fire"
-        app:layout_constraintRight_toRightOf="@+id/fire"
-        app:layout_constraintTop_toBottomOf="@+id/fire" />
+        app:layout_constraintLeft_toLeftOf="@+id/btn_fire"
+        app:layout_constraintRight_toRightOf="@+id/btn_fire"
+        app:layout_constraintTop_toBottomOf="@+id/btn_fire" />
 
     <!--정화-->
     <ImageButton
@@ -158,8 +158,8 @@
         android:layout_height="60dp"
         android:layout_marginLeft="20dp"
         android:src="@drawable/clean"
-        app:layout_constraintLeft_toRightOf="@id/fire"
-        app:layout_constraintTop_toTopOf="@id/fire" />
+        app:layout_constraintLeft_toRightOf="@id/btn_fire"
+        app:layout_constraintTop_toTopOf="@id/btn_fire" />
 
     <TextView
         android:id="@+id/textView8"
@@ -262,7 +262,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_flash" />
     <!-- 회복 -->
     <ImageButton
-        android:id="@+id/heal"
+        android:id="@+id/btn_heal"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginTop="5dp"
@@ -280,15 +280,15 @@
         android:text="@string/heal"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintLeft_toLeftOf="@+id/heal"
-        app:layout_constraintRight_toRightOf="@+id/heal"
-        app:layout_constraintTop_toBottomOf="@+id/heal" />
+        app:layout_constraintLeft_toLeftOf="@+id/btn_heal"
+        app:layout_constraintRight_toRightOf="@+id/btn_heal"
+        app:layout_constraintTop_toBottomOf="@+id/btn_heal" />
 
     <TextView
         android:id="@+id/HowlingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/fire"
+        app:layout_constraintTop_toBottomOf="@+id/btn_fire"
         android:textSize="38sp"
         android:text="@string/HowlingAbyss"
         android:textColor="@color/white"
