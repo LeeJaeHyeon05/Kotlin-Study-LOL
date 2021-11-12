@@ -8,6 +8,9 @@ import android.view.ViewGroup
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentTierBinding
+import com.google.android.material.tabs.TabLayout
+import com.google.android.material.tabs.TabLayout.GRAVITY_FILL
+import com.google.android.material.tabs.TabLayoutMediator
 
 class TierFragment : Fragment(R.layout.fragment_tier) {
     override fun onCreateView(
@@ -33,8 +36,12 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
                 return fragmentList[position]
             }
         }
-
         binding.viewPager.adapter = adapter
+
+        // tab과 viewPager2를 연결시킨다
+        TabLayoutMediator(binding.tabs, binding.viewPager){tab : TabLayout.Tab, i:Int ->
+            tab.text = "탭 $i"
+        }.attach()
         return binding.root
     }
 }
