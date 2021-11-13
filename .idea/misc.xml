@@ -30,9 +30,13 @@
         <entry key="..\:/Users/ljws9/Documents/Git/_FromMyGit/FirstApp/app/src/main/res/menu/activity_main_drawer.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ljws9/Documents/Git/_FromMyGit/FirstApp/app/src/main/res/menu/main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/ljws9/Documents/Git/_FromMyGit/FirstApp/app/src/main/res/menu/main_drawer.xml" value="0.25364583333333335" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.23333333333333334" />
+        <entry key="app/src/main/res/layout/fragment_champion.xml" value="0.18206521739130435" />
+        <entry key="app/src/main/res/layout/main_fragment.xml" value="0.161231884057971" />
       </map>
     </option>
   </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

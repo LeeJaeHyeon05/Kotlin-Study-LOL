@@ -1,17 +1,24 @@
 package com.example.firstapp.fragment
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.firstapp.R
-class ChampionFragment : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_champion, container, false)
+import com.example.firstapp.databinding.FragmentChampionBinding
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class ChampionFragment : Fragment(R.layout.fragment_champion) {
+
+    val viewModel: ChampionViewModel by viewModels()
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val binding = FragmentChampionBinding.bind(view)
+
+        viewModel.champion.observe(viewLifecycleOwner) { res ->
+            binding.tvName.text = res.data.Aatrox.name
+        }
     }
 }
