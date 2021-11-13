@@ -1,9 +1,9 @@
 package com.example.firstapp
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
@@ -14,7 +14,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.firstapp.databinding.ActivityMainBinding
 import com.example.firstapp.navigator.AppNavigator
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -23,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     // hilt @Bind 샘플 대상
     @Inject
-    private lateinit var appNavigator: AppNavigator
+    lateinit var appNavigator: AppNavigator
 
     // hilt viewModel샘플 대상
     private val viewModel: MainViewModel by viewModels()
