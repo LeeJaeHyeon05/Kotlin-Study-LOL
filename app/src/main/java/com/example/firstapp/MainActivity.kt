@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
     // hilt @Bind 샘플 대상
     @Inject
-    private lateinit var appNavigator: AppNavigator
+    lateinit var appNavigator: AppNavigator
 
     // hilt viewModel샘플 대상
     private val viewModel: MainViewModel by viewModels()

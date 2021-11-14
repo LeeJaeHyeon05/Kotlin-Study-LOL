@@ -7,9 +7,14 @@
 
     <fragment
         android:id="@+id/nav_champ"
-        android:name="com.example.firstapp.fragment.ChampionFragment"
+        android:name="com.example.firstapp.scene.champion.ChampionFragment"
         android:label="챔피언"
-        tools:layout="@layout/fragment_champion" />
+        tools:layout="@layout/fragment_champion" >
+        <argument
+            android:name="viewType"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
     <fragment
         android:id="@+id/nav_tier"
         android:name="com.example.firstapp.fragment.TierFragment"
