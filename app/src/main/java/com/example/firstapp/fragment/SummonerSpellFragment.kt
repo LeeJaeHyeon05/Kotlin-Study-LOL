@@ -29,40 +29,41 @@ class SummonerSpellFragment : Fragment() {
         mBinding = FragmentSummonerSpellBinding.inflate(inflater, container, false)
 
         binding.btnSmite.setOnClickListener {
-            smiteDialog() }
+            smiteDialog("대상 에픽 및 대형/중형 몬스터, 혹은 적 미니언에게 450의 고정 피해를 입힙니다. 몬스터에게 사용 시 체력도 90 + 최대 체력의 10%만큼 회복됩니다.", R.drawable.smite, "강타"  )
+        }
 
         binding.btnTel.setOnClickListener {
-            telDialog()
+            telDialog("4초 동안 정신 집중을 한 후 아군 구조물, 미니언, 혹은 와드로 순간이동하고 3초간 이동 속도가 50% 증가합니다.", R.drawable.tel, "텔")
         }
         binding.btnShield.setOnClickListener {
-            sheieldDialog()
+            sheieldDialog("2초 동안 방어막으로 감싸 피해를 115~455(롤아이콘-레벨)만큼 흡수합니다.", R.drawable.sheild, "실드")
         }
         binding.btnFlash.setOnClickListener {
-            flashDialog()
+            flashDialog("커서 방향으로 챔피언이 짧은 거리를 순간이동 합니다.", R.drawable.flash, "점멸")
         }
         binding.btnHeal.setOnClickListener {
-            healDialog()
+            healDialog("챔피언과 대상 아군 챔피언의 체력을 90~345만큼 회복시키고 1초 동안 이동 속도가 30% 증가합니다. 최근 소환사 주문 회복의 영향을 받은 유닛의 경우 치유량이 절반만 적용됩니다.", R.drawable.heal, "힐")
         }
         binding.btnFire.setOnClickListener {
-            fireDialog()
+            fireDialog("대상 적 챔피언을 불태워, 5초에 걸쳐 70~410의 고정 피해를 입히고 그동안 적의 위치를 드러내며 고통스러운 상처를 적용합니다.\n", R.drawable.fire, "점화")
         }
         binding.btnClean.setOnClickListener {
-            cleanDialog()
+            cleanDialog("챔피언에 적용되는 모든 방해 효과와 (제압 및 공중으로 띄우는 효과 제외) 해로운 소환사 주문 효과를 제거하고 다음 3초 동안 방해 효과의 지속 시간을 65% 감소시킵니다.",R.drawable.clean, "정화")
         }
         binding.btnExhausted.setOnClickListener {
-            exhaustedDialog()
+            exhaustedDialog("적 챔피언을 지치게 만들어 3초 동안 이동 속도를 30% 낮추며, 가하는 피해량을 40% 낮춥니다.",R.drawable.exhasuted, "탈진")
         }
         binding.btnTotheking.setOnClickListener {
-            tothekingDialog()
+            tothekingDialog("포로 왕의 곁으로 빠르게 이동합니다.", R.drawable.totheking, "왕을 향해!")
         }
         binding.btnThrowForo.setOnClickListener {
-            throwForoDialog()
+            throwForoDialog("2초 동안 방어막으로 감싸 피해를 115~455 만큼 흡수합니다.", R.drawable.aiblue, "눈 던지기")
         }
         binding.btnBlue.setOnClickListener {
-            blueDialog()
+            blueDialog("챔피언의 최대 마나가 50%, 주변 아군의 최대 마나가 25%가 회복됩니다.", R.drawable.blue, "총명")
         }
         binding.btnGhost.setOnClickListener {
-            ghostDialog()
+            ghostDialog("챔피언이 10초 동안 유닛과 충돌하지 않게 되며 챔피언 레벨에 따라 이동 속도가 24 ~ 48% 증가합니다. \n 처치 관여 시 챔피언 레벨에 따라 유체화 지속 시간이 4 ~ 7초 늘어납니다.", R.drawable.ghost,"유체화")
         }
 
         return binding.root
@@ -74,11 +75,11 @@ class SummonerSpellFragment : Fragment() {
         super.onDestroy()
     }
 
-    private fun smiteDialog() {
+    private fun smiteDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-        dialogBuilder.setMessage("대상 에픽 및 대형/중형 몬스터, 혹은 적 미니언에게 450의 고정 피해를 입힙니다. 몬스터에게 사용 시 체력도 90 + 최대 체력의 10%만큼 회복됩니다.")
-            .setIcon(R.drawable.smite)
+        dialogBuilder.setMessage(Script)
+            .setIcon(iconId)
             .setCancelable(false)
             .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
                     dialog, _ -> dialog.cancel()
@@ -86,175 +87,172 @@ class SummonerSpellFragment : Fragment() {
 
 
         val alert = dialogBuilder.create()
-        alert.setTitle("강타")
+        alert.setTitle(title)
         alert.show()
     }
 
-    private fun telDialog() {
+    private fun telDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-        dialogBuilder.setMessage("4초 동안 정신 집중을 한 후 아군 구조물, 미니언, 혹은 와드로 순간이동하고 3초간 이동 속도가 50% 증가합니다.")
-            .setIcon(R.drawable.tel)
+        dialogBuilder.setMessage(Script)
+            .setIcon(iconId)
             .setCancelable(false)
             .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
                     dialog, _ -> dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("강타")
+        alert.setTitle(title)
         alert.show()
     }
 
-    private fun sheieldDialog() {
+    private fun sheieldDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-        dialogBuilder.setMessage("2초 동안 방어막으로 감싸 피해를 115~455 만큼 흡수합니다.")
-            .setIcon(R.drawable.sheild)
+        dialogBuilder.setMessage(Script)
+            .setIcon(iconId)
             .setCancelable(false)
             .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
                     dialog, _ -> dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("강타")
+        alert.setTitle(title)
         alert.show()
     }
 
-    private fun flashDialog() {
+    private fun flashDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-        dialogBuilder.setMessage("커서 방향으로 챔피언이 짧은 거리를 순간이동 합니다.")
-            .setIcon(R.drawable.flash)
+        dialogBuilder.setMessage(Script)
+            .setIcon(iconId)
             .setCancelable(false)
             .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
                     dialog, _ -> dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("강타")
+        alert.setTitle(title)
         alert.show()
     }
 
-    private fun healDialog() {
-
+    private fun healDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-        dialogBuilder.setMessage("챔피언과 대상 아군 챔피언의 체력을 90~345만큼 회복시키고 1초 동안 이동 속도가 30% 증가합니다. 최근 소환사 주문 회복의 영향을 받은 유닛의 경우 치유량이 절반만 적용됩니다.")
-            .setIcon(R.drawable.heal)
+        dialogBuilder.setMessage(Script)
+            .setIcon(iconId)
             .setCancelable(false)
             .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
                     dialog, _ -> dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("강타")
+        alert.setTitle(title)
         alert.show()
     }
 
-    private fun fireDialog() {
+    private fun fireDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-        dialogBuilder.setMessage("대상 적 챔피언을 불태워, 5초에 걸쳐 70~410의 고정 피해를 입히고 그동안 적의 위치를 드러내며 고통스러운 상처를 적용합니다.")
-            .setIcon(R.drawable.fire)
+        dialogBuilder.setMessage(Script)
+            .setIcon(iconId)
             .setCancelable(false)
             .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
                     dialog, _ -> dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("강타")
+        alert.setTitle(title)
         alert.show()
     }
 
-    private fun cleanDialog() {
+    private fun cleanDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-        dialogBuilder.setMessage("챔피언의 최대 마나가 50%, 주변 아군의 최대 마나가 25%가 회복됩니다.")
-            .setIcon(R.drawable.clean)
+        dialogBuilder.setMessage(Script)
+            .setIcon(iconId)
             .setCancelable(false)
             .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
                     dialog, _ -> dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("정화")
+        alert.setTitle(title)
         alert.show()
     }
 
-    private fun exhaustedDialog() {
+    private fun exhaustedDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-        dialogBuilder.setMessage("적 챔피언을 지치게 만들어 3초 동안 이동 속도를 30% 낮추며, 가하는 피해량을 40% 낮춥니다.")
-            .setIcon(R.drawable.exhasuted)
+        dialogBuilder.setMessage(Script)
+            .setIcon(iconId)
             .setCancelable(false)
             .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
                     dialog, _ -> dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("탈진")
+        alert.setTitle(title)
         alert.show()
     }
 
-    private fun tothekingDialog() {
+    private fun tothekingDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-        dialogBuilder.setMessage("포로 왕의 곁으로 빠르게 이동합니다.")
-            .setIcon(R.drawable.totheking)
+        dialogBuilder.setMessage(Script)
+            .setIcon(iconId)
             .setCancelable(false)
             .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
                     dialog, _ -> dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("강타")
+        alert.setTitle(title)
         alert.show()
     }
 
-    private fun throwForoDialog() {
+    private fun throwForoDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-        dialogBuilder.setMessage("2초 동안 방어막으로 감싸 피해를 115~455 만큼 흡수합니다.")
-            .setIcon(R.drawable.aiblue)
+        dialogBuilder.setMessage(Script)
+            .setIcon(iconId)
             .setCancelable(false)
             .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
                     dialog, _ -> dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("눈 던지기")
+        alert.setTitle(title)
         alert.show()
     }
 
-    private fun blueDialog() {
+    private fun blueDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-        dialogBuilder.setMessage("챔피언의 최대 마나가 50%, 주변 아군의 최대 마나가 25%가 회복됩니다.")
-            .setIcon(R.drawable.blue)
+        dialogBuilder.setMessage(Script)
+            .setIcon(iconId)
             .setCancelable(false)
             .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
                     dialog, _ -> dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("강타")
+        alert.setTitle(title)
         alert.show()
     }
 
-    private fun ghostDialog() {
+    private fun ghostDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-        dialogBuilder.setMessage("챔피언이 10초 동안 유닛과 충돌하지 않게 되며 챔피언 레벨에 따라 이동 속도가 24 ~ 48% 증가합니다.\n" +
-                "\n" +
-                "처치 관여 시 챔피언 레벨에 따라 유체화 지속 시간이 4 ~ 7초 늘어납니다.")
-            .setIcon(R.drawable.ghost)
+        dialogBuilder.setMessage(Script)
+            .setIcon(iconId)
             .setCancelable(false)
             .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
                     dialog, _ -> dialog.cancel()
             })
 
         val alert = dialogBuilder.create()
-        alert.setTitle("유체화")
+        alert.setTitle(title)
         alert.show()
     }
 }
