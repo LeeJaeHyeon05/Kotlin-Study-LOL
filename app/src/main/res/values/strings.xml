@@ -1,5 +1,23 @@
 <resources>
     <string name="app_name">FirstApp</string>
+    <string name="tel">텔레포트</string>
+    <string name="smite">강타</string>
+    <string name="sheild">실드</string>
+    <string name="totheking">왕을 향해!</string>
+    <string name="ghost">유체화</string>
+    <string name="ignite">점화</string>
+    <string name="clean">정화</string>
+    <string name="blue">총명</string>
+    <string name="exhasuted">탈진</string>
+    <string name="aiblue">표식</string>
+    <string name="flash">점멸</string>
+    <string name="heal">힐</string>
+    <string name="lol">리그 오브 레전드 스펠</string>
+    <string name="HowlingAbyss">칼바람 스펠 </string>
+    <string name="includelol">(롤 스펠 포함)</string>
+
+
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
