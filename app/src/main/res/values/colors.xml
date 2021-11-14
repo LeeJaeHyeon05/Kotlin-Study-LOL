@@ -9,5 +9,11 @@
     <color name="white">#FFFFFFFF</color>
     <color name="red">#DD5F62</color>
     <color name="orange">#FE9417</color>
+    <color name="brightGray">#424242</color>
+
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">#D3D3D3</item>
+    </style>
+
 
 </resources>
