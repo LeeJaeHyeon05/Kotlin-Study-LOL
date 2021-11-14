@@ -8,3 +8,6 @@ dependencyResolutionManagement {
 }
 rootProject.name = "FirstApp"
 include ':app'
+include ':model'
+include ':data:api'
+include ':data:repository'

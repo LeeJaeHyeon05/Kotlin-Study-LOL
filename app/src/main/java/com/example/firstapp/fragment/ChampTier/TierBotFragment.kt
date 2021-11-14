@@ -1,4 +1,4 @@
-package com.example.firstapp.fragment
+package com.example.firstapp.fragment.ChampTier
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,13 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.firstapp.R
+import com.example.firstapp.databinding.FragmentTierBotBinding
 
-class TierSupFragment : Fragment() {
+class TierBotFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tier_sup, container, false)
+        val binding = FragmentTierBotBinding.inflate(inflater, container, false)
+        return binding.root
     }
 }

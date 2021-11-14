@@ -15,7 +15,7 @@
         <item
             android:id="@+id/nav_item"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="아이템" />
+            android:title="@string/item" />
         <item
             android:id="@+id/nav_summoner"
             android:icon="@drawable/ic_menu_gallery"
