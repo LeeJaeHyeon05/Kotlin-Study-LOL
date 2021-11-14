@@ -1,19 +1,19 @@
-package com.example.firstapp.fragment
+package com.example.firstapp.fragment.ChampTier
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.example.firstapp.R
-import com.example.firstapp.databinding.FragmentTierBotBinding
+import com.example.firstapp.databinding.FragmentTierMidBinding
 
-class TierBotFragment : Fragment() {
+class TierMidFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = FragmentTierBotBinding.inflate(inflater, container, false)
+        val binding = FragmentTierMidBinding.inflate(inflater, container, false)
         return binding.root
     }
 }
