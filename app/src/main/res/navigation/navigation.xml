@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_champion" />
     <fragment
         android:id="@+id/nav_tier"
-        android:name="com.example.firstapp.fragment.TierFragment"
+        android:name="com.example.firstapp.fragment.ChampTier.TierFragment"
         android:label="티어"
         tools:layout="@layout/fragment_tier" />
     <fragment

@@ -1,4 +1,4 @@
-package com.example.firstapp.fragment
+package com.example.firstapp.fragment.ChampTier
 
 import android.os.Bundle
 import android.view.LayoutInflater
