@@ -6,8 +6,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.firstapp.R
+import com.example.firstapp.model.Data
+import com.squareup.picasso.Picasso
+import de.hdodenhof.circleimageview.CircleImageView
 
-class ItemListAdapter(private val dataSet: Array<String>) :
+class ItemListAdapter(private val dataSet: List<Data>) :
     RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
 
     /**
@@ -15,11 +18,13 @@ class ItemListAdapter(private val dataSet: Array<String>) :
      * (custom ViewHolder).
      */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val textView: TextView
+        val itemImage: CircleImageView
+        val itemName: TextView
 
         init {
             // Define click listener for the ViewHolder's View.
-            textView = view.findViewById(R.id.textView)
+            itemImage = view.findViewById(R.id.itemImage)
+            itemName = view.findViewById(R.id.itemName)
         }
     }
 
@@ -37,7 +42,9 @@ class ItemListAdapter(private val dataSet: Array<String>) :
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.textView.text = dataSet[position]
+
+        Picasso.get().load("https://ddragon.leagueoflegends.com/cdn/11.22.1/img/item/${dataSet.get(position).id}.png").into(viewHolder.itemImage);
+        viewHolder.itemName.text = dataSet.get(position).name
     }
 
     // Return the size of your dataset (invoked by the layout manager)

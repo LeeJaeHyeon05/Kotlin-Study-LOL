@@ -7,6 +7,7 @@ data class ItemJson(
 )
 
 data class Data(
+    var id: String,
     val name: String,
     val description: String,
     val colloq: String,

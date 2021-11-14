@@ -25,9 +25,9 @@ class ItemFragment : Fragment() {
         val gson = Gson()
         val itemJson = gson.fromJson(jsonFileString, ItemJson::class.java)
         val data: Map<String, Data> = itemJson.data
-
-        val itemNames: Array<String> = data.map { it -> it.value.name }.toTypedArray()
-        val mItemListAdapter = ItemListAdapter(itemNames)
+        for((key, value) in data) value.id = key
+        val dataList = data.map { it.value }
+        val mItemListAdapter = ItemListAdapter(dataList)
 
         val recyclerView: RecyclerView = view.findViewById(R.id.itemList)
         recyclerView.adapter = mItemListAdapter
@@ -35,4 +35,5 @@ class ItemFragment : Fragment() {
 
         return view
     }
+
 }
