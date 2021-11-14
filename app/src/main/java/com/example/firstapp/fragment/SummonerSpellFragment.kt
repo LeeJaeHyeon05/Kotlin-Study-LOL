@@ -29,19 +29,42 @@ class SummonerSpellFragment : Fragment() {
         mBinding = FragmentSummonerSpellBinding.inflate(inflater, container, false)
 
         binding.btnSmite.setOnClickListener {
-            smiteDialog()
+            smiteDialog() }
+
+        binding.btnTel.setOnClickListener {
             telDialog()
+        }
+        binding.btnShield.setOnClickListener {
             sheieldDialog()
-            fireDialog()
+        }
+        binding.btnFlash.setOnClickListener {
             flashDialog()
+        }
+        binding.btnHeal.setOnClickListener {
             healDialog()
+        }
+        binding.btnFire.setOnClickListener {
+            fireDialog()
+        }
+        binding.btnClean.setOnClickListener {
             cleanDialog()
+        }
+        binding.btnExhausted.setOnClickListener {
             exhaustedDialog()
+        }
+        binding.btnTotheking.setOnClickListener {
             tothekingDialog()
+        }
+        binding.btnThrowForo.setOnClickListener {
             throwForoDialog()
+        }
+        binding.btnBlue.setOnClickListener {
             blueDialog()
+        }
+        binding.btnGhost.setOnClickListener {
             ghostDialog()
         }
+
         return binding.root
 
     }
