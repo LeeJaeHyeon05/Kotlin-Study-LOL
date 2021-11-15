@@ -3,6 +3,7 @@ package com.example.firstapp.fragment
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.os.Bundle
+import android.renderscript.Script
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -31,7 +32,6 @@ class SummonerSpellFragment : Fragment() {
         binding.btnSmite.setOnClickListener {
             smiteDialog("대상 에픽 및 대형/중형 몬스터, 혹은 적 미니언에게 450의 고정 피해를 입힙니다. 몬스터에게 사용 시 체력도 90 + 최대 체력의 10%만큼 회복됩니다.", R.drawable.smite, "강타"  )
         }
-
         binding.btnTel.setOnClickListener {
             telDialog("4초 동안 정신 집중을 한 후 아군 구조물, 미니언, 혹은 와드로 순간이동하고 3초간 이동 속도가 50% 증가합니다.", R.drawable.tel, "텔")
         }
@@ -90,6 +90,7 @@ class SummonerSpellFragment : Fragment() {
         alert.setTitle(title)
         alert.show()
     }
+
 
     private fun telDialog(Script : String, iconId : Int, title : String) {
         val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
