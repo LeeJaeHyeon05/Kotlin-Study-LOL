@@ -11,6 +11,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.adapter.ChampTier.Tier1Adapter
 import com.example.firstapp.databinding.FragmentTierTopBinding
 
+/**
+ * @author mmol93
+ * @email ljws93@naver.com
+ * @since 2021/11/10
+ **/
 class TierTopFragment:Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,9 +26,8 @@ class TierTopFragment:Fragment() {
 
         // RecyclerView 초기화
         binding.tier1Recycler.layoutManager = GridLayoutManager(context, 4)
-        val adapter = Tier1Adapter()
+        val adapter = Tier1Adapter(requireContext())
         binding.tier1Recycler.adapter = adapter
-
 
         return binding.root
     }
