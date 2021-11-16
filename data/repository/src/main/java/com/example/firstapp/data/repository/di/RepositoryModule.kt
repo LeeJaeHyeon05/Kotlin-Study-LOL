@@ -1,10 +1,12 @@
 package com.example.firstapp.data.repository.di
 
+import android.content.Context
 import com.example.firstapp.data.api.FirstApi
 import com.example.firstapp.data.repository.ChampionRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
@@ -18,7 +20,9 @@ import javax.inject.Singleton
 class RepositoryModule {
     @Provides
     @Singleton
-    fun provideChampionRepository(): ChampionRepository {
-        return ChampionRepository(FirstApi())
+    fun provideChampionRepository(
+        @ApplicationContext context: Context,
+    ): ChampionRepository {
+        return ChampionRepository(context, FirstApi())
     }
 }
