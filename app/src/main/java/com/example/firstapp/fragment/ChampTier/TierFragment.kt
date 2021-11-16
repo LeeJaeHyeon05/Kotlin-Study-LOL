@@ -12,6 +12,11 @@ import com.example.firstapp.databinding.FragmentTierBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
+/**
+ * @author mmol93
+ * @email ljws93@naver.com
+ * @since 2021/11/10
+ **/
 class TierFragment : Fragment(R.layout.fragment_tier) {
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -55,6 +60,7 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
             }
 
         }.attach()
+
         return binding.root
     }
 }
