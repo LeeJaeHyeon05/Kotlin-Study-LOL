@@ -3,13 +3,16 @@ package com.example.firstapp.scene.champion
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentChampionBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ChampionFragment : Fragment(R.layout.fragment_champion) {
 
-    private val viewModel = ChampionViewModel()
+    private val viewModel: ChampionViewModel by viewModels()
 
     private val adapter: ChampionAdapter by lazy { ChampionAdapter(champions) }
     private val champions: ArrayList<ChampionInfoVO> = ArrayList()
