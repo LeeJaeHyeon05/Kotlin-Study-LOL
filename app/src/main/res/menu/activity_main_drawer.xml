@@ -24,5 +24,9 @@
             android:id="@+id/nav_summonerSpell"
             android:icon="@drawable/ic_menu_gallery"
             android:title="소환사 스킬" />
+        <item
+            android:id="@+id/nav_build"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="빌드" />
     </group>
 </menu>
