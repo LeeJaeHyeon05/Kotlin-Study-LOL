@@ -16,13 +16,17 @@ import com.example.firstapp.databinding.FragmentTierTopBinding
  * @email ljws93@naver.com
  * @since 2021/11/10
  **/
-class TierTopFragment:Fragment() {
+class TierTopFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.
-        inflate<FragmentTierTopBinding>(inflater, R.layout.fragment_tier_top, container, false)
+        val binding = DataBindingUtil.inflate<FragmentTierTopBinding>(
+            inflater,
+            R.layout.fragment_tier_top,
+            container,
+            false
+        )
 
         // RecyclerView 초기화
         binding.tier1Recycler.layoutManager = GridLayoutManager(context, 4)

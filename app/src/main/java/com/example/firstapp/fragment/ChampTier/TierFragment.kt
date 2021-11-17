@@ -34,7 +34,7 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
         val binding = FragmentTierBinding.inflate(inflater, container, false)
         val fragmentList = arrayOf(topFragment, jungFragment, midFragment, botFragment, supFragment)
 
-        val adapter = object : FragmentStateAdapter(this){
+        val adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount(): Int {
                 return fragmentList.size
             }
@@ -46,16 +46,16 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
         binding.viewPager.adapter = adapter
 
         // tab과 viewPager2를 연결시킨다
-        TabLayoutMediator(binding.tabs, binding.viewPager){tab : TabLayout.Tab, i:Int ->
-            if (i == 0){
+        TabLayoutMediator(binding.tabs, binding.viewPager) { tab: TabLayout.Tab, i: Int ->
+            if (i == 0) {
                 tab.icon = requireContext().getDrawable(R.drawable.ic_top)
-            }else if (i == 1){
+            } else if (i == 1) {
                 tab.icon = requireContext().getDrawable(R.drawable.ic_jng)
-            }else if (i == 2){
+            } else if (i == 2) {
                 tab.icon = requireContext().getDrawable(R.drawable.ic_mid)
-            }else if (i == 3){
+            } else if (i == 3) {
                 tab.icon = requireContext().getDrawable(R.drawable.ic_adc)
-            }else if (i == 4){
+            } else if (i == 4) {
                 tab.icon = requireContext().getDrawable(R.drawable.ic_sup)
             }
 
