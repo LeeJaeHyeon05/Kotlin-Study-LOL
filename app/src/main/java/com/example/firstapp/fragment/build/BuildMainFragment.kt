@@ -5,9 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.GridLayout
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentBuildMainBinding
 
 class BuildMainFragment : Fragment() {
