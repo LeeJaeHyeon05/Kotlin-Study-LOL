@@ -29,9 +29,8 @@ class SummonerSpellFragment : Fragment() {
     ): View? {
         mBinding = FragmentSummonerSpellBinding.inflate(inflater, container, false)
 
-        binding.btnSmite.setOnClickListener {
-            smiteDialog(R.drawable.smite)
-        }
+        binding.btnSmite.setOnClickListener (handleOnClick)
+
         binding.btnTel.setOnClickListener {
             telDialog(R.drawable.tel)
         }
@@ -76,24 +75,28 @@ class SummonerSpellFragment : Fragment() {
     }
 
 
+    private val messageMap: Map<Int, Array<Int>> = mapOf(
+            R.id.btn_smite to arrayOf(R.string.smiteDialogText, R.drawable.smite, R.string.smiteDialogTitle)
+    )
 
 
+    private val handleOnClick: View.OnClickListener = View.OnClickListener {
+        val data = messageMap[it.id]
+        data?.run {
+            val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
 
-    private fun smiteDialog(iconId : Int) {
-        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
+            dialogBuilder.setMessage(getString(data[0]))
+                    .setIcon(data[1])
+                    .setCancelable(false)
+                    .setNegativeButton(getString(R.string.nextDialogText)) { dialog, _ -> dialog.cancel() }
 
-        dialogBuilder.setMessage(R.string.smiteDialogText)
-            .setIcon(iconId)
-            .setCancelable(false)
-            .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener{
-                    dialog, _ -> dialog.cancel()
-            })
+            val alert = dialogBuilder.create()
+            alert.setTitle(getString(data[2]))
+            alert.show()
 
-
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.smiteDialogTitle)
-        alert.show()
+        }
     }
+
 
 
 
