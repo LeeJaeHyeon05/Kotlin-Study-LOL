@@ -8,6 +8,11 @@ import android.view.ViewGroup
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentTierMidBinding
 
+/**
+ * @author mmol93
+ * @email ljws93@naver.com
+ * @since 2021/11/10
+ **/
 class TierMidFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
