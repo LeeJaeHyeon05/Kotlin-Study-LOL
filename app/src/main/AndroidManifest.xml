@@ -15,6 +15,9 @@
         android:name=".App"
         android:theme="@style/Theme.FirstApp">
         <activity
+            android:name=".fragment.build.BuildDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".SplashActivity"
             android:theme="@style/Splash"
             android:exported="true">
