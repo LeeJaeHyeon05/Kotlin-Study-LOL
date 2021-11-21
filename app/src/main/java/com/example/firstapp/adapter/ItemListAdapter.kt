@@ -7,7 +7,7 @@ import com.example.firstapp.databinding.ItemBinding
 import com.example.firstapp.model.Data
 import com.squareup.picasso.Picasso
 
-class ItemListAdapter(private val dataSet: List<Data>) :
+class ItemListAdapter(private var dataSet: List<Data>) :
     RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
 
     class ViewHolder(private val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -27,5 +27,10 @@ class ItemListAdapter(private val dataSet: List<Data>) :
     }
 
     override fun getItemCount() = dataSet.size
+
+    fun setData(newDataSet: List<Data>) {
+        dataSet = newDataSet
+        notifyDataSetChanged()
+    }
 
 }
