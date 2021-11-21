@@ -1,6 +1,9 @@
 package com.example.firstapp.di
 
 import android.content.Context
+import androidx.room.Room
+import com.example.firstapp.database.AppDatabase
+import com.example.firstapp.database.dao.ItemDao
 import com.example.firstapp.resource.ResourceProvider
 import dagger.Module
 import dagger.Provides
@@ -29,6 +32,16 @@ class AppModule {
     @Provides
     fun provideResourceProvider(@ApplicationContext context: Context): ResourceProvider {
         return ResourceProvider(context)
+    }
+
+    @Provides
+    fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
+        return Room.databaseBuilder(context, AppDatabase::class.java, "lol-db").build()
+    }
+
+    @Provides
+    fun provideItemDao(appDatabase: AppDatabase): ItemDao {
+        return appDatabase.itemDao()
     }
 
 }
