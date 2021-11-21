@@ -1,12 +1,12 @@
 package com.example.firstapp.fragment.build.detail
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.firstapp.fragment.build.BuildDetailFragment
 
-class DetailViewPagerAdapter(fragment: BuildDetailFragment) : FragmentStateAdapter(fragment){
+class DetailViewPagerAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment){
 
-    val fragments = listOf<Fragment>(
+     private val fragments = listOf<Fragment>(
         DetailBuildFragment(),
         DetailProBuildFragment(),
         DetailEtcBuildFragment(),

@@ -1,12 +1,13 @@
 package com.example.firstapp.fragment.build
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.databinding.FragmentBuildMainBinding
+
 
 class BuildMainFragment : Fragment() {
 
@@ -19,7 +20,7 @@ class BuildMainFragment : Fragment() {
         binding = FragmentBuildMainBinding.inflate(inflater,container,false)
 
         val dummyData = dummy()
-        val adapter = BuildMainAdapter(dummyData)
+        val adapter = BuildMainAdapter(this.context,dummyData)
         binding.buildMainRv.adapter = adapter
         binding.buildMainRv.layoutManager = GridLayoutManager(
             this.context,4, GridLayoutManager.VERTICAL, false)
