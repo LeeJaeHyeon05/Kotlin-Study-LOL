@@ -29,6 +29,18 @@ class SummonerSpellFragment : Fragment() {
     ): View? {
         mBinding = FragmentSummonerSpellBinding.inflate(inflater, container, false)
 
+        btnHandleOnclick()
+
+        return binding.root
+
+    }
+
+    override fun onDestroy() {
+        mBinding = null
+        super.onDestroy()
+    }
+
+    private fun btnHandleOnclick() {
         binding.btnSmite.setOnClickListener (handleOnClick)
         binding.btnTel.setOnClickListener (handleOnClick)
         binding.btnShield.setOnClickListener (handleOnClick)
@@ -41,13 +53,6 @@ class SummonerSpellFragment : Fragment() {
         binding.btnThrowForo.setOnClickListener (handleOnClick)
         binding.btnBlue.setOnClickListener (handleOnClick)
         binding.btnGhost.setOnClickListener (handleOnClick)
-        return binding.root
-
-    }
-
-    override fun onDestroy() {
-        mBinding = null
-        super.onDestroy()
     }
 
 
