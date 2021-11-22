@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".scene.champion.ChampionListFragment">
+
+        <TextView
+            android:id="@+id/tv_basic"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="일반"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_skill"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_skill"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="스킬"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/tv_basic"
+            app:layout_constraintRight_toLeftOf="@id/tv_story"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_story"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="세계관"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/tv_skill"
+            app:layout_constraintRight_toLeftOf="@id/tv_skin"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_skin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="스킨"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/tv_story"
+            app:layout_constraintRight_toLeftOf="@id/tv_release"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_release"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="패치기록"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/tv_skin"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

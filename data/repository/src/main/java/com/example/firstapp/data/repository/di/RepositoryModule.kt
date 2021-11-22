@@ -20,9 +20,7 @@ import javax.inject.Singleton
 class RepositoryModule {
     @Provides
     @Singleton
-    fun provideChampionRepository(
-        @ApplicationContext context: Context,
-    ): ChampionRepository {
-        return ChampionRepository(context, FirstApi())
+    fun provideChampionRepository(): ChampionRepository {
+        return ChampionRepository(FirstApi())
     }
 }

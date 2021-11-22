@@ -12,11 +12,11 @@ import javax.inject.Inject
  * @since 2021/11/10
  **/
 @HiltViewModel
-class ChampionViewModel @Inject constructor(
+class ChampionListViewModel @Inject constructor(
     val repository: ChampionRepository,
 ) : ViewModel() {
 
-    private val _champions: LiveData<List<ChampionInfoVO>> = liveData {
+    val champions: LiveData<List<ChampionInfoVO>> = liveData {
         with(repository.championInfo()) {
             when (this) {
                 is ApiResponse.Success -> {
@@ -37,24 +37,6 @@ class ChampionViewModel @Inject constructor(
                 }
             }
         }
-    }
-    val champions: LiveData<List<ChampionInfoVO>> = _champions
-
-    fun dummy() {
-//        viewModelScope.launch(Dispatchers.IO) {
-//            repository.championInfo()
-//        }
-//        champions.value?.let { arr ->
-//            // todo 다음 커밋에는 홍식님이 만드신 에셋 매니저 사용 하도록 수정 예정
-//            arr.add(ChampionInfoVO())
-//            arr.add(ChampionInfoVO("가렌", "데마시아의 힘", ""))
-//            arr.add(ChampionInfoVO("가렌", "데마시아의 힘", ""))
-//            arr.add(ChampionInfoVO("가렌", "데마시아의 힘", ""))
-//            arr.add(ChampionInfoVO("가렌", "데마시아의 힘", ""))
-//            arr.add(ChampionInfoVO("가렌", "데마시아의 힘", ""))
-//            arr.add(ChampionInfoVO("가렌", "데마시아의 힘", ""))
-//            arr.add(ChampionInfoVO("가렌", "데마시아의 힘", ""))
-//        }
     }
 
 }
