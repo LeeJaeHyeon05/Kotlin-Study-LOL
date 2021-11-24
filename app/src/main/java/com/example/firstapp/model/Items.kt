@@ -2,34 +2,34 @@ package com.example.firstapp.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
+import com.google.gson.annotations.SerializedName
 
-data class ItemJson(
+data class ItemAll(
     val type: String,
     val version: String,
-    val data: Map<String, Data>,
+    @SerializedName(value = "items", alternate = ["data"])
+    val items: Map<String, Items>,
 )
 
 @Entity(tableName = "item")
-data class Data(
+data class Items(
     @PrimaryKey var id: String,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "description") val description: String,
     @ColumnInfo(name = "colloq") val colloq: String,
     @ColumnInfo(name = "plaintext") val plaintext: String,
-    @ColumnInfo(name = "into") val into: List<String>?,
-    @Ignore val image: Image?,
-    @Ignore val gold: Gold?,
-    @ColumnInfo(name = "tags") val tags: List<String>,
-    @Ignore val maps: Map<String, Boolean>?,
-    @Ignore val stats: Map<String, String>?,
-) {
-    constructor(id: String, name: String, description: String, colloq: String, plaintext: String, into: List<String>?, tags: List<String>) :
-            this(id, name, description, colloq, plaintext, into, null, null, tags, null, null)
-}
+    @ColumnInfo(name = "into") val into: JsonArray,
+    @ColumnInfo(name = "image") var image: JsonObject,
+    @ColumnInfo(name = "gold") var gold: JsonObject,
+    @ColumnInfo(name = "tags") val tags: JsonArray,
+    @ColumnInfo(name = "maps") var maps: JsonObject,
+    @ColumnInfo(name = "stats") var stats: JsonObject
+)
 
-data class Image(
+data class ItemImage(
     val full: String,
     val sprite: String,
     val group: String,
@@ -39,7 +39,7 @@ data class Image(
     val h: Int
 )
 
-data class Gold(
+data class ItemGold(
     val base: Int,
     val purchasable: Boolean,
     val total: Int,

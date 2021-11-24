@@ -12,8 +12,8 @@ import javax.inject.Inject
 @HiltViewModel
 class ItemViewModel @Inject constructor(private val itemRepository: ItemRepository): ViewModel() {
 
-    private val _dataList = MutableLiveData<List<Data>>()
-    val dataList: LiveData<List<Data>> = _dataList
+    private val _dataList = MutableLiveData<List<Items>>()
+    val dataList: LiveData<List<Items>> = _dataList
 
     fun data() = viewModelScope.launch {
         val itemList = itemRepository.getItems()

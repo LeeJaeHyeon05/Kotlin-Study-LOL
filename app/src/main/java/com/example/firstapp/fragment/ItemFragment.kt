@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.adapter.ItemListAdapter
 import com.example.firstapp.databinding.FragmentItemBinding
-import com.example.firstapp.model.Data
+import com.example.firstapp.model.Items
 import com.example.firstapp.model.ItemViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,7 +32,7 @@ class ItemFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 5)
         }
 
-        itemViewModel.dataList.observe(requireActivity(), Observer<List<Data>> {
+        itemViewModel.dataList.observe(requireActivity(), Observer<List<Items>> {
                 it -> (binding.itemList.adapter as ItemListAdapter).setData(it)
         })
 

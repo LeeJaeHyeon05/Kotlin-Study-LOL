@@ -5,8 +5,8 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.example.firstapp.database.dao.ItemDao
-import com.example.firstapp.model.Data
-import com.example.firstapp.model.ItemJson
+import com.example.firstapp.model.ItemAll
+import com.example.firstapp.model.Items
 import com.example.firstapp.util.getJsonDataFromAsset
 import com.google.gson.Gson
 import dagger.assisted.Assisted
@@ -32,11 +32,11 @@ class InitDataWorker @AssistedInject constructor(
 
         // item
         val jsonFileString = getJsonDataFromAsset(applicationContext, "item.json")
-        val itemJson = Gson().fromJson(jsonFileString, ItemJson::class.java)
-        val data: Map<String, Data> = itemJson.data
+        val itemAll = Gson().fromJson(jsonFileString, ItemAll::class.java)
+        val items: Map<String, Items> = itemAll.items
 
-        for ((key, value) in data) value.id = key
-        val dataList = data.map { it.value }
-        dataList.forEach { itemDao.insertAll(it) }
+        for ((key, value) in items) value.id = key
+        val itemList = items.map { it.value }
+        itemList.forEach { item -> itemDao.insertAll(item) }
     }
 }
