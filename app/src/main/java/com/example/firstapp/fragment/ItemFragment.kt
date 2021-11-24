@@ -5,27 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.adapter.ItemListAdapter
-import com.example.firstapp.database.dao.ItemDao
 import com.example.firstapp.databinding.FragmentItemBinding
 import com.example.firstapp.model.Data
-import com.example.firstapp.model.ItemJson
-import com.example.firstapp.util.getJsonDataFromAsset
-import com.google.gson.Gson
+import com.example.firstapp.model.ItemViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class ItemFragment : Fragment() {
 
     private lateinit var binding: FragmentItemBinding
 
-    @Inject
-    lateinit var itemDao: ItemDao
+    private val itemViewModel: ItemViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,24 +27,21 @@ class ItemFragment : Fragment() {
     ): View? {
         binding = FragmentItemBinding.inflate(layoutInflater)
 
-        val jsonFileString = getJsonDataFromAsset(requireActivity().applicationContext, "item.json")
-        val gson = Gson()
-        val itemJson = gson.fromJson(jsonFileString, ItemJson::class.java)
-        val data: Map<String, Data> = itemJson.data
-
-        for ((key, value) in data) value.id = key
-        val dataList = data.map { it.value }
-
-        CoroutineScope(IO).launch {
-            dataList.forEach { itemDao.insertAll(it) }
-        }
-
         binding.itemList.run {
-            adapter = ItemListAdapter(dataList)
+            adapter = ItemListAdapter(emptyList())
             layoutManager = GridLayoutManager(requireContext(), 5)
         }
+
+        itemViewModel.dataList.observe(requireActivity(), Observer<List<Data>> {
+                it -> (binding.itemList.adapter as ItemListAdapter).setData(it)
+        })
 
         return binding.root
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        itemViewModel.data()
+    }
 }

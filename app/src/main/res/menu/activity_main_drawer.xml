@@ -28,5 +28,9 @@
             android:id="@+id/nav_build_main"
             android:icon="@drawable/ic_menu_gallery"
             android:title="빌드" />
+        <item
+            android:id="@+id/nav_universe"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="유니버스" />
     </group>
 </menu>

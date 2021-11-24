@@ -29,41 +29,7 @@ class SummonerSpellFragment : Fragment() {
     ): View? {
         mBinding = FragmentSummonerSpellBinding.inflate(inflater, container, false)
 
-        binding.btnSmite.setOnClickListener (handleOnClick)
-
-        binding.btnTel.setOnClickListener {
-            telDialog(R.drawable.tel)
-        }
-        binding.btnShield.setOnClickListener {
-            sheieldDialog(R.drawable.sheild)
-        }
-        binding.btnFlash.setOnClickListener {
-            flashDialog(R.drawable.flash)
-        }
-        binding.btnHeal.setOnClickListener {
-            healDialog(R.drawable.heal)
-        }
-        binding.btnFire.setOnClickListener {
-            fireDialog(R.drawable.fire)
-        }
-        binding.btnClean.setOnClickListener {
-            cleanDialog(R.drawable.clean)
-        }
-        binding.btnExhausted.setOnClickListener {
-            exhaustedDialog(R.drawable.exhasuted)
-        }
-        binding.btnTotheking.setOnClickListener {
-            tothekingDialog(R.drawable.totheking)
-        }
-        binding.btnThrowForo.setOnClickListener {
-            throwForoDialog(R.drawable.aiblue)
-        }
-        binding.btnBlue.setOnClickListener {
-            blueDialog(R.drawable.blue)
-        }
-        binding.btnGhost.setOnClickListener {
-            ghostDialog(R.drawable.ghost)
-        }
+        btnHandleOnclick()
 
         return binding.root
 
@@ -74,9 +40,35 @@ class SummonerSpellFragment : Fragment() {
         super.onDestroy()
     }
 
+    private fun btnHandleOnclick() {
+        binding.btnSmite.setOnClickListener (handleOnClick)
+        binding.btnTel.setOnClickListener (handleOnClick)
+        binding.btnShield.setOnClickListener (handleOnClick)
+        binding.btnFlash.setOnClickListener (handleOnClick)
+        binding.btnHeal.setOnClickListener (handleOnClick)
+        binding.btnFire.setOnClickListener (handleOnClick)
+        binding.btnClean.setOnClickListener (handleOnClick)
+        binding.btnExhausted.setOnClickListener (handleOnClick)
+        binding.btnTotheking.setOnClickListener (handleOnClick)
+        binding.btnThrowForo.setOnClickListener (handleOnClick)
+        binding.btnBlue.setOnClickListener (handleOnClick)
+        binding.btnGhost.setOnClickListener (handleOnClick)
+    }
+
 
     private val messageMap: Map<Int, Array<Int>> = mapOf(
-            R.id.btn_smite to arrayOf(R.string.smiteDialogText, R.drawable.smite, R.string.smiteDialogTitle)
+        R.id.btn_smite to arrayOf(R.string.smiteDialogText, R.drawable.smite, R.string.smiteDialogTitle),
+        R.id.btn_tel to arrayOf(R.string.telDialogText, R.drawable.tel, R.string.telDialogTitle),
+        R.id.btn_flash to arrayOf(R.string.flashDialogText, R.drawable.flash, R.string.flashDialogTitle),
+        R.id.btn_Shield to arrayOf(R.string.sheildDialogText, R.drawable.sheild, R.string.sheildDialogTitle),
+        R.id.btn_clean to arrayOf(R.string.cleanDialogText, R.drawable.clean, R.string.cleanDialogTitle),
+        R.id.btn_heal to arrayOf(R.string.healDialogText, R.drawable.heal, R.string.healDialogTitle),
+        R.id.btn_fire to arrayOf(R.string.fireDialogText, R.drawable.fire, R.string.fireDialogTitle),
+        R.id.btn_exhausted to arrayOf(R.string.exhaustedDialogText, R.drawable.exhasuted, R.string.exhaustedDialogTitle),
+        R.id.btn_totheking to arrayOf(R.string.tothekingDialogText, R.drawable.totheking, R.string.tothekingDialogTitle),
+        R.id.btn_throwForo to arrayOf(R.string.throwforoDialogText, R.drawable.aiblue, R.string.throwforoDialogTitle),
+        R.id.btn_blue to arrayOf(R.string.blueDialogText, R.drawable.blue, R.string.blueDialogTitle),
+        R.id.btn_ghost to arrayOf(R.string.ghostDialogText, R.drawable.ghost, R.string.ghostDialogTitle),
     )
 
 
