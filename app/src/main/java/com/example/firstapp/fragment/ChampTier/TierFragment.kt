@@ -9,8 +9,12 @@ import android.view.ViewGroup
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentTierBinding
+import com.example.firstapp.util.GetDataJsoup
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * @author mmol93
@@ -58,8 +62,12 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
             } else if (i == 4) {
                 tab.icon = requireContext().getDrawable(R.drawable.ic_sup)
             }
-
         }.attach()
+
+        // Jsoup으로 데이터 가져오기
+        CoroutineScope(Dispatchers.IO).launch {
+            val champTierList = GetDataJsoup.tierData()
+        }
 
         return binding.root
     }

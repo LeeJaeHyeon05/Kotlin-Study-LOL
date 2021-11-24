@@ -10,6 +10,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.adapter.ChampTier.Tier1Adapter
 import com.example.firstapp.databinding.FragmentTierTopBinding
+import com.example.firstapp.util.GetDataJsoup
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 /**
  * @author mmol93
@@ -29,7 +33,7 @@ class TierTopFragment : Fragment() {
         )
 
         // RecyclerView 초기화
-        binding.tier1Recycler.layoutManager = GridLayoutManager(context, 4)
+        binding.tier1Recycler.layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
         val adapter = Tier1Adapter(requireContext())
         binding.tier1Recycler.adapter = adapter
 

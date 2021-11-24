@@ -107,6 +107,9 @@ dependencies {
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
 
+    // Jsoup
+    implementation 'org.jsoup:jsoup:1.11.3'
+
     def work_version = "2.7.0-alpha05"
 
     // Kotlin + coroutines
