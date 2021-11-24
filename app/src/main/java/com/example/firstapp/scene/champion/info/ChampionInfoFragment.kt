@@ -3,12 +3,12 @@ package com.example.firstapp.scene.champion.info
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentChampionInfoBinding
@@ -26,6 +26,7 @@ class ChampionInfoFragment : DialogFragment(R.layout.fragment_champion_info) {
     private val adapter = GroupieAdapter()
 
     val viewModel: ChampionInfoViewModel by viewModels()
+    val selectedTab:MutableLiveData<Int> = MutableLiveData(0)
 
     override fun onResume() {
         super.onResume()
@@ -48,8 +49,8 @@ class ChampionInfoFragment : DialogFragment(R.layout.fragment_champion_info) {
             champions.find { it.name == championName }
                 ?.let { championInfo ->
                     adapter.add(ChampionSummaryItem(championInfo))
-                    adapter.add(ChampionTabMenuItem(championInfo))
-                    adapter.add(ChampionDetailItem(championInfo))
+                    adapter.add(ChampionTabMenuItem(championInfo, selectedTab))
+                    adapter.add(ChampionDetailItem(championInfo, selectedTab))
                 }
         }
     }

@@ -4,13 +4,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         tools:context=".scene.champion.ChampionListFragment">
 
         <TextView
+            android:gravity="center"
             android:id="@+id/tv_basic"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="일반"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -18,9 +19,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/tv_skill"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="스킬"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/tv_basic"
@@ -28,9 +30,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/tv_story"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="세계관"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/tv_skill"
@@ -38,9 +41,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/tv_skin"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="스킨"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/tv_story"
@@ -48,9 +52,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
+            android:gravity="center"
             android:id="@+id/tv_release"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:text="패치기록"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@id/tv_skin"

@@ -1,9 +1,8 @@
 package com.example.firstapp.scene.champion.info
 
 import com.example.firstapp.R
-import com.example.firstapp.databinding.FragmentChampionRowItemBinding
 import com.example.firstapp.databinding.FragmentChampionSummaryBinding
-import com.example.firstapp.scene.champion.ChampionInfoVO
+import com.example.firstapp.model.champion.Champion
 import com.squareup.picasso.Picasso
 import com.xwray.groupie.databinding.BindableItem
 
@@ -13,13 +12,13 @@ import com.xwray.groupie.databinding.BindableItem
  * @since 2021/11/19
  **/
 
-class ChampionSummaryItem(private val championInfo: ChampionInfoVO) :
+class ChampionSummaryItem(private val championInfo: Champion) :
     BindableItem<FragmentChampionSummaryBinding>() {
     override fun bind(viewBinding: FragmentChampionSummaryBinding, position: Int) {
         viewBinding.tvName.text = championInfo.name
-        viewBinding.tvScript.text = championInfo.script
+        viewBinding.tvScript.text = championInfo.title
         Picasso.get()
-            .load(championInfo.imgUrl)
+            .load("http://ddragon.leagueoflegends.com/cdn/11.22.1/img/champion/" + championInfo.image.full)
             .into(viewBinding.ivThumbnail)
     }
 
