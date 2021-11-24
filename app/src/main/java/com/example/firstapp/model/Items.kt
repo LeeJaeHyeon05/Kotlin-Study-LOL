@@ -2,9 +2,11 @@ package com.example.firstapp.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 
 data class ItemAll(
@@ -22,12 +24,46 @@ data class Items(
     @ColumnInfo(name = "colloq") val colloq: String,
     @ColumnInfo(name = "plaintext") val plaintext: String,
     @ColumnInfo(name = "into") val into: JsonArray,
-    @ColumnInfo(name = "image") var image: JsonObject,
-    @ColumnInfo(name = "gold") var gold: JsonObject,
+    @ColumnInfo(name = "image") val image: JsonObject,
+    @ColumnInfo(name = "gold") val gold: JsonObject,
     @ColumnInfo(name = "tags") val tags: JsonArray,
-    @ColumnInfo(name = "maps") var maps: JsonObject,
-    @ColumnInfo(name = "stats") var stats: JsonObject
-)
+    @ColumnInfo(name = "maps") val maps: JsonObject,
+    @ColumnInfo(name = "stats") val stats: JsonObject,
+
+    @Expose(serialize = false, deserialize = false)
+    @Ignore var itemImage: ItemImage?,
+
+    @Expose(serialize = false, deserialize = false)
+    @Ignore var itemGold: ItemGold?,
+) {
+    constructor(
+        id: String,
+        name: String,
+        description: String,
+        colloq: String,
+        plaintext: String,
+        into: JsonArray,
+        image: JsonObject,
+        gold: JsonObject,
+        tags: JsonArray,
+        maps: JsonObject,
+        stats: JsonObject
+    ) : this(
+        id,
+        name,
+        description,
+        colloq,
+        plaintext,
+        into,
+        image,
+        gold,
+        tags,
+        maps,
+        stats,
+        null,
+        null
+    )
+}
 
 data class ItemImage(
     val full: String,
