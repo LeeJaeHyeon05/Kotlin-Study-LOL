@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.firstapp">
 
     <application
@@ -34,6 +35,15 @@
             android:theme="@style/Theme.FirstApp.NoActionBar">
 
         </activity>
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="com.example.firstapp.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="com.example.firstapp.initializer.TimberInitializer"
+                android:value="androidx.startup" />
+        </provider>
     </application>
 
 </manifest>
