@@ -1,4 +1,4 @@
-package com.example.newnewsmartdtg.initializer
+package com.example.firstapp.initializer
 
 import android.content.Context
 import androidx.databinding.library.BuildConfig
