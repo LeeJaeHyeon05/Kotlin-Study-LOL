@@ -38,6 +38,7 @@ dependencies {
     implementation(project(":model"))
 
     implementation "com.google.dagger:hilt-android:$hilt_version"
+    implementation project(path: ':app')
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
     implementation 'androidx.core:core-ktx:1.7.0'
