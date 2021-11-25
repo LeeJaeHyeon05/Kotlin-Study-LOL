@@ -45,4 +45,10 @@ dependencies {
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    //sandwich
+    implementation "com.github.skydoves:sandwich:1.2.1"
+
+    //whatif
+    implementation "com.github.skydoves:whatif:1.1.0"
 }

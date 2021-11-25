@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout>
+    <data>
+
+
+        <variable
+            name="championData"
+            type="com.example.firstapp.model.Champion.Datum" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -21,7 +30,7 @@
         android:id="@+id/champion_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="안드로이드"
+        android:text="@{championData.name}"
         android:textSize="10sp"
         android:textColor="#FFFFFF"
         android:gravity="center"
@@ -32,3 +41,4 @@
         app:layout_constraintRight_toRightOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

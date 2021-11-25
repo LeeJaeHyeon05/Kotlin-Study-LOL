@@ -34,7 +34,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideBuildService(retrofit: Retrofit):  {
+    fun provideBuildService(retrofit: Retrofit)  : BuildService {
         return retrofit.create(BuildService::class.java)
     }
 }
