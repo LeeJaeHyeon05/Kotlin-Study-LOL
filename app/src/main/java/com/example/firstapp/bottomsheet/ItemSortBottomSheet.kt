@@ -34,7 +34,7 @@ class ItemSortBottomSheet : BottomSheetDialogFragment() {
         binding.sortPriceAscLayout.setOnClickListener(handleOnClick)
         binding.sortPriceDescLayout.setOnClickListener(handleOnClick)
 
-        itemViewModel.itemSortType.observe(requireActivity()) {
+        itemViewModel.itemSortType.observe(viewLifecycleOwner) {
             binding.sortNameCheck.visibility = View.GONE
             binding.sortPriceAscCheck.visibility = View.GONE
             binding.sortPriceDescCheck.visibility = View.GONE

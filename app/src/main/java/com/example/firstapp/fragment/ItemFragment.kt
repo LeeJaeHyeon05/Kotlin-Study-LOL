@@ -40,7 +40,7 @@ class ItemFragment : Fragment() {
             layoutManager = GridLayoutManager(requireContext(), 5)
         }
 
-        itemViewModel.dataList.observe(requireActivity()) {
+        itemViewModel.dataList.observe(viewLifecycleOwner) {
             (binding.itemList.adapter as ItemListAdapter).setData(it)
         }
 
