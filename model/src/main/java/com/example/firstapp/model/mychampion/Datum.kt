@@ -1,4 +1,4 @@
-package com.example.firstapp.model.Champion
+package com.example.firstapp.model.mychampion
 
 import android.os.Parcelable
 

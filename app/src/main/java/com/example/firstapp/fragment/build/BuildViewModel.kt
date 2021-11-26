@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class BuildViewModel @Inject constructor(
-    private val buildRepository: BuildRepository,
+    private val buildRepository: BuildRepository
 ) : ViewModel() {
 
 

@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.firstapp.databinding.ItemBuildMainBinding
-import com.example.firstapp.model.Champion.Datum
+import com.example.firstapp.model.mychampion.Datum
 
 class BuildMainAdapter(val context : Context?, var championList : List<Datum>): RecyclerView.Adapter<BuildMainAdapter.ItemViewHolder>(){
 

@@ -1,8 +1,8 @@
 package com.example.firstapp.data.repository.di
 
 import androidx.annotation.WorkerThread
-import com.example.firstapp.fragment.build.network.BuildService
-import com.example.firstapp.model.Champion.Champion
+import com.example.firstapp.data.api.BuildService
+import com.example.firstapp.model.mychampion.Champion
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
@@ -20,10 +20,16 @@ import javax.inject.Inject
  *
  * Description:
  */
+
 class BuildRepository @Inject constructor(
     private val buildService: BuildService,
     private val dispatcher: CoroutineDispatcher
 ) {
+
+    init {
+
+    }
+
 
     @WorkerThread
     fun getChampions(

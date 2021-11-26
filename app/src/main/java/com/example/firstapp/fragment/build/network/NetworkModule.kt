@@ -1,5 +1,6 @@
 package com.example.firstapp.fragment.build.network
 
+import com.example.firstapp.data.api.BuildService
 import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -26,7 +27,7 @@ class NetworkModule {
     fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .baseUrl("http://ddragon.leagueoflegends.com")
+            .baseUrl("http://ddragon.leagueoflegends.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(CoroutinesResponseCallAdapterFactory.create())
             .build()

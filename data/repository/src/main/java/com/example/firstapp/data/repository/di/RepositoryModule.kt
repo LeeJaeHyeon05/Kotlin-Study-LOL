@@ -1,8 +1,8 @@
 package com.example.firstapp.data.repository.di
 
+import com.example.firstapp.data.api.BuildService
 import com.example.firstapp.data.api.FirstApi
 import com.example.firstapp.data.repository.ChampionRepository
-import com.example.firstapp.fragment.build.network.BuildService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,12 +25,5 @@ class RepositoryModule {
         return ChampionRepository(FirstApi())
     }
 
-    @Provides
-    @ViewModelScoped
-    fun provideBuildRepository(
-        buildService: BuildService,
-        dispatcher: CoroutineDispatcher
-    ): BuildRepository {
-        return BuildRepository(buildService, dispatcher)
-    }
+
 }

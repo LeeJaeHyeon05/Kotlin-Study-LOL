@@ -11,9 +11,11 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentBuildMainBinding
 import com.example.waterexample.ui.base.BaseFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 
+@AndroidEntryPoint
 class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragment_build_main) {
 
     private val viewModel: BuildViewModel by viewModels()
@@ -37,7 +39,7 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
     override fun init() {
         repeatOnStarted {
             viewModel.getChampion().collect { Champion ->
-                val championList = Champion.data.values.toList()
+                val championList = Champion.data.values.toList().sortedBy { it.name }
                 val adapter = BuildMainAdapter(this@BuildMainFragment.context, championList)
                 binding.buildMainRv.adapter = adapter
                 binding.buildMainRv.layoutManager = GridLayoutManager(
