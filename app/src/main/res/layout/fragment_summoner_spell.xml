@@ -183,8 +183,8 @@
             android:layout_height="60dp"
             android:layout_marginLeft="20dp"
             android:src="@drawable/blue"
+            app:layout_constraintTop_toTopOf="@+id/btn_throwForo"
             app:layout_constraintLeft_toRightOf="@+id/btn_throwForo"
-            app:layout_constraintTop_toBottomOf="@id/HowlingText"
 
             />
 
@@ -247,13 +247,12 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginRight="20dp"
             android:src="@drawable/flash"
-            app:layout_constraintLeft_toRightOf="@+id/btn_Shield"
+            app:layout_constraintLeft_toRightOf="@id/btn_Shield"
+            app:layout_constraintTop_toTopOf="@+id/btn_Shield"
             app:layout_constraintBottom_toBottomOf="@+id/btn_Shield"
-            app:layout_constraintTop_toBottomOf="@id/lolText"
-            android:layout_marginBottom="35dp" />
+
+            />
 
         <TextView
             android:id="@+id/textView12"
@@ -270,12 +269,11 @@
             android:id="@+id/btn_heal"
             android:layout_width="60dp"
             android:layout_height="60dp"
-            android:layout_marginTop="5dp"
             android:src="@drawable/heal"
             app:layout_constraintLeft_toRightOf="@+id/btn_flash"
-            app:layout_constraintTop_toBottomOf="@+id/lolText"
-            app:layout_constraintRight_toRightOf="parent
-"
+            app:layout_constraintTop_toTopOf="@+id/btn_flash"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_flash"
             />
 
         <TextView
