@@ -3,7 +3,13 @@ package com.example.firstapp.data.jsoup
 import android.util.Log
 import com.example.firstapp.model.ApiResponse
 import com.example.firstapp.model.tier.TierChamp
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import org.jsoup.Jsoup
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * @author mmol93
@@ -11,7 +17,7 @@ import org.jsoup.Jsoup
  * @since 2021/11/19
  **/
 class TierData {
-    fun getTierData():ApiResponse<ArrayList<TierChamp>>{
+    suspend fun getTierData():ApiResponse<ArrayList<TierChamp>>{
         val tierChampDataList = ArrayList<TierChamp>()
 
         // 해당 URL의 정보 가져오기

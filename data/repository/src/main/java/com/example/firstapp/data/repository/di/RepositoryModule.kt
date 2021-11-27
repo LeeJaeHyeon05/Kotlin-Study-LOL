@@ -4,6 +4,7 @@ import com.example.firstapp.data.api.FirstApi
 import com.example.firstapp.data.jsoup.TierData
 import com.example.firstapp.data.repository.ChampionRepository
 import com.example.firstapp.data.repository.TierRepository
+import com.example.firstapp.model.ApiResponse
 import com.example.firstapp.model.tier.TierChamp
 import dagger.Module
 import dagger.Provides
@@ -16,8 +17,8 @@ import javax.inject.Singleton
  * @email kottodat@naver.com
  * @since 2021/11/13
  **/
-@InstallIn(SingletonComponent::class)
 @Module
+@InstallIn(SingletonComponent::class)
 class RepositoryModule {
     @Provides
     @Singleton
@@ -27,7 +28,13 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideTierRepository(): TierRepository{
-        return TierRepository(TierData())
+    fun provideTierRepository(tierData: TierData):TierRepository{
+        return TierRepository(tierData)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTierData():TierData{
+        return TierData()
     }
 }
