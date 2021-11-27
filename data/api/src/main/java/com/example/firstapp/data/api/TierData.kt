@@ -1,15 +1,9 @@
-package com.example.firstapp.data.jsoup
+package com.example.firstapp.data.api
 
 import android.util.Log
 import com.example.firstapp.model.ApiResponse
 import com.example.firstapp.model.tier.TierChamp
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import org.jsoup.Jsoup
-import javax.inject.Inject
-import javax.inject.Singleton
 
 /**
  * @author mmol93

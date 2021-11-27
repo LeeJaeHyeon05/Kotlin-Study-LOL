@@ -1,14 +1,6 @@
 package com.example.firstapp.data.repository
 
-import com.example.firstapp.data.jsoup.TierData
-import com.example.firstapp.model.ApiResponse
-import com.example.firstapp.model.tier.TierChamp
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Inject
-import javax.inject.Singleton
+import com.example.firstapp.data.api.TierData
 
 /**
  * @author mmol93
