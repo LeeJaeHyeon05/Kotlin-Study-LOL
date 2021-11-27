@@ -14,5 +14,5 @@ interface ItemDao {
     fun selectAllCount(): Int
 
     @Insert
-    fun insertAll(vararg items: Iterable<Item>)
+    fun insertAll(items: Iterable<Item>)
 }
