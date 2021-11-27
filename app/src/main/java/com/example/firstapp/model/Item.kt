@@ -13,11 +13,11 @@ data class ItemAll(
     val type: String,
     val version: String,
     @SerializedName(value = "items", alternate = ["data"])
-    val items: Map<String, Items>,
+    val item: Map<String, Item>,
 )
 
 @Entity(tableName = "item")
-data class Items(
+data class Item(
     @PrimaryKey var id: String,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "description") val description: String,

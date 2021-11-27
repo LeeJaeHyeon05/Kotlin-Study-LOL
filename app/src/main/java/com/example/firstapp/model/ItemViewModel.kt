@@ -17,9 +17,9 @@ enum class ItemSortType {
 @HiltViewModel
 class ItemViewModel @Inject constructor(private val itemRepository: ItemRepository) : ViewModel() {
 
-    private lateinit var originalDataList: List<Items>
-    private val _dataList = MutableLiveData<List<Items>>()
-    val dataList: LiveData<List<Items>> = _dataList
+    private lateinit var originalDataList: List<Item>
+    private val _dataList = MutableLiveData<List<Item>>()
+    val dataList: LiveData<List<Item>> = _dataList
     private val _itemSortType = MutableLiveData<ItemSortType>()
     val itemSortType: LiveData<ItemSortType> = _itemSortType
 
@@ -28,7 +28,7 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
     }
 
     fun loadData() = viewModelScope.launch {
-        lateinit var itemList: List<Items>
+        lateinit var itemList: List<Item>
 
         if (::originalDataList.isInitialized) {
             itemList = originalDataList
