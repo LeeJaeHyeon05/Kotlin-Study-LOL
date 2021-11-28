@@ -2,32 +2,42 @@ package com.example.firstapp.fragment.ChampTier
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.firstapp.App
 import com.example.firstapp.R
+import com.example.firstapp.data.repository.TierRepository
 import com.example.firstapp.databinding.FragmentTierBinding
-import com.example.firstapp.util.GetDataJsoup
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 /**
  * @author mmol93
  * @email ljws93@naver.com
  * @since 2021/11/10
  **/
+
+@AndroidEntryPoint
 class TierFragment : Fragment(R.layout.fragment_tier) {
+
+    @Inject
+    lateinit var tierRepository: TierRepository
+
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val app = App()
         // fragment 객체 생성
         val topFragment = TierTopFragment()
         val midFragment = TierMidFragment()
@@ -64,9 +74,9 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
             }
         }.attach()
 
-        // Jsoup으로 데이터 가져오기
+        // Jsoup에서 데이터 가져오기
         CoroutineScope(Dispatchers.IO).launch {
-            val champTierList = GetDataJsoup.tierData()
+            tierRepository
         }
 
         return binding.root

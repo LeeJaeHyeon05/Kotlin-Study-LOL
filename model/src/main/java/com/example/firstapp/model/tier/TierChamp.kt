@@ -1,4 +1,4 @@
-package com.example.firstapp.model
+package com.example.firstapp.model.tier
 
 /**
  * @author mmol93

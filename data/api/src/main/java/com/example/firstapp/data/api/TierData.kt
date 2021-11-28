@@ -1,7 +1,8 @@
-package com.example.firstapp.util
+package com.example.firstapp.data.api
 
 import android.util.Log
-import com.example.firstapp.model.TierChamp
+import com.example.firstapp.model.ApiResponse
+import com.example.firstapp.model.tier.TierChamp
 import org.jsoup.Jsoup
 
 /**
@@ -9,9 +10,8 @@ import org.jsoup.Jsoup
  * @email ljws93@naver.com
  * @since 2021/11/19
  **/
-object GetDataJsoup {
-    // 아래 함수는 코루틴으로 실시해야합니다.
-    fun tierData(): ArrayList<TierChamp>? {
+class TierData {
+    suspend fun getTierData():ApiResponse<ArrayList<TierChamp>>{
         val tierChampDataList = ArrayList<TierChamp>()
 
         // 해당 URL의 정보 가져오기
@@ -42,11 +42,11 @@ object GetDataJsoup {
                     val tierChamp = TierChamp()
                     tierChamp.line = line
                     tierChamp.championName = webDoc.select("#wrapper > div > div > div > div.container.mt-3.mt-md-4.p-0 > div > div.col-lg-4 > div.champion-sub-list-wrap.champion-sub-tier-list > div.champion-sub-list > div:nth-child($line) > div:nth-child($rank) > div.champion > a > div > span")
-                            .text()
+                        .text()
                     tierChamp.tier = webDoc.select("#wrapper > div > div > div > div.container.mt-3.mt-md-4.p-0 > div > div.col-lg-4 > div.champion-sub-list-wrap.champion-sub-tier-list > div.champion-sub-list > div:nth-child($line) > div:nth-child($rank) > div:nth-child(3) > img")
-                            .attr("alt").toString()
+                        .attr("alt").toString()
                     tierChamp.winRate = webDoc.select("#wrapper > div > div > div > div.container.mt-3.mt-md-4.p-0 > div > div.col-lg-4 > div.champion-sub-list-wrap.champion-sub-tier-list > div.champion-sub-list > div:nth-child($line) > div:nth-child($rank) > div:nth-child(4)")
-                            .text()
+                        .text()
 
                     // 라인별로 데이터 길이가 다르기 때문에 break를 해준다
                     if (tierChamp.championName == "") {
@@ -59,11 +59,11 @@ object GetDataJsoup {
             }
             Log.d("jsoup", "tierDataList: $tierChampDataList")
 
-            return tierChampDataList
+            return ApiResponse.Success(tierChampDataList)
 
         } catch (e: Exception) {
             Log.d("JSoup", "통신에러: ${e.printStackTrace()}")
-            return null
+            return ApiResponse.Failure(e)
         }
     }
 }
