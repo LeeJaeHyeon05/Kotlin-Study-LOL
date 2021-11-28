@@ -5,9 +5,23 @@
     android:layout_height="match_parent"
     tools:context=".fragment.build.detail.DetailMyBuildFragment">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="챔피언 내 빌드 화면" />
+        android:layout_height="?attr/actionBarSize"
+        android:background="#10FF0000"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/build_my_build_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add_my_build"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_input_add"
+        android:layout_gravity="end|bottom"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="15dp"/>
 
 </FrameLayout>

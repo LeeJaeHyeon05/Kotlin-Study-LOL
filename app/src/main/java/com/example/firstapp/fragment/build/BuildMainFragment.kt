@@ -1,6 +1,7 @@
 package com.example.firstapp.fragment.build
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,11 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.databinding.FragmentBuildMainBinding
 
-
 class BuildMainFragment : Fragment() {
 
     lateinit var binding: FragmentBuildMainBinding
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -24,7 +23,6 @@ class BuildMainFragment : Fragment() {
         binding.buildMainRv.adapter = adapter
         binding.buildMainRv.layoutManager = GridLayoutManager(
             this.context,4, GridLayoutManager.VERTICAL, false)
-
         return binding.root
     }
 
