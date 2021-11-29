@@ -13,9 +13,9 @@ data class TierChamp(
 )
 
 data class TierLine(
-    val top : ArrayList<TierChamp>,
-    val mid : ArrayList<TierChamp>,
-    val jungle : ArrayList<TierChamp>,
-    val ads : ArrayList<TierChamp>,
-    val sup : ArrayList<TierChamp>
+    var top : ArrayList<TierChamp>?,
+    var mid : ArrayList<TierChamp>?,
+    var jungle : ArrayList<TierChamp>?,
+    var adc : ArrayList<TierChamp>?,
+    var sup : ArrayList<TierChamp>?
 )

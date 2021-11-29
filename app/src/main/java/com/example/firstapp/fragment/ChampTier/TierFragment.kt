@@ -2,6 +2,7 @@ package com.example.firstapp.fragment.ChampTier
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import com.example.firstapp.App
 import com.example.firstapp.R
 import com.example.firstapp.data.repository.TierRepository
 import com.example.firstapp.databinding.FragmentTierBinding
+import com.example.firstapp.model.ApiResponse
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,7 +39,7 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val app = App()
+        // 챔피언 데이터를 받기 위한 객체
         // fragment 객체 생성
         val topFragment = TierTopFragment()
         val midFragment = TierMidFragment()
@@ -76,7 +78,9 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
 
         // Jsoup에서 데이터 가져오기
         CoroutineScope(Dispatchers.IO).launch {
-            tierRepository
+            val tierData = tierRepository.execute()
+
+            Log.d("jsoup", "$tierData")
         }
 
         return binding.root
