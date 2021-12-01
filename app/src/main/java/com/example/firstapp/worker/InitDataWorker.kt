@@ -12,6 +12,7 @@ import com.example.firstapp.model.Item
 import com.example.firstapp.model.ItemAll
 import com.example.firstapp.util.getJsonDataFromAsset
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
 import timber.log.Timber
@@ -57,5 +58,10 @@ class InitDataWorker @AssistedInject constructor(
         for ((key, value) in items) value.id = key
         val itemList = items.map { it.value }
         itemDao.insertAll(itemList)
+
+        // for cache init
+        itemList.forEach {
+            Picasso.get().load("https://ddragon.leagueoflegends.com/cdn/11.22.1/img/item/${it.id}.png").fetch()
+        }
     }
 }
