@@ -2,6 +2,7 @@ package com.example.firstapp.fragment
 
 import android.os.Bundle
 import android.view.*
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -27,6 +28,23 @@ class ItemFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
         inflater.inflate(R.menu.item_menu, menu)
+
+        val menuItem: MenuItem = menu.findItem(R.id.action_search)
+        val searchView: SearchView = menuItem.actionView as SearchView
+        searchView.queryHint = getString(R.string.item_name)
+
+        searchView.setOnQueryTextFocusChangeListener { v, hasFocus ->
+            menu.findItem(R.id.action_sort).isVisible = !hasFocus
+        }
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return false
+            }
+        })
     }
 
     override fun onCreateView(
@@ -51,7 +69,10 @@ class ItemFragment : Fragment() {
         when (item.itemId) {
             R.id.action_sort -> {
                 val itemSortBottomSheet = ItemSortBottomSheet()
-                itemSortBottomSheet.show(requireActivity().supportFragmentManager, ItemSortBottomSheet.TAG)
+                itemSortBottomSheet.show(
+                    requireActivity().supportFragmentManager,
+                    ItemSortBottomSheet.TAG
+                )
             }
         }
 
