@@ -12,6 +12,7 @@ import com.example.firstapp.bottomsheet.ItemSortBottomSheet
 import com.example.firstapp.databinding.FragmentItemBinding
 import com.example.firstapp.model.ItemViewModel
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class ItemFragment : Fragment() {
@@ -38,10 +39,14 @@ class ItemFragment : Fragment() {
         }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
+                Timber.i("query : %s", query)
+                itemViewModel.setSearchQuery(query.orEmpty())
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
+                Timber.i("query : %s", newText)
+                itemViewModel.setSearchQuery(newText.orEmpty())
                 return false
             }
         })
