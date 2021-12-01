@@ -10,10 +10,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.adapter.ChampTier.Tier1Adapter
 import com.example.firstapp.databinding.FragmentTierTopBinding
-import com.example.firstapp.util.GetDataJsoup
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 /**
  * @author mmol93
