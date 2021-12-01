@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">FirstApp</string>
+
+
+    <!-- 챔피언 정보 -->
+    <string name="champion_see_build_btn">빌드보기</string>
+    <string name="champion_release_date_title">출시일</string>
+
     <!--롤 스펠 텍스트 -->
     <string name="tel">텔레포트</string>
     <string name="smite">강타</string>
@@ -52,6 +58,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="action_search">Search</string>
+    <string name="action_sort">Sort</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
