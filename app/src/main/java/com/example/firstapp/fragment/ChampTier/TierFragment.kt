@@ -8,12 +8,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.App
 import com.example.firstapp.R
 import com.example.firstapp.data.repository.TierRepository
 import com.example.firstapp.databinding.FragmentTierBinding
 import com.example.firstapp.model.ApiResponse
+import com.example.firstapp.model.ItemViewModel
+import com.example.firstapp.model.TierViewModel
 import com.example.firstapp.model.tier.TierLine
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -32,8 +36,8 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class TierFragment : Fragment(R.layout.fragment_tier) {
 
-    @Inject
-    lateinit var tierRepository: TierRepository
+    // activityViewModels: Activity의 viewModel에 접근하도록 한다
+    private val tierViewModel: TierViewModel by activityViewModels()
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
@@ -77,18 +81,12 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
             }
         }.attach()
 
-        // Jsoup에서 데이터 가져오기
-        CoroutineScope(Dispatchers.IO).launch {
-            when(val response = tierRepository.execute()){
-                is ApiResponse.Success ->{
-                    // todo 받아온 데이터를 각각의 fragment에 뿌리기
-                }
-                is ApiResponse.Failure -> {
-                    Toast.makeText(context, "티어 정보 로딩에 실패했습니다", Toast.LENGTH_SHORT).show()
-                    Log.d("jsoup", "error: ${response.e}")
-                }
-            }
-        }
+        /* viewModel로 데이터 갱신하고
+            각 fragment에 데이터 분배하기
+         */
+        tierViewModel.tierDataList.observe(viewLifecycleOwner, Observer {
+
+        })
 
         return binding.root
     }
