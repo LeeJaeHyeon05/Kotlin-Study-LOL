@@ -1,14 +1,11 @@
 package com.example.firstapp.data.repository.di
 
-import com.example.firstapp.data.api.BuildService
 import com.example.firstapp.data.api.FirstApi
 import com.example.firstapp.data.repository.ChampionRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.scopes.ViewModelScoped
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.CoroutineDispatcher
 import javax.inject.Singleton
 
 /**
@@ -24,6 +21,4 @@ class RepositoryModule {
     fun provideChampionRepository(): ChampionRepository {
         return ChampionRepository(FirstApi())
     }
-
-
 }
