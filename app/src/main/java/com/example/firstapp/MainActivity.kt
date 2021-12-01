@@ -56,8 +56,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_item,
                 R.id.nav_summoner,
                 R.id.nav_summonerSpell,
-                R.id.nav_build_main,
-                R.id.nav_universe
+                R.id.nav_build_main
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

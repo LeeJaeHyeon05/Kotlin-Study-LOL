@@ -6,15 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.firstapp.R
+import com.example.firstapp.databinding.FragmentBuildDetailMybuildBinding
+import com.example.firstapp.databinding.FragmentBuildMainBinding
 
 class DetailMyBuildFragment : Fragment() {
 
+    lateinit var binding : FragmentBuildDetailMybuildBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_build_detail_mybuild, container, false)
+        binding = FragmentBuildDetailMybuildBinding.inflate(inflater,container,false)
+
+        binding.fabAddMyBuild.setOnClickListener {
+            //move to fragment_add_my_build
+        }
+        return binding.root
     }
 
 }

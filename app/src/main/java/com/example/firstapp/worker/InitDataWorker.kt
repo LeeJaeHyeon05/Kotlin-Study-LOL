@@ -4,9 +4,12 @@ import android.content.Context
 import androidx.hilt.work.HiltWorker
 import androidx.work.Worker
 import androidx.work.WorkerParameters
+import com.example.firstapp.database.dao.ChampionDao
 import com.example.firstapp.database.dao.ItemDao
-import com.example.firstapp.model.Data
-import com.example.firstapp.model.ItemJson
+import com.example.firstapp.model.Champion
+import com.example.firstapp.model.ChampionAll
+import com.example.firstapp.model.Item
+import com.example.firstapp.model.ItemAll
 import com.example.firstapp.util.getJsonDataFromAsset
 import com.google.gson.Gson
 import dagger.assisted.Assisted
@@ -16,27 +19,40 @@ import dagger.assisted.AssistedInject
 class InitDataWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
+    val championDao: ChampionDao,
     val itemDao: ItemDao
 ) : Worker(appContext, workerParams) {
 
     override fun doWork(): Result {
 
+        initChanmpion()
         initItem()
 
         return Result.success()
+    }
+
+    private fun initChanmpion() {
+        val championCount = championDao.selectAllCount()
+        if (championCount > 0) return
+
+        val jsonFileString = getJsonDataFromAsset(applicationContext, "champion.json")
+        val championAll = Gson().fromJson(jsonFileString, ChampionAll::class.java)
+        val champions: Map<String, Champion> = championAll.champions
+
+        val championList = champions.map { it.value }
+        championDao.insertAll(championList)
     }
 
     private fun initItem() {
         val itemCount = itemDao.selectAllCount()
         if (itemCount > 0) return
 
-        // item
         val jsonFileString = getJsonDataFromAsset(applicationContext, "item.json")
-        val itemJson = Gson().fromJson(jsonFileString, ItemJson::class.java)
-        val data: Map<String, Data> = itemJson.data
+        val itemAll = Gson().fromJson(jsonFileString, ItemAll::class.java)
+        val items: Map<String, Item> = itemAll.items
 
-        for ((key, value) in data) value.id = key
-        val dataList = data.map { it.value }
-        dataList.forEach { itemDao.insertAll(it) }
+        for ((key, value) in items) value.id = key
+        val itemList = items.map { it.value }
+        itemDao.insertAll(itemList)
     }
 }
