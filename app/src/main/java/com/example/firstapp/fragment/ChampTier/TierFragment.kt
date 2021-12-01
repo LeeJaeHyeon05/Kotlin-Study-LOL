@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.App
@@ -13,6 +14,7 @@ import com.example.firstapp.R
 import com.example.firstapp.data.repository.TierRepository
 import com.example.firstapp.databinding.FragmentTierBinding
 import com.example.firstapp.model.ApiResponse
+import com.example.firstapp.model.tier.TierLine
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,7 +34,6 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
 
     @Inject
     lateinit var tierRepository: TierRepository
-
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
@@ -78,9 +79,15 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
 
         // Jsoup에서 데이터 가져오기
         CoroutineScope(Dispatchers.IO).launch {
-            val tierData = tierRepository.execute()
-
-            Log.d("jsoup", "$tierData")
+            when(val response = tierRepository.execute()){
+                is ApiResponse.Success ->{
+                    // todo 받아온 데이터를 각각의 fragment에 뿌리기
+                }
+                is ApiResponse.Failure -> {
+                    Toast.makeText(context, "티어 정보 로딩에 실패했습니다", Toast.LENGTH_SHORT).show()
+                    Log.d("jsoup", "error: ${response.e}")
+                }
+            }
         }
 
         return binding.root
