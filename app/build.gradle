@@ -132,6 +132,7 @@ dependencies {
     implementation "androidx.startup:startup-runtime:1.1.0"
     //Timber
     implementation "com.jakewharton.timber:timber:5.0.1"
+    implementation "com.github.ajalt:timberkt:1.5.1"
 
     //sandwich
     implementation "com.github.skydoves:sandwich:1.2.1"
