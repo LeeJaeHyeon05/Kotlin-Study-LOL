@@ -51,6 +51,7 @@ hilt {
 
 dependencies {
 
+    implementation(project(":data:api"))
     implementation(project(":data:repository"))
     implementation(project(":model"))
     implementation(project(":data:api"))
