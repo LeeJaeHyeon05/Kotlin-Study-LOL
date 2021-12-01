@@ -1,7 +1,7 @@
 package com.example.firstapp.data.api
 
 import com.example.firstapp.model.ApiResponse
-import com.example.firstapp.model.champion.AatroxVO
+import com.example.firstapp.model.champion.ChampionVO
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -33,8 +33,8 @@ class FirstApi {
         .create(LeagueOfLegendsApi::class.java)
 
 
-    suspend fun getChampionInfo(): ApiResponse<AatroxVO> {
-        api.getChampion().let {
+    suspend fun getChampionInfo(): ApiResponse<ChampionVO> {
+        api.getAllChampion().let {
             if (it.isSuccessful)
                 return ApiResponse.Success(it.body()!!)
             else {
