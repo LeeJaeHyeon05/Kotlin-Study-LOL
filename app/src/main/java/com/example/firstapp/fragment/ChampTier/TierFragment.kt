@@ -2,13 +2,17 @@ package com.example.firstapp.fragment.ChampTier
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.App
@@ -25,6 +29,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -47,13 +52,34 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
         // 챔피언 데이터를 받기 위한 객체
         // fragment 객체 생성
         val topFragment = TierTopFragment()
-        val midFragment = TierMidFragment()
         val botFragment = TierBotFragment()
+        val midFragment = TierMidFragment()
         val supFragment = TierSupFragment()
         val jungFragment = TierJungFragment()
 
         val binding = FragmentTierBinding.inflate(inflater, container, false)
         val fragmentList = arrayOf(topFragment, jungFragment, midFragment, botFragment, supFragment)
+
+        /* viewModel로 데이터 갱신하고
+           각 fragment에 데이터 분배하기
+         */
+        tierViewModel.tierDataList.observe(viewLifecycleOwner, Observer {
+            // todo 받아온 데이터를 각각의 fragment에 넣기
+            val topTierData = it.top
+            val midTierData = it.mid
+            val jungleTierData = it.jungle
+            val adcTierData = it.adc
+            val supTierData = it.sup
+
+            val parcelTopTierData = BaseParcelable(topTierData!!)
+
+            Log.d("jsoup", "topTierData: $topTierData")
+
+            setFragmentResult("tierDataKey", bundleOf("topTierKey" to parcelTopTierData))
+            setFragmentResult("tierDataKey", bundleOf("topString" to "from Fragment"))
+
+            Log.d("jsoup","jsoup 데이터 observing됨")
+        })
 
         val adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount(): Int {
@@ -81,13 +107,34 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
             }
         }.attach()
 
-        /* viewModel로 데이터 갱신하고
-            각 fragment에 데이터 분배하기
-         */
-        tierViewModel.tierDataList.observe(viewLifecycleOwner, Observer {
-
-        })
-
         return binding.root
+    }
+}
+
+class BaseParcelable : Parcelable {
+
+    var value: Any
+
+    constructor(value: Any) {
+        this.value = value
+    }
+
+    constructor(parcel: Parcel) {
+        this.value = Any()
+    }
+
+    override fun writeToParcel(dest: Parcel?, flags: Int) {}
+
+    override fun describeContents(): Int = 0
+
+    companion object CREATOR : Parcelable.Creator<BaseParcelable> {
+
+        override fun createFromParcel(parcel: Parcel): BaseParcelable {
+            return BaseParcelable(parcel)
+        }
+
+        override fun newArray(size: Int): Array<BaseParcelable?> {
+            return arrayOfNulls(size)
+        }
     }
 }

@@ -11,6 +11,7 @@ import com.example.firstapp.model.tier.TierLine
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,11 +20,11 @@ class TierViewModel @Inject constructor(private val tierRepository: TierReposito
         val tierDataList = liveData<TierLine>(Dispatchers.IO) {
             when(val response = tierRepository.execute()){
                 is ApiResponse.Success ->{
-                    // todo 받아온 데이터를 각각의 fragment에 뿌리기
                     emit(response.value)
+                    Log.d("jsoup","Success: 뷰모델에서 티어 데이터 가져오기 완료")
                 }
                 is ApiResponse.Failure -> {
-                    Log.d("jsoup", "error: ${response.e}")
+                    Timber.d("error: " + response.e)
                 }
             }
         }

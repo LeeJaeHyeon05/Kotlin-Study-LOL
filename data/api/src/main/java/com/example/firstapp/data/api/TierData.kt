@@ -82,11 +82,11 @@ class TierData {
             tierLine.sup = supTierList
 
             // 각 라인별 데이터 로그 출력
-            Log.d("jsoup", "top: ${tierLine.top}")
-            Log.d("jsoup", "mid: ${tierLine.mid}")
-            Log.d("jsoup", "jungle: ${tierLine.jungle}")
-            Log.d("jsoup", "adc: ${tierLine.adc}")
-            Log.d("jsoup", "sup: ${tierLine.sup}")
+//            Log.d("jsoup", "top: ${tierLine.top}")
+//            Log.d("jsoup", "mid: ${tierLine.mid}")
+//            Log.d("jsoup", "jungle: ${tierLine.jungle}")
+//            Log.d("jsoup", "adc: ${tierLine.adc}")
+//            Log.d("jsoup", "sup: ${tierLine.sup}")
 
             return ApiResponse.Success(tierLine)
 
