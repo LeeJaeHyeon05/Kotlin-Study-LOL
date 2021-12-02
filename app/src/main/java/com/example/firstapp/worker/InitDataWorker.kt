@@ -14,6 +14,7 @@ import com.example.firstapp.util.getJsonDataFromAsset
 import com.google.gson.Gson
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedInject
+import timber.log.Timber
 
 @HiltWorker
 class InitDataWorker @AssistedInject constructor(
@@ -33,6 +34,7 @@ class InitDataWorker @AssistedInject constructor(
 
     private fun initChanmpion() {
         val championCount = championDao.selectAllCount()
+        Timber.i("championCount : %d", championCount)
         if (championCount > 0) return
 
         val jsonFileString = getJsonDataFromAsset(applicationContext, "champion.json")
@@ -45,6 +47,7 @@ class InitDataWorker @AssistedInject constructor(
 
     private fun initItem() {
         val itemCount = itemDao.selectAllCount()
+        Timber.i("itemCount : %d", itemCount)
         if (itemCount > 0) return
 
         val jsonFileString = getJsonDataFromAsset(applicationContext, "item.json")
