@@ -10,6 +10,7 @@ import com.example.firstapp.model.Champion
 import com.example.firstapp.model.ChampionAll
 import com.example.firstapp.model.Item
 import com.example.firstapp.model.ItemAll
+import com.example.firstapp.util.getBaseImageUrl
 import com.example.firstapp.util.getJsonDataFromAsset
 import com.google.gson.Gson
 import com.squareup.picasso.Picasso
@@ -61,7 +62,7 @@ class InitDataWorker @AssistedInject constructor(
 
         // for cache init
         itemList.forEach {
-            Picasso.get().load("https://ddragon.leagueoflegends.com/cdn/11.22.1/img/item/${it.id}.png").fetch()
+            Picasso.get().load("${getBaseImageUrl()}/item/${it.id}.png").fetch()
         }
     }
 }

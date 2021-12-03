@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.firstapp.databinding.ItemBinding
 import com.example.firstapp.model.Item
+import com.example.firstapp.util.getBaseImageUrl
 import com.squareup.picasso.Picasso
 
 class ItemListAdapter(private var dataSet: List<Item>) :
@@ -12,8 +13,8 @@ class ItemListAdapter(private var dataSet: List<Item>) :
 
     class ViewHolder(private val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(dataSet: List<Item>, position: Int) {
-            Picasso.get().load("https://ddragon.leagueoflegends.com/cdn/11.22.1/img/item/${dataSet.get(position).id}.png").into(binding.itemImage)
-            binding.itemName.text = dataSet.get(position).name
+            Picasso.get().load("${getBaseImageUrl()}/item/${dataSet[position].id}.png").into(binding.itemImage)
+            binding.itemName.text = dataSet[position].name
         }
     }
 
