@@ -14,6 +14,7 @@ import com.example.firstapp.eventbus.EventBus
 import com.example.firstapp.eventbus.InitDataEvent
 import com.example.firstapp.worker.InitDataWorker
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -30,10 +31,12 @@ class SplashActivity : AppCompatActivity() {
     }
 
     private fun updateProgress(initDataEvent: InitDataEvent) {
-        Timber.i("initDataEvent : %s", initDataEvent.message)
+        Timber.i("initDataEvent : %d %s", initDataEvent.progress, initDataEvent.message)
         binding.progressHorizontal.setProgressCompat(initDataEvent.progress, true)
+        binding.progressText.text = initDataEvent.message
 
         if (initDataEvent.progress === Int.MAX_VALUE) {
+            binding.progressText.text = getString(R.string.finish)
             val handler = Handler(Looper.getMainLooper())
             handler.postDelayed({
                 val intent = Intent(baseContext, MainActivity::class.java)

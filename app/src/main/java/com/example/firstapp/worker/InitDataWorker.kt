@@ -33,6 +33,8 @@ class InitDataWorker @AssistedInject constructor(
 ) : CoroutineWorker(appContext, workerParams) {
 
     private var progress: Int = 0
+    private var cachedChampionCount: Int = 0
+    private var cachedItemCount: Int = 0
 
     private suspend fun postMessage(message: String) {
         progress += 1
@@ -63,18 +65,20 @@ class InitDataWorker @AssistedInject constructor(
         postMessage("insert champion finish")
 
         // for cache init
-        championList.forEachIndexed { index, item ->
-            Timber.i("${getBaseImageUrl()}/champion/${item.image.get("full").asString}")
-            Picasso.get().load("${getBaseImageUrl()}/champion/${item.image.get("full").asString}")
+        championList.forEach { champion ->
+            Timber.i("${getBaseImageUrl()}/champion/${champion.image.get("full").asString}")
+            Picasso.get().load("${getBaseImageUrl()}/champion/${champion.image.get("full").asString}")
                 .fetch(object : Callback {
                     override fun onSuccess() {
-                        CoroutineScope(Dispatchers.IO).launch { postMessage("${item.name} image cached") }
-                        if (index === championList.size - 1) CoroutineScope(Dispatchers.IO).launch { initItem() }
+                        cachedChampionCount++
+                        CoroutineScope(Dispatchers.IO).launch { postMessage("${champion.name} image cached") }
+                        if (championList.size === cachedChampionCount) CoroutineScope(Dispatchers.IO).launch { initItem() }
                     }
 
                     override fun onError(e: Exception?) {
-                        CoroutineScope(Dispatchers.IO).launch { postMessage("${item.name} image cache failed") }
-                        if (index === championList.size - 1) CoroutineScope(Dispatchers.IO).launch { initItem() }
+                        cachedChampionCount++
+                        CoroutineScope(Dispatchers.IO).launch { postMessage("${champion.name} image cache failed") }
+                        if (championList.size === cachedChampionCount) CoroutineScope(Dispatchers.IO).launch { initItem() }
                     }
                 })
         }
@@ -97,16 +101,18 @@ class InitDataWorker @AssistedInject constructor(
         postMessage("insert item finish")
 
         // for cache init
-        itemList.forEachIndexed { index, item ->
+        itemList.forEach { item ->
             Picasso.get().load("${getBaseImageUrl()}/item/${item.id}.png").fetch(object : Callback {
                 override fun onSuccess() {
+                    cachedItemCount++
                     CoroutineScope(Dispatchers.IO).launch { postMessage("${item.name} image cached") }
-                    if (index === itemList.size - 1) CoroutineScope(Dispatchers.IO).launch { finishWork() }
+                    if (itemList.size === cachedItemCount) CoroutineScope(Dispatchers.IO).launch { finishWork() }
                 }
 
                 override fun onError(e: Exception?) {
+                    cachedItemCount++
                     CoroutineScope(Dispatchers.IO).launch { postMessage("${item.name} image cache failed") }
-                    if (index === itemList.size - 1) CoroutineScope(Dispatchers.IO).launch { finishWork() }
+                    if (itemList.size === cachedItemCount) CoroutineScope(Dispatchers.IO).launch { finishWork() }
                 }
             })
         }
