@@ -17,6 +17,7 @@ import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.App
 import com.example.firstapp.R
+import com.example.firstapp.adapter.ChampTier.TierPagerAdapter
 import com.example.firstapp.data.repository.TierRepository
 import com.example.firstapp.databinding.FragmentTierBinding
 import com.example.firstapp.model.ApiResponse
@@ -60,6 +61,30 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
         val binding = FragmentTierBinding.inflate(inflater, container, false)
         val fragmentList = arrayOf(topFragment, jungFragment, midFragment, botFragment, supFragment)
 
+        val adapter = object : FragmentStateAdapter(this) {
+            override fun getItemCount(): Int {
+                return fragmentList.size
+            }
+
+            override fun createFragment(position: Int): Fragment {
+                return fragmentList[position]
+            }
+
+            //
+            override fun getItemId(position: Int): Long {
+                return super.getItemId(position)
+            }
+
+            //
+            override fun containsItem(itemId: Long): Boolean {
+                return super.containsItem(itemId)
+            }
+        }
+
+        val pagerAdapter = TierPagerAdapter(this)
+
+        binding.viewPager.adapter = adapter
+
         /* viewModel로 데이터 갱신하고
            각 fragment에 데이터 분배하기
          */
@@ -77,20 +102,8 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
 
             setFragmentResult("tierDataKey", bundleOf("topTierKey" to parcelTopTierData))
             setFragmentResult("tierDataKey", bundleOf("topString" to "from Fragment"))
-
-            Log.d("jsoup","jsoup 데이터 observing됨")
+            adapter.notifyDataSetChanged()
         })
-
-        val adapter = object : FragmentStateAdapter(this) {
-            override fun getItemCount(): Int {
-                return fragmentList.size
-            }
-
-            override fun createFragment(position: Int): Fragment {
-                return fragmentList[position]
-            }
-        }
-        binding.viewPager.adapter = adapter
 
         // tab과 viewPager2를 연결시킨다
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab: TabLayout.Tab, i: Int ->

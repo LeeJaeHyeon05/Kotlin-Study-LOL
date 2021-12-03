@@ -51,5 +51,9 @@ class TierTopFragment : Fragment() {
             val result = bundle.getParcelable<BaseParcelable>("topTierKey")?.value
             Log.d("jsoup","result: $result")
         }
+        setFragmentResultListener("tierDataKey") { requestKey, bundle ->
+            val result = bundle.getString("topString")
+            Log.d("jsoup","result: $result")
+        }
     }
 }
