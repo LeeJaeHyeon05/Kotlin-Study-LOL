@@ -22,19 +22,19 @@ import timber.log.Timber
 class InitDataWorker @AssistedInject constructor(
     @Assisted appContext: Context,
     @Assisted workerParams: WorkerParameters,
-    val championDao: ChampionDao,
-    val itemDao: ItemDao
+    private val championDao: ChampionDao,
+    private val itemDao: ItemDao
 ) : Worker(appContext, workerParams) {
 
     override fun doWork(): Result {
 
-        initChanmpion()
+        initChampion()
         initItem()
 
         return Result.success()
     }
 
-    private fun initChanmpion() {
+    private fun initChampion() {
         val championCount = championDao.selectAllCount()
         Timber.i("championCount : %d", championCount)
         if (championCount > 0) return
