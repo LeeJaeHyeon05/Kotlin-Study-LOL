@@ -10,6 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.firstapp.CustomAdapter
+import com.example.firstapp.ItemsViewModel
 import com.example.firstapp.R
 import com.example.firstapp.databinding.ActivityMainBinding
 import com.example.firstapp.databinding.FragmentItemBinding
@@ -22,6 +26,8 @@ class SummonerSpellFragment : Fragment() {
     private val binding get() = mBinding!!
 
 
+    lateinit var recyclerView1 : RecyclerView
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,7 +35,13 @@ class SummonerSpellFragment : Fragment() {
     ): View? {
         mBinding = FragmentSummonerSpellBinding.inflate(inflater, container, false)
 
-        btnHandleOnclick()
+        var rootView = inflater.inflate(R.layout.item_list,container,false)
+        val data : ArrayList<ItemsViewModel> = ArrayList()
+
+        data.add(ItemsViewModel(R.drawable.blue, "점멸"))
+
+        recyclerView1 = rootView.findViewById(R.id.itemList!!) as RecyclerView
+        recyclerView1.layoutManager = LinearLayoutManager(requireContext())
 
         return binding.root
 
@@ -39,226 +51,83 @@ class SummonerSpellFragment : Fragment() {
         mBinding = null
         super.onDestroy()
     }
-
-    private fun btnHandleOnclick() {
-        binding.btnSmite.setOnClickListener (handleOnClick)
-        binding.btnTel.setOnClickListener (handleOnClick)
-        binding.btnShield.setOnClickListener (handleOnClick)
-        binding.btnFlash.setOnClickListener (handleOnClick)
-        binding.btnHeal.setOnClickListener (handleOnClick)
-        binding.btnFire.setOnClickListener (handleOnClick)
-        binding.btnClean.setOnClickListener (handleOnClick)
-        binding.btnExhausted.setOnClickListener (handleOnClick)
-        binding.btnTotheking.setOnClickListener (handleOnClick)
-        binding.btnThrowForo.setOnClickListener (handleOnClick)
-        binding.btnBlue.setOnClickListener (handleOnClick)
-        binding.btnGhost.setOnClickListener (handleOnClick)
-    }
-
-
-    private val messageMap: Map<Int, Array<Int>> = mapOf(
-        R.id.btn_smite to arrayOf(R.string.smiteDialogText, R.drawable.smite, R.string.smiteDialogTitle),
-        R.id.btn_tel to arrayOf(R.string.telDialogText, R.drawable.tel, R.string.telDialogTitle),
-        R.id.btn_flash to arrayOf(R.string.flashDialogText, R.drawable.flash, R.string.flashDialogTitle),
-        R.id.btn_Shield to arrayOf(R.string.sheildDialogText, R.drawable.sheild, R.string.sheildDialogTitle),
-        R.id.btn_clean to arrayOf(R.string.cleanDialogText, R.drawable.clean, R.string.cleanDialogTitle),
-        R.id.btn_heal to arrayOf(R.string.healDialogText, R.drawable.heal, R.string.healDialogTitle),
-        R.id.btn_fire to arrayOf(R.string.fireDialogText, R.drawable.fire, R.string.fireDialogTitle),
-        R.id.btn_exhausted to arrayOf(R.string.exhaustedDialogText, R.drawable.exhasuted, R.string.exhaustedDialogTitle),
-        R.id.btn_totheking to arrayOf(R.string.tothekingDialogText, R.drawable.totheking, R.string.tothekingDialogTitle),
-        R.id.btn_throwForo to arrayOf(R.string.throwforoDialogText, R.drawable.aiblue, R.string.throwforoDialogTitle),
-        R.id.btn_blue to arrayOf(R.string.blueDialogText, R.drawable.blue, R.string.blueDialogTitle),
-        R.id.btn_ghost to arrayOf(R.string.ghostDialogText, R.drawable.ghost, R.string.ghostDialogTitle),
-    )
-
-
-    private val handleOnClick: View.OnClickListener = View.OnClickListener {
-        val data = messageMap[it.id]
-        data?.run {
-            val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
-
-            dialogBuilder.setMessage(getString(data[0]))
-                    .setIcon(data[1])
-                    .setCancelable(false)
-                    .setNegativeButton(getString(R.string.nextDialogText)) { dialog, _ -> dialog.cancel() }
-
-            val alert = dialogBuilder.create()
-            alert.setTitle(getString(data[2]))
-            alert.show()
-
-        }
-    }
-
-
-
-
-    private fun telDialog(iconId : Int) {
-        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
-
-        dialogBuilder.setMessage(R.string.telDialogText)
-            .setIcon(iconId)
-            .setCancelable(false)
-            .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener{
-                    dialog, _ -> dialog.cancel()
-            })
-
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.telDialogTitle)
-        alert.show()
-    }
-
-    private fun sheieldDialog(iconId : Int) {
-        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
-
-        dialogBuilder.setMessage(R.string.sheildDialogText)
-            .setIcon(iconId)
-            .setCancelable(false)
-            .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener{
-                    dialog, _ -> dialog.cancel()
-            })
-
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.sheildDialogTitle)
-        alert.show()
-    }
-
-    private fun flashDialog(iconId : Int) {
-        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
-
-        dialogBuilder.setMessage(R.string.flashDialogText)
-                .setIcon(iconId)
-                .setCancelable(false)
-                .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener{
-                    dialog, _ -> dialog.cancel()
-                })
-
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.flashDialogTitle)
-        alert.show()
-    }
-
-    private fun healDialog(iconId : Int) {
-        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
-
-        dialogBuilder.setMessage(R.string.healDialogText)
-                .setIcon(iconId)
-                .setCancelable(false)
-                .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener{
-                    dialog, _ -> dialog.cancel()
-                })
-
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.healDialogTitle)
-        alert.show()
-    }
-
-    private fun fireDialog(iconId : Int) {
-        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
-
-        dialogBuilder.setMessage(R.string.fireDialogText)
-                .setIcon(iconId)
-                .setCancelable(false)
-                .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener{
-                    dialog, _ -> dialog.cancel()
-                })
-
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.fireDialogTitle)
-        alert.show()
-    }
-
-    private fun cleanDialog(iconId : Int) {
-        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
-
-        dialogBuilder.setMessage(R.string.cleanDialogText)
-                .setIcon(iconId)
-                .setCancelable(false)
-                .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener{
-                    dialog, _ -> dialog.cancel()
-                })
-
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.cleanDialogTitle)
-        alert.show()
-    }
-
-    private fun exhaustedDialog(iconId : Int) {
-        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
-
-        dialogBuilder.setMessage(R.string.exhaustedDialogText)
-                .setIcon(iconId)
-                .setCancelable(false)
-                .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener{
-                    dialog, _ -> dialog.cancel()
-                })
-
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.exhaustedDialogTitle)
-        alert.show()
-    }
-
-    private fun tothekingDialog(iconId : Int) {
-        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
-
-        dialogBuilder.setMessage(R.string.tothekingDialogText)
-                .setIcon(iconId)
-                .setCancelable(false)
-                .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener{
-                    dialog, _ -> dialog.cancel()
-                })
-
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.tothekingDialogTitle)
-        alert.show()
-    }
-
-    private fun throwForoDialog(iconId : Int) {
-        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
-
-        dialogBuilder.setMessage(R.string.throwforoDialogText)
-                .setIcon(iconId)
-                .setCancelable(false)
-                .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener{
-                    dialog, _ -> dialog.cancel()
-                })
-
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.throwforoDialogTitle)
-        alert.show()
-    }
-
-    private fun blueDialog(iconId : Int) {
-        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
-
-        dialogBuilder.setMessage(R.string.blueDialogText)
-                .setIcon(iconId)
-                .setCancelable(false)
-                .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener{
-                    dialog, _ -> dialog.cancel()
-                })
-
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.blueDialogTitle)
-        alert.show()
-    }
-
-    private fun ghostDialog(iconId : Int) {
-        val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
-
-        dialogBuilder.setMessage(R.string.ghostDialogText)
-                .setIcon(iconId)
-                .setCancelable(false)
-                .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener{
-                    dialog, _ -> dialog.cancel()
-                })
-
-        val alert = dialogBuilder.create()
-        alert.setTitle(R.string.ghostDialogTitle)
-        alert.show()
-    }
 }
 
 
+//class SummonerSpellFragment : Fragment() {
+//
+//
+//    private var mBinding: FragmentSummonerSpellBinding? = null
+//    private val binding get() = mBinding!!
+//
+//
+//
+//    override fun onCreateView(
+//        inflater: LayoutInflater, container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View? {
+//        mBinding = FragmentSummonerSpellBinding.inflate(inflater, container, false)
+//
+//        btnHandleOnclick()
+//
+//        return binding.root
+//
+//    }
+//
+//    override fun onDestroy() {
+//        mBinding = null
+//        super.onDestroy()
+//    }
+//
+//    private fun btnHandleOnclick() {
+//        binding.btnSmite.setOnClickListener (handleOnClick)
+//        binding.btnTel.setOnClickListener (handleOnClick)
+//        binding.btnShield.setOnClickListener (handleOnClick)
+//        binding.btnFlash.setOnClickListener (handleOnClick)
+//        binding.btnHeal.setOnClickListener (handleOnClick)
+//        binding.btnFire.setOnClickListener (handleOnClick)
+//        binding.btnClean.setOnClickListener (handleOnClick)
+//        binding.btnExhausted.setOnClickListener (handleOnClick)
+//        binding.btnTotheking.setOnClickListener (handleOnClick)
+//        binding.btnThrowForo.setOnClickListener (handleOnClick)
+//        binding.btnBlue.setOnClickListener (handleOnClick)
+//        binding.btnGhost.setOnClickListener (handleOnClick)
+//    }
+//
+//
+//    private val messageMap: Map<Int, Array<Int>> = mapOf(
+//        R.id.btn_smite to arrayOf(R.string.smiteDialogText, R.drawable.smite, R.string.smiteDialogTitle),
+//        R.id.btn_tel to arrayOf(R.string.telDialogText, R.drawable.tel, R.string.telDialogTitle),
+//        R.id.btn_flash to arrayOf(R.string.flashDialogText, R.drawable.flash, R.string.flashDialogTitle),
+//        R.id.btn_Shield to arrayOf(R.string.sheildDialogText, R.drawable.sheild, R.string.sheildDialogTitle),
+//        R.id.btn_clean to arrayOf(R.string.cleanDialogText, R.drawable.clean, R.string.cleanDialogTitle),
+//        R.id.btn_heal to arrayOf(R.string.healDialogText, R.drawable.heal, R.string.healDialogTitle),
+//        R.id.btn_fire to arrayOf(R.string.fireDialogText, R.drawable.fire, R.string.fireDialogTitle),
+//        R.id.btn_exhausted to arrayOf(R.string.exhaustedDialogText, R.drawable.exhasuted, R.string.exhaustedDialogTitle),
+//        R.id.btn_totheking to arrayOf(R.string.tothekingDialogText, R.drawable.totheking, R.string.tothekingDialogTitle),
+//        R.id.btn_throwForo to arrayOf(R.string.throwforoDialogText, R.drawable.aiblue, R.string.throwforoDialogTitle),
+//        R.id.btn_blue to arrayOf(R.string.blueDialogText, R.drawable.blue, R.string.blueDialogTitle),
+//        R.id.btn_ghost to arrayOf(R.string.ghostDialogText, R.drawable.ghost, R.string.ghostDialogTitle),
+//    )
+//
+//
+//    private val handleOnClick: View.OnClickListener = View.OnClickListener {
+//        val data = messageMap[it.id]
+//        data?.run {
+//            val dialogBuilder = AlertDialog.Builder(requireContext(), R.style.MyDialogTheme)
+//
+//            dialogBuilder.setMessage(getString(data[0]))
+//                .setIcon(data[1])
+//                .setCancelable(false)
+//                .setNegativeButton(getString(R.string.nextDialogText)) { dialog, _ -> dialog.cancel() }
+//
+//            val alert = dialogBuilder.create()
+//            alert.setTitle(getString(data[2]))
+//            alert.show()
+//
+//        }
+//    }
+//}
 
 /*
 package com.example.firstapp
