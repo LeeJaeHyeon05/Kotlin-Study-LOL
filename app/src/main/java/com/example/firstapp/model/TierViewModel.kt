@@ -2,11 +2,9 @@ package com.example.firstapp.model
 
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.firstapp.data.repository.TierRepository
+import com.example.firstapp.model.tier.TierChamp
 import com.example.firstapp.model.tier.TierLine
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -15,17 +13,25 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class TierViewModel @Inject constructor(private val tierRepository: TierRepository)
-    :ViewModel() {
-        val tierDataList = liveData<TierLine>(Dispatchers.IO) {
-            when(val response = tierRepository.execute()){
-                is ApiResponse.Success ->{
-                    emit(response.value)
-                    Log.d("jsoup","Success: 뷰모델에서 티어 데이터 가져오기 완료")
-                }
-                is ApiResponse.Failure -> {
-                    Timber.d("error: " + response.e)
-                }
+class TierViewModel @Inject constructor(private val tierRepository: TierRepository) :ViewModel() {
+    val topTierData = MutableLiveData<ArrayList<TierChamp>?>()
+    val jungleTierData = MutableLiveData<ArrayList<TierChamp>?>()
+    val midTierData = MutableLiveData<ArrayList<TierChamp>?>()
+    val adcTierData = MutableLiveData<ArrayList<TierChamp>?>()
+    val supTierData = MutableLiveData<ArrayList<TierChamp>?>()
+
+    val tierDataList = liveData<TierLine>(Dispatchers.IO) {
+        when(val response = tierRepository.execute()){
+            is ApiResponse.Success ->{
+                topTierData.postValue(response.value.top)
+                jungleTierData.postValue(response.value.jungle)
+                midTierData.postValue(response.value.mid)
+                adcTierData.postValue(response.value.adc)
+                supTierData.postValue(response.value.sup)
+            }
+            is ApiResponse.Failure -> {
+                Timber.d("error: " + response.e)
             }
         }
+    }
 }

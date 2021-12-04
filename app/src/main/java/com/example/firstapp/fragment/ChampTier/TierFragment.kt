@@ -64,21 +64,7 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
            각 fragment에 데이터 분배하기
          */
         tierViewModel.tierDataList.observe(viewLifecycleOwner, Observer {
-            // todo 받아온 데이터를 각각의 fragment에 넣기
-            val topTierData = it.top
-            val midTierData = it.mid
-            val jungleTierData = it.jungle
-            val adcTierData = it.adc
-            val supTierData = it.sup
-
-            val parcelTopTierData = BaseParcelable(topTierData!!)
-
-            Log.d("jsoup", "topTierData: $topTierData")
-
-            setFragmentResult("tierDataKey", bundleOf("topTierKey" to parcelTopTierData))
-            setFragmentResult("tierDataKey", bundleOf("topString" to "from Fragment"))
-
-            Log.d("jsoup","jsoup 데이터 observing됨")
+            Timber.d("TierFragment에서 Jsoup 데이터 갱신함")
         })
 
         val adapter = object : FragmentStateAdapter(this) {

@@ -17,7 +17,7 @@ import com.example.firstapp.model.tier.TierChamp
  * @email ljws93@naver.com
  * @since 2021/11/10
  **/
-class Tier1Adapter(val context: Context) : RecyclerView.Adapter<Tier1ViewHolder>() {
+class Tier2Adapter(val context: Context) : RecyclerView.Adapter<Tier2ViewHolder>() {
     // DiffUtil로 다른 부분만 업데이트 한다
     private val diiUtilCallback = object : DiffUtil.ItemCallback<TierChamp>(){
         override fun areItemsTheSame(oldItem: TierChamp, newItem: TierChamp): Boolean {
@@ -31,7 +31,7 @@ class Tier1Adapter(val context: Context) : RecyclerView.Adapter<Tier1ViewHolder>
 
     val differ = AsyncListDiffer(this, diiUtilCallback)
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Tier1ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Tier2ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<ItemTierBinding>(
             layoutInflater,
@@ -39,10 +39,10 @@ class Tier1Adapter(val context: Context) : RecyclerView.Adapter<Tier1ViewHolder>
             parent,
             false
         )
-        return Tier1ViewHolder(binding)
+        return Tier2ViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: Tier1ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: Tier2ViewHolder, position: Int) {
         Glide.with(context)
             .load("http://ddragon.leagueoflegends.com/cdn/11.22.1/img/champion/Aatrox.png")
             .placeholder(R.drawable.camille_chac).into(holder.champImage)
@@ -53,10 +53,9 @@ class Tier1Adapter(val context: Context) : RecyclerView.Adapter<Tier1ViewHolder>
     override fun getItemCount(): Int {
         return differ.currentList.size
     }
-
 }
 
-class Tier1ViewHolder(val binding: ItemTierBinding) : RecyclerView.ViewHolder(binding.root) {
+class Tier2ViewHolder(val binding: ItemTierBinding) : RecyclerView.ViewHolder(binding.root) {
     val champImage = binding.champImage
     val champName = binding.champName
     val chapWinRate = binding.champWinRate
