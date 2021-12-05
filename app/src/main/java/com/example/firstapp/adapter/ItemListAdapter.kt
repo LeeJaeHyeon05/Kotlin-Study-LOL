@@ -12,8 +12,8 @@ class ItemListAdapter(private var dataSet: List<Item>) :
 
     class ViewHolder(private val binding: ItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(dataSet: List<Item>, position: Int) {
-            Picasso.get().load("https://ddragon.leagueoflegends.com/cdn/11.22.1/img/item/${dataSet.get(position).id}.png").into(binding.itemImage)
-            binding.itemName.text = dataSet.get(position).name
+            Picasso.get().load("https://ddragon.leagueoflegends.com/cdn/11.22.1/img/item/${dataSet[position].id}.png").into(binding.itemImage)
+            binding.itemName.text = dataSet[position].name
         }
     }
 

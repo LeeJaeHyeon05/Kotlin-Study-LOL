@@ -67,6 +67,10 @@ class ItemFragment : Fragment() {
             (binding.itemList.adapter as ItemListAdapter).setData(it)
         }
 
+        binding.filterListButton.setOnClickListener {
+            binding.itemDrawerLayout.openDrawer(Gravity.END)
+        }
+
         return binding.root
     }
 
