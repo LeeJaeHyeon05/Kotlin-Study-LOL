@@ -23,6 +23,7 @@ class SummonerSpellFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        mBinding = FragmentSummonerSpellBinding.inflate(inflater,container, false)
 
         val spaceDecoration = CustomAdapter.HorizontalSpaceItemDecoration(2)
         binding.recyclerView.addItemDecoration(spaceDecoration)
@@ -30,7 +31,6 @@ class SummonerSpellFragment : Fragment() {
         val spaceDecoration2 = CustomAdapter.TopSpaceItemDecoration(-190)
         binding.recyclerView.addItemDecoration(spaceDecoration2)
 
-        mBinding = FragmentSummonerSpellBinding.inflate(inflater,container, false)
 
         val myLayoutManager = object : GridLayoutManager(requireContext(), 5) {
             override fun canScrollHorizontally(): Boolean {
