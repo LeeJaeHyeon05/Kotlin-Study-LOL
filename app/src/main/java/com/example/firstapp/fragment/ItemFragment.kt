@@ -8,7 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.adapter.ItemListAdapter
-import com.example.firstapp.bottomsheet.ItemSortBottomSheet
+import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet
 import com.example.firstapp.databinding.FragmentItemBinding
 import com.example.firstapp.model.ItemViewModel
 import dagger.hilt.android.AndroidEntryPoint
