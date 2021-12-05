@@ -22,6 +22,7 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
     val dataList: LiveData<List<Item>> = _dataList
     private val _itemSortType = MutableLiveData<ItemSortType>()
     val itemSortType: LiveData<ItemSortType> = _itemSortType
+    private val _searchQuery = MutableLiveData("")
 
     init {
         _itemSortType.value = ItemSortType.NAME
@@ -38,7 +39,9 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
             _dataList.value = itemList
         }
 
-        val mutableItemList = itemList.toMutableList()
+        val mutableItemList = itemList.filter {
+            it.name.contains(_searchQuery.value.toString())
+        }.toMutableList()
         mutableItemList.forEach {
             it.itemImage = Gson().fromJson(it.image, ItemImage::class.java)
             it.itemGold = Gson().fromJson(it.gold, ItemGold::class.java)
@@ -53,6 +56,12 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
 
     fun setItemSortType(itemSortType: ItemSortType) = viewModelScope.launch {
         _itemSortType.value = itemSortType
+        loadData()
+    }
+
+    fun setSearchQuery(searchQuery: String) = viewModelScope.launch {
+        _searchQuery.value = searchQuery
+        loadData()
     }
 
 }
