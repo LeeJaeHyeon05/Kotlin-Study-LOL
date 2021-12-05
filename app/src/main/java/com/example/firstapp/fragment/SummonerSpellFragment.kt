@@ -1,56 +1,66 @@
 package com.example.firstapp.fragment
 
-import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
-import android.renderscript.Script
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import androidx.databinding.DataBindingUtil
+import android.widget.HorizontalScrollView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.firstapp.CustomAdapter
 import com.example.firstapp.ItemsViewModel
 import com.example.firstapp.R
-import com.example.firstapp.databinding.ActivityMainBinding
-import com.example.firstapp.databinding.FragmentItemBinding
+import com.example.firstapp.adapter.SummorSpell.CustomAdapter
 import com.example.firstapp.databinding.FragmentSummonerSpellBinding
 
 class SummonerSpellFragment : Fragment() {
 
-
     private var mBinding: FragmentSummonerSpellBinding? = null
     private val binding get() = mBinding!!
-
-
-    lateinit var recyclerView1 : RecyclerView
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = FragmentSummonerSpellBinding.inflate(inflater, container, false)
 
-        var rootView = inflater.inflate(R.layout.item_list,container,false)
-        val data : ArrayList<ItemsViewModel> = ArrayList()
+        val spaceDecoration = CustomAdapter.HorizontalSpaceItemDecoration(2)
+        binding.recyclerView.addItemDecoration(spaceDecoration)
 
-        data.add(ItemsViewModel(R.drawable.blue, "점멸"))
+        val spaceDecoration2 = CustomAdapter.TopSpaceItemDecoration(-190)
+        binding.recyclerView.addItemDecoration(spaceDecoration2)
 
-        recyclerView1 = rootView.findViewById(R.id.itemList!!) as RecyclerView
-        recyclerView1.layoutManager = LinearLayoutManager(requireContext())
+        mBinding = FragmentSummonerSpellBinding.inflate(inflater,container, false)
+
+        val myLayoutManager = object : GridLayoutManager(requireContext(), 5) {
+            override fun canScrollHorizontally(): Boolean {
+                return false
+            }
+        }
+
+        binding.recyclerView.layoutManager = myLayoutManager
+
+        val data = ArrayList<ItemsViewModel>()
+
+        data.add(ItemsViewModel(R.drawable.flash, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.flash, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.flash, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.flash, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.flash, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.flash, "안녕하세요"))
+
+        val adapter = CustomAdapter(data)
+        binding.recyclerView.adapter = adapter
 
         return binding.root
 
     }
 
     override fun onDestroy() {
-        mBinding = null
+        mBinding =null
         super.onDestroy()
     }
+
 }
 
 

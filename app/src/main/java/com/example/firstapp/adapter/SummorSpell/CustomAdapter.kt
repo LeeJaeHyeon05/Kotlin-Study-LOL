@@ -1,6 +1,5 @@
-package com.example.firstapp
+package com.example.firstapp.adapter.SummorSpell
 
-import android.content.Context
 import android.graphics.Rect
 import android.view.LayoutInflater
 import android.view.View
@@ -8,15 +7,16 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import kotlin.coroutines.coroutineContext
+import com.example.firstapp.ItemsViewModel
+import com.example.firstapp.R
 
-//val view = LayoutInflater.from(parent.context)
-//    .inflate(R.layout.item_list, parent, false)
+class CustomAdapter(private val mList: ArrayList<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
 
-class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapter.ViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_list, parent, false)
 
-        return ViewHolder(LayoutInflater.from(context).inflate(R.layout.item_list,parent,false))
+        return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: CustomAdapter.ViewHolder, position: Int) {
@@ -30,7 +30,7 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
         return mList.size
     }
 
-    class ViewHolder(ItemView:View) : RecyclerView.ViewHolder(ItemView) {
+    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val imageView: ImageView = itemView.findViewById(R.id.rv_button)
         val textView: TextView = itemView.findViewById(R.id.rv_textView)
     }
@@ -57,6 +57,4 @@ class CustomAdapter(private val mList: List<ItemsViewModel>) : RecyclerView.Adap
             outRect.top = TopSpaceItemDecoration
         }
     }
-
-
 }
