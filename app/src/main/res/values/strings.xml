@@ -69,4 +69,12 @@
 
     <string name="item">아이템</string>
     <string name="spash_lol">롤 사전</string>
+
+    <string name="confirm">확인</string>
+    <string name="cancel">취소</string>
+
+    <string name="Q">Q</string>
+    <string name="W">W</string>
+    <string name="E">E</string>
+    <string name="R">R</string>
 </resources>
