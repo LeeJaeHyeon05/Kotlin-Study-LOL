@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragment.SummonerSpellFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -15,14 +15,14 @@
             android:id="@+id/lolText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:text="@string/lolspell"
             android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="38sp"
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:textSize="38sp" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
@@ -34,313 +34,336 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lolText" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/lolText2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/lolspell2"
+            android:textColor="@color/black"
+            android:textSize="38sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
 
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lolText2"
+
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </FrameLayout>
 
-<!--<androidx.constraintlayout.widget.ConstraintLayout-->
-<!--android:layout_width="match_parent"-->
-<!--android:background="@color/brightGray"-->
-<!--android:layout_height="match_parent">-->
+    <!--<androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:background="@color/brightGray"-->
+    <!--android:layout_height="match_parent">-->
 
-<!--<TextView-->
-<!--    android:id="@+id/lolText"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:layout_marginBottom="5dp"-->
-<!--    android:text="@string/lol"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="38sp"-->
-<!--    app:layout_constraintBottom_toTopOf="@+id/btn_smite"-->
-<!--    tools:ignore="MissingConstraints" />-->
+    <!--<TextView-->
+    <!--    android:id="@+id/lolText"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:layout_marginBottom="5dp"-->
+    <!--    android:text="@string/lol"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="38sp"-->
+    <!--    app:layout_constraintBottom_toTopOf="@+id/btn_smite"-->
+    <!--    tools:ignore="MissingConstraints" />-->
 
-<!--&lt;!&ndash;강타&ndash;&gt;-->
-<!--<ImageButton-->
-<!--    android:id="@+id/btn_smite"-->
-<!--    android:layout_width="60dp"-->
-<!--    android:layout_height="60dp"-->
-<!--    android:layout_marginLeft="15dp"-->
-<!--    android:layout_marginTop="75dp"-->
-<!--    android:src="@drawable/smite"-->
-<!--    app:layout_constraintLeft_toLeftOf="parent"-->
-<!--    app:layout_constraintTop_toTopOf="parent" />-->
+    <!--&lt;!&ndash;강타&ndash;&gt;-->
+    <!--<ImageButton-->
+    <!--    android:id="@+id/btn_smite"-->
+    <!--    android:layout_width="60dp"-->
+    <!--    android:layout_height="60dp"-->
+    <!--    android:layout_marginLeft="15dp"-->
+    <!--    android:layout_marginTop="75dp"-->
+    <!--    android:src="@drawable/smite"-->
+    <!--    app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--    app:layout_constraintTop_toTopOf="parent" />-->
 
-<!--<TextView-->
-<!--    android:id="@+id/textView2"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/smite"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="18sp"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/btn_smite"-->
-<!--    app:layout_constraintRight_toRightOf="@+id/btn_smite"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_smite" />-->
+    <!--<TextView-->
+    <!--    android:id="@+id/textView2"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/smite"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="18sp"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/btn_smite"-->
+    <!--    app:layout_constraintRight_toRightOf="@+id/btn_smite"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_smite" />-->
 
-<!--&lt;!&ndash;텔&ndash;&gt;-->
-<!--<ImageButton-->
-<!--    android:id="@+id/btn_tel"-->
-<!--    android:layout_width="60dp"-->
-<!--    android:layout_height="60dp"-->
-<!--    android:layout_marginLeft="20dp"-->
-<!--    android:src="@drawable/tel"-->
-<!--    app:layout_constraintLeft_toRightOf="@id/btn_smite"-->
-<!--    app:layout_constraintTop_toTopOf="@id/btn_smite" />-->
+    <!--&lt;!&ndash;텔&ndash;&gt;-->
+    <!--<ImageButton-->
+    <!--    android:id="@+id/btn_tel"-->
+    <!--    android:layout_width="60dp"-->
+    <!--    android:layout_height="60dp"-->
+    <!--    android:layout_marginLeft="20dp"-->
+    <!--    android:src="@drawable/tel"-->
+    <!--    app:layout_constraintLeft_toRightOf="@id/btn_smite"-->
+    <!--    app:layout_constraintTop_toTopOf="@id/btn_smite" />-->
 
-<!--<TextView-->
-<!--    android:id="@+id/textView3"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/tel"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="18sp"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/btn_tel"-->
-<!--    app:layout_constraintRight_toRightOf="@+id/btn_tel"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_tel" />-->
-<!--&lt;!&ndash;보호막&ndash;&gt;-->
-<!--<ImageButton-->
-<!--    android:id="@+id/btn_Shield"-->
-<!--    android:layout_width="60dp"-->
-<!--    android:layout_height="60dp"-->
-<!--    android:layout_marginLeft="20dp"-->
-<!--    android:src="@drawable/sheild"-->
-<!--    app:layout_constraintLeft_toRightOf="@id/btn_tel"-->
-<!--    app:layout_constraintTop_toTopOf="@id/btn_tel" />-->
+    <!--<TextView-->
+    <!--    android:id="@+id/textView3"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/tel"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="18sp"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/btn_tel"-->
+    <!--    app:layout_constraintRight_toRightOf="@+id/btn_tel"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_tel" />-->
+    <!--&lt;!&ndash;보호막&ndash;&gt;-->
+    <!--<ImageButton-->
+    <!--    android:id="@+id/btn_Shield"-->
+    <!--    android:layout_width="60dp"-->
+    <!--    android:layout_height="60dp"-->
+    <!--    android:layout_marginLeft="20dp"-->
+    <!--    android:src="@drawable/sheild"-->
+    <!--    app:layout_constraintLeft_toRightOf="@id/btn_tel"-->
+    <!--    app:layout_constraintTop_toTopOf="@id/btn_tel" />-->
 
-<!--<TextView-->
-<!--    android:id="@+id/textView4"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/sheild"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="18sp"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/btn_Shield"-->
-<!--    app:layout_constraintRight_toRightOf="@+id/btn_Shield"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_Shield" />-->
+    <!--<TextView-->
+    <!--    android:id="@+id/textView4"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/sheild"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="18sp"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/btn_Shield"-->
+    <!--    app:layout_constraintRight_toRightOf="@+id/btn_Shield"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_Shield" />-->
 
-<!--&lt;!&ndash;투더킹&ndash;&gt;-->
-<!--<ImageButton-->
-<!--    android:id="@+id/btn_totheking"-->
-<!--    android:layout_width="60dp"-->
-<!--    android:layout_height="60dp"-->
-<!--    android:layout_marginLeft="20dp"-->
-<!--    android:src="@drawable/totheking"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/HowlingText"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/HowlingText"-->
-<!--    />-->
+    <!--&lt;!&ndash;투더킹&ndash;&gt;-->
+    <!--<ImageButton-->
+    <!--    android:id="@+id/btn_totheking"-->
+    <!--    android:layout_width="60dp"-->
+    <!--    android:layout_height="60dp"-->
+    <!--    android:layout_marginLeft="20dp"-->
+    <!--    android:src="@drawable/totheking"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/HowlingText"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/HowlingText"-->
+    <!--    />-->
 
-<!--<TextView-->
-<!--    android:id="@+id/textView5"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/totheking"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="18sp"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/btn_totheking"-->
-<!--    app:layout_constraintRight_toRightOf="@+id/btn_totheking"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_totheking" />-->
-
-
-<!--&lt;!&ndash;유체화&ndash;&gt;-->
-<!--<ImageButton-->
-<!--    android:id="@+id/btn_ghost"-->
-<!--    android:layout_width="60dp"-->
-<!--    android:layout_height="60dp"-->
-<!--    android:layout_marginLeft="20dp"-->
-<!--    android:src="@drawable/ghost"-->
-<!--    app:layout_constraintLeft_toRightOf="@id/btn_clean"-->
-<!--    app:layout_constraintTop_toTopOf="@id/btn_clean" />-->
-
-<!--<TextView-->
-<!--    android:id="@+id/textView6"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/ghost"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="18sp"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/btn_ghost"-->
-<!--    app:layout_constraintRight_toRightOf="@+id/btn_ghost"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_ghost" />-->
+    <!--<TextView-->
+    <!--    android:id="@+id/textView5"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/totheking"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="18sp"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/btn_totheking"-->
+    <!--    app:layout_constraintRight_toRightOf="@+id/btn_totheking"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_totheking" />-->
 
 
-<!--&lt;!&ndash;         두번째 줄 두번째 줄 두번째 줄 두번째 줄                    &ndash;&gt;-->
+    <!--&lt;!&ndash;유체화&ndash;&gt;-->
+    <!--<ImageButton-->
+    <!--    android:id="@+id/btn_ghost"-->
+    <!--    android:layout_width="60dp"-->
+    <!--    android:layout_height="60dp"-->
+    <!--    android:layout_marginLeft="20dp"-->
+    <!--    android:src="@drawable/ghost"-->
+    <!--    app:layout_constraintLeft_toRightOf="@id/btn_clean"-->
+    <!--    app:layout_constraintTop_toTopOf="@id/btn_clean" />-->
 
-<!--&lt;!&ndash; 점화 &ndash;&gt;-->
-<!--<ImageButton-->
-<!--    android:id="@+id/btn_fire"-->
-<!--    android:layout_width="60dp"-->
-<!--    android:layout_height="60dp"-->
-<!--    android:layout_marginLeft="15dp"-->
-<!--    android:layout_marginTop="35dp"-->
-<!--    android:src="@drawable/fire"-->
-<!--    app:layout_constraintLeft_toLeftOf="parent"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_smite"-->
-<!--    app:layout_goneMarginTop="15dp" />-->
+    <!--<TextView-->
+    <!--    android:id="@+id/textView6"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/ghost"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="18sp"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/btn_ghost"-->
+    <!--    app:layout_constraintRight_toRightOf="@+id/btn_ghost"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_ghost" />-->
 
-<!--<TextView-->
-<!--    android:id="@+id/textView7"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/ignite"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="18sp"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/btn_fire"-->
-<!--    app:layout_constraintRight_toRightOf="@+id/btn_fire"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_fire" />-->
 
-<!--&lt;!&ndash;정화&ndash;&gt;-->
-<!--<ImageButton-->
-<!--    android:id="@+id/btn_clean"-->
-<!--    android:layout_width="60dp"-->
-<!--    android:layout_height="60dp"-->
-<!--    android:layout_marginLeft="20dp"-->
-<!--    android:src="@drawable/clean"-->
-<!--    app:layout_constraintLeft_toRightOf="@id/btn_fire"-->
-<!--    app:layout_constraintTop_toTopOf="@id/btn_fire" />-->
+    <!--&lt;!&ndash;         두번째 줄 두번째 줄 두번째 줄 두번째 줄                    &ndash;&gt;-->
 
-<!--<TextView-->
-<!--    android:id="@+id/textView8"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/clean"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="18sp"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/btn_clean"-->
-<!--    app:layout_constraintRight_toRightOf="@+id/btn_clean"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_clean" />-->
-<!--&lt;!&ndash;총명&ndash;&gt;-->
-<!--<ImageButton-->
-<!--    android:id="@+id/btn_blue"-->
-<!--    android:layout_width="60dp"-->
-<!--    android:layout_height="60dp"-->
-<!--    android:layout_marginLeft="20dp"-->
-<!--    android:src="@drawable/blue"-->
-<!--    app:layout_constraintTop_toTopOf="@+id/btn_throwForo"-->
-<!--    app:layout_constraintLeft_toRightOf="@+id/btn_throwForo"-->
+    <!--&lt;!&ndash; 점화 &ndash;&gt;-->
+    <!--<ImageButton-->
+    <!--    android:id="@+id/btn_fire"-->
+    <!--    android:layout_width="60dp"-->
+    <!--    android:layout_height="60dp"-->
+    <!--    android:layout_marginLeft="15dp"-->
+    <!--    android:layout_marginTop="35dp"-->
+    <!--    android:src="@drawable/fire"-->
+    <!--    app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_smite"-->
+    <!--    app:layout_goneMarginTop="15dp" />-->
 
-<!--    />-->
+    <!--<TextView-->
+    <!--    android:id="@+id/textView7"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/ignite"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="18sp"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/btn_fire"-->
+    <!--    app:layout_constraintRight_toRightOf="@+id/btn_fire"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_fire" />-->
 
-<!--<TextView-->
-<!--    android:id="@+id/textView9"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/blue"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="18sp"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/btn_blue"-->
-<!--    app:layout_constraintRight_toRightOf="@+id/btn_blue"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_blue" />-->
+    <!--&lt;!&ndash;정화&ndash;&gt;-->
+    <!--<ImageButton-->
+    <!--    android:id="@+id/btn_clean"-->
+    <!--    android:layout_width="60dp"-->
+    <!--    android:layout_height="60dp"-->
+    <!--    android:layout_marginLeft="20dp"-->
+    <!--    android:src="@drawable/clean"-->
+    <!--    app:layout_constraintLeft_toRightOf="@id/btn_fire"-->
+    <!--    app:layout_constraintTop_toTopOf="@id/btn_fire" />-->
 
-<!--&lt;!&ndash;탈진&ndash;&gt;-->
-<!--<ImageButton-->
-<!--    android:id="@+id/btn_exhausted"-->
-<!--    android:layout_width="60dp"-->
-<!--    android:layout_height="60dp"-->
-<!--    android:layout_marginLeft="20dp"-->
-<!--    android:src="@drawable/exhasuted"-->
-<!--    app:layout_constraintLeft_toRightOf="@id/btn_ghost"-->
-<!--    app:layout_constraintTop_toTopOf="@id/btn_ghost" />-->
+    <!--<TextView-->
+    <!--    android:id="@+id/textView8"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/clean"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="18sp"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/btn_clean"-->
+    <!--    app:layout_constraintRight_toRightOf="@+id/btn_clean"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_clean" />-->
+    <!--&lt;!&ndash;총명&ndash;&gt;-->
+    <!--<ImageButton-->
+    <!--    android:id="@+id/btn_blue"-->
+    <!--    android:layout_width="60dp"-->
+    <!--    android:layout_height="60dp"-->
+    <!--    android:layout_marginLeft="20dp"-->
+    <!--    android:src="@drawable/blue"-->
+    <!--    app:layout_constraintTop_toTopOf="@+id/btn_throwForo"-->
+    <!--    app:layout_constraintLeft_toRightOf="@+id/btn_throwForo"-->
 
-<!--<TextView-->
-<!--    android:id="@+id/textView10"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/exhasuted"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="18sp"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/btn_exhausted"-->
-<!--    app:layout_constraintRight_toRightOf="@+id/btn_exhausted"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_exhausted" />-->
-<!--&lt;!&ndash;포로 던지기&ndash;&gt;-->
-<!--<ImageButton-->
-<!--    android:id="@+id/btn_throwForo"-->
-<!--    android:layout_width="60dp"-->
-<!--    android:layout_height="60dp"-->
-<!--    android:layout_marginLeft="20dp"-->
-<!--    android:src="@drawable/aiblue"-->
-<!--    app:layout_constraintLeft_toRightOf="@id/btn_totheking"-->
-<!--    app:layout_constraintTop_toTopOf="@id/btn_totheking" />-->
+    <!--    />-->
 
-<!--<TextView-->
-<!--    android:id="@+id/textView11"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/aiblue"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="18sp"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/btn_throwForo"-->
-<!--    app:layout_constraintRight_toRightOf="@+id/btn_throwForo"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_throwForo" />-->
-<!--&lt;!&ndash;         세번째 줄 세번째 줄 세번째 줄 세번째 줄                    &ndash;&gt;-->
+    <!--<TextView-->
+    <!--    android:id="@+id/textView9"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/blue"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="18sp"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/btn_blue"-->
+    <!--    app:layout_constraintRight_toRightOf="@+id/btn_blue"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_blue" />-->
 
-<!--&lt;!&ndash; 점멸 &ndash;&gt;-->
-<!--<ImageButton-->
-<!--    android:id="@+id/btn_flash"-->
-<!--    android:layout_width="60dp"-->
-<!--    android:layout_height="60dp"-->
-<!--    android:layout_marginLeft="20dp"-->
-<!--    android:src="@drawable/flash"-->
-<!--    app:layout_constraintLeft_toRightOf="@id/btn_Shield"-->
-<!--    app:layout_constraintTop_toTopOf="@+id/btn_Shield"-->
-<!--    app:layout_constraintBottom_toBottomOf="@+id/btn_Shield"-->
+    <!--&lt;!&ndash;탈진&ndash;&gt;-->
+    <!--<ImageButton-->
+    <!--    android:id="@+id/btn_exhausted"-->
+    <!--    android:layout_width="60dp"-->
+    <!--    android:layout_height="60dp"-->
+    <!--    android:layout_marginLeft="20dp"-->
+    <!--    android:src="@drawable/exhasuted"-->
+    <!--    app:layout_constraintLeft_toRightOf="@id/btn_ghost"-->
+    <!--    app:layout_constraintTop_toTopOf="@id/btn_ghost" />-->
 
-<!--    />-->
+    <!--<TextView-->
+    <!--    android:id="@+id/textView10"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/exhasuted"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="18sp"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/btn_exhausted"-->
+    <!--    app:layout_constraintRight_toRightOf="@+id/btn_exhausted"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_exhausted" />-->
+    <!--&lt;!&ndash;포로 던지기&ndash;&gt;-->
+    <!--<ImageButton-->
+    <!--    android:id="@+id/btn_throwForo"-->
+    <!--    android:layout_width="60dp"-->
+    <!--    android:layout_height="60dp"-->
+    <!--    android:layout_marginLeft="20dp"-->
+    <!--    android:src="@drawable/aiblue"-->
+    <!--    app:layout_constraintLeft_toRightOf="@id/btn_totheking"-->
+    <!--    app:layout_constraintTop_toTopOf="@id/btn_totheking" />-->
 
-<!--<TextView-->
-<!--    android:id="@+id/textView12"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/flash"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="18sp"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/btn_flash"-->
-<!--    app:layout_constraintRight_toRightOf="@+id/btn_flash"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_flash" />-->
-<!--&lt;!&ndash; 회복 &ndash;&gt;-->
-<!--<ImageButton-->
-<!--    android:id="@+id/btn_heal"-->
-<!--    android:layout_width="60dp"-->
-<!--    android:layout_height="60dp"-->
-<!--    android:src="@drawable/heal"-->
-<!--    app:layout_constraintLeft_toRightOf="@+id/btn_flash"-->
-<!--    app:layout_constraintTop_toTopOf="@+id/btn_flash"-->
-<!--    app:layout_constraintRight_toRightOf="parent"-->
-<!--    app:layout_constraintBottom_toBottomOf="@+id/btn_flash"-->
-<!--    />-->
+    <!--<TextView-->
+    <!--    android:id="@+id/textView11"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/aiblue"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="18sp"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/btn_throwForo"-->
+    <!--    app:layout_constraintRight_toRightOf="@+id/btn_throwForo"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_throwForo" />-->
+    <!--&lt;!&ndash;         세번째 줄 세번째 줄 세번째 줄 세번째 줄                    &ndash;&gt;-->
 
-<!--<TextView-->
-<!--    android:id="@+id/textView13"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/heal"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:textSize="18sp"-->
-<!--    app:layout_constraintLeft_toLeftOf="@+id/btn_heal"-->
-<!--    app:layout_constraintRight_toRightOf="@+id/btn_heal"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_heal" />-->
+    <!--&lt;!&ndash; 점멸 &ndash;&gt;-->
+    <!--<ImageButton-->
+    <!--    android:id="@+id/btn_flash"-->
+    <!--    android:layout_width="60dp"-->
+    <!--    android:layout_height="60dp"-->
+    <!--    android:layout_marginLeft="20dp"-->
+    <!--    android:src="@drawable/flash"-->
+    <!--    app:layout_constraintLeft_toRightOf="@id/btn_Shield"-->
+    <!--    app:layout_constraintTop_toTopOf="@+id/btn_Shield"-->
+    <!--    app:layout_constraintBottom_toBottomOf="@+id/btn_Shield"-->
 
-<!--<TextView-->
-<!--    android:id="@+id/HowlingText"-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    app:layout_constraintTop_toBottomOf="@+id/btn_fire"-->
-<!--    android:textSize="38sp"-->
-<!--    android:text="@string/HowlingAbyss"-->
-<!--    android:textColor="@color/white"-->
-<!--    android:layout_marginTop="40dp"-->
-<!--    tools:ignore="MissingConstraints" />-->
+    <!--    />-->
 
-<!--<TextView-->
-<!--    android:layout_width="wrap_content"-->
-<!--    android:layout_height="wrap_content"-->
-<!--    android:text="@string/includelol"-->
-<!--    android:textSize="25sp"-->
-<!--    android:textColor="@color/white"-->
-<!--    app:layout_constraintLeft_toRightOf="@+id/HowlingText"-->
-<!--    app:layout_constraintBottom_toTopOf="@+id/btn_blue"-->
-<!--    android:layout_marginBottom="5dp"-->
+    <!--<TextView-->
+    <!--    android:id="@+id/textView12"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/flash"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="18sp"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/btn_flash"-->
+    <!--    app:layout_constraintRight_toRightOf="@+id/btn_flash"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_flash" />-->
+    <!--&lt;!&ndash; 회복 &ndash;&gt;-->
+    <!--<ImageButton-->
+    <!--    android:id="@+id/btn_heal"-->
+    <!--    android:layout_width="60dp"-->
+    <!--    android:layout_height="60dp"-->
+    <!--    android:src="@drawable/heal"-->
+    <!--    app:layout_constraintLeft_toRightOf="@+id/btn_flash"-->
+    <!--    app:layout_constraintTop_toTopOf="@+id/btn_flash"-->
+    <!--    app:layout_constraintRight_toRightOf="parent"-->
+    <!--    app:layout_constraintBottom_toBottomOf="@+id/btn_flash"-->
+    <!--    />-->
 
-<!--    />-->
+    <!--<TextView-->
+    <!--    android:id="@+id/textView13"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/heal"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:textSize="18sp"-->
+    <!--    app:layout_constraintLeft_toLeftOf="@+id/btn_heal"-->
+    <!--    app:layout_constraintRight_toRightOf="@+id/btn_heal"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_heal" />-->
 
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--<TextView-->
+    <!--    android:id="@+id/HowlingText"-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    app:layout_constraintTop_toBottomOf="@+id/btn_fire"-->
+    <!--    android:textSize="38sp"-->
+    <!--    android:text="@string/HowlingAbyss"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    android:layout_marginTop="40dp"-->
+    <!--    tools:ignore="MissingConstraints" />-->
+
+    <!--<TextView-->
+    <!--    android:layout_width="wrap_content"-->
+    <!--    android:layout_height="wrap_content"-->
+    <!--    android:text="@string/includelol"-->
+    <!--    android:textSize="25sp"-->
+    <!--    android:textColor="@color/white"-->
+    <!--    app:layout_constraintLeft_toRightOf="@+id/HowlingText"-->
+    <!--    app:layout_constraintBottom_toTopOf="@+id/btn_blue"-->
+    <!--    android:layout_marginBottom="5dp"-->
+
+    <!--    />-->
+
+    <!--</androidx.constraintlayout.widget.ConstraintLayout>-->

@@ -5,16 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.HorizontalScrollView
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.firstapp.ItemsViewModel
 import com.example.firstapp.R
 import com.example.firstapp.adapter.SummorSpell.CustomAdapter
+import com.example.firstapp.adapter.SummorSpell.CustomAdapter2
 import com.example.firstapp.databinding.FragmentSummonerSpellBinding
 
 class SummonerSpellFragment : Fragment() {
+
 
     private var mBinding: FragmentSummonerSpellBinding? = null
     private val binding get() = mBinding!!
@@ -25,13 +24,21 @@ class SummonerSpellFragment : Fragment() {
     ): View? {
         mBinding = FragmentSummonerSpellBinding.inflate(inflater,container, false)
 
+        //아이템 가로 스페이스 늘리기
         val spaceDecoration = CustomAdapter.HorizontalSpaceItemDecoration(2)
         binding.recyclerView.addItemDecoration(spaceDecoration)
-
+        //아이템 top 스페이스 줄이기
         val spaceDecoration2 = CustomAdapter.TopSpaceItemDecoration(-190)
         binding.recyclerView.addItemDecoration(spaceDecoration2)
 
+        //아이템 가로 스페이스 늘리기
+        val spaceDecoration3 = CustomAdapter.HorizontalSpaceItemDecoration(2)
+        binding.recyclerView2.addItemDecoration(spaceDecoration3)
+        //아이템 top 스페이스 줄이기
+        val spaceDecoration4 = CustomAdapter.TopSpaceItemDecoration(-190)
+        binding.recyclerView2.addItemDecoration(spaceDecoration4)
 
+        //그리드 뷰로 몇개 할지 정하고 canScrollHorizontally을 하고 return false로 움직임 차단
         val myLayoutManager = object : GridLayoutManager(requireContext(), 5) {
             override fun canScrollHorizontally(): Boolean {
                 return false
@@ -40,22 +47,45 @@ class SummonerSpellFragment : Fragment() {
 
         binding.recyclerView.layoutManager = myLayoutManager
 
-        val data = ArrayList<ItemsViewModel>()
+        val myLayoutManager2 = object : GridLayoutManager(requireContext(), 5) {
+            override fun canScrollHorizontally(): Boolean {
+                return false
+            }
+        }
 
-        data.add(ItemsViewModel(R.drawable.flash, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.flash, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.flash, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.flash, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.flash, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.flash, "안녕하세요"))
+        binding.recyclerView2.layoutManager = myLayoutManager2
+
+        val data = ArrayList<ItemsViewModel>()
+        val data2 = ArrayList<ItemsViewModel>()
+
+        //데이터 추가하기
+        data.add(ItemsViewModel(R.drawable.flash, "1"))
+        data.add(ItemsViewModel(R.drawable.flash, "2"))
+        data.add(ItemsViewModel(R.drawable.flash, "3"))
+        data.add(ItemsViewModel(R.drawable.flash, "4"))
+        data.add(ItemsViewModel(R.drawable.flash, "5"))
+        data.add(ItemsViewModel(R.drawable.flash, "6"))
+        data.add(ItemsViewModel(R.drawable.flash, "7"))
+        data.add(ItemsViewModel(R.drawable.flash, "8"))
+        data.add(ItemsViewModel(R.drawable.flash, "9"))
+
+
+        data2.add(ItemsViewModel(R.drawable.flash, "1"))
+        data2.add(ItemsViewModel(R.drawable.flash, "2"))
+        data2.add(ItemsViewModel(R.drawable.flash, "3"))
+
 
         val adapter = CustomAdapter(data)
         binding.recyclerView.adapter = adapter
+
+        val adapter2 = CustomAdapter2(data2)
+        binding.recyclerView2.adapter = adapter2
 
         return binding.root
 
     }
 
+    //메모리 누수? 막기
     override fun onDestroy() {
         mBinding =null
         super.onDestroy()
