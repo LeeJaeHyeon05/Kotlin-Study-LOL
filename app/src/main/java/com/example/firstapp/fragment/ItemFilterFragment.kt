@@ -6,9 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.firstapp.adapter.ItemFilterListAdapter
+import com.example.firstapp.R
+import com.example.firstapp.adapter.ItemFilterGroupListAdapter
 import com.example.firstapp.databinding.FragmentItemFilterBinding
 import com.example.firstapp.model.ItemFilter
+import com.example.firstapp.model.ItemFilterGroup
 
 class ItemFilterFragment : Fragment() {
 
@@ -28,84 +30,58 @@ class ItemFilterFragment : Fragment() {
     private fun initLayout() {
 
         val allItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter("신화급"),
-            ItemFilter("전설급"),
-            ItemFilter("서사급"),
-            ItemFilter("기본"),
+            ItemFilter(getString(R.string.all_item_filter1)),
+            ItemFilter(getString(R.string.all_item_filter2)),
+            ItemFilter(getString(R.string.all_item_filter3)),
+            ItemFilter(getString(R.string.all_item_filter4))
         )
-
         val startItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter("공격로"),
-            ItemFilter("정글"),
+            ItemFilter(getString(R.string.start_item_filter1)),
+            ItemFilter(getString(R.string.start_item_filter2))
         )
-
         val specializationItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter("소모품"),
-            ItemFilter("골드획득"),
-            ItemFilter("시야"),
-            ItemFilter("장신구"),
+            ItemFilter(getString(R.string.specialization_item_filter1)),
+            ItemFilter(getString(R.string.specialization_item_filter2)),
+            ItemFilter(getString(R.string.specialization_item_filter3)),
+            ItemFilter(getString(R.string.specialization_item_filter4))
         )
-
         val defenseItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter("체력"),
-            ItemFilter("방어력"),
-            ItemFilter("마법 저항"),
-            ItemFilter("체력 회복"),
+            ItemFilter(getString(R.string.defense_item_filter1)),
+            ItemFilter(getString(R.string.defense_item_filter2)),
+            ItemFilter(getString(R.string.defense_item_filter3)),
+            ItemFilter(getString(R.string.defense_item_filter4))
         )
-
         val attackItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter("공격력"),
-            ItemFilter("치명타"),
-            ItemFilter("공격 속도"),
-            ItemFilter("생명력 흡수"),
-            ItemFilter("방어구 관통력"),
+            ItemFilter(getString(R.string.attack_item_filter1)),
+            ItemFilter(getString(R.string.attack_item_filter2)),
+            ItemFilter(getString(R.string.attack_item_filter3)),
+            ItemFilter(getString(R.string.attack_item_filter4)),
+            ItemFilter(getString(R.string.attack_item_filter5)),
         )
-
         val magicItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter("주문력"),
-            ItemFilter("마법 관통력"),
-            ItemFilter("스킬 가속"),
-            ItemFilter("마나"),
-            ItemFilter("마나 회복"),
+            ItemFilter(getString(R.string.magic_item_filter1)),
+            ItemFilter(getString(R.string.magic_item_filter2)),
+            ItemFilter(getString(R.string.magic_item_filter3)),
+            ItemFilter(getString(R.string.magic_item_filter4)),
+            ItemFilter(getString(R.string.magic_item_filter5)),
         )
-
         val movementItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter("장화"),
-            ItemFilter("기타 이동 관련"),
+            ItemFilter(getString(R.string.movement_item_filter1)),
+            ItemFilter(getString(R.string.movement_item_filter2)),
         )
 
-        binding.allItemList.run {
-            adapter = ItemFilterListAdapter(allItems)
-            layoutManager = LinearLayoutManager(context)
-        }
+        val allItemsGroup = ItemFilterGroup(getString(R.string.all_item), allItems)
+        val startItemsGroup = ItemFilterGroup(getString(R.string.start_item), startItems)
+        val specializationItemsGroup = ItemFilterGroup(getString(R.string.specialization_item), specializationItems)
+        val defenseItemsGroup = ItemFilterGroup(getString(R.string.defense_item), defenseItems)
+        val attackItemsGroup = ItemFilterGroup(getString(R.string.start_item), attackItems)
+        val magicItemsGroup = ItemFilterGroup(getString(R.string.magic_item), magicItems)
+        val movementItemsGroup = ItemFilterGroup(getString(R.string.movement_item), movementItems)
 
-        binding.startItemList.run {
-            adapter = ItemFilterListAdapter(startItems)
-            layoutManager = LinearLayoutManager(context)
-        }
+        val itemFilterGroupList: ArrayList<ItemFilterGroup> = arrayListOf(allItemsGroup, startItemsGroup, specializationItemsGroup, defenseItemsGroup, attackItemsGroup, magicItemsGroup, movementItemsGroup)
 
-        binding.specializationItemList.run {
-            adapter = ItemFilterListAdapter(specializationItems)
-            layoutManager = LinearLayoutManager(context)
-        }
-
-        binding.defenseItemList.run {
-            adapter = ItemFilterListAdapter(defenseItems)
-            layoutManager = LinearLayoutManager(context)
-        }
-
-        binding.attackItemList.run {
-            adapter = ItemFilterListAdapter(attackItems)
-            layoutManager = LinearLayoutManager(context)
-        }
-
-        binding.magicItemList.run {
-            adapter = ItemFilterListAdapter(magicItems)
-            layoutManager = LinearLayoutManager(context)
-        }
-
-        binding.movementItemList.run {
-            adapter = ItemFilterListAdapter(movementItems)
+        binding.itemFilterGroupRecyclerView.run {
+            adapter = ItemFilterGroupListAdapter(itemFilterGroupList)
             layoutManager = LinearLayoutManager(context)
         }
     }
