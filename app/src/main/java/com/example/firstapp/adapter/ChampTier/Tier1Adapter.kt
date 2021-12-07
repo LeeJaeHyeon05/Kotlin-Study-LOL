@@ -29,7 +29,7 @@ class Tier1Adapter(val context: Context) : RecyclerView.Adapter<Tier1ViewHolder>
 
     override fun onBindViewHolder(holder: Tier1ViewHolder, position: Int) {
         Glide.with(context)
-            .load("http://ddragon.leagueoflegends.com/cdn/11.22.1/img/champion/Aatrox.png")
+            .load("http://ddragon.leagueoflegends.com/cdn/11.23.1/img/champion/Aatrox.png")
             .placeholder(R.drawable.camille_chac).into(holder.champImage)
     }
 

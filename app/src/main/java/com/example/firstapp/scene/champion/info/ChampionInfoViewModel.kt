@@ -24,7 +24,7 @@ class ChampionInfoViewModel  @Inject constructor(
             when (this) {
                 is ApiResponse.Success -> {
                     value.data.toSortedMap().map {
-                        //"http://ddragon.leagueoflegends.com/cdn/11.22.1/img/champion/"
+                        //"http://ddragon.leagueoflegends.com/cdn/11.23.1/img/champion/"
                         it.value
                     }.run {
                         emit(this)
