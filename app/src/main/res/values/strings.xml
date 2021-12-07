@@ -74,4 +74,5 @@
     <string name="finish">완료</string>
     <string name="init_champion_start">챔피온 정보를 초기화합니다.</string>
     <string name="init_item_start">아이템 정보를 초기화합니다.</string>
+    <string name="init_summoner_start">스펠 정보를 초기화합니다.</string>
 </resources>
