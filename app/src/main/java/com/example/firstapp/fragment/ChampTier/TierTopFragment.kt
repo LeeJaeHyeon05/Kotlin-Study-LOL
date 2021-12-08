@@ -44,10 +44,10 @@ class TierTopFragment : Fragment() {
         binding.tier5Recycler.layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
 
         val firstTierAdapter = Tier1Adapter(requireContext())
-        val secondTierAdapter = Tier2Adapter(requireContext())
-        val thirdTierAdapter = Tier3Adapter(requireContext())
-        val forthTierAdapter = Tier4Adapter(requireContext())
-        val fifthTierAdapter = Tier5Adapter(requireContext())
+        val secondTierAdapter = Tier1Adapter(requireContext())
+        val thirdTierAdapter = Tier1Adapter(requireContext())
+        val forthTierAdapter = Tier1Adapter(requireContext())
+        val fifthTierAdapter = Tier1Adapter(requireContext())
 
         binding.tier1Recycler.adapter = firstTierAdapter
         binding.tier2Recycler.adapter = secondTierAdapter

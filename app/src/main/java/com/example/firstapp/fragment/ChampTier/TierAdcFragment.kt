@@ -1,17 +1,17 @@
 package com.example.firstapp.fragment.ChampTier
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.adapter.ChampTier.Tier1Adapter
-import com.example.firstapp.databinding.FragmentTierMidBinding
+import com.example.firstapp.databinding.FragmentTierBotBinding
 import com.example.firstapp.databinding.FragmentTierTopBinding
 import com.example.firstapp.model.TierViewModel
 import com.example.firstapp.model.tier.TierChamp
@@ -21,7 +21,7 @@ import com.example.firstapp.model.tier.TierChamp
  * @email ljws93@naver.com
  * @since 2021/11/10
  **/
-class TierMidFragment : Fragment() {
+class TierAdcFragment : Fragment() {
     // activityViewModels: Activity의 viewModel에 접근하도록 한다
     private val tierViewModel: TierViewModel by activityViewModels()
 
@@ -29,9 +29,9 @@ class TierMidFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding = DataBindingUtil.inflate<FragmentTierMidBinding>(
+        val binding = DataBindingUtil.inflate<FragmentTierBotBinding>(
             inflater,
-            R.layout.fragment_tier_mid,
+            R.layout.fragment_tier_bot,
             container,
             false
         )
@@ -56,7 +56,7 @@ class TierMidFragment : Fragment() {
         binding.tier5Recycler.adapter = fifthTierAdapter
 
         // viewModel에서 지금 fragment에 해당하는 데이터 가져오기
-        tierViewModel.midTierData.observe(viewLifecycleOwner, Observer {
+        tierViewModel.adcTierData.observe(viewLifecycleOwner, Observer {
             val tier1Champs = ArrayList<TierChamp>()
             val tier2Champs = ArrayList<TierChamp>()
             val tier3Champs = ArrayList<TierChamp>()
@@ -84,6 +84,7 @@ class TierMidFragment : Fragment() {
             forthTierAdapter.differ.submitList(tier4Champs)
             fifthTierAdapter.differ.submitList(tier5Champs)
         })
+
 
         return binding.root
     }

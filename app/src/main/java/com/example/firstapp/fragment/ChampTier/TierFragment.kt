@@ -2,35 +2,20 @@ package com.example.firstapp.fragment.ChampTier
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.Parcel
-import android.os.Parcelable
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.Observer
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.firstapp.App
 import com.example.firstapp.R
-import com.example.firstapp.data.repository.TierRepository
 import com.example.firstapp.databinding.FragmentTierBinding
-import com.example.firstapp.model.ApiResponse
-import com.example.firstapp.model.ItemViewModel
 import com.example.firstapp.model.TierViewModel
-import com.example.firstapp.model.tier.TierLine
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject
 
 /**
  * @author mmol93
@@ -52,7 +37,7 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
         // 챔피언 데이터를 받기 위한 객체
         // fragment 객체 생성
         val topFragment = TierTopFragment()
-        val botFragment = TierBotFragment()
+        val botFragment = TierAdcFragment()
         val midFragment = TierMidFragment()
         val supFragment = TierSupFragment()
         val jungFragment = TierJungFragment()
@@ -94,33 +79,5 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
         }.attach()
 
         return binding.root
-    }
-}
-
-class BaseParcelable : Parcelable {
-
-    var value: Any
-
-    constructor(value: Any) {
-        this.value = value
-    }
-
-    constructor(parcel: Parcel) {
-        this.value = Any()
-    }
-
-    override fun writeToParcel(dest: Parcel?, flags: Int) {}
-
-    override fun describeContents(): Int = 0
-
-    companion object CREATOR : Parcelable.Creator<BaseParcelable> {
-
-        override fun createFromParcel(parcel: Parcel): BaseParcelable {
-            return BaseParcelable(parcel)
-        }
-
-        override fun newArray(size: Int): Array<BaseParcelable?> {
-            return arrayOfNulls(size)
-        }
     }
 }

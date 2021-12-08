@@ -1,4 +1,4 @@
-package com.example.firstapp.fragment.ChampTier
+package com.example.firstapp.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
