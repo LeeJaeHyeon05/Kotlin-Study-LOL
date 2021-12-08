@@ -30,44 +30,44 @@ class ItemFilterFragment : Fragment() {
     private fun initLayout() {
 
         val allItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter(getString(R.string.all_item_filter1)),
-            ItemFilter(getString(R.string.all_item_filter2)),
-            ItemFilter(getString(R.string.all_item_filter3)),
-            ItemFilter(getString(R.string.all_item_filter4))
+            ItemFilter(getString(R.string.all_item_filter1), ""),
+            ItemFilter(getString(R.string.all_item_filter2), ""),
+            ItemFilter(getString(R.string.all_item_filter3), ""),
+            ItemFilter(getString(R.string.all_item_filter4), "")
         )
         val startItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter(getString(R.string.start_item_filter1)),
-            ItemFilter(getString(R.string.start_item_filter2))
+            ItemFilter(getString(R.string.start_item_filter1), "Lane"),
+            ItemFilter(getString(R.string.start_item_filter2), "Jungle")
         )
         val specializationItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter(getString(R.string.specialization_item_filter1)),
-            ItemFilter(getString(R.string.specialization_item_filter2)),
-            ItemFilter(getString(R.string.specialization_item_filter3)),
-            ItemFilter(getString(R.string.specialization_item_filter4))
+            ItemFilter(getString(R.string.specialization_item_filter1), "Consumable"),
+            ItemFilter(getString(R.string.specialization_item_filter2), "GoldPer"),
+            ItemFilter(getString(R.string.specialization_item_filter3), "Vision"),
+            ItemFilter(getString(R.string.specialization_item_filter4), "Trinket")
         )
         val defenseItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter(getString(R.string.defense_item_filter1)),
-            ItemFilter(getString(R.string.defense_item_filter2)),
-            ItemFilter(getString(R.string.defense_item_filter3)),
-            ItemFilter(getString(R.string.defense_item_filter4))
+            ItemFilter(getString(R.string.defense_item_filter1), "Health"),
+            ItemFilter(getString(R.string.defense_item_filter2), "Armor"),
+            ItemFilter(getString(R.string.defense_item_filter3), "SpellBlock"),
+            ItemFilter(getString(R.string.defense_item_filter4), "HealthRegen")
         )
         val attackItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter(getString(R.string.attack_item_filter1)),
-            ItemFilter(getString(R.string.attack_item_filter2)),
-            ItemFilter(getString(R.string.attack_item_filter3)),
-            ItemFilter(getString(R.string.attack_item_filter4)),
-            ItemFilter(getString(R.string.attack_item_filter5)),
+            ItemFilter(getString(R.string.attack_item_filter1), "Damage"),
+            ItemFilter(getString(R.string.attack_item_filter2), "CriticalStrike"),
+            ItemFilter(getString(R.string.attack_item_filter3), "AttackSpeed"),
+            ItemFilter(getString(R.string.attack_item_filter4), "LifeSteal"),
+            ItemFilter(getString(R.string.attack_item_filter5), "ArmorPenetration"),
         )
         val magicItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter(getString(R.string.magic_item_filter1)),
-            ItemFilter(getString(R.string.magic_item_filter2)),
-            ItemFilter(getString(R.string.magic_item_filter3)),
-            ItemFilter(getString(R.string.magic_item_filter4)),
-            ItemFilter(getString(R.string.magic_item_filter5)),
+            ItemFilter(getString(R.string.magic_item_filter1), "SpellDamage"),
+            ItemFilter(getString(R.string.magic_item_filter2), "MagicPenetration"),
+            ItemFilter(getString(R.string.magic_item_filter3), "CooldownReduction"),
+            ItemFilter(getString(R.string.magic_item_filter4), "Mana"),
+            ItemFilter(getString(R.string.magic_item_filter5), "ManaRegen"),
         )
         val movementItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter(getString(R.string.movement_item_filter1)),
-            ItemFilter(getString(R.string.movement_item_filter2)),
+            ItemFilter(getString(R.string.movement_item_filter1), "Boots"),
+            ItemFilter(getString(R.string.movement_item_filter2), "NonbootsMovement"),
         )
 
         val allItemsGroup = ItemFilterGroup(getString(R.string.all_item), allItems)
