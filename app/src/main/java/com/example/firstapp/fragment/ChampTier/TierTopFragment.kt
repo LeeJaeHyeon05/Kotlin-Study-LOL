@@ -29,7 +29,7 @@ class TierTopFragment : Fragment() {
         )
 
         // RecyclerView 초기화
-        binding.tier1Recycler.layoutManager = GridLayoutManager(context, 4)
+        binding.tier1Recycler.layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
         val adapter = Tier1Adapter(requireContext())
         binding.tier1Recycler.adapter = adapter
 

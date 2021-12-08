@@ -3,7 +3,9 @@ package com.example.firstapp.di
 import android.content.Context
 import androidx.room.Room
 import com.example.firstapp.database.AppDatabase
+import com.example.firstapp.database.dao.ChampionDao
 import com.example.firstapp.database.dao.ItemDao
+import com.example.firstapp.repository.ItemRepository
 import com.example.firstapp.resource.ResourceProvider
 import dagger.Module
 import dagger.Provides
@@ -28,7 +30,6 @@ class AppModule {
         return context
     }
 
-
     @Provides
     fun provideResourceProvider(@ApplicationContext context: Context): ResourceProvider {
         return ResourceProvider(context)
@@ -40,8 +41,18 @@ class AppModule {
     }
 
     @Provides
+    fun provideItemRepository(itemDao: ItemDao): ItemRepository {
+        return ItemRepository(itemDao)
+    }
+
+    @Provides
     fun provideItemDao(appDatabase: AppDatabase): ItemDao {
         return appDatabase.itemDao()
+    }
+
+    @Provides
+    fun provideChampionDao(appDatabase: AppDatabase): ChampionDao {
+        return appDatabase.championDao()
     }
 
 }
