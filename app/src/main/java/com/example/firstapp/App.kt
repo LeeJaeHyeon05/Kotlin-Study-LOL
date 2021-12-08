@@ -3,11 +3,7 @@ package com.example.firstapp
 import android.app.Application
 import androidx.hilt.work.HiltWorkerFactory
 import androidx.work.Configuration
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.WorkManager
-import androidx.work.WorkRequest
 import com.example.firstapp.timber.LineNumberDebugTree
-import com.example.firstapp.worker.InitDataWorker
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
 import javax.inject.Inject
@@ -30,7 +26,5 @@ class App : Application(), Configuration.Provider {
 
         if (BuildConfig.DEBUG) Timber.plant(LineNumberDebugTree())
 
-        val initDataWorkRequest: WorkRequest = OneTimeWorkRequestBuilder<InitDataWorker>().build()
-        WorkManager.getInstance(applicationContext).enqueue(initDataWorkRequest)
     }
 }

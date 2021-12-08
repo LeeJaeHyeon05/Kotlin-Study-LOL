@@ -71,6 +71,9 @@
     <string name="spash_lol">롤 사전</string>
 
     <string name="item_name">아이템 이름</string>
+    <string name="finish">완료</string>
+    <string name="init_champion_start">챔피온 정보를 초기화합니다.</string>
+    <string name="init_item_start">아이템 정보를 초기화합니다.</string>
     <string name="item_filter">아이템 필터</string>
     <string name="summoners_canyon">소환사의 협곡</string>
 

@@ -18,7 +18,7 @@ class ChampionSummaryItem(private val championInfo: Champion) :
         viewBinding.tvName.text = championInfo.name
         viewBinding.tvScript.text = championInfo.title
         Picasso.get()
-            .load("http://ddragon.leagueoflegends.com/cdn/11.22.1/img/champion/" + championInfo.image.full)
+            .load("http://ddragon.leagueoflegends.com/cdn/11.23.1/img/champion/" + championInfo.image.full)
             .into(viewBinding.ivThumbnail)
     }
 
