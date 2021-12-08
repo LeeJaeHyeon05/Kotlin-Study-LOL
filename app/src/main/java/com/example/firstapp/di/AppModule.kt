@@ -12,6 +12,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 /**
  * @author hanago
@@ -36,21 +37,25 @@ class AppModule {
     }
 
     @Provides
+    @Singleton
     fun provideAppDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(context, AppDatabase::class.java, "lol-db").build()
     }
 
     @Provides
+    @Singleton
     fun provideItemRepository(itemDao: ItemDao): ItemRepository {
         return ItemRepository(itemDao)
     }
 
     @Provides
+    @Singleton
     fun provideItemDao(appDatabase: AppDatabase): ItemDao {
         return appDatabase.itemDao()
     }
 
     @Provides
+    @Singleton
     fun provideChampionDao(appDatabase: AppDatabase): ChampionDao {
         return appDatabase.championDao()
     }
