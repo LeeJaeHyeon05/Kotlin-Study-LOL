@@ -49,11 +49,22 @@ class TierAdcFragment : Fragment() {
         val forthTierAdapter = Tier1Adapter(requireContext())
         val fifthTierAdapter = Tier1Adapter(requireContext())
 
-        binding.tier1Recycler.adapter = firstTierAdapter
-        binding.tier2Recycler.adapter = secondTierAdapter
-        binding.tier3Recycler.adapter = thirdTierAdapter
-        binding.tier4Recycler.adapter = forthTierAdapter
-        binding.tier5Recycler.adapter = fifthTierAdapter
+        binding.tier2Recycler.let{
+            it.adapter = secondTierAdapter
+            it.isNestedScrollingEnabled = false
+        }
+        binding.tier3Recycler.let {
+            it.adapter = thirdTierAdapter
+            it.isNestedScrollingEnabled = false
+        }
+        binding.tier4Recycler.let{
+            it.adapter = forthTierAdapter
+            it.isNestedScrollingEnabled = false
+        }
+        binding.tier5Recycler.let {
+            it.adapter = fifthTierAdapter
+            it.isNestedScrollingEnabled = false
+        }
 
         // viewModel에서 지금 fragment에 해당하는 데이터 가져오기
         tierViewModel.adcTierData.observe(viewLifecycleOwner, Observer {
