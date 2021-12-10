@@ -40,7 +40,7 @@ class TierData {
 
             // 각 라인별 티어 확인
             // line은 순서대로 탑, 미드, 정글, 원딜, 서폿
-            val tierLine = TierLine(top = topTierList, mid = midTierList, jungle = null, adc = null, sup = null)
+            val tierLine = TierLine(top = null, mid = null, jungle = null, adc = null, sup = null)
             for (line in 1 until 6) {
                 // 각 line에 대한 챔피언 tier 데이터 가져오기
                 for (rank in 2 until 52) {
@@ -67,8 +67,8 @@ class TierData {
                         // 챔피언 라인별로 저장 처리를 따로 한다
                         when(tierChamp.line){
                             1 -> topTierList.add(tierChamp)
-                            2 -> midTierList.add(tierChamp)
-                            3 -> jungleTierList.add(tierChamp)
+                            2 -> jungleTierList.add(tierChamp)
+                            3 -> midTierList.add(tierChamp)
                             4 -> adcTierList.add(tierChamp)
                             5 -> supTierList.add(tierChamp)
                         }
@@ -82,11 +82,11 @@ class TierData {
             tierLine.sup = supTierList
 
             // 각 라인별 데이터 로그 출력
-//            Log.d("jsoup", "top: ${tierLine.top}")
-//            Log.d("jsoup", "mid: ${tierLine.mid}")
-//            Log.d("jsoup", "jungle: ${tierLine.jungle}")
-//            Log.d("jsoup", "adc: ${tierLine.adc}")
-//            Log.d("jsoup", "sup: ${tierLine.sup}")
+            Log.d("jsoup", "top: ${tierLine.top}")
+            Log.d("jsoup", "mid: ${tierLine.mid}")
+            Log.d("jsoup", "jungle: ${tierLine.jungle}")
+            Log.d("jsoup", "adc: ${tierLine.adc}")
+            Log.d("jsoup", "sup: ${tierLine.sup}")
 
             return ApiResponse.Success(tierLine)
 

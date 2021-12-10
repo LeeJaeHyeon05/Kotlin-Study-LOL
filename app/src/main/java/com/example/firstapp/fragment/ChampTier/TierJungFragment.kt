@@ -49,6 +49,10 @@ class TierJungFragment:Fragment() {
         val forthTierAdapter = Tier1Adapter(requireContext())
         val fifthTierAdapter = Tier1Adapter(requireContext())
 
+        binding.tier1Recycler.let{
+            it.adapter = secondTierAdapter
+            it.isNestedScrollingEnabled = false
+        }
         binding.tier2Recycler.let{
             it.adapter = secondTierAdapter
             it.isNestedScrollingEnabled = false

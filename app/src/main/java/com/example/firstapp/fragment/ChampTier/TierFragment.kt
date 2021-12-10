@@ -2,6 +2,7 @@ package com.example.firstapp.fragment.ChampTier
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentTierBinding
 import com.example.firstapp.model.TierViewModel
+import com.example.firstapp.util.getCurrentFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,14 +38,21 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
     ): View? {
         // 챔피언 데이터를 받기 위한 객체
         // fragment 객체 생성
+//        val topFragment = EachLineTierFragment(0)
+//        val jungFragment = EachLineTierFragment(1)
+//        val midFragment = EachLineTierFragment(2)
+//        val botFragment = EachLineTierFragment(3)
+//        val supFragment = EachLineTierFragment(4)
+
         val topFragment = TierTopFragment()
-        val botFragment = TierAdcFragment()
-        val midFragment = TierMidFragment()
-        val supFragment = TierSupFragment()
         val jungFragment = TierJungFragment()
+        val midFragment = TierMidFragment()
+        val botFragment = TierAdcFragment()
+        val supFragment = TierSupFragment()
+
+        val fragments = arrayListOf<Fragment>(topFragment, jungFragment, midFragment, botFragment, supFragment)
 
         val binding = FragmentTierBinding.inflate(inflater, container, false)
-        val fragmentList = arrayOf(topFragment, jungFragment, midFragment, botFragment, supFragment)
 
         /* viewModel로 데이터 갱신하고
            각 fragment에 데이터 분배하기
@@ -54,11 +63,11 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
 
         val adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount(): Int {
-                return fragmentList.size
+                return fragments.size
             }
 
             override fun createFragment(position: Int): Fragment {
-                return fragmentList[position]
+                return fragments[position]
             }
         }
         binding.viewPager.adapter = adapter

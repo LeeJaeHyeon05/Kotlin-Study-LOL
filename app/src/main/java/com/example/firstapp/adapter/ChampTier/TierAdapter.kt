@@ -18,6 +18,12 @@ import com.example.firstapp.model.tier.TierChamp
  * @since 2021/11/10
  **/
 class Tier1Adapter(val context: Context) : RecyclerView.Adapter<Tier1ViewHolder>() {
+    val TOP = 1
+    val MID = 2
+    val JUNGLE = 3
+    val ADC = 4
+    val SUP = 5
+
     // DiffUtil로 다른 부분만 업데이트 한다
     private val diiUtilCallback = object : DiffUtil.ItemCallback<TierChamp>(){
         override fun areItemsTheSame(oldItem: TierChamp, newItem: TierChamp): Boolean {
@@ -54,6 +60,10 @@ class Tier1Adapter(val context: Context) : RecyclerView.Adapter<Tier1ViewHolder>
         return differ.currentList.size
     }
 
+    override fun getItemViewType(position: Int): Int {
+
+        return super.getItemViewType(position)
+    }
 }
 
 class Tier1ViewHolder(val binding: ItemTierBinding) : RecyclerView.ViewHolder(binding.root) {
