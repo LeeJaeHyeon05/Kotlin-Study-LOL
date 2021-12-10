@@ -38,17 +38,17 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
     ): View? {
         // 챔피언 데이터를 받기 위한 객체
         // fragment 객체 생성
-//        val topFragment = EachLineTierFragment(0)
-//        val jungFragment = EachLineTierFragment(1)
-//        val midFragment = EachLineTierFragment(2)
-//        val botFragment = EachLineTierFragment(3)
-//        val supFragment = EachLineTierFragment(4)
+        val topFragment = EachLineTierFragment(0)
+        val jungFragment = EachLineTierFragment(1)
+        val midFragment = EachLineTierFragment(2)
+        val botFragment = EachLineTierFragment(3)
+        val supFragment = EachLineTierFragment(4)
 
-        val topFragment = TierTopFragment()
-        val jungFragment = TierJungFragment()
-        val midFragment = TierMidFragment()
-        val botFragment = TierAdcFragment()
-        val supFragment = TierSupFragment()
+//        val topFragment = TierTopFragment()
+//        val jungFragment = TierJungFragment()
+//        val midFragment = TierMidFragment()
+//        val botFragment = TierAdcFragment()
+//        val supFragment = TierSupFragment()
 
         val fragments = arrayListOf<Fragment>(topFragment, jungFragment, midFragment, botFragment, supFragment)
 
