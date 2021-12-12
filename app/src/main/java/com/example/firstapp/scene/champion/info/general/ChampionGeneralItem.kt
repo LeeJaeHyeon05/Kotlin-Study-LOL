@@ -11,7 +11,7 @@ import com.example.firstapp.view.LiveDataBindableItem
  * @since 2021/11/19
  **/
 
-class ChampionGeneralFragment(private val championInfo: Champion) :
+class ChampionGeneralItem(private val championInfo: Champion) :
     LiveDataBindableItem<FragmentChampionGeneralBinding>() {
 
     override fun bind(viewBinding: FragmentChampionGeneralBinding, position: Int) {

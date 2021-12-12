@@ -1,7 +1,5 @@
-package com.example.firstapp.fragment.build.detail.MyBuild
+package com.example.firstapp.fragment.build.detail.mybuild
 
-import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
