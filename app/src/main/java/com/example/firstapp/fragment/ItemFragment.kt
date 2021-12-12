@@ -8,7 +8,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.adapter.ItemListAdapter
-import com.example.firstapp.bottomsheet.ItemSortBottomSheet
+import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet
 import com.example.firstapp.databinding.FragmentItemBinding
 import com.example.firstapp.model.ItemViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -65,6 +65,10 @@ class ItemFragment : Fragment() {
 
         itemViewModel.dataList.observe(viewLifecycleOwner) {
             (binding.itemList.adapter as ItemListAdapter).setData(it)
+        }
+
+        binding.filterListButton.setOnClickListener {
+            binding.itemDrawerLayout.openDrawer(Gravity.END)
         }
 
         return binding.root
