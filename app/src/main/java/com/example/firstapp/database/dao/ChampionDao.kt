@@ -15,4 +15,12 @@ interface ChampionDao {
 
     @Insert
     fun insertAll(champions: Iterable<Champion>)
+
+    // 인수 chapID(챔피언 영문명)을 넣으면 한글명을 반환해준다
+    @Query("SELECT name FROM champion WHERE `key` = :chapID")
+    fun getChampKrName(chapID: String): String
+
+    // 인수 chapID(챔피언 한글명)을 넣으면 영문명을 반환해준다
+    @Query("SELECT `key` FROM champion WHERE name = :chapID")
+    fun getChampEnName(chapID: String): String
 }

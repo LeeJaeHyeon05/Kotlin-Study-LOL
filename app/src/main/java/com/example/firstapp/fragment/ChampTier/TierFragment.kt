@@ -27,7 +27,6 @@ import timber.log.Timber
 
 @AndroidEntryPoint
 class TierFragment : Fragment(R.layout.fragment_tier) {
-
     // activityViewModels: Activity의 viewModel에 접근하도록 한다
     private val tierViewModel: TierViewModel by activityViewModels()
 
@@ -44,15 +43,10 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
         val botFragment = EachLineTierFragment(3)
         val supFragment = EachLineTierFragment(4)
 
-//        val topFragment = TierTopFragment()
-//        val jungFragment = TierJungFragment()
-//        val midFragment = TierMidFragment()
-//        val botFragment = TierAdcFragment()
-//        val supFragment = TierSupFragment()
-
         val fragments = arrayListOf<Fragment>(topFragment, jungFragment, midFragment, botFragment, supFragment)
 
         val binding = FragmentTierBinding.inflate(inflater, container, false)
+
 
         /* viewModel로 데이터 갱신하고
            각 fragment에 데이터 분배하기
