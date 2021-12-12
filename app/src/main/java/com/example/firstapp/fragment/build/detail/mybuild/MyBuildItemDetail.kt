@@ -1,4 +1,4 @@
-package com.example.firstapp.fragment.build.detail.MyBuild
+package com.example.firstapp.fragment.build.detail.mybuild
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.firstapp.R
 
-class AddMyBuild : Fragment() {
-
+class MyBuildItemDetail : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_add_my_build, container, false)
+
+        return inflater.inflate(R.layout.fragment_my_build_item_detail, container, false)
     }
+
 }
