@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.firstapp.database.AppDatabase
 import com.example.firstapp.database.dao.ChampionDao
 import com.example.firstapp.database.dao.ItemDao
+import com.example.firstapp.database.dao.SummonerDao
 import com.example.firstapp.repository.ItemRepository
 import com.example.firstapp.resource.ResourceProvider
 import dagger.Module
@@ -58,6 +59,12 @@ class AppModule {
     @Singleton
     fun provideChampionDao(appDatabase: AppDatabase): ChampionDao {
         return appDatabase.championDao()
+    }
+
+    @Provides
+    @Singleton
+    fun provideSummonerDao(appDatabase: AppDatabase): SummonerDao {
+        return appDatabase.summonerDao()
     }
 
 }
