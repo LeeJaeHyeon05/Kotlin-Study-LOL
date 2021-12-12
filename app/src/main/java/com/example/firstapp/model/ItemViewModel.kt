@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.firstapp.repository.ItemRepository
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -23,9 +24,12 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
     private val _itemSortType = MutableLiveData<ItemSortType>()
     val itemSortType: LiveData<ItemSortType> = _itemSortType
     private val _searchQuery = MutableLiveData("")
+    private val _tags = MutableLiveData<List<String>>()
+    val tags: LiveData<List<String>> = _tags
 
     init {
         _itemSortType.value = ItemSortType.NAME
+        _tags.value = listOf()
     }
 
     fun loadData() = viewModelScope.launch {
@@ -39,9 +43,22 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
             _dataList.value = itemList
         }
 
-        val mutableItemList = itemList.filter {
-            it.name.contains(_searchQuery.value.toString())
+        val mutableItemList = itemList.filter { item ->
+            val nameFilter = item.name.contains(_searchQuery.value.toString())
+            var tagFilter = true
+
+            val typeToken = object: TypeToken<List<String>>(){}.type
+            val itemTagList = Gson().fromJson<List<String>>(item.tags, typeToken)
+
+            for (tag in _tags.value!!) {
+                if (!itemTagList.contains(tag)) {
+                    tagFilter = false
+                    break
+                }
+            }
+            nameFilter && tagFilter
         }.toMutableList()
+
         mutableItemList.forEach {
             it.itemImage = Gson().fromJson(it.image, ItemImage::class.java)
             it.itemGold = Gson().fromJson(it.gold, ItemGold::class.java)
@@ -61,6 +78,17 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
 
     fun setSearchQuery(searchQuery: String) = viewModelScope.launch {
         _searchQuery.value = searchQuery
+        loadData()
+    }
+
+    fun toggleTag(tag: String) = viewModelScope.launch {
+        val tags = _tags.value!!.toMutableList()
+        if (_tags.value!!.contains(tag)) {
+            tags.remove(tag)
+        } else {
+            tags.add(tag)
+        }
+        _tags.value = tags
         loadData()
     }
 
