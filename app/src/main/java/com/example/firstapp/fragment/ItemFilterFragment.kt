@@ -1,20 +1,27 @@
 package com.example.firstapp.fragment
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.adapter.ItemFilterGroupListAdapter
 import com.example.firstapp.databinding.FragmentItemFilterBinding
 import com.example.firstapp.model.ItemFilter
 import com.example.firstapp.model.ItemFilterGroup
+import com.example.firstapp.model.ItemViewModel
 
 class ItemFilterFragment : Fragment() {
 
     private lateinit var binding: FragmentItemFilterBinding
+
+    private val itemViewModel: ItemViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -78,11 +85,28 @@ class ItemFilterFragment : Fragment() {
         val magicItemsGroup = ItemFilterGroup(getString(R.string.magic_item), magicItems)
         val movementItemsGroup = ItemFilterGroup(getString(R.string.movement_item), movementItems)
 
-        val itemFilterGroupList: ArrayList<ItemFilterGroup> = arrayListOf(allItemsGroup, startItemsGroup, specializationItemsGroup, defenseItemsGroup, attackItemsGroup, magicItemsGroup, movementItemsGroup)
+        val itemFilterGroupList: ArrayList<ItemFilterGroup> =
+            arrayListOf(allItemsGroup, startItemsGroup, specializationItemsGroup, defenseItemsGroup, attackItemsGroup, magicItemsGroup, movementItemsGroup)
+
+        val handleClickFilterItem: (String) -> Unit = {
+            itemViewModel.toggleTag(it)
+            (binding.root.parent as DrawerLayout).closeDrawer(Gravity.END)
+        }
 
         binding.itemFilterGroupRecyclerView.run {
-            adapter = ItemFilterGroupListAdapter(itemFilterGroupList)
+            adapter = ItemFilterGroupListAdapter(itemFilterGroupList, handleClickFilterItem)
             layoutManager = LinearLayoutManager(context)
         }
+
+        itemViewModel.tags.observe(viewLifecycleOwner, Observer { tags ->
+            allItems.forEach { it.selected = tags.contains(it.key) }
+            startItems.forEach { it.selected = tags.contains(it.key) }
+            specializationItems.forEach { it.selected = tags.contains(it.key) }
+            defenseItems.forEach { it.selected = tags.contains(it.key) }
+            attackItems.forEach { it.selected = tags.contains(it.key) }
+            magicItems.forEach { it.selected = tags.contains(it.key) }
+            movementItems.forEach { it.selected = tags.contains(it.key) }
+            binding.itemFilterGroupRecyclerView.adapter!!.notifyDataSetChanged()
+        })
     }
 }

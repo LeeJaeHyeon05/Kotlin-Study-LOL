@@ -28,7 +28,7 @@
             android:layout_marginRight="10dp"
             android:background="@drawable/outline_check_24"
             android:backgroundTint="@color/white"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
