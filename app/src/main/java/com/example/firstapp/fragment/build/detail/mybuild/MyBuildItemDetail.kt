@@ -1,4 +1,4 @@
-package com.example.firstapp.fragment.build.detail.MyBuild
+package com.example.firstapp.fragment.build.detail.mybuild
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

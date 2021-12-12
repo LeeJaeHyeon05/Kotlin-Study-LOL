@@ -1,16 +1,12 @@
-package com.example.firstapp.fragment.build.detail.MyBuild
+package com.example.firstapp.fragment.build.detail.mybuild.dialog
 
-import android.app.Dialog
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.Window
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
-import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentItemBuildDialogBinding
-import com.example.firstapp.databinding.FragmentSkillBuildDialogBinding
 
 
 class ItemBuildDialogFragment : DialogFragment() {
@@ -23,7 +19,25 @@ class ItemBuildDialogFragment : DialogFragment() {
     ): View {
         binding = FragmentItemBuildDialogBinding.inflate(inflater, container, false)
 
-        binding.itemBuildCancel.setOnClickListener { dismiss() }
+        val tagArrayList = arrayListOf(
+            binding.itemBuildDialogTagStartingitems,
+            binding.itemBuildDialogTagCore,
+            binding.itemBuildDialogTagBoots,
+            binding.itemBuildDialogTagSituational,
+            binding.itemBuildDialogTagOffensive,
+            binding.itemBuildDialogTagDefensive
+        )
+
+        for (i in tagArrayList){
+            i.setOnClickListener {
+                binding.itemBuildDialogMyTag.setText(i.text)
+            }
+        }
+
+        binding.itemBuildCancel.setOnClickListener {
+            dismiss()
+        }
+
         binding.itemBuildConfirm.setOnClickListener {
             dismiss()
         }

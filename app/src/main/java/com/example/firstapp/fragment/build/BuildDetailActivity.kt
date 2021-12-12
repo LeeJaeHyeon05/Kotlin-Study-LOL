@@ -1,16 +1,17 @@
 package com.example.firstapp.fragment.build
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import com.example.firstapp.R
 import com.example.firstapp.databinding.ActivityBuildDetailBinding
 import com.example.firstapp.fragment.build.detail.DetailViewPagerAdapter
-import com.example.firstapp.fragment.build.detail.MyBuild.AddMyBuildFragment
-import com.example.firstapp.fragment.build.detail.MyBuild.ItemBuildDialogFragment
-import com.example.firstapp.fragment.build.detail.MyBuild.SkillBuildDialogFragment
+import com.example.firstapp.fragment.build.detail.mybuild.AddMyBuildFragment
+import com.example.firstapp.fragment.build.detail.mybuild.dialog.ItemBuildDialogFragment
+import com.example.firstapp.fragment.build.detail.mybuild.dialog.SkillBuildDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
-class BuildDetailActivity : FragmentActivity() {
+class BuildDetailActivity : AppCompatActivity() {
 
     val binding by lazy { ActivityBuildDetailBinding.inflate(layoutInflater) }
 
@@ -28,7 +29,7 @@ class BuildDetailActivity : FragmentActivity() {
     }
 
     fun openAddMyBuild(){
-        val transaction = supportFragmentManager.beginTransaction()
+        supportFragmentManager.beginTransaction()
             .add(R.id.buildDetailContainer, AddMyBuildFragment())
             .commit()
     }

@@ -4,7 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragment.build.detail.DetailMyBuildFragment">
+    tools:context=".fragment.build.detail.mybuild.DetailMyBuildFragment"
+    app:defaultNavHost="true"
+    app:navGraph="@navigation/navigation">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -1,339 +1,339 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.build.detail.MyBuild.AddMyBuildFragment"
-    android:background="@color/white">
+<layout>
 
-    <LinearLayout
+    <data>
+        <variable
+            name="addMyBuildViewModel"
+            type="com.example.firstapp.fragment.build.detail.mybuild.viewmodel.AddMyBuildViewModel" />
+    </data>
+
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        tools:context=".fragment.build.detail.mybuild.AddMyBuildFragment"
+        android:background="@color/white">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/add_build_toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"/>
-
-        <!--빌드 이름-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="15dp">
+            android:orientation="vertical">
 
             <LinearLayout
-                android:id="@+id/mbLayout_buildName"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_margin="15dp">
 
+                <!--빌드 이름-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{addMyBuildViewModel.myBuildNameET}"/>
+                    <EditText
+                        android:id="@+id/myBuildNameET"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <!--소환사 주문-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="빌드 이름"/>
-                <EditText
-                    android:id="@+id/myBuildNameET"
+                    android:text="소환사 주문" />
+
+                <LinearLayout
+                    android:id="@+id/mbLayout_summonerSpell"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <!--소환사 주문-->
-            <TextView
-                android:id="@+id/mbLayout_summonerSpell_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="소환사 주문" />
-
-            <LinearLayout
-                android:id="@+id/mbLayout_summonerSpell"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    style="@style/SquareSlot"
-                    android:background="@drawable/square_slot"
-                    android:src="@android:drawable/ic_menu_edit"/>
-                <ImageView
-                    style="@style/SquareSlot"
-                    android:background="@drawable/square_slot"
-                    android:src="@android:drawable/ic_menu_edit"/>
-            </LinearLayout>
-
-            <!--아이템-->
-            <TextView
-                android:id="@+id/mbLayout_item_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="아이템"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <LinearLayout
-                    android:id="@+id/mbLayout_item"
-                    android:layout_width="300dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="전체 빌드"/>
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-                        <ImageView
-                            style="@style/SquareSlot"
-                            android:background="@drawable/square_slot"
-                            android:src="@android:drawable/ic_menu_edit"/>
-                        <ImageView
-                            style="@style/SquareSlot"
-                            android:background="@drawable/square_slot"
-                            android:src="@android:drawable/ic_menu_edit"/>
-                        <ImageView
-                            style="@style/SquareSlot"
-                            android:background="@drawable/square_slot"
-                            android:src="@android:drawable/ic_menu_edit"/>
-                        <ImageView
-                            style="@style/SquareSlot"
-                            android:background="@drawable/square_slot"
-                            android:src="@android:drawable/ic_menu_edit"/>
-                        <ImageView
-                            style="@style/SquareSlot"
-                            android:background="@drawable/square_slot"
-                            android:src="@android:drawable/ic_menu_edit"/>
-                        <ImageView
-                            style="@style/SquareSlot"
-                            android:background="@drawable/square_slot"
-                            android:src="@android:drawable/ic_menu_edit"/>
-                    </LinearLayout>
-                </LinearLayout>
-                <LinearLayout
-                    android:layout_width="50dp"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="장신구"/>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
                     <ImageView
                         style="@style/SquareSlot"
                         android:background="@drawable/square_slot"
                         android:src="@android:drawable/ic_menu_edit"/>
-
+                    <ImageView
+                        style="@style/SquareSlot"
+                        android:background="@drawable/square_slot"
+                        android:src="@android:drawable/ic_menu_edit"/>
                 </LinearLayout>
+
+                <!--아이템-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="아이템"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="300dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="전체 빌드"/>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+                            <ImageView
+                                style="@style/SquareSlot"
+                                android:background="@drawable/square_slot"
+                                android:src="@android:drawable/ic_menu_edit"/>
+                            <ImageView
+                                style="@style/SquareSlot"
+                                android:background="@drawable/square_slot"
+                                android:src="@android:drawable/ic_menu_edit"/>
+                            <ImageView
+                                style="@style/SquareSlot"
+                                android:background="@drawable/square_slot"
+                                android:src="@android:drawable/ic_menu_edit"/>
+                            <ImageView
+                                style="@style/SquareSlot"
+                                android:background="@drawable/square_slot"
+                                android:src="@android:drawable/ic_menu_edit"/>
+                            <ImageView
+                                style="@style/SquareSlot"
+                                android:background="@drawable/square_slot"
+                                android:src="@android:drawable/ic_menu_edit"/>
+                            <ImageView
+                                style="@style/SquareSlot"
+                                android:background="@drawable/square_slot"
+                                android:src="@android:drawable/ic_menu_edit"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="장신구"/>
+                        <ImageView
+                            style="@style/SquareSlot"
+                            android:background="@drawable/square_slot"
+                            android:src="@android:drawable/ic_menu_edit"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+                <Button
+                    android:id="@+id/mbLayout_custom_item"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="아이템 추가"/>
+
+                <!--스킬 순서-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="스킬 순서"/>
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/skillBuildTable">
+                    <TableRow
+                        android:id="@+id/QRow">
+                        <TextView
+                            style="@style/SkillBuildTextView"
+                            android:text="Q"/>
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/WRow">
+                        <TextView
+                            style="@style/SkillBuildTextView"
+                            android:text="W"/>
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/ERow">
+                        <TextView
+                            style="@style/SkillBuildTextView"
+                            android:text="E"/>
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                    </TableRow>
+
+                    <TableRow
+                        android:id="@+id/RRow">
+                        <TextView
+                            style="@style/SkillBuildTextView"
+                            android:text="R"/>
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                        <TextView
+                            style="@style/SkillBuildTextView" />
+                    </TableRow>
+                </TableLayout>
+
+                <!--룬-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="룬"/>
+
+                <!--빌드 노트-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="빌드 노트"/>
+
             </LinearLayout>
-
-            <Button
-                android:id="@+id/mbLayout_custom_item"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="아이템 추가"/>
-
-            <!--스킬 순서-->
-            <TextView
-                android:id="@+id/mbLayout_text_skillBuild"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="스킬 순서"/>
-
-            <TableLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/skillBuildTable">
-                <TableRow
-                    android:id="@+id/QRow">
-                    <TextView
-                        style="@style/SkillBuildTextView"
-                        android:text="Q"/>
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/WRow">
-                    <TextView
-                        style="@style/SkillBuildTextView"
-                        android:text="W"/>
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/ERow">
-                    <TextView
-                        style="@style/SkillBuildTextView"
-                        android:text="E"/>
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                </TableRow>
-
-                <TableRow
-                    android:id="@+id/RRow">
-                    <TextView
-                        style="@style/SkillBuildTextView"
-                        android:text="R"/>
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                    <TextView
-                        style="@style/SkillBuildTextView" />
-                </TableRow>
-            </TableLayout>
-
-            <!--룬-->
-            <TextView
-                android:id="@+id/mbLayout_text_rune"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="룬"/>
-
-            <!--빌드 노트-->
-            <TextView
-                android:id="@+id/mbLayout_text_note"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="빌드 노트"/>
-
         </LinearLayout>
-    </LinearLayout>
 
-</FrameLayout>
+    </FrameLayout>
+</layout>
