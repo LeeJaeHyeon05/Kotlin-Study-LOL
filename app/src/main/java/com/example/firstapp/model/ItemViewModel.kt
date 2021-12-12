@@ -45,7 +45,7 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
 
     init {
         uiDataList.value = emptyList()
-        uiDataList.addSource(mDataList) { itemList -> uiDataList.postValue(itemList) }
+        uiDataList.addSource(mDataList) { itemList -> uiDataList.postValue(itemList.sortedBy { it.name }) }
         uiDataList.addSource(mItemSortType) { sortType ->
             if (sortType === ItemSortType.NAME) uiDataList.postValue(uiDataList.value?.sortedBy { it.name }.orEmpty())
             if (sortType === ItemSortType.PRICE_ASC) uiDataList.postValue(uiDataList.value?.sortedBy { it.itemGold?.total }.orEmpty())
@@ -75,7 +75,7 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
 
     fun toggleTag(tag: String) = viewModelScope.launch {
         val tags = mTags.value!!.toMutableList()
-        if (mTags.value!!.contains(tag)) {
+        if (tags.contains(tag)) {
             tags.remove(tag)
         } else {
             tags.add(tag)
