@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.adapter.ItemListAdapter
 import com.example.firstapp.databinding.FragmentItemBinding
+import com.example.firstapp.fragment.bottomsheet.ItemDetailBottomSheet
 import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet
 import com.example.firstapp.model.ItemViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -52,6 +53,16 @@ class ItemFragment : Fragment() {
         })
     }
 
+    private val handleClickItem: (String) -> Unit = {
+        itemViewModel.setSelectedItem(it)
+
+        val itemDetailBottomSheet = ItemDetailBottomSheet()
+        itemDetailBottomSheet.show(
+            requireActivity().supportFragmentManager,
+            ItemDetailBottomSheet.TAG
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,7 +70,7 @@ class ItemFragment : Fragment() {
         binding = FragmentItemBinding.inflate(layoutInflater)
 
         binding.itemList.run {
-            adapter = ItemListAdapter(emptyList())
+            adapter = ItemListAdapter(emptyList(), handleClickItem)
             layoutManager = GridLayoutManager(requireContext(), 5)
         }
 
