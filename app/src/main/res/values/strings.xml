@@ -77,4 +77,10 @@
     <string name="W">W</string>
     <string name="E">E</string>
     <string name="R">R</string>
+
+    <string name="item_name">아이템 이름</string>
+    <string name="finish">완료</string>
+    <string name="init_champion_start">챔피온 정보를 초기화합니다.</string>
+    <string name="init_item_start">아이템 정보를 초기화합니다.</string>
+    <string name="init_summoner_start">스펠 정보를 초기화합니다.</string>
 </resources>

@@ -63,7 +63,6 @@ class ItemSortBottomSheet : BottomSheetDialogFragment() {
             }
         }
 
-        itemViewModel.loadData()
         dismiss()
     }
 }
