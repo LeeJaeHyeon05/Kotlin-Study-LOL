@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.adapter.ItemFilterGroupListAdapter
@@ -26,7 +25,7 @@ class ItemFilterFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentItemFilterBinding.inflate(layoutInflater)
 
         initLayout()
@@ -98,7 +97,7 @@ class ItemFilterFragment : Fragment() {
             layoutManager = LinearLayoutManager(context)
         }
 
-        itemViewModel.tags.observe(viewLifecycleOwner, Observer { tags ->
+        itemViewModel.tags.observe(viewLifecycleOwner) { tags ->
             allItems.forEach { it.selected = tags.contains(it.key) }
             startItems.forEach { it.selected = tags.contains(it.key) }
             specializationItems.forEach { it.selected = tags.contains(it.key) }
@@ -107,6 +106,6 @@ class ItemFilterFragment : Fragment() {
             magicItems.forEach { it.selected = tags.contains(it.key) }
             movementItems.forEach { it.selected = tags.contains(it.key) }
             binding.itemFilterGroupRecyclerView.adapter!!.notifyDataSetChanged()
-        })
+        }
     }
 }
