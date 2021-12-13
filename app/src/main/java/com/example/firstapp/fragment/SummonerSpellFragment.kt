@@ -24,20 +24,8 @@ class SummonerSpellFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         mBinding = FragmentSummonerSpellBinding.inflate(inflater,container, false)
-
-        //1아이템 가로 스페이스 늘리기
-        val spaceDecoration = CustomAdapter.HorizontalSpaceItemDecoration(2)
-        binding.recyclerView.addItemDecoration(spaceDecoration)
-        //1아이템 top 스페이스 줄이기
-        val spaceDecoration2 = CustomAdapter.TopSpaceItemDecoration(-190)
-        binding.recyclerView.addItemDecoration(spaceDecoration2)
-
-        //2아이템 가로 스페이스 늘리기
-        val spaceDecoration3 = CustomAdapter.HorizontalSpaceItemDecoration(2)
-        binding.recyclerView2.addItemDecoration(spaceDecoration3)
-        //2아이템 top 스페이스 줄이기
-        val spaceDecoration4 = CustomAdapter.TopSpaceItemDecoration(-190)
-        binding.recyclerView2.addItemDecoration(spaceDecoration4)
+        //밑에 있는 스페이스 데코레이션 불러오기
+        allSpaceDecoration()
 
         //첫번째 그리드 뷰 그리드 뷰로 몇개 할지 정하고 canScrollHorizontally을 하고 return
         // false로 움직임 차단
@@ -49,6 +37,7 @@ class SummonerSpellFragment : Fragment() {
 
         binding.recyclerView.layoutManager = myLayoutManager
 
+
         //두번째 그리드 뷰로 몇개 할지 정하고 canScrollHorizontally을 하고 return false로 움직임 차단
         val myLayoutManager2 = object : GridLayoutManager(requireContext(), 5) {
             override fun canScrollHorizontally(): Boolean {
@@ -58,28 +47,11 @@ class SummonerSpellFragment : Fragment() {
 
         binding.recyclerView2.layoutManager = myLayoutManager2
 
+
         //첫번째 리사이클러뷰
         val data = ArrayList<ItemsViewModel>()
         //두번째 리사이클러뷰
         val data2 = ArrayList<ItemsViewModel>()
-
-        //데이터 추가하기
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요")) //여기에 추가
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-
-
-
-        //두번째 줄 데이터 추가하기
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
 
         //라인 1 어뎁터
         binding.recyclerView.run {
@@ -93,6 +65,23 @@ class SummonerSpellFragment : Fragment() {
             layoutManager = myLayoutManager2
         }
 
+        //데이터 추가하기
+        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요")) //여기에 추가
+        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+
+
+        //두번째 줄 데이터 추가하기
+        data2.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+        data2.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+        data2.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+
         return binding.root
 
     }
@@ -103,6 +92,21 @@ class SummonerSpellFragment : Fragment() {
         super.onDestroy()
     }
 
+    private fun allSpaceDecoration() {
+        //1아이템 가로 스페이스 늘리기
+        val spaceDecoration = CustomAdapter.HorizontalSpaceItemDecoration(2)
+        binding.recyclerView.addItemDecoration(spaceDecoration)
+        //1아이템 top 스페이스 줄이기
+        val spaceDecoration2 = CustomAdapter.TopSpaceItemDecoration(-190)
+        binding.recyclerView.addItemDecoration(spaceDecoration2)
+
+        //2아이템 가로 스페이스 늘리기
+        val spaceDecoration3 = CustomAdapter.HorizontalSpaceItemDecoration(2)
+        binding.recyclerView2.addItemDecoration(spaceDecoration3)
+        //2아이템 top 스페이스 줄이기
+        val spaceDecoration4 = CustomAdapter.TopSpaceItemDecoration(-190)
+        binding.recyclerView2.addItemDecoration(spaceDecoration4)
+    }
 }
 
 //        //라인 1 어뎁터
