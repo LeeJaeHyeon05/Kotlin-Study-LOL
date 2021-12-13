@@ -1,3 +1,13 @@
 package com.example.firstapp.adapter.SummorSpell
 
-data class ItemsViewModel(val image: Int, val text: String)
+import android.app.AlertDialog
+import android.app.Dialog
+import android.provider.Settings.Global.getString
+import android.view.View
+import androidx.core.content.ContentProviderCompat.requireContext
+import com.example.firstapp.ItemsViewModel
+import com.example.firstapp.R
+
+data class ItemsViewModel(val image: Int, val text: String, val dialogText: String, val dialogIcon: Int, val dialogTitle: String)
+
+

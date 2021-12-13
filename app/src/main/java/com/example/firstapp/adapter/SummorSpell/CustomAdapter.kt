@@ -11,46 +11,53 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.firstapp.ItemsViewModel
+import com.example.firstapp.adapter.SummorSpell.ItemsViewModel
 import com.example.firstapp.R
+import kotlin.io.path.createTempDirectory
 
 class CustomAdapter(private val mList: ArrayList<ItemsViewModel>) : RecyclerView.Adapter<CustomAdapter.ViewHolder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomAdapter.ViewHolder {
+    // 아이템 레이아웃 결합
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.item_list, parent, false)
 
         return ViewHolder(view)
     }
 
+
+    //View에 내용 입력
     override fun onBindViewHolder(holder: CustomAdapter.ViewHolder, position: Int) {
-        val ItemsViewModel = mList[position]
+        val itemModel = mList[position]
 
-        holder.imageButton.setOnClickListener {
-            val dialogBuilder = AlertDialog.Builder(it.context, R.style.MyDialogTheme)
+        val handleOnClick: View.OnClickListener = View.OnClickListener {
+            val ddata = itemModel
+            ddata.run {
+                val dialogBuilder = AlertDialog.Builder(it.context, R.style.MyDialogTheme)
+                dialogBuilder.setMessage(ddata.dialogText)
+                    .setIcon(ddata.dialogIcon)
+                    .setCancelable(false)
+                    .setNegativeButton(R.string.nextDialogText, DialogInterface.OnClickListener { _, _ ->  })
+                val alert = dialogBuilder.create()
+                alert.setTitle(ddata.dialogTitle)
+                alert.show()
 
-            dialogBuilder.setMessage("안녕하세요")
-                .setIcon(R.drawable.ic_launcher_background)
-                .setCancelable(false)
-                .setNegativeButton("계속 하기", DialogInterface.OnClickListener{
-                        dialog, _ -> dialog.cancel()
-                })
-
-            val alert = dialogBuilder.create()
-            alert.setTitle("강타")
-            alert.show()
+            }
         }
 
-        holder.textView.text = ItemsViewModel.text
+        holder.imageButton.setOnClickListener(handleOnClick)
+        holder.textView.text = itemModel.text
+
     }
-//    holder.imageButton.setImageResource(ItemsViewModel.image)
 
 
 
+    //리스트 내 아이템 개수 정하기
     override fun getItemCount(): Int {
         return mList.size
     }
 
+    //레이아웃과 나의 View 연결
     class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
         val imageButton: ImageButton = itemView.findViewById(R.id.rv_button)
         val textView: TextView = itemView.findViewById(R.id.rv_textView)
@@ -68,6 +75,7 @@ class CustomAdapter(private val mList: ArrayList<ItemsViewModel>) : RecyclerView
         }
     }
 
+    //간격 줄이기
     class TopSpaceItemDecoration(private val TopSpaceItemDecoration: Int) : RecyclerView.ItemDecoration() {
         override fun getItemOffsets(
             outRect: Rect,
