@@ -51,6 +51,13 @@
     <string name="ghostDialogTitle">유체화</string>
     <!-- 여기 까지 -->
 
+    <!-- 유니버스 -->
+    <string name="universe_tab_champion">챔피언</string>
+    <string name="universe_tab_region">지역</string>
+    <string name="universe_tab_novel">단편소설</string>
+    <string name="universe_tab_comic">코믹</string>
+    <string name="universe_tab_video">영상</string>
+    <!-- 여기까지 -->
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>

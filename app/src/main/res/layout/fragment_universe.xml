@@ -19,27 +19,27 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="챔피언"/>
+            android:text="@string/universe_tab_champion"/>
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="지역" />
+            android:text="@string/universe_tab_region" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="단편소설" />
+            android:text="@string/universe_tab_novel" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="코믹" />
+            android:text="@string/universe_tab_comic" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="영상" />
+            android:text="@string/universe_tab_video" />
 
     </com.google.android.material.tabs.TabLayout>
     </com.google.android.material.appbar.AppBarLayout>

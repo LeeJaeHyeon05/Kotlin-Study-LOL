@@ -31,11 +31,11 @@ class UniverseFragment : Fragment() {
 
         TabLayoutMediator(binding.tabLayout, binding.viewPager) {tab, position ->
             when(position) {
-                0 -> tab.text = "챔피언"
-                1 -> tab.text = "지역"
-                2 -> tab.text = "단편소설"
-                3 -> tab.text = "코믹"
-                4 -> tab.text = "영상"
+                0 -> tab.text = resources.getString(R.string.universe_tab_champion)
+                1 -> tab.text = resources.getString(R.string.universe_tab_region)
+                2 -> tab.text = resources.getString(R.string.universe_tab_novel)
+                3 -> tab.text = resources.getString(R.string.universe_tab_comic)
+                4 -> tab.text = resources.getString(R.string.universe_tab_video)
             }
         }.attach()
 
