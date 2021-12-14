@@ -57,6 +57,17 @@
     <string name="universe_tab_novel">단편소설</string>
     <string name="universe_tab_comic">코믹</string>
     <string name="universe_tab_video">영상</string>
+
+    <string name="universe_region_void">공허</string>
+    <string name="universe_region_shadowisles">그림자군도</string>
+    <string name="universe_region_noxus">녹서스</string>
+    <string name="universe_region_demacia">데마시아</string>
+    <string name="universe_region_bandle_city">밴들시티</string>
+    <string name="universe_region_bilgewater">빌지워터</string>
+    <string name="universe_region_shurima">슈리마</string>
+    <string name="universe_region_ionia">아이오니아</string>
+    <string name="universe_region_ixital">이쉬탈</string>
+    <string name="universe_region_zaun">자운</string>
     <!-- 여기까지 -->
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
