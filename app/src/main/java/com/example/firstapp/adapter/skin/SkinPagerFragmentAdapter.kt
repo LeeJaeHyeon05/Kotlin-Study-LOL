@@ -16,8 +16,21 @@ class SkinPagerFragmentAdapter(fragmentActivity: FragmentActivity) : FragmentSta
     override fun createFragment(position: Int): Fragment { // 페이지 연결
         return when(position){
             0 -> SkinByChampionFragment()
-            else -> SkinByThemeFragment()
+            else -> { return SkinByThemeFragment() }
         }
+    }
+
+
+//    override fun getPageTitle(position: Int): CharSequence {
+//        return when(position){
+//            0 -> "챔피언별"
+//            else -> {return "스킨 테마별"}
+//        }
+//    }
+
+    fun addFragment(fragment: Fragment){
+        fragments.add(fragment)
+        notifyItemInserted(fragments.size - 1)
     }
 
 }
