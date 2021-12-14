@@ -5,11 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.firstapp.adapter.SummorSpell.ItemsViewModel
+import com.example.firstapp.adapter.summorSpell.ItemsViewModel
 import com.example.firstapp.R
-import com.example.firstapp.adapter.SummorSpell.CustomAdapter
-import com.example.firstapp.adapter.SummorSpell.CustomAdapter2
+import com.example.firstapp.adapter.summorSpell.CustomAdapter
+import com.example.firstapp.adapter.summorSpell.CustomAdapter2
 import com.example.firstapp.databinding.FragmentSummonerSpellBinding
 
 class SummonerSpellFragment : Fragment() {
@@ -22,13 +23,14 @@ class SummonerSpellFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         mBinding = FragmentSummonerSpellBinding.inflate(inflater,container, false)
+
         //밑에 있는 스페이스 데코레이션 불러오기
         allSpaceDecoration()
 
-        //첫번째 그리드 뷰 그리드 뷰로 몇개 할지 정하고 canScrollHorizontally을 하고 return
-        // false로 움직임 차단
+        //첫번째 그리드 뷰 그리드 뷰로 몇개 할지 정하고 canScrollHorizontally 을 하고 return
+        // false 로 움직임 차단
         val myLayoutManager = object : GridLayoutManager(requireContext(), 5) {
             override fun canScrollHorizontally(): Boolean {
                 return false
@@ -38,7 +40,7 @@ class SummonerSpellFragment : Fragment() {
         binding.recyclerView.layoutManager = myLayoutManager
 
 
-        //두번째 그리드 뷰로 몇개 할지 정하고 canScrollHorizontally을 하고 return false로 움직임 차단
+        //두번째 그리드 뷰로 몇개 할지 정하고 canScrollHorizontally 을 하고 return false 로 움직임 차단
         val myLayoutManager2 = object : GridLayoutManager(requireContext(), 5) {
             override fun canScrollHorizontally(): Boolean {
                 return false
@@ -66,21 +68,22 @@ class SummonerSpellFragment : Fragment() {
         }
 
         //데이터 추가하기
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요")) //여기에 추가
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+        data.add(ItemsViewModel(R.drawable.smite, R.string.smite, R.string.smiteDialogText, R.drawable.smite, R.string.smiteDialogTitle))
+        data.add(ItemsViewModel(R.drawable.tel, R.string.tel, R.string.telDialogText, R.drawable.tel, R.string.telDialogTitle))
+        data.add(ItemsViewModel(R.drawable.sheild, R.string.sheild, R.string.sheildDialogText, R.drawable.sheild, R.string.sheildDialogTitle))
+        data.add(ItemsViewModel(R.drawable.flash, R.string.flash, R.string.fireDialogText, R.drawable.flash, R.string.flashDialogTitle))
+        data.add(ItemsViewModel(R.drawable.heal, R.string.heal, R.string.healDialogText, R.drawable.heal, R.string.healDialogTitle))
+        data.add(ItemsViewModel(R.drawable.fire, R.string.ignite, R.string.fireDialogText, R.drawable.fire, R.string.fireDialogTitle))
+        data.add(ItemsViewModel(R.drawable.clean, R.string.clean, R.string.cleanDialogText, R.drawable.clean, R.string.cleanDialogTitle))
+        data.add(ItemsViewModel(R.drawable.ghost, R.string.ghost, R.string.ghostDialogText, R.drawable.ghost, R.string.ghostDialogTitle))
+        data.add(ItemsViewModel(R.drawable.exhasuted, R.string.exhasuted, R.string.exhaustedDialogText, R.drawable.exhasuted, R.string.exhaustedDialogTitle))
+
 
 
         //두번째 줄 데이터 추가하기
-        data2.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data2.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
-        data2.add(ItemsViewModel(R.drawable.ic_launcher_background, "1", "안녕하세요", R.drawable.blue, "안녕하세요"))
+        data2.add(ItemsViewModel(R.drawable.totheking, R.string.totheking, R.string.tothekingDialogText, R.drawable.totheking, R.string.tothekingDialogTitle))
+        data2.add(ItemsViewModel(R.drawable.aiblue, R.string.aiblue, R.string.throwforoDialogText, R.drawable.aiblue, R.string.throwforoDialogTitle))
+        data2.add(ItemsViewModel(R.drawable.blue, R.string.blue, R.string.blueDialogText, R.drawable.blue, R.string.blueDialogTitle))
 
         return binding.root
 
