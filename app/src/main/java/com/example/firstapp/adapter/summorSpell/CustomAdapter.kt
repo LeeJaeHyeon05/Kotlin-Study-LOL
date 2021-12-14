@@ -41,6 +41,7 @@ class CustomAdapter(private val mList: ArrayList<ItemsViewModel>) : RecyclerView
             }
         }
 
+        //이미지 버튼 온클릭 리스너
         holder.imageButton.setOnClickListener(handleOnClick)
         //따로 setImage 를 해줘야 함
         holder.imageButton.setImageResource(itemModel.imageButton)
