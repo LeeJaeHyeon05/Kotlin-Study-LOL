@@ -5,12 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.adapter.summorSpell.ItemsViewModel
 import com.example.firstapp.R
 import com.example.firstapp.adapter.summorSpell.CustomAdapter
-import com.example.firstapp.adapter.summorSpell.CustomAdapter2
 import com.example.firstapp.databinding.FragmentSummonerSpellBinding
 
 class SummonerSpellFragment : Fragment() {
@@ -63,7 +61,7 @@ class SummonerSpellFragment : Fragment() {
 
         //라인 2 어뎁터
         binding.recyclerView2.run {
-            adapter = CustomAdapter2(data2)
+            adapter = CustomAdapter(data2)
             layoutManager = myLayoutManager2
         }
 
