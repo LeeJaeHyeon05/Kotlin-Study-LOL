@@ -46,5 +46,10 @@
         android:name="com.example.firstapp.fragment.ChampTier.UniverseFragment"
         android:label="fragment_universe"
         tools:layout="@layout/fragment_universe" />
+    <fragment
+        android:id="@+id/nav_skin"
+        android:name="com.example.firstapp.fragment.skin.SkinFragment"
+        android:label="fragment_skin"
+        tools:layout="@layout/fragment_skin" />
 
 </navigation>
