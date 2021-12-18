@@ -4,18 +4,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/black">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:background="@color/brightGray"
+                android:layout_marginTop="10dp">
 
                 <Button
                     android:id="@+id/tier1Button"
@@ -37,16 +41,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:background="@color/brightGray"
+                android:layout_marginTop="10dp"
+
+                >
 
                 <Button
                     android:id="@+id/tier2Button"
                     android:layout_width="40dp"
-                    android:layout_height="45dp"
-                    android:backgroundTint="@color/orange"
-                    android:clickable="false"
+                    android:layout_height="wrap_content"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
+                    android:backgroundTint="@color/orange"
+                    android:clickable="false"
+                    android:layout_gravity="center_vertical"
                     android:text="2" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -59,7 +68,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:background="@color/brightGray"
+                android:layout_marginTop="10dp">
 
                 <Button
                     android:id="@+id/tier3Button"
@@ -69,6 +80,7 @@
                     android:clickable="false"
                     android:layout_marginLeft="15dp"
                     android:layout_marginRight="15dp"
+                    android:layout_gravity="center_vertical"
                     android:text="3" />
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -81,7 +93,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:background="@color/brightGray"
+                android:layout_marginTop="10dp">
 
                 <Button
                     android:id="@+id/tier4Button"
@@ -103,7 +117,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:gravity="center_vertical"
+                android:background="@color/brightGray"
+                android:layout_marginTop="10dp">
 
                 <Button
                     android:id="@+id/tier5Button"

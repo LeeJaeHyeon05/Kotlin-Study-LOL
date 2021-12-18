@@ -64,7 +64,6 @@ class SummonerSpellFragment : Fragment() {
             adapter = CustomAdapter(data2)
             layoutManager = myLayoutManager2
         }
-
         //데이터 추가하기
         data.add(ItemsViewModel(R.drawable.smite, R.string.smite, R.string.smiteDialogText, R.drawable.smite, R.string.smiteDialogTitle))
         data.add(ItemsViewModel(R.drawable.tel, R.string.tel, R.string.telDialogText, R.drawable.tel, R.string.telDialogTitle))

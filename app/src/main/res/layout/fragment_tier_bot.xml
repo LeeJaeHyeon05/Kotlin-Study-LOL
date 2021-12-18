@@ -1,15 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragment.ChampTier.TierBotFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="25sp"
-        android:text="바텀" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/black">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/brightGray"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/tier1Button"
+                    android:layout_width="40dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@color/red"
+                    android:clickable="false"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="1" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tier1Recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/brightGray"
+                android:layout_marginTop="10dp"
+
+                >
+
+                <Button
+                    android:id="@+id/tier2Button"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:backgroundTint="@color/orange"
+                    android:clickable="false"
+                    android:layout_gravity="center_vertical"
+                    android:text="2" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tier2Recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/brightGray"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/tier3Button"
+                    android:layout_width="40dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@color/teal_700"
+                    android:clickable="false"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="3" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tier3Recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/brightGray"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/tier4Button"
+                    android:layout_width="40dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@color/teal_200"
+                    android:clickable="false"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="4" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tier4Recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@color/brightGray"
+                android:layout_marginTop="10dp">
+
+                <Button
+                    android:id="@+id/tier5Button"
+                    android:layout_width="40dp"
+                    android:layout_height="45dp"
+                    android:backgroundTint="@color/purple_200"
+                    android:clickable="false"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:text="5" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/tier5Recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</layout>

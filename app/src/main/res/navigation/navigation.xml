@@ -6,10 +6,15 @@
     app:startDestination="@+id/nav_champ">
 
     <fragment
+        android:id="@+id/nav_rune"
+        android:name="com.example.firstapp.fragment.rune.RuneFragment"
+        android:label="fragment_universe"
+        tools:layout="@layout/fragment_rune" />
+    <fragment
         android:id="@+id/nav_champ"
-        android:name="com.example.firstapp.scene.champion.ChampionFragment"
+        android:name="com.example.firstapp.scene.champion.ChampionListFragment"
         android:label="챔피언"
-        tools:layout="@layout/fragment_champion" >
+        tools:layout="@layout/fragment_champion_list" >
         <argument
             android:name="viewType"
             app:argType="integer"
@@ -32,5 +37,15 @@
         android:id="@+id/nav_summonerSpell"
         android:name="com.example.firstapp.fragment.SummonerSpellFragment"
         android:label="SummonerSpellFragment" />
+    <fragment
+        android:id="@+id/nav_build_main"
+        android:name="com.example.firstapp.fragment.build.BuildMainFragment"
+        android:label="BuildMainFragment"/>
+    <fragment
+        android:id="@+id/nav_universe"
+        android:name="com.example.firstapp.fragment.universe.UniverseFragment"
+
+        android:label="fragment_universe"
+        tools:layout="@layout/fragment_universe" />
 
 </navigation>
