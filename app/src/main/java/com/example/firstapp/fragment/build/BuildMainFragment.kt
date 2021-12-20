@@ -14,6 +14,7 @@ import com.xwray.groupie.Group
 import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import timber.log.Timber
 
 
 @AndroidEntryPoint
@@ -28,6 +29,7 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
         inflater.inflate(R.menu.item_menu, menu)
 
 
+
         val menuItem: MenuItem = menu.findItem(R.id.action_search)
         val searchView: SearchView = menuItem.actionView as SearchView
 
@@ -35,17 +37,32 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
 
         searchView.setOnQueryTextFocusChangeListener { v, hasFocus ->
             menu.findItem(R.id.action_sort).isVisible = !hasFocus
+            menu.findItem(R.id.action_info).isVisible = !hasFocus
         }
 
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                Timber.i("query : %s", query)
+                viewModel.setSearchQuery(query.orEmpty())
+                return false
+            }
 
 
+            override fun onQueryTextChange(newText: String?): Boolean {
+                Timber.i("query : %s", newText)
+                viewModel.setSearchQuery(newText.orEmpty())
+                return false
+            }
+
+
+        })
 
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun init() {
         setHasOptionsMenu(true)
-
+        viewModel.getChampion()
         groupLayoutManager = GridLayoutManager(context, 4).apply {
             spanSizeLookup = groupAdapter.spanSizeLookup
         }
@@ -53,10 +70,10 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
             adapter = groupAdapter
             layoutManager = groupLayoutManager
         }
+
         repeatOnStarted {
-            viewModel.getChampion().collect { Champion ->
-                val championList = Champion.data.values
-                    .toList()
+            viewModel.mChampionList.collect {Champion->
+                val championList = Champion
                     .sortedBy { it.name }
                     .map { BuildItem(it) }
                     .also { groupAdapter.update(it) }
@@ -66,3 +83,4 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
 
 
 }
+

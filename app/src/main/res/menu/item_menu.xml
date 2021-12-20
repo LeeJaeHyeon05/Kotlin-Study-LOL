@@ -8,9 +8,9 @@
         app:actionViewClass="androidx.appcompat.widget.SearchView"
         app:showAsAction="always" />
     <item
-        android:id="@+id/action_sort"
-        android:icon="@drawable/baseline_sort_24"
-        android:title="@string/action_sort"
+        android:id="@+id/action_info"
+        android:icon="@drawable/outline_filter_list_24"
+        android:title="@string/Info"
         app:showAsAction="always" />
 
     <item
