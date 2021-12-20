@@ -34,6 +34,12 @@ class BuildDetailActivity : AppCompatActivity() {
             .commit()
     }
 
+    fun closeAddMyBuild(){
+        supportFragmentManager.beginTransaction()
+            .remove(AddMyBuildFragment())
+            .commit()
+    }
+
     fun showSkillBuildDialog(){
         val dialog = SkillBuildDialogFragment()
         dialog.show(supportFragmentManager, "Skill Build")

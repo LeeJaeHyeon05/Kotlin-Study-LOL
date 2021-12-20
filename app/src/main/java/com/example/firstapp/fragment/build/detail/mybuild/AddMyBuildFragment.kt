@@ -2,8 +2,12 @@ package com.example.firstapp.fragment.build.detail.mybuild
 
 import android.content.Context
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
@@ -12,11 +16,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.firstapp.R
-import com.example.firstapp.bottomsheet.ItemSortBottomSheet
 import com.example.firstapp.databinding.FragmentAddMyBuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
-import com.example.firstapp.fragment.build.detail.mybuild.repository.DataForMyBuildRepository
+import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepository
+import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepositoryData
 import com.example.firstapp.fragment.build.detail.mybuild.viewmodel.AddMyBuildViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
+import timber.log.Timber
 
 class AddMyBuildFragment : Fragment() {
 
@@ -60,14 +66,18 @@ class AddMyBuildFragment : Fragment() {
 
         val myBuildNameETObserver = Observer<String>{
             binding.myBuildNameET.setText(it)
+//            binding.myBuildNameET.addTextChangedListener{ et ->
+//                addMyBuildViewModel.myBuildNameET.value = et.toString()
+//            }
         }
+
         addMyBuildViewModel.myBuildNameET.observe(viewLifecycleOwner, myBuildNameETObserver)
 
 
         return binding.root
     }
 
-    private fun saveAddBuild(){
+    private fun saveAddBuild() {
 //        현재 페이지에 있는 정보 저장
 //        -> 빌드 이름 String
 //        -> 소환사 주문 Image 2개
@@ -76,5 +86,19 @@ class AddMyBuildFragment : Fragment() {
 //        -> 스킬 순서
 //        -> 룬
 //        -> 빌드 노트
+
+        val data = MyBuildRepositoryData(
+            binding.myBuildNameET.text.toString()
+        )
+
+        addMyBuildViewModel.saveAddBuild(context?.applicationContext!!, data)
+
+        val a = MyBuildRepository(context?.applicationContext!!)
+        val b = a.getMyBuildData("Champion Name")
+        Timber.d(b.toString())
+
+        (activity as BuildDetailActivity).closeAddMyBuild()
+
+
     }
 }
