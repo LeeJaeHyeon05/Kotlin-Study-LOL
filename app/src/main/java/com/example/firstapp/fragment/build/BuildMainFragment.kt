@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentBuildMainBinding
 import com.example.waterexample.ui.base.BaseFragment
+import com.xwray.groupie.Group
+import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -18,19 +20,17 @@ import kotlinx.coroutines.flow.collect
 class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragment_build_main) {
 
     private val viewModel: BuildViewModel by viewModels()
+    private val groupAdapter = GroupieAdapter()
+    private lateinit var groupLayoutManager: GridLayoutManager
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
         inflater.inflate(R.menu.item_menu, menu)
-        menuItem = menu.getItem(2)
+
 
         val menuItem: MenuItem = menu.findItem(R.id.action_search)
         val searchView: SearchView = menuItem.actionView as SearchView
-        inflater.
 
-         menuItem = menu.getItem(number);
-        menuItem.setIcon(some_icon);
-        menuItem.setTitle(some_text);
         searchView.queryHint = getString(R.string.champion_name)
 
         searchView.setOnQueryTextFocusChangeListener { v, hasFocus ->
@@ -46,18 +46,23 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
     override fun init() {
         setHasOptionsMenu(true)
 
-
+        groupLayoutManager = GridLayoutManager(context, 4).apply {
+            spanSizeLookup = groupAdapter.spanSizeLookup
+        }
+        binding.buildMainRv.apply {
+            adapter = groupAdapter
+            layoutManager = groupLayoutManager
+        }
         repeatOnStarted {
             viewModel.getChampion().collect { Champion ->
-                val championList = Champion.data.values.toList().sortedBy { it.name }
-                val adapter = BuildMainAdapter(this@BuildMainFragment.context, championList)
-                binding.buildMainRv.adapter = adapter
-                binding.buildMainRv.layoutManager = GridLayoutManager(
-                    this@BuildMainFragment.context, 4, GridLayoutManager.VERTICAL, false
-                )
+                val championList = Champion.data.values
+                    .toList()
+                    .sortedBy { it.name }
+                    .map { BuildItem(it) }
+                    .also { groupAdapter.update(it) }
             }
         }
-
-
     }
+
+
 }
