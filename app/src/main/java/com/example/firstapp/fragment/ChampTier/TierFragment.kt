@@ -2,7 +2,6 @@ package com.example.firstapp.fragment.ChampTier
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentTierBinding
 import com.example.firstapp.model.TierViewModel
-import com.example.firstapp.util.getCurrentFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,7 +44,6 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
         val fragments = arrayListOf<Fragment>(topFragment, jungFragment, midFragment, botFragment, supFragment)
 
         val binding = FragmentTierBinding.inflate(inflater, container, false)
-
 
         /* viewModel로 데이터 갱신하고
            각 fragment에 데이터 분배하기

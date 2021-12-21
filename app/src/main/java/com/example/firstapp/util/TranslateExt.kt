@@ -1,8 +1,10 @@
 package com.example.firstapp.util
 
-import com.example.firstapp.model.champion.Champion
-import com.example.firstapp.model.champion.ChampionVO
-import java.lang.Exception
+import android.content.Context
+import androidx.room.Room
+import com.example.firstapp.database.AppDatabase
+import kotlinx.coroutines.*
+
 
 /**
  * @author mmol93
@@ -11,27 +13,28 @@ import java.lang.Exception
  **/
 
 // 영문 챔피언명을 한글로 바꾸기
-fun ChampionVO.translateToKr(EnglishName:String):String?{
-    // 챔피언 HashMap에서 key(챔피언 영문 이름)를 사용하여 한글로된 이름을 가져온다
-    if (data[EnglishName]!=null){
-        try{
-            return data[EnglishName]!!.name
+suspend fun translateToKr(context: Context, englishName:String):String?{
+    // 코루틴 결과를 반환하기 위해 Deferred를 사용하여 코루틴 생성
+    var deffered : Deferred<String>
+    coroutineScope {
+        deffered = async(Dispatchers.IO) {
+            val championDatabase = Room.databaseBuilder(context, AppDatabase::class.java, "lol-db").build()
+            val championName_kr = championDatabase.championDao().getChampKrName(englishName)
+            return@async championName_kr
         }
-        // 실패하거나 해당 이름이 없는 경우 그냥 영문명을 반환
-        catch (e:Exception){
-            return EnglishName
-        }
-    }else return null
+    }
+    return deffered.await()
 }
 
 // 한글 챔피언명을 영문으로 바꾸기
-fun ChampionVO.translateToEn(KoreanName:String):String?{
-    // data의 모든 Champion 데이터를 비교합니다.
-    for (champions in data){
-        val championInfo = champions.value
-        if (championInfo.name == KoreanName) {
-            return championInfo.name
+suspend fun translateToEn(context:Context, koreanName:String):String?{
+    var deffered : Deferred<String>
+    coroutineScope {
+        deffered = async(Dispatchers.IO) {
+            val championDatabase = Room.databaseBuilder(context, AppDatabase::class.java, "lol-db").build()
+            val championName_en = championDatabase.championDao().getChampEnName(koreanName)
+            return@async championName_en
         }
     }
-    return null
+    return deffered.await()
 }
