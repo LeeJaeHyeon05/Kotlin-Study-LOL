@@ -50,25 +50,77 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_detail_image" />
 
-        <TextView
-            android:id="@+id/item_combination_title"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_combination_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
-            android:text="@string/item_combination"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_detail_desc" />
+            app:layout_constraintTop_toBottomOf="@id/item_detail_desc">
 
-        <TextView
-            android:id="@+id/item_upper_build_title"
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/item_combination_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/item_combination"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/item_combination_image"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:contentDescription="@string/item"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_combination_title" />
+
+            <TextView
+                android:id="@+id/item_combination_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toRightOf="@+id/item_combination_image"
+                app:layout_constraintTop_toTopOf="@+id/item_combination_image" />
+
+            <TextView
+                android:id="@+id/item_combination_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toRightOf="@+id/item_combination_image"
+                app:layout_constraintTop_toBottomOf="@id/item_combination_name" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/item_combination_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/item_combination_image" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/item_upper_build_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
-            android:text="@string/item_upper_build"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/item_combination_title" />
+            app:layout_constraintTop_toBottomOf="@id/item_combination_layout">
+
+            <TextView
+                android:id="@+id/item_upper_build_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/item_upper_build"
+                android:textColor="@color/white"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

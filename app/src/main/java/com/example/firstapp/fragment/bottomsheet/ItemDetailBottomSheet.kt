@@ -35,6 +35,10 @@ class ItemDetailBottomSheet : BottomSheetDialogFragment() {
             binding.itemDetailName.text = item.name
             binding.itemDetailPrice.text = "가격 ${item.itemGold!!.total} (${item.itemGold!!.base}) 팔기 ${item.itemGold!!.sell}"
             binding.itemDetailDesc.text = Html.fromHtml(item.description, HtmlCompat.FROM_HTML_MODE_LEGACY)
+
+            Picasso.get().load("${getBaseImageUrl()}/item/${item.id}.png").into(binding.itemCombinationImage)
+            binding.itemCombinationName.text = item.name
+            binding.itemCombinationPrice.text = "가격 ${item.itemGold!!.total} (${item.itemGold!!.base})"
         }
 
         return binding.root
