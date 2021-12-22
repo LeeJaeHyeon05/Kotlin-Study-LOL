@@ -25,6 +25,8 @@
     <string name="HowlingAbyss">칼바람 스펠 </string>
     <string name="includelol">(롤 스펠 포함)</string>
 
+    <string name="lolspell">롤 스펠 모음</string>
+
     <string name="nextDialogText">계속 하기</string>
     <string name="smiteDialogText">대상 에픽 및 대형/중형 몬스터, 혹은 적 미니언에게 450의 고정 피해를 입힙니다. 몬스터에게 사용 시 체력도 90 + 최대 체력의 10%만큼 회복됩니다.</string>
     <string name="smiteDialogTitle">강타</string>
@@ -78,6 +80,8 @@
 
     <string name="item">아이템</string>
     <string name="spash_lol">롤 사전</string>
+    <string name="lolspell2">칼바람 스펠</string>
+
 
     <string name="confirm">확인</string>
     <string name="cancel">취소</string>
