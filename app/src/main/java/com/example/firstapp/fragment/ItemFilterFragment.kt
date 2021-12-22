@@ -35,12 +35,6 @@ class ItemFilterFragment : Fragment() {
 
     private fun initLayout() {
 
-        val allItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter(getString(R.string.all_item_filter1), ""),
-            ItemFilter(getString(R.string.all_item_filter2), ""),
-            ItemFilter(getString(R.string.all_item_filter3), ""),
-            ItemFilter(getString(R.string.all_item_filter4), "")
-        )
         val startItems: ArrayList<ItemFilter> = arrayListOf(
             ItemFilter(getString(R.string.start_item_filter1), "Lane"),
             ItemFilter(getString(R.string.start_item_filter2), "Jungle")
@@ -76,7 +70,6 @@ class ItemFilterFragment : Fragment() {
             ItemFilter(getString(R.string.movement_item_filter2), "NonbootsMovement"),
         )
 
-        val allItemsGroup = ItemFilterGroup(getString(R.string.all_item), allItems)
         val startItemsGroup = ItemFilterGroup(getString(R.string.start_item), startItems)
         val specializationItemsGroup = ItemFilterGroup(getString(R.string.specialization_item), specializationItems)
         val defenseItemsGroup = ItemFilterGroup(getString(R.string.defense_item), defenseItems)
@@ -85,7 +78,7 @@ class ItemFilterFragment : Fragment() {
         val movementItemsGroup = ItemFilterGroup(getString(R.string.movement_item), movementItems)
 
         val itemFilterGroupList: ArrayList<ItemFilterGroup> =
-            arrayListOf(allItemsGroup, startItemsGroup, specializationItemsGroup, defenseItemsGroup, attackItemsGroup, magicItemsGroup, movementItemsGroup)
+            arrayListOf(startItemsGroup, specializationItemsGroup, defenseItemsGroup, attackItemsGroup, magicItemsGroup, movementItemsGroup)
 
         val handleClickFilterItem: (String) -> Unit = {
             itemViewModel.toggleTag(it)
@@ -98,7 +91,6 @@ class ItemFilterFragment : Fragment() {
         }
 
         itemViewModel.tags.observe(viewLifecycleOwner) { tags ->
-            allItems.forEach { it.selected = tags.contains(it.key) }
             startItems.forEach { it.selected = tags.contains(it.key) }
             specializationItems.forEach { it.selected = tags.contains(it.key) }
             defenseItems.forEach { it.selected = tags.contains(it.key) }
