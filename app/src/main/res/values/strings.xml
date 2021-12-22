@@ -139,4 +139,6 @@
     <string name="movement_item_filter2">기타 이동 관련</string>
     <string name="item_combination">아이템 조합법</string>
     <string name="item_upper_build">상위 빌드</string>
+    <string name="price">가격</string>
+    <string name="sell">팔기</string>
 </resources>

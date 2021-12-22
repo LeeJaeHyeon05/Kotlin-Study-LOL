@@ -24,6 +24,7 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
     val itemSortType: LiveData<ItemSortType> = mItemSortType
     val tags: LiveData<List<String>> = mTags
     val selectedItem: LiveData<Item> = mSelectedItem
+    val allItemList: LiveData<List<Item>> = mDataList
     val uiDataList: MediatorLiveData<List<Item>> = MediatorLiveData<List<Item>>()
 
     val nameAndTagFilter: () -> Unit = {
