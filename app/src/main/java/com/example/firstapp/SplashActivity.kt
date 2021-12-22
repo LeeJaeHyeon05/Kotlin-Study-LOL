@@ -15,6 +15,7 @@ import com.example.firstapp.eventbus.EventBus
 import com.example.firstapp.eventbus.InitDataEvent
 import com.example.firstapp.worker.InitChampionWorker
 import com.example.firstapp.worker.InitItemWorker
+import com.example.firstapp.worker.InitSummonerWorker
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -56,10 +57,12 @@ class SplashActivity : AppCompatActivity() {
 
         val initChampionWorkRequest: WorkRequest = OneTimeWorkRequestBuilder<InitChampionWorker>().build()
         val initItemWorkRequest: WorkRequest = OneTimeWorkRequestBuilder<InitItemWorker>().build()
+        val initSummonerWorkRequest: WorkRequest = OneTimeWorkRequestBuilder<InitSummonerWorker>().build()
         WorkManager.getInstance(applicationContext)
-                .beginWith(initChampionWorkRequest as OneTimeWorkRequest)
-                .then(initItemWorkRequest as OneTimeWorkRequest)
-                .enqueue()
+            .beginWith(initChampionWorkRequest as OneTimeWorkRequest)
+            .then(initItemWorkRequest as OneTimeWorkRequest)
+            .then(initSummonerWorkRequest as OneTimeWorkRequest)
+            .enqueue()
     }
 
 }

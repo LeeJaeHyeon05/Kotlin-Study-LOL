@@ -23,6 +23,8 @@
     <string name="HowlingAbyss">칼바람 스펠 </string>
     <string name="includelol">(롤 스펠 포함)</string>
 
+    <string name="lolspell">롤 스펠 모음</string>
+
     <string name="nextDialogText">계속 하기</string>
     <string name="smiteDialogText">대상 에픽 및 대형/중형 몬스터, 혹은 적 미니언에게 450의 고정 피해를 입힙니다. 몬스터에게 사용 시 체력도 90 + 최대 체력의 10%만큼 회복됩니다.</string>
     <string name="smiteDialogTitle">강타</string>
@@ -51,6 +53,13 @@
     <string name="ghostDialogTitle">유체화</string>
     <!-- 여기 까지 -->
 
+    <!-- 유니버스 -->
+    <string name="universe_tab_champion">챔피언</string>
+    <string name="universe_tab_region">지역</string>
+    <string name="universe_tab_novel">단편소설</string>
+    <string name="universe_tab_comic">코믹</string>
+    <string name="universe_tab_video">영상</string>
+    <!-- 여기까지 -->
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -69,11 +78,22 @@
 
     <string name="item">아이템</string>
     <string name="spash_lol">롤 사전</string>
+    <string name="lolspell2">칼바람 스펠</string>
+
+
+    <string name="confirm">확인</string>
+    <string name="cancel">취소</string>
+
+    <string name="Q">Q</string>
+    <string name="W">W</string>
+    <string name="E">E</string>
+    <string name="R">R</string>
 
     <string name="item_name">아이템 이름</string>
     <string name="finish">완료</string>
     <string name="init_champion_start">챔피온 정보를 초기화합니다.</string>
     <string name="init_item_start">아이템 정보를 초기화합니다.</string>
+    <string name="init_summoner_start">스펠 정보를 초기화합니다.</string>
     <string name="item_filter">아이템 필터</string>
     <string name="summoners_canyon">소환사의 협곡</string>
 
