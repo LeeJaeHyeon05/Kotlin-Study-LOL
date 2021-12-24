@@ -54,9 +54,7 @@ class ItemFragment : Fragment() {
     }
 
     private val handleClickItem: (String) -> Unit = {
-        itemViewModel.setSelectedItem(it)
-
-        val itemDetailBottomSheet = ItemDetailBottomSheet()
+        val itemDetailBottomSheet = ItemDetailBottomSheet(it)
         itemDetailBottomSheet.show(
             requireActivity().supportFragmentManager,
             ItemDetailBottomSheet.TAG

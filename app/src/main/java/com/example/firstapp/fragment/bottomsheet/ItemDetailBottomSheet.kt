@@ -12,6 +12,7 @@ import com.example.firstapp.R
 import com.example.firstapp.adapter.ItemDetailCombinationListAdapter
 import com.example.firstapp.adapter.ItemDetailUpperBuildListAdapter
 import com.example.firstapp.databinding.ItemDetailBottomSheetContentBinding
+import com.example.firstapp.model.Item
 import com.example.firstapp.model.ItemViewModel
 import com.example.firstapp.util.getBaseImageUrl
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -19,7 +20,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.squareup.picasso.Picasso
 
-class ItemDetailBottomSheet : BottomSheetDialogFragment() {
+class ItemDetailBottomSheet(private val itemId: String) : BottomSheetDialogFragment() {
 
     private lateinit var binding: ItemDetailBottomSheetContentBinding
 
@@ -36,43 +37,47 @@ class ItemDetailBottomSheet : BottomSheetDialogFragment() {
     ): View {
         binding = ItemDetailBottomSheetContentBinding.inflate(layoutInflater)
 
-        itemViewModel.selectedItem.observe(viewLifecycleOwner) { item ->
-            Picasso.get().load("${getBaseImageUrl()}/item/${item.id}.png").into(binding.itemDetailImage)
-            binding.itemDetailName.text = item.name
-            binding.itemDetailPrice.text = "${getString(R.string.price)} ${item.itemGold!!.total} (${item.itemGold!!.base}) ${getString(R.string.sell)} ${item.itemGold!!.sell}"
-            binding.itemDetailDesc.text = Html.fromHtml(item.description, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        val item: Item = itemViewModel.allItemList.value?.find { it.id === itemId }!!
 
-            Picasso.get().load("${getBaseImageUrl()}/item/${item.id}.png").into(binding.itemCombinationImage)
-            binding.itemCombinationName.text = item.name
-            binding.itemCombinationPrice.text = "${getString(R.string.price)} ${item.itemGold!!.total} (${item.itemGold!!.base})"
+        Picasso.get().load("${getBaseImageUrl()}/item/${item.id}.png").into(binding.itemDetailImage)
+        binding.itemDetailName.text = item.name
+        binding.itemDetailPrice.text = "${getString(R.string.price)} ${item.itemGold!!.total} (${item.itemGold!!.base}) ${getString(R.string.sell)} ${item.itemGold!!.sell}"
+        binding.itemDetailDesc.text = Html.fromHtml(item.description, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
-            val typeToken = object : TypeToken<List<String>>() {}.type
-            val fromList = Gson().fromJson<List<String>>(item.from, typeToken)
-            val intoList = Gson().fromJson<List<String>>(item.into, typeToken)
+        Picasso.get().load("${getBaseImageUrl()}/item/${item.id}.png").into(binding.itemCombinationImage)
+        binding.itemCombinationName.text = item.name
+        binding.itemCombinationPrice.text = "${getString(R.string.price)} ${item.itemGold!!.total} (${item.itemGold!!.base})"
 
-            val fromItemList = itemViewModel.allItemList.value?.filter { fromList.contains(it.id) }.orEmpty()
-            val intoItemList = itemViewModel.allItemList.value?.filter { intoList.contains(it.id) }.orEmpty()
+        val typeToken = object : TypeToken<List<String>>() {}.type
+        val fromList = Gson().fromJson<List<String>>(item.from, typeToken)
+        val intoList = Gson().fromJson<List<String>>(item.into, typeToken)
 
-            if (fromItemList.isEmpty()) binding.itemCombinationLayout.visibility = View.GONE
-            else binding.itemCombinationLayout.visibility = View.VISIBLE
-            if (intoItemList.isEmpty()) binding.itemUpperBuildLayout.visibility = View.GONE
-            else binding.itemUpperBuildLayout.visibility = View.VISIBLE
+        val fromItemList = itemViewModel.allItemList.value?.filter { fromList.contains(it.id) }.orEmpty()
+        val intoItemList = itemViewModel.allItemList.value?.filter { intoList.contains(it.id) }.orEmpty()
 
-            binding.itemCombinationRecyclerView.apply {
-                adapter = ItemDetailCombinationListAdapter(fromItemList, handleClickItem)
-                layoutManager = LinearLayoutManager(context)
-            }
+        if (fromItemList.isEmpty()) binding.itemCombinationLayout.visibility = View.GONE
+        else binding.itemCombinationLayout.visibility = View.VISIBLE
+        if (intoItemList.isEmpty()) binding.itemUpperBuildLayout.visibility = View.GONE
+        else binding.itemUpperBuildLayout.visibility = View.VISIBLE
 
-            binding.itemUpperBuildRecyclerView.apply {
-                adapter = ItemDetailUpperBuildListAdapter(intoItemList, handleClickItem)
-                layoutManager = LinearLayoutManager(context)
-            }
+        binding.itemCombinationRecyclerView.apply {
+            adapter = ItemDetailCombinationListAdapter(fromItemList, handleClickItem)
+            layoutManager = LinearLayoutManager(context)
+        }
+
+        binding.itemUpperBuildRecyclerView.apply {
+            adapter = ItemDetailUpperBuildListAdapter(intoItemList, handleClickItem)
+            layoutManager = LinearLayoutManager(context)
         }
 
         return binding.root
     }
 
     private val handleClickItem: (String) -> Unit = {
-        itemViewModel.setSelectedItem(it)
+        val itemDetailBottomSheet = ItemDetailBottomSheet(it)
+        itemDetailBottomSheet.show(
+            requireActivity().supportFragmentManager,
+            TAG
+        )
     }
 }
