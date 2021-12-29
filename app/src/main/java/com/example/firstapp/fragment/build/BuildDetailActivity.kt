@@ -14,6 +14,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 class BuildDetailActivity : AppCompatActivity() {
 
     val binding by lazy { ActivityBuildDetailBinding.inflate(layoutInflater) }
+    private lateinit var addMyBuildFragment : AddMyBuildFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,14 +30,16 @@ class BuildDetailActivity : AppCompatActivity() {
     }
 
     fun openAddMyBuild(){
+        addMyBuildFragment = AddMyBuildFragment()
         supportFragmentManager.beginTransaction()
-            .add(R.id.buildDetailContainer, AddMyBuildFragment())
+            .add(R.id.buildDetailContainer, addMyBuildFragment)
+            .addToBackStack(null)
             .commit()
     }
 
     fun closeAddMyBuild(){
         supportFragmentManager.beginTransaction()
-            .remove(AddMyBuildFragment())
+            .remove(addMyBuildFragment)
             .commit()
     }
 

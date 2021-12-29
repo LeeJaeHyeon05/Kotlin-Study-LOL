@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.firstapp.R
@@ -44,6 +45,9 @@ class AddMyBuildFragment : Fragment() {
             R.id.save_add_build -> {
                 saveAddBuild()
             }
+            android.R.id.home -> {
+                (activity as BuildDetailActivity).closeAddMyBuild()
+            }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -53,7 +57,6 @@ class AddMyBuildFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_my_build, container, false)
-
         (activity as BuildDetailActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.mbLayoutCustomItem.setOnClickListener {
@@ -91,7 +94,7 @@ class AddMyBuildFragment : Fragment() {
             binding.myBuildNameET.text.toString()
         )
 
-        addMyBuildViewModel.saveAddBuild(context?.applicationContext!!, data)
+        addMyBuildViewModel.saveAddBuild(context?.applicationContext!!, "Champion Name", data)
 
         val a = MyBuildRepository(context?.applicationContext!!)
         val b = a.getMyBuildData("Champion Name")
