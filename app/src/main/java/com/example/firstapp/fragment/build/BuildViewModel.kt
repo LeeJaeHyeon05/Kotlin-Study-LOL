@@ -15,8 +15,8 @@ class BuildViewModel @Inject constructor(
     private val buildRepository: BuildRepository
 ) : ViewModel() {
 
-    private lateinit var originalChampionList : List<Datum>
-    private val _ChampionList  = MutableStateFlow<List<Datum>>(emptyList())
+    private lateinit var originalChampionList : List<BuildItem>
+    private val _ChampionList  = MutableStateFlow<List<BuildItem>>(emptyList())
     val mChampionList = _ChampionList
 
     private val _searchQuery = MutableStateFlow("")
@@ -37,7 +37,10 @@ class BuildViewModel @Inject constructor(
                     }
 
             ).collect {Champion ->
-                originalChampionList = Champion.data.values.toList().sortedBy { it.name }
+                originalChampionList = Champion.data.values.toList()
+                    .sortedBy { it.name }
+                    .map{BuildItem(it)}
+
                 _ChampionList.value = originalChampionList
             }
         }
@@ -46,7 +49,7 @@ class BuildViewModel @Inject constructor(
     fun setSearchQuery(searchQuery: String) = viewModelScope.launch {
         _searchQuery.value = searchQuery
         _ChampionList.value = originalChampionList.filter {chapion->
-            chapion.name.contains(_searchQuery.value.toString())}
+            chapion.dataNum.name.contains(_searchQuery.value.toString())}
         }
     }
 

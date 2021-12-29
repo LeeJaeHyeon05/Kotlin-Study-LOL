@@ -24,62 +24,49 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
     private val groupAdapter = GroupieAdapter()
     private lateinit var groupLayoutManager: GridLayoutManager
 
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
         inflater.inflate(R.menu.item_menu, menu)
-
-
-
         val menuItem: MenuItem = menu.findItem(R.id.action_search)
         val searchView: SearchView = menuItem.actionView as SearchView
-
         searchView.queryHint = getString(R.string.champion_name)
-
-        searchView.setOnQueryTextFocusChangeListener { v, hasFocus ->
-            menu.findItem(R.id.action_sort).isVisible = !hasFocus
+        searchView.setOnQueryTextFocusChangeListener { v, hasFocus -> menu.findItem(R.id.action_sort).isVisible = !hasFocus
             menu.findItem(R.id.action_info).isVisible = !hasFocus
         }
-
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 Timber.i("query : %s", query)
                 viewModel.setSearchQuery(query.orEmpty())
                 return false
             }
-
-
             override fun onQueryTextChange(newText: String?): Boolean {
                 Timber.i("query : %s", newText)
                 viewModel.setSearchQuery(newText.orEmpty())
                 return false
-            }
-
-
-        })
-
+            } })
         super.onCreateOptionsMenu(menu, inflater)
     }
-
     override fun init() {
         setHasOptionsMenu(true)
         viewModel.getChampion()
         groupLayoutManager = GridLayoutManager(context, 4).apply {
-            spanSizeLookup = groupAdapter.spanSizeLookup
-        }
-        binding.buildMainRv.apply {
-            adapter = groupAdapter
+            spanSizeLookup = groupAdapter.spanSizeLookup }
+        binding.buildMainRv.apply { adapter = groupAdapter
             layoutManager = groupLayoutManager
         }
-
         repeatOnStarted {
             viewModel.mChampionList.collect {Champion->
-                val championList = Champion
-                    .sortedBy { it.name }
-                    .map { BuildItem(it) }
-                    .also { groupAdapter.update(it) }
+                groupAdapter.update(Champion)
             }
         }
     }
+
+
+
+//    fun updateItem(key:String){ arrBuildItem.filter {chapion->
+//        chapion.dataNum.name.contains(key)
+//    }.also { arrBuildItem-> groupAdapter.update(arrBuildItem) } }
 
 
 }
