@@ -11,6 +11,7 @@ import com.example.firstapp.R
 import com.example.firstapp.adapter.skin.SkinPagerFragmentAdapter
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import timber.log.Timber
 
 class SkinFragment : Fragment() {
 
@@ -20,7 +21,7 @@ class SkinFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Timber.plant(Timber.DebugTree())
     }
 
     override fun onCreateView(
@@ -47,7 +48,7 @@ class SkinFragment : Fragment() {
             //이전에 추가된 콜백 제거
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                Log.e("SkinViewPagerFragment", "Page ${position+1}")
+                Timber.e("Page ${position+1}")
             }
         })
 
