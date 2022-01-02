@@ -32,7 +32,6 @@ class DetailMyBuildFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBuildDetailMybuildBinding.inflate(inflater,container,false)
-        registerForContextMenu(binding.buildMyBuildRv)
 
         detailMyBuildViewModel.getMyBuildData(context!!.applicationContext, "Champion Name")
 
@@ -43,6 +42,8 @@ class DetailMyBuildFragment : Fragment() {
                 this.adapter = adapter
                 layoutManager = LinearLayoutManager(this.context)
             }
+
+            // recyclerview를 초기화
         }
 
         detailMyBuildViewModel.myBuildDataList.observe(viewLifecycleOwner, myBuildDataListObserver)

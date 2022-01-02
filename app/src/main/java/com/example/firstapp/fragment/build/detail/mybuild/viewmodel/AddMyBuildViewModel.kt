@@ -1,6 +1,7 @@
 package com.example.firstapp.fragment.build.detail.mybuild.viewmodel
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepository
@@ -9,11 +10,8 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 
 class AddMyBuildViewModel: ViewModel() {
 
-    private var _myBuildNameET = MutableLiveData<String>().apply {
-        value = "test"
-
-    }
-    var myBuildNameET: MutableLiveData<String> = _myBuildNameET
+    var myBuildNameET = MutableLiveData<String>("test")
+    var myBuildNoteET = MutableLiveData<String>()
 
     fun saveAddBuild(context: Context, championName: String, data: MyBuildRepositoryData){
 //        현재 페이지에 있는 정보 저장

@@ -42,14 +42,22 @@ class MyBuildRepository(context: Context) {
 
         return myBuildDataList
     }
+
+    fun deleteMyBuildData(championName: String, position: Int) {
+        myBuildPreference.edit()
+            .remove("$championName${position+1}")
+            .apply()
+        // 중간 숫자가 사라지면 위에서 데이터 불러올 때 제거한 숫자 이후의 데이터를 받아오지 못함,,,
+    }
 }
 
 data class MyBuildRepositoryData(
-    var buildName: String
+    var buildName: String,
     //var summonerSpells,
     //var fullBuilds
     //var Trinket
     //var customItemBuilds
     //var skillOrder
     //var rune
+    var buildNote: String
 )

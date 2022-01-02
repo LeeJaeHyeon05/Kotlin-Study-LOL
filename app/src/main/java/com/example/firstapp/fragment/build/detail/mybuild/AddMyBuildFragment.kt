@@ -1,28 +1,16 @@
 package com.example.firstapp.fragment.build.detail.mybuild
 
-import android.content.Context
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentAddMyBuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
 import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepository
 import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepositoryData
 import com.example.firstapp.fragment.build.detail.mybuild.viewmodel.AddMyBuildViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import timber.log.Timber
 
 class AddMyBuildFragment : Fragment() {
@@ -44,6 +32,7 @@ class AddMyBuildFragment : Fragment() {
         when (item.itemId) {
             R.id.save_add_build -> {
                 saveAddBuild()
+                //detailmybuildfragment 에게 전달 > activity 통해서
             }
             android.R.id.home -> {
                 (activity as BuildDetailActivity).closeAddMyBuild()
@@ -57,6 +46,10 @@ class AddMyBuildFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_my_build, container, false)
+        binding.addMyBuildViewModel = addMyBuildViewModel
+        binding.lifecycleOwner = this.viewLifecycleOwner
+        //데이터 바인딩 공부할 것! 양방향
+
         (activity as BuildDetailActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.mbLayoutCustomItem.setOnClickListener {
@@ -67,17 +60,11 @@ class AddMyBuildFragment : Fragment() {
             (activity as BuildDetailActivity).showSkillBuildDialog()
         }
 
-        val myBuildNameETObserver = Observer<String>{
-            binding.myBuildNameET.setText(it)
-//            binding.myBuildNameET.addTextChangedListener{ et ->
-//                addMyBuildViewModel.myBuildNameET.value = et.toString()
-//            }
-        }
-
-        addMyBuildViewModel.myBuildNameET.observe(viewLifecycleOwner, myBuildNameETObserver)
-
-
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun saveAddBuild() {
@@ -91,7 +78,9 @@ class AddMyBuildFragment : Fragment() {
 //        -> 빌드 노트
 
         val data = MyBuildRepositoryData(
-            binding.myBuildNameET.text.toString()
+            binding.myBuildNameET.text.toString(),
+
+            binding.myBuildNoteET.text.toString()
         )
 
         addMyBuildViewModel.saveAddBuild(context?.applicationContext!!, "Champion Name", data)
@@ -101,7 +90,5 @@ class AddMyBuildFragment : Fragment() {
         Timber.d(b.toString())
 
         (activity as BuildDetailActivity).closeAddMyBuild()
-
-
     }
 }
