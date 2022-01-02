@@ -10,6 +10,8 @@
     <color name="red">#DD5F62</color>
     <color name="orange">#FE9417</color>
     <color name="brightGray">#424242</color>
+    <color name="Silver">#C0C0C0</color>
+    <color name="DarkOrange">#FF8C00</color>
 
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>

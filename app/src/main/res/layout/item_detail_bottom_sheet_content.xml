@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/Silver"
             app:layout_constraintLeft_toRightOf="@+id/item_detail_image"
             app:layout_constraintTop_toBottomOf="@id/item_detail_name" />
 
@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/Silver"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toBottomOf="@id/item_detail_image" />
 
@@ -91,7 +91,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:textColor="@color/white"
+                android:textColor="@color/Silver"
                 app:layout_constraintLeft_toRightOf="@+id/item_combination_image"
                 app:layout_constraintTop_toBottomOf="@id/item_combination_name" />
 

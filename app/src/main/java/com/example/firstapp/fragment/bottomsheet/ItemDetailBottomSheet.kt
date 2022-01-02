@@ -15,6 +15,7 @@ import com.example.firstapp.databinding.ItemDetailBottomSheetContentBinding
 import com.example.firstapp.model.Item
 import com.example.firstapp.model.ItemViewModel
 import com.example.firstapp.util.getBaseImageUrl
+import com.example.firstapp.util.getItemDescriptionToHtml
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -42,7 +43,7 @@ class ItemDetailBottomSheet(private val itemId: String) : BottomSheetDialogFragm
         Picasso.get().load("${getBaseImageUrl()}/item/${item.id}.png").into(binding.itemDetailImage)
         binding.itemDetailName.text = item.name
         binding.itemDetailPrice.text = "${getString(R.string.price)} ${item.itemGold!!.total} (${item.itemGold!!.base}) ${getString(R.string.sell)} ${item.itemGold!!.sell}"
-        binding.itemDetailDesc.text = Html.fromHtml(item.description, HtmlCompat.FROM_HTML_MODE_LEGACY)
+        binding.itemDetailDesc.text = Html.fromHtml(getItemDescriptionToHtml(item.description), HtmlCompat.FROM_HTML_MODE_COMPACT)
 
         Picasso.get().load("${getBaseImageUrl()}/item/${item.id}.png").into(binding.itemCombinationImage)
         binding.itemCombinationName.text = item.name
