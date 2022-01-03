@@ -1,23 +1,41 @@
 package com.example.firstapp.data.api
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import com.example.firstapp.model.ApiResponse
 import com.example.firstapp.model.tier.TierChamp
 import com.example.firstapp.model.tier.TierLine
 import org.jsoup.Jsoup
+import kotlin.coroutines.coroutineContext
 
 /**
  * @author mmol93
  * @email ljws93@naver.com
  * @since 2021/11/19
+
+1. TierData.kt에서 Jsoup을 사용하여 Tier 데이터를 받아온다
+- 받아온 데이터는 ApiResponse<TIerLine> 형태로 반환
+
+2. TierRepository.kt에서 1번의 TierData.kt를 실행하고 그 반환 값을 받는 execute() 메서드가 있다
+
+3. RepositoryModule.kt에서 @Provides로 2번의 결과를 받는다
+- Hilt 사용하여 DI 적용
+
+4. TierViewModel.kt에서 @Inject를 사용하여 최종적으로 데이터를 받고 이를 line별로 분류하여 각각의 liveData에 넣는다
+
+5. EachLineTierFragment.kt에서 position(line을 의미)별로 각기 다른 adapter에 해당 데이터를 넣고 differ를 사용하여 반영한다
+
  **/
 class TierData {
-    suspend fun getTierData(): ApiResponse<TierLine> {
+    suspend fun getTierData(context:Context): ApiResponse<TierLine>? {
         val topTierList = ArrayList<TierChamp>()
         val midTierList = ArrayList<TierChamp>()
         val jungleTierList = ArrayList<TierChamp>()
         val adcTierList = ArrayList<TierChamp>()
         val supTierList = ArrayList<TierChamp>()
+
+        val sharedPreferences = context.getSharedPreferences("lolVersion", Context.MODE_PRIVATE)
 
         // 해당 URL의 정보 가져오기
         try {
@@ -27,8 +45,16 @@ class TierData {
             val tierVersionText =
                 webDoc.select("#wrapper > div > div > div > div.container.px-0.mt-3 > div > div.col-lg-8 > div")
                     .text()
-            // todo 로컬 데이터랑 버전 확인 작업 해야함
-            val tierVersion = tierVersionText.replace("[^0-9]".toRegex(), "")
+            // todo 로컬 데이터랑 버전 확인 작업 해야함 - 해당 로컬 데이터는 sharedPreference로 설정
+            val gameVersion = sharedPreferences.getInt("version", 0)
+
+            // 해당 문자열에서 숫자만 남기고 전부 삭제
+            val tierVersion = tierVersionText.replace("[^0-9]".toRegex(), "").toInt()
+
+            // todo 지금은 sharedPreference를 저장하는 기능이 없기 때문에 이 부분은 없다고 생각하는게 좋다
+            if (gameVersion == tierVersion){
+                ApiResponse.Success(null)
+            }
 
 //            val testName = webDoc.select("#wrapper > div > div > div > div.container.mt-3.mt-md-4.p-0 > div > div.col-lg-4 > div.champion-sub-list-wrap.champion-sub-tier-list > div.champion-sub-list > div:nth-child(5) > div:nth-child(21) > div.champion > a > div > span").text()
 //            val testTier = webDoc.select("#wrapper > div > div > div > div.container.mt-3.mt-md-4.p-0 > div > div.col-lg-4 > div.champion-sub-list-wrap.champion-sub-tier-list > div.champion-sub-list > div:nth-child(5) > div:nth-child(21) > div:nth-child(3) > img").attr("alt").toString()
