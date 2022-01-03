@@ -16,6 +16,9 @@ class BuildViewModel @Inject constructor(
 ) : ViewModel() {
 
     private lateinit var originalChampionList : List<BuildItem>
+
+
+    // 원래는 챔피언 객체 였다.
     private val _ChampionList  = MutableStateFlow<List<BuildItem>>(emptyList())
     val mChampionList = _ChampionList
 

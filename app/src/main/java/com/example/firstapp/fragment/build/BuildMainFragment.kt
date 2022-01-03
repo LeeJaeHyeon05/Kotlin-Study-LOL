@@ -9,6 +9,9 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentBuildMainBinding
+import com.example.firstapp.fragment.bottomsheet.BuildFilterBottomSheet
+import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet
+import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet.Companion.TAG
 import com.example.waterexample.ui.base.BaseFragment
 import com.xwray.groupie.Group
 import com.xwray.groupie.GroupieAdapter
@@ -23,6 +26,10 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
     private val viewModel: BuildViewModel by viewModels()
     private val groupAdapter = GroupieAdapter()
     private lateinit var groupLayoutManager: GridLayoutManager
+
+    //
+    //private  championlist
+    //
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -56,6 +63,7 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
             layoutManager = groupLayoutManager
         }
         repeatOnStarted {
+            // 챔피언리스트
             viewModel.mChampionList.collect {Champion->
                 groupAdapter.update(Champion)
             }
@@ -64,9 +72,19 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
 
 
 
-//    fun updateItem(key:String){ arrBuildItem.filter {chapion->
-//        chapion.dataNum.name.contains(key)
-//    }.also { arrBuildItem-> groupAdapter.update(arrBuildItem) } }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.action_info -> {
+                val buildFilterBottomSheet = BuildFilterBottomSheet()
+                buildFilterBottomSheet.show(
+                    requireActivity().supportFragmentManager,
+                    BuildFilterBottomSheet.TAG
+                )
+            }
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 
 
 }
