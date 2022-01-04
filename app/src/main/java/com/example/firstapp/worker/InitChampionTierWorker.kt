@@ -37,7 +37,6 @@ class InitChampionTierWorker @AssistedInject constructor(
         val championTierCount = championTierDao.selectAllCount()
         Timber.i("championTierCount : %d", championTierCount)
 
-        // todo Jsoup으로 tierData 가져오기
         when(val response = tierRepository.execute()){
             is ApiResponse.Success ->{
                 if (response != null){
@@ -54,6 +53,8 @@ class InitChampionTierWorker @AssistedInject constructor(
                 Timber.d("error: " + response.e)
             }
         }
+        // 데이터를 추가하기 전에 모든 데이터 삭제하기
+        championTierDao.clearAll()
 
         championTierDao.insertAll(tierData)
 

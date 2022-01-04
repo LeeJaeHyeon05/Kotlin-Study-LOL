@@ -16,7 +16,7 @@ data class TierChamp(
 //    var championName:String="",
 //    var tier:String="",
 //    var winRate:String="",
-    @PrimaryKey(autoGenerate = true)
+    @PrimaryKey(autoGenerate = false)
     var key : Long? = null,
     @ColumnInfo(name = "name") var championName: String = "",
     @ColumnInfo(name = "tier") var tier: String = "",
