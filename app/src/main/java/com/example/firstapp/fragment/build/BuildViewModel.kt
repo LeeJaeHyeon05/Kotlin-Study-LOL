@@ -18,9 +18,12 @@ class BuildViewModel @Inject constructor(
     private lateinit var originalChampionList : List<BuildItem>
 
 
-    // 원래는 챔피언 객체 였다.
+
     private val _ChampionList  = MutableStateFlow<List<BuildItem>>(emptyList())
     val mChampionList = _ChampionList
+
+
+     val tabData = listOf<String>(    "공통", "무료", "역할군","지역")
 
     private val _searchQuery = MutableStateFlow("")
 
