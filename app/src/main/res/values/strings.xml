@@ -137,4 +137,9 @@
 
     <string name="movement_item_filter1">장화</string>
     <string name="movement_item_filter2">기타 이동 관련</string>
+
+    <!-- summoner -->
+    <string name="summoner_tab_favorite">즐겨찾기</string>
+    <string name="summoner_tab_recent">최근 보기</string>
+    <string name="summoner_fab_none">즐겨찾기가 없습니다.</string>
 </resources>

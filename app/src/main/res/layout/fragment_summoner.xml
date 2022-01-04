@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
 
 
-    tools:context=".fragment.SummonerFragment"
+    tools:context=".fragment.Summoner.SummonerFragment"
     android:orientation="vertical">
 
     <LinearLayout
@@ -58,6 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:tabGravity="fill"
+            app:tabInlineLabel="true"
             app:tabMode="fixed">
 
             <com.google.android.material.tabs.TabItem
