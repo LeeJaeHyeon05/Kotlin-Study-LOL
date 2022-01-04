@@ -29,5 +29,4 @@ class RepositoryModule {
     fun provideTierRepository(tierData: TierData):TierRepository{
         return TierRepository(tierData)
     }
-
 }

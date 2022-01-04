@@ -1,11 +1,9 @@
 package com.example.firstapp.model
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.firstapp.repository.ItemRepository
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,51 +15,71 @@ enum class ItemSortType {
 @HiltViewModel
 class ItemViewModel @Inject constructor(private val itemRepository: ItemRepository) : ViewModel() {
 
-    private lateinit var originalDataList: List<Item>
-    private val _dataList = MutableLiveData<List<Item>>()
-    val dataList: LiveData<List<Item>> = _dataList
-    private val _itemSortType = MutableLiveData<ItemSortType>()
-    val itemSortType: LiveData<ItemSortType> = _itemSortType
-    private val _searchQuery = MutableLiveData("")
+    private val mDataList: MutableLiveData<List<Item>> = MutableLiveData<List<Item>>(emptyList())
+    private val mItemSortType: MutableLiveData<ItemSortType> = MutableLiveData<ItemSortType>(ItemSortType.NAME)
+    private val mSearchQuery: MutableLiveData<String> = MutableLiveData<String>("")
+    private val mTags: MutableLiveData<List<String>> = MutableLiveData<List<String>>(emptyList())
 
-    init {
-        _itemSortType.value = ItemSortType.NAME
+    val itemSortType: LiveData<ItemSortType> = mItemSortType
+    val tags: LiveData<List<String>> = mTags
+    val uiDataList: MediatorLiveData<List<Item>> = MediatorLiveData<List<Item>>()
+
+    val nameAndTagFilter: () -> Unit = {
+        val filteredItemList = mDataList.value?.filter { item ->
+            val nameFilter = item.name.contains(mSearchQuery.value.toString())
+            var tagFilter = true
+
+            val typeToken = object : TypeToken<List<String>>() {}.type
+            val itemTagList = Gson().fromJson<List<String>>(item.tags, typeToken)
+
+            for (tag in mTags.value!!) {
+                if (!itemTagList.contains(tag)) {
+                    tagFilter = false
+                    break
+                }
+            }
+            nameFilter && tagFilter
+        }.orEmpty()
+        uiDataList.postValue(filteredItemList)
     }
 
-    fun loadData() = viewModelScope.launch {
-        lateinit var itemList: List<Item>
-
-        if (::originalDataList.isInitialized) {
-            itemList = originalDataList
-        } else {
-            itemList = itemRepository.getItems()
-            originalDataList = itemList
-            _dataList.value = itemList
+    init {
+        uiDataList.value = emptyList()
+        uiDataList.addSource(mDataList) { itemList -> uiDataList.postValue(itemList.sortedBy { it.name }) }
+        uiDataList.addSource(mItemSortType) { sortType ->
+            if (sortType === ItemSortType.NAME) uiDataList.postValue(uiDataList.value?.sortedBy { it.name }.orEmpty())
+            if (sortType === ItemSortType.PRICE_ASC) uiDataList.postValue(uiDataList.value?.sortedBy { it.itemGold?.total }.orEmpty())
+            if (sortType === ItemSortType.PRICE_DESC) uiDataList.postValue(uiDataList.value?.sortedByDescending { it.itemGold?.total }.orEmpty())
         }
 
-        val mutableItemList = itemList.filter {
-            it.name.contains(_searchQuery.value.toString())
-        }.toMutableList()
-        mutableItemList.forEach {
-            it.itemImage = Gson().fromJson(it.image, ItemImage::class.java)
-            it.itemGold = Gson().fromJson(it.gold, ItemGold::class.java)
+        uiDataList.addSource(mSearchQuery) { nameAndTagFilter() }
+        uiDataList.addSource(mTags) { nameAndTagFilter() }
+
+        viewModelScope.launch {
+            val items = itemRepository.getItems()
+            items.forEach { item ->
+                item.itemImage = Gson().fromJson(item.image, ItemImage::class.java)
+                item.itemGold = Gson().fromJson(item.gold, ItemGold::class.java)
+            }
+            mDataList.postValue(items)
         }
-
-        if (_itemSortType.value === ItemSortType.NAME) mutableItemList.sortBy { it.name }
-        if (_itemSortType.value === ItemSortType.PRICE_ASC) mutableItemList.sortBy { it.itemGold!!.total }
-        if (_itemSortType.value === ItemSortType.PRICE_DESC) mutableItemList.sortByDescending { it.itemGold!!.total }
-
-        _dataList.value = mutableItemList.toList()
     }
 
     fun setItemSortType(itemSortType: ItemSortType) = viewModelScope.launch {
-        _itemSortType.value = itemSortType
-        loadData()
+        mItemSortType.postValue(itemSortType)
     }
 
     fun setSearchQuery(searchQuery: String) = viewModelScope.launch {
-        _searchQuery.value = searchQuery
-        loadData()
+        mSearchQuery.postValue(searchQuery)
     }
 
+    fun toggleTag(tag: String) = viewModelScope.launch {
+        val tags = mTags.value!!.toMutableList()
+        if (tags.contains(tag)) {
+            tags.remove(tag)
+        } else {
+            tags.add(tag)
+        }
+        mTags.postValue(tags)
+    }
 }

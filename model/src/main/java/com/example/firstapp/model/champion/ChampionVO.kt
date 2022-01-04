@@ -13,7 +13,7 @@ data class ChampionVO(
 )
 
 /**
- *  "version": "11.22.1",
+ *  "version": "11.23.1",
 "id": "Aatrox",
 "key": "266",
 "name": "Aatrox",
