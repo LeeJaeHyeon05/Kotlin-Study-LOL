@@ -9,6 +9,7 @@ https://gather.town/app/DV5g4hlp5HkDrejJ/Kotlin%20study
 2. 토요일 16:00 ~ 18:00
 3. 일요일 16:30 ~ 18:30
 
+
 [Ground rule]
 
 1. 모임일 하루전 카카오톡 단체방에 투표 생성하여 참석여부 확인 (화요일, 금요일에 재현님이 투표생성)
@@ -16,9 +17,11 @@ https://gather.town/app/DV5g4hlp5HkDrejJ/Kotlin%20study
 3. 불가피하게 불참하는 경우 당일이라도 단체방에 알려주기
 4. 모임마다 일지 작성 : 모임시작시 이슈 생성후 모임이 끝나면 각자 정리해서 댓글로 작성
 
+
 [First App 클론 코딩 대상]
 
 https://play.google.com/store/apps/details?id=com.wuochoang.lolegacy&hl=ko&gl=US
+
 
 [진행 방식]
 
