@@ -26,6 +26,8 @@ class MyBuildRepository(context: Context) {
             //<MyBuildPreference File>
             //Garen1 -> 데이터   Fizz1 -> 데이터   Khazix1 -> 데이터
             //Garen2 -> 데이터
+
+            //Garen -> <정보1, 정보2>
         }
     }
 
