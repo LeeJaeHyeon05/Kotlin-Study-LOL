@@ -1,4 +1,4 @@
-package com.example.firstapp.fragment.build.detail.mybuild
+package com.example.firstapp.fragment.build.detail.mybuild.addmybuild
 
 import android.os.Bundle
 import android.view.*
@@ -8,11 +8,9 @@ import androidx.fragment.app.viewModels
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentAddMyBuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
-import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepository
-import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepositoryData
-import com.example.firstapp.fragment.build.detail.mybuild.viewmodel.AddMyBuildViewModel
-import timber.log.Timber
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddMyBuildFragment : Fragment() {
 
     private val addMyBuildViewModel : AddMyBuildViewModel by viewModels()
@@ -46,10 +44,19 @@ class AddMyBuildFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_my_build, container, false)
+
+        setViewModel()
+        setFunctions()
+
+        return binding.root
+    }
+
+    private fun setViewModel() {
         binding.addMyBuildViewModel = addMyBuildViewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
-        //데이터 바인딩 공부할 것! 양방향
+    }
 
+    private fun setFunctions() {
         (activity as BuildDetailActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.mbLayoutCustomItem.setOnClickListener {
@@ -59,8 +66,6 @@ class AddMyBuildFragment : Fragment() {
         binding.skillBuildTable.setOnClickListener {
             (activity as BuildDetailActivity).showSkillBuildDialog()
         }
-
-        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -76,18 +81,6 @@ class AddMyBuildFragment : Fragment() {
 //        -> 스킬 순서
 //        -> 룬
 //        -> 빌드 노트
-
-        val data = MyBuildRepositoryData(
-            binding.myBuildNameET.text.toString(),
-
-            binding.myBuildNoteET.text.toString()
-        )
-
-        addMyBuildViewModel.saveAddBuild(context?.applicationContext!!, "Champion Name", data)
-
-        val a = MyBuildRepository(context?.applicationContext!!)
-        val b = a.getMyBuildData("Champion Name")
-        Timber.d(b.toString())
 
         (activity as BuildDetailActivity).closeAddMyBuild()
     }

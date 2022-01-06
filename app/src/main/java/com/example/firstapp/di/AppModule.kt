@@ -5,7 +5,9 @@ import androidx.room.Room
 import com.example.firstapp.database.AppDatabase
 import com.example.firstapp.database.dao.ChampionDao
 import com.example.firstapp.database.dao.ItemDao
+import com.example.firstapp.database.dao.MyBuildDao
 import com.example.firstapp.database.dao.SummonerDao
+import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepository
 import com.example.firstapp.repository.ItemRepository
 import com.example.firstapp.resource.ResourceProvider
 import dagger.Module
@@ -66,5 +68,19 @@ class AppModule {
     fun provideSummonerDao(appDatabase: AppDatabase): SummonerDao {
         return appDatabase.summonerDao()
     }
+
+    //-----MyBuild
+    @Provides
+    @Singleton
+    fun provideMyBuildRepository(myBuildDao: MyBuildDao): MyBuildRepository{
+        return MyBuildRepository(myBuildDao)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMyBuildDao(appDatabase: AppDatabase): MyBuildDao {
+        return appDatabase.myBuildDao()
+    }
+    //-----MyBuild
 
 }
