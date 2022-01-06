@@ -8,6 +8,7 @@ import androidx.fragment.app.viewModels
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentAddMyBuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
+import com.example.firstapp.model.MyBuild
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -74,13 +75,20 @@ class AddMyBuildFragment : Fragment() {
 
     private fun saveAddBuild() {
 //        현재 페이지에 있는 정보 저장
-//        -> 빌드 이름 String
+//        * 빌드 이름 String
 //        -> 소환사 주문 Image 2개
 //        -> 아이템 + 장신구 이미지 7개
 //        -> 새로운 아이템 카테고리 RV
 //        -> 스킬 순서
 //        -> 룬
-//        -> 빌드 노트
+//        * 빌드 노트
+        val newBuild = MyBuild(
+            0,
+            "champion name",
+            binding.myBuildNameET.text.toString(),
+            binding.myBuildNoteET.text.toString()
+        )
+        addMyBuildViewModel.saveAddBuild(newBuild)
 
         (activity as BuildDetailActivity).closeAddMyBuild()
     }

@@ -9,7 +9,9 @@ import com.example.firstapp.fragment.build.detail.mybuild.addmybuild.AddMyBuildF
 import com.example.firstapp.fragment.build.detail.mybuild.dialog.ItemBuildDialogFragment
 import com.example.firstapp.fragment.build.detail.mybuild.dialog.SkillBuildDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BuildDetailActivity : AppCompatActivity() {
 
     val binding by lazy { ActivityBuildDetailBinding.inflate(layoutInflater) }

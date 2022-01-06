@@ -6,7 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "mybuild")
 data class MyBuild(
-    @PrimaryKey
+    @PrimaryKey (autoGenerate = true)
     @ColumnInfo (name = "id") var id: Int,
     @ColumnInfo (name = "champion") var champion: String,
     @ColumnInfo (name = "name") var name: String,

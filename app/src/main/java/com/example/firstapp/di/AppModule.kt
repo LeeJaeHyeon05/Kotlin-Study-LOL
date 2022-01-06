@@ -69,7 +69,6 @@ class AppModule {
         return appDatabase.summonerDao()
     }
 
-    //-----MyBuild
     @Provides
     @Singleton
     fun provideMyBuildRepository(myBuildDao: MyBuildDao): MyBuildRepository{
@@ -81,6 +80,4 @@ class AppModule {
     fun provideMyBuildDao(appDatabase: AppDatabase): MyBuildDao {
         return appDatabase.myBuildDao()
     }
-    //-----MyBuild
-
 }
