@@ -11,7 +11,7 @@ interface MyBuildDao {
     fun selectAll(): List<MyBuild>
 
     @Query("SELECT * FROM mybuild WHERE champion = :champion ORDER BY id ASC")
-    fun selectByChampion(champion: String): List<MyBuild>
+    fun selectByChampionName(champion: String): List<MyBuild>
 
     @Insert
     fun insert(myBuild: MyBuild)

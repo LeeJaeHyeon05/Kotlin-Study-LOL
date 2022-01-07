@@ -17,4 +17,8 @@ class MyBuildRepository(val myBuildDao: MyBuildDao) {
     suspend fun insert(newData: MyBuild) = withContext(Dispatchers.IO) {
         myBuildDao.insert(newData)
     }
+
+    suspend fun getListByChampionName(championName: String): List<MyBuild> = withContext(Dispatchers.IO) {
+        return@withContext myBuildDao.selectByChampionName(championName)
+    }
 }

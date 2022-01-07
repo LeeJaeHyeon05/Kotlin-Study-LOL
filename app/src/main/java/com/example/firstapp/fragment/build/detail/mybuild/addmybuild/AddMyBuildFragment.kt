@@ -14,7 +14,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AddMyBuildFragment : Fragment() {
 
-    private val addMyBuildViewModel : AddMyBuildViewModel by viewModels()
+    private val viewModel : AddMyBuildViewModel by viewModels()
     private lateinit var binding: FragmentAddMyBuildBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +31,10 @@ class AddMyBuildFragment : Fragment() {
         when (item.itemId) {
             R.id.save_add_build -> {
                 saveAddBuild()
-                //detailmybuildfragment 에게 전달 > activity 통해서
+
+                viewModel.getMyBuildList("champion name")
+                val newList = viewModel.newList
+                (activity as BuildDetailActivity).refreshMyBuildItemAdapter(newList.value!!)
             }
             android.R.id.home -> {
                 (activity as BuildDetailActivity).closeAddMyBuild()
@@ -45,16 +48,17 @@ class AddMyBuildFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_my_build, container, false)
+        binding.addMyBuildViewModel = viewModel
+        binding.lifecycleOwner = this.viewLifecycleOwner
 
-        setViewModel()
         setFunctions()
+        setObservers()
 
         return binding.root
     }
 
-    private fun setViewModel() {
-        binding.addMyBuildViewModel = addMyBuildViewModel
-        binding.lifecycleOwner = this.viewLifecycleOwner
+    private fun setObservers() {
+
     }
 
     private fun setFunctions() {
@@ -88,7 +92,7 @@ class AddMyBuildFragment : Fragment() {
             binding.myBuildNameET.text.toString(),
             binding.myBuildNoteET.text.toString()
         )
-        addMyBuildViewModel.saveAddBuild(newBuild)
+        viewModel.saveAddBuild(newBuild)
 
         (activity as BuildDetailActivity).closeAddMyBuild()
     }

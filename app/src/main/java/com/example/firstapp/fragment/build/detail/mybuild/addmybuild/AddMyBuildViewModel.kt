@@ -21,6 +21,9 @@ class AddMyBuildViewModel @Inject constructor(
     var myBuildNameET = MutableLiveData<String>("test")
     var myBuildNoteET = MutableLiveData<String>()
 
+    private val _newList = MutableLiveData<List<MyBuild>>(emptyList())
+    val newList: LiveData<List<MyBuild>> get() = _newList
+
     fun saveAddBuild(newBuild: MyBuild) = viewModelScope.launch {
 //        현재 페이지에 있는 정보 저장
 //        -> 빌드 이름 String
@@ -31,5 +34,11 @@ class AddMyBuildViewModel @Inject constructor(
 //        -> 룬
 //        -> 빌드 노트
         myBuildRepository.insert(newData = newBuild)
+    }
+
+    fun getMyBuildList(championName: String){
+        viewModelScope.launch {
+            _newList.value = myBuildRepository.getListByChampionName(championName)
+        }
     }
 }

@@ -6,13 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.databinding.FragmentBuildDetailMybuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
+import com.example.firstapp.fragment.build.detail.mybuild.MyBuildItemAdapter
+import com.example.firstapp.model.MyBuild
+import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
 
+@AndroidEntryPoint
 class DetailMyBuildFragment : Fragment() {
 
-    private val detailMyBuildViewModel : DetailMyBuildViewModel by viewModels()
-//    private var adapterData = MutableLiveData<MutableList<MyBuildRepositoryData>>()
+    private val viewModel : DetailMyBuildViewModel by viewModels()
     lateinit var binding : FragmentBuildDetailMybuildBinding
 
     override fun onCreateView(
@@ -20,14 +25,23 @@ class DetailMyBuildFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentBuildDetailMybuildBinding.inflate(inflater,container,false)
+        setupUi()
+        setupObserver()
 
-        setViewModel()
-        setFunctions()
+        viewModel.getMyBuildListByChampionName("champion name")
 
         return binding.root
     }
 
-    private fun setViewModel() {
+    private fun setupObserver() {
+        viewModel.list.observe(viewLifecycleOwner){
+            val adapter = MyBuildItemAdapter()
+            adapter.myBuildData = it
+            binding.buildMyBuildRv.apply {
+                this.adapter = adapter
+                layoutManager = LinearLayoutManager(this.context)
+            }
+        }
 //        detailMyBuildViewModel.getMyBuildData(context!!.applicationContext, "Champion Name")
 //
 //        val myBuildDataListObserver = Observer<MutableList<MyBuildRepositoryData>> {
@@ -45,7 +59,7 @@ class DetailMyBuildFragment : Fragment() {
 
     }
 
-    private fun setFunctions() {
+    private fun setupUi() {
         binding.fabAddMyBuild.setOnClickListener {
             (activity as BuildDetailActivity).openAddMyBuild()
         }
