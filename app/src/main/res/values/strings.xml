@@ -141,4 +141,9 @@
     <string name="item_upper_build">상위 빌드</string>
     <string name="price">가격</string>
     <string name="sell">팔기</string>
+
+    <!-- summoner -->
+    <string name="summoner_tab_favorite">즐겨찾기</string>
+    <string name="summoner_tab_recent">최근 보기</string>
+    <string name="summoner_fab_none">즐겨찾기가 없습니다.</string>
 </resources>

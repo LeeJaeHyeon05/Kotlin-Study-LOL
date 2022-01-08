@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.firstapp.databinding.ItemBinding
 import com.example.firstapp.model.Item
 import com.example.firstapp.util.getBaseImageUrl
+import com.jakewharton.rxbinding4.view.clicks
 import com.squareup.picasso.Picasso
+import java.util.concurrent.TimeUnit
 
 class ItemListAdapter(private var dataSet: List<Item>, private var handleClickItem: (String) -> Unit) :
     RecyclerView.Adapter<ItemListAdapter.ViewHolder>() {
@@ -15,9 +17,9 @@ class ItemListAdapter(private var dataSet: List<Item>, private var handleClickIt
         fun bind(dataSet: List<Item>, position: Int, handleClickItem: (String) -> Unit) {
             Picasso.get().load("${getBaseImageUrl()}/item/${dataSet[position].id}.png").into(binding.itemImage)
             binding.itemName.text = dataSet[position].name
-            binding.itemImage.setOnClickListener {
-                handleClickItem(dataSet[position].id)
-            }
+            binding.itemImage.clicks()
+                .throttleFirst(300, TimeUnit.MILLISECONDS)
+                .subscribe { handleClickItem(dataSet[position].id) }
         }
     }
 
