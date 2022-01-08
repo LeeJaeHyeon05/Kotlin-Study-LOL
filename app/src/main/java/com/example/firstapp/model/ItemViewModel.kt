@@ -19,9 +19,12 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
     private val mItemSortType: MutableLiveData<ItemSortType> = MutableLiveData<ItemSortType>(ItemSortType.NAME)
     private val mSearchQuery: MutableLiveData<String> = MutableLiveData<String>("")
     private val mTags: MutableLiveData<List<String>> = MutableLiveData<List<String>>(emptyList())
+    private val mSelectedItem: MutableLiveData<Item> = MutableLiveData<Item>(null)
 
     val itemSortType: LiveData<ItemSortType> = mItemSortType
     val tags: LiveData<List<String>> = mTags
+    val selectedItem: LiveData<Item> = mSelectedItem
+    val allItemList: LiveData<List<Item>> = mDataList
     val uiDataList: MediatorLiveData<List<Item>> = MediatorLiveData<List<Item>>()
 
     val nameAndTagFilter: () -> Unit = {
@@ -81,5 +84,9 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
             tags.add(tag)
         }
         mTags.postValue(tags)
+    }
+
+    fun setSelectedItem(it: String) = viewModelScope.launch {
+        mSelectedItem.postValue(mDataList.value?.find { item -> item.id == it })
     }
 }
