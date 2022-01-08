@@ -28,7 +28,7 @@ import kotlin.coroutines.coroutineContext
 
  **/
 class TierData {
-    suspend fun getTierData(context:Context): ApiResponse<TierLine>? {
+    suspend fun getTierData(context:Context): ApiResponse<TierLine?>? {
         val topTierList = ArrayList<TierChamp>()
         val midTierList = ArrayList<TierChamp>()
         val jungleTierList = ArrayList<TierChamp>()
@@ -45,20 +45,21 @@ class TierData {
             val tierVersionText =
                 webDoc.select("#wrapper > div > div > div > div.container.px-0.mt-3 > div > div.col-lg-8 > div")
                     .text()
-            // todo 로컬 데이터랑 버전 확인 작업 해야함 - 해당 로컬 데이터는 sharedPreference로 설정
+
             val gameVersion = sharedPreferences.getInt("version", 0)
+            Log.d("TierData", "local version: $gameVersion")
 
             // 해당 문자열에서 숫자만 남기고 전부 삭제
             val tierVersion = tierVersionText.replace("[^0-9]".toRegex(), "").toInt()
+            Log.d("TierData", "remote version: $tierVersion")
 
-            // todo 지금은 sharedPreference를 저장하는 기능이 없기 때문에 이 부분은 없다고 생각하는게 좋다
             if (gameVersion == tierVersion){
-                ApiResponse.Success(null)
+                return ApiResponse.Success(null)
                 Log.d("TierData", "TierData의 Local와 remote의 version이 같음")
             }else{
                 // 버전이 같지 않을 경우 sharedPreference에 저장되있는 버전을 새롭게 업데이트 한다
                 val preferenceEditor = sharedPreferences.edit()
-                preferenceEditor.putInt("version", gameVersion)
+                preferenceEditor.putInt("version", tierVersion)
                 preferenceEditor.commit()
 
                 Log.d("TierData", "TierData의 Local와 remote의 version이 다름")

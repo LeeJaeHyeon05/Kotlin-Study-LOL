@@ -1,6 +1,7 @@
 package com.example.firstapp.worker
 
 import android.content.Context
+import android.util.Log
 import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
@@ -39,24 +40,27 @@ class InitChampionTierWorker @AssistedInject constructor(
 
         when(val response = tierRepository.execute()){
             is ApiResponse.Success ->{
-                if (response != null){
+                if (response.value != null){
                     tierData.clear()
 
-                    tierData.addAll(response.value.top!!)
-                    tierData.addAll(response.value.jungle!!)
-                    tierData.addAll(response.value.mid!!)
-                    tierData.addAll(response.value.adc!!)
-                    tierData.addAll(response.value.sup!!)
+                    tierData.addAll(response.value!!.top!!)
+                    tierData.addAll(response.value!!.jungle!!)
+                    tierData.addAll(response.value!!.mid!!)
+                    tierData.addAll(response.value!!.adc!!)
+                    tierData.addAll(response.value!!.sup!!)
+
+                    // 데이터를 추가하기 전에 모든 데이터 삭제하기
+                    championTierDao.clearAll()
+
+                    championTierDao.insertAll(tierData)
+                }else{
+                    Log.d("TierWorker", "response가 Success이지만 그 값이 null임")
                 }
             }
             is ApiResponse.Failure -> {
                 Timber.d("error: " + response.e)
             }
         }
-        // 데이터를 추가하기 전에 모든 데이터 삭제하기
-        championTierDao.clearAll()
-
-        championTierDao.insertAll(tierData)
 
         EventBus.post(InitDataEvent(Integer.MAX_VALUE, applicationContext.getString(R.string.finish)))
         return Result.success()

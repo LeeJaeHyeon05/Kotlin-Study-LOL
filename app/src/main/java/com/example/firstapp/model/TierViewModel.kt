@@ -27,11 +27,11 @@ class TierViewModel @Inject constructor(private val tierRepository: TierReposito
     val tierDataList = liveData<TierLine>(Dispatchers.IO) {
         when(val response = tierRepository.execute()){
             is ApiResponse.Success ->{
-                topTierData.postValue(response.value.top)
-                jungleTierData.postValue(response.value.jungle)
-                midTierData.postValue(response.value.mid)
-                adcTierData.postValue(response.value.adc)
-                supTierData.postValue(response.value.sup)
+                topTierData.postValue(response.value!!.top)
+                jungleTierData.postValue(response.value!!.jungle)
+                midTierData.postValue(response.value!!.mid)
+                adcTierData.postValue(response.value!!.adc)
+                supTierData.postValue(response.value!!.sup)
             }
             is ApiResponse.Failure -> {
                 Timber.d("error: " + response.e)
