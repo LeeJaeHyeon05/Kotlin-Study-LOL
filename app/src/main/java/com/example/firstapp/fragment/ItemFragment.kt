@@ -7,11 +7,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
-import com.example.firstapp.adapter.ItemListAdapter
 import com.example.firstapp.databinding.FragmentItemBinding
 import com.example.firstapp.fragment.bottomsheet.ItemDetailBottomSheet
 import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet
+import com.example.firstapp.groupie.GroupieItem
 import com.example.firstapp.model.ItemViewModel
+import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -19,6 +20,7 @@ import timber.log.Timber
 class ItemFragment : Fragment() {
 
     private lateinit var binding: FragmentItemBinding
+    private lateinit var groupAdapter: GroupieAdapter
 
     private val itemViewModel: ItemViewModel by activityViewModels()
 
@@ -53,27 +55,32 @@ class ItemFragment : Fragment() {
         })
     }
 
-    private val handleClickItem: (String) -> Unit = {
-        val itemDetailBottomSheet = ItemDetailBottomSheet(it)
-        itemDetailBottomSheet.show(
-            requireActivity().supportFragmentManager,
-            ItemDetailBottomSheet.TAG
-        )
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentItemBinding.inflate(layoutInflater)
 
-        binding.itemList.run {
-            adapter = ItemListAdapter(emptyList(), handleClickItem)
-            layoutManager = GridLayoutManager(requireContext(), 5)
+        groupAdapter = GroupieAdapter().apply {
+            spanCount = 5
+            setOnItemClickListener { item, _ ->
+                if (item is GroupieItem) {
+                    val itemDetailBottomSheet = ItemDetailBottomSheet(item.item.id)
+                    itemDetailBottomSheet.show(
+                        requireActivity().supportFragmentManager,
+                        ItemDetailBottomSheet.TAG
+                    )
+                }
+            }
         }
 
-        itemViewModel.uiDataList.observe(viewLifecycleOwner) {
-            (binding.itemList.adapter as ItemListAdapter).setData(it)
+        binding.itemList.run {
+            layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply { spanSizeLookup = groupAdapter.spanSizeLookup }
+            adapter = groupAdapter
+        }
+
+        itemViewModel.uiDataList.observe(viewLifecycleOwner) { items ->
+            groupAdapter.update(items)
         }
 
         binding.filterListButton.setOnClickListener {

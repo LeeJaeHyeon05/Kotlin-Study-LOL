@@ -1,6 +1,7 @@
 package com.example.firstapp.model
 
 import androidx.lifecycle.*
+import com.example.firstapp.groupie.GroupieItem
 import com.example.firstapp.repository.ItemRepository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -19,13 +20,11 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
     private val mItemSortType: MutableLiveData<ItemSortType> = MutableLiveData<ItemSortType>(ItemSortType.NAME)
     private val mSearchQuery: MutableLiveData<String> = MutableLiveData<String>("")
     private val mTags: MutableLiveData<List<String>> = MutableLiveData<List<String>>(emptyList())
-    private val mSelectedItem: MutableLiveData<Item> = MutableLiveData<Item>(null)
 
     val itemSortType: LiveData<ItemSortType> = mItemSortType
     val tags: LiveData<List<String>> = mTags
-    val selectedItem: LiveData<Item> = mSelectedItem
     val allItemList: LiveData<List<Item>> = mDataList
-    val uiDataList: MediatorLiveData<List<Item>> = MediatorLiveData<List<Item>>()
+    val uiDataList: MediatorLiveData<List<GroupieItem>> = MediatorLiveData<List<GroupieItem>>()
 
     val nameAndTagFilter: () -> Unit = {
         val filteredItemList = mDataList.value?.filter { item ->
@@ -43,20 +42,30 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
             }
             nameFilter && tagFilter
         }.orEmpty()
-        uiDataList.postValue(filteredItemList)
+        uiDataList.setValue(filteredItemList.map { GroupieItem(it) })
+    }
+
+    val sortFilter: () -> Unit = {
+        when (mItemSortType.value) {
+            ItemSortType.NAME -> uiDataList.postValue(uiDataList.value?.sortedBy { it.item.name })
+            ItemSortType.PRICE_ASC -> uiDataList.postValue(uiDataList.value?.sortedBy { it.item.itemGold?.total })
+            ItemSortType.PRICE_DESC -> uiDataList.postValue(uiDataList.value?.sortedByDescending { it.item.itemGold?.total })
+            else -> {}
+        }
     }
 
     init {
         uiDataList.value = emptyList()
-        uiDataList.addSource(mDataList) { itemList -> uiDataList.postValue(itemList.sortedBy { it.name }) }
-        uiDataList.addSource(mItemSortType) { sortType ->
-            if (sortType === ItemSortType.NAME) uiDataList.postValue(uiDataList.value?.sortedBy { it.name }.orEmpty())
-            if (sortType === ItemSortType.PRICE_ASC) uiDataList.postValue(uiDataList.value?.sortedBy { it.itemGold?.total }.orEmpty())
-            if (sortType === ItemSortType.PRICE_DESC) uiDataList.postValue(uiDataList.value?.sortedByDescending { it.itemGold?.total }.orEmpty())
+        uiDataList.addSource(mDataList) { itemList -> uiDataList.postValue(itemList.sortedBy { it.name }.map { GroupieItem(it) }) }
+        uiDataList.addSource(mItemSortType) { sortFilter() }
+        uiDataList.addSource(mSearchQuery) {
+            nameAndTagFilter()
+            sortFilter()
         }
-
-        uiDataList.addSource(mSearchQuery) { nameAndTagFilter() }
-        uiDataList.addSource(mTags) { nameAndTagFilter() }
+        uiDataList.addSource(mTags) {
+            nameAndTagFilter()
+            sortFilter()
+        }
 
         viewModelScope.launch {
             val items = itemRepository.getItems()
@@ -86,7 +95,4 @@ class ItemViewModel @Inject constructor(private val itemRepository: ItemReposito
         mTags.postValue(tags)
     }
 
-    fun setSelectedItem(it: String) = viewModelScope.launch {
-        mSelectedItem.postValue(mDataList.value?.find { item -> item.id == it })
-    }
 }
