@@ -96,6 +96,7 @@
     <string name="init_champion_start">챔피온 정보를 초기화합니다.</string>
     <string name="init_item_start">아이템 정보를 초기화합니다.</string>
     <string name="init_summoner_start">스펠 정보를 초기화합니다.</string>
+    <string name="init_tier_start">챔피언 티어 정보를 초기화합니다.</string>
     <string name="item_filter">아이템 필터</string>
     <string name="summoners_canyon">소환사의 협곡</string>
 

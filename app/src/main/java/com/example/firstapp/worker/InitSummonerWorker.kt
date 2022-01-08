@@ -57,7 +57,6 @@ class InitSummonerWorker @AssistedInject constructor(
             Thread.sleep(100)
         }
 
-        EventBus.post(InitDataEvent(Integer.MAX_VALUE, applicationContext.getString(R.string.finish)))
         return Result.success()
     }
 
