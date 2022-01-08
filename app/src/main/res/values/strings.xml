@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">FirstApp</string>
 
+    <!--빌드-->
+
 
     <!-- 챔피언 정보 -->
     <string name="champion_see_build_btn">빌드보기</string>
@@ -137,6 +139,10 @@
 
     <string name="movement_item_filter1">장화</string>
     <string name="movement_item_filter2">기타 이동 관련</string>
+
+    <string name="champion_name">챔피언 이름</string>
+    <string name="Info">정보</string>
+
     <string name="item_combination">아이템 조합법</string>
     <string name="item_upper_build">상위 빌드</string>
     <string name="price">가격</string>
@@ -147,3 +153,4 @@
     <string name="summoner_tab_recent">최근 보기</string>
     <string name="summoner_fab_none">즐겨찾기가 없습니다.</string>
 </resources>
+
