@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.firstapp.R
+import com.example.firstapp.database.AppDatabase
 import com.example.firstapp.databinding.ItemTierBinding
 import com.example.firstapp.model.tier.TierChamp
 import com.example.firstapp.util.translateToEn
@@ -21,7 +22,7 @@ import kotlinx.coroutines.launch
  * @email ljws93@naver.com
  * @since 2021/11/10
  **/
-class Tier1Adapter(val context: Context) : RecyclerView.Adapter<Tier1ViewHolder>() {
+class Tier1Adapter(val context: Context, val database: AppDatabase) : RecyclerView.Adapter<Tier1ViewHolder>() {
     // DiffUtil로 다른 부분만 업데이트 한다
     private val diiUtilCallback = object : DiffUtil.ItemCallback<TierChamp>(){
         override fun areItemsTheSame(oldItem: TierChamp, newItem: TierChamp): Boolean {
@@ -50,7 +51,7 @@ class Tier1Adapter(val context: Context) : RecyclerView.Adapter<Tier1ViewHolder>
         val championName = differ.currentList[position].championName
 
         CoroutineScope(Dispatchers.Main).launch {
-            val championName_en = translateToEn(context, championName)
+            val championName_en = translateToEn(database, championName)
             Glide.with(context)
                 .load("http://ddragon.leagueoflegends.com/cdn/11.22.1/img/champion/$championName_en.png")
                 .placeholder(R.drawable.camille_chac).into(holder.champImage)

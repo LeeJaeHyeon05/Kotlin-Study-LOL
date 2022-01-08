@@ -25,6 +25,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import timber.log.Timber
+import javax.inject.Inject
 
 /**
  * @author mmol93
@@ -36,6 +37,9 @@ import timber.log.Timber
 class TierFragment : Fragment(R.layout.fragment_tier) {
     // activityViewModels: Activity의 viewModel에 접근하도록 한다
     private val tierViewModel: TierViewModel by activityViewModels()
+
+    @Inject
+    lateinit var database: AppDatabase
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
@@ -98,9 +102,9 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
     // 이 부분은 context를 사용하기 때문에 viewModel에서 동작을 지정할 경우 메모리 누수가 일어날 수 있음
     // 그렇기 때문에 Fragment에서 데이터 정의 및 정리를 실시한다
     private fun separateTierDataForEachLine(){
-        val database = Room.databaseBuilder(context!!, AppDatabase::class.java, "lol-db").build()
         CoroutineScope(Dispatchers.IO).launch {
             val tierData = database.championTierDao().selectAll()
+
             val topTierData = ArrayList<TierChamp>()
             val jungleTierData = ArrayList<TierChamp>()
             val midTierData = ArrayList<TierChamp>()

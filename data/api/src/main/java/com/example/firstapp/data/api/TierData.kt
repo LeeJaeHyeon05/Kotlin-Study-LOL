@@ -54,6 +54,14 @@ class TierData {
             // todo 지금은 sharedPreference를 저장하는 기능이 없기 때문에 이 부분은 없다고 생각하는게 좋다
             if (gameVersion == tierVersion){
                 ApiResponse.Success(null)
+                Log.d("TierData", "TierData의 Local와 remote의 version이 같음")
+            }else{
+                // 버전이 같지 않을 경우 sharedPreference에 저장되있는 버전을 새롭게 업데이트 한다
+                val preferenceEditor = sharedPreferences.edit()
+                preferenceEditor.putInt("version", gameVersion)
+                preferenceEditor.commit()
+
+                Log.d("TierData", "TierData의 Local와 remote의 version이 다름")
             }
 
 //            val testName = webDoc.select("#wrapper > div > div > div > div.container.mt-3.mt-md-4.p-0 > div > div.col-lg-4 > div.champion-sub-list-wrap.champion-sub-tier-list > div.champion-sub-list > div:nth-child(5) > div:nth-child(21) > div.champion > a > div > span").text()

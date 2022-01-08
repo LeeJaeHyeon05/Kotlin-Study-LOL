@@ -18,12 +18,14 @@ import com.example.firstapp.database.AppDatabase
 import com.example.firstapp.databinding.FragmentTierMidBinding
 import com.example.firstapp.model.TierViewModel
 import com.example.firstapp.model.tier.TierChamp
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.launch
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class EachLineTierFragment(val position: Int) : Fragment() {
+    @Inject
+    lateinit var database: AppDatabase
+
     // activityViewModels: Activity의 viewModel에 접근하도록 한다
     private val tierViewModel: TierViewModel by activityViewModels()
     override fun onCreateView(
@@ -51,11 +53,11 @@ class EachLineTierFragment(val position: Int) : Fragment() {
         binding.tier5Recycler.layoutManager =
             GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
 
-        val firstTierAdapter = Tier1Adapter(requireContext())
-        val secondTierAdapter = Tier1Adapter(requireContext())
-        val thirdTierAdapter = Tier1Adapter(requireContext())
-        val forthTierAdapter = Tier1Adapter(requireContext())
-        val fifthTierAdapter = Tier1Adapter(requireContext())
+        val firstTierAdapter = Tier1Adapter(requireContext(), database)
+        val secondTierAdapter = Tier1Adapter(requireContext(), database)
+        val thirdTierAdapter = Tier1Adapter(requireContext(), database)
+        val forthTierAdapter = Tier1Adapter(requireContext(), database)
+        val fifthTierAdapter = Tier1Adapter(requireContext(), database)
 
         binding.tier1Recycler.let {
             it.adapter = firstTierAdapter
