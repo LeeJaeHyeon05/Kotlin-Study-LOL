@@ -1,5 +1,6 @@
 package com.example.firstapp.data.repository.di
 
+import android.content.Context
 import com.example.firstapp.data.api.FirstApi
 import com.example.firstapp.data.api.TierData
 import com.example.firstapp.data.repository.ChampionRepository
@@ -26,7 +27,7 @@ class RepositoryModule {
 
     @Provides
     @Singleton
-    fun provideTierRepository(tierData: TierData):TierRepository{
-        return TierRepository(tierData)
+    fun provideTierRepository(tierData: TierData, context: Context):TierRepository{
+        return TierRepository(tierData, context)
     }
 }

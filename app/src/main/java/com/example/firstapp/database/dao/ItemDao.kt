@@ -13,6 +13,6 @@ interface ItemDao {
     @Query("SELECT count(*) FROM item")
     fun selectAllCount(): Int
 
-    @Insert
+    @Insert()
     fun insertAll(items: Iterable<Item>)
 }

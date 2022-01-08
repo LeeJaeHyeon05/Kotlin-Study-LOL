@@ -11,16 +11,23 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.room.Room
 import com.example.firstapp.R
 import com.example.firstapp.adapter.ChampTier.Tier1Adapter
+import com.example.firstapp.database.AppDatabase
 import com.example.firstapp.databinding.FragmentTierMidBinding
 import com.example.firstapp.model.TierViewModel
 import com.example.firstapp.model.tier.TierChamp
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class EachLineTierFragment(val position: Int) : Fragment() {
+    @Inject
+    lateinit var database: AppDatabase
+
     // activityViewModels: Activity의 viewModel에 접근하도록 한다
     private val tierViewModel: TierViewModel by activityViewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -46,14 +53,16 @@ class EachLineTierFragment(val position: Int) : Fragment() {
         binding.tier5Recycler.layoutManager =
             GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
 
-        val firstTierAdapter = Tier1Adapter(requireContext())
-        val secondTierAdapter = Tier1Adapter(requireContext())
-        val thirdTierAdapter = Tier1Adapter(requireContext())
-        val forthTierAdapter = Tier1Adapter(requireContext())
-        val fifthTierAdapter = Tier1Adapter(requireContext())
+        val firstTierAdapter = Tier1Adapter(requireContext(), database)
+        val secondTierAdapter = Tier1Adapter(requireContext(), database)
+        val thirdTierAdapter = Tier1Adapter(requireContext(), database)
+        val forthTierAdapter = Tier1Adapter(requireContext(), database)
+        val fifthTierAdapter = Tier1Adapter(requireContext(), database)
 
         binding.tier1Recycler.let {
             it.adapter = firstTierAdapter
+            // 각각의 Tier 어댑터가 스크롤될 수 있는게 아니라 모든 데이터를 다 View에 담아서 보여주게 설정
+            // 이렇게 안하면 일부 Tier의 Adapter의 사이즈가 작아지면서 스크롤 가능한 형태로 보여준다
             it.isNestedScrollingEnabled = false
         }
         binding.tier2Recycler.let {

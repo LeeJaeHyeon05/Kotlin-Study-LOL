@@ -13,6 +13,7 @@ import androidx.work.WorkRequest
 import com.example.firstapp.databinding.ActivitySplashBinding
 import com.example.firstapp.eventbus.EventBus
 import com.example.firstapp.eventbus.InitDataEvent
+import com.example.firstapp.worker.InitChampionTierWorker
 import com.example.firstapp.worker.InitChampionWorker
 import com.example.firstapp.worker.InitItemWorker
 import com.example.firstapp.worker.InitSummonerWorker
@@ -58,10 +59,12 @@ class SplashActivity : AppCompatActivity() {
         val initChampionWorkRequest: WorkRequest = OneTimeWorkRequestBuilder<InitChampionWorker>().build()
         val initItemWorkRequest: WorkRequest = OneTimeWorkRequestBuilder<InitItemWorker>().build()
         val initSummonerWorkRequest: WorkRequest = OneTimeWorkRequestBuilder<InitSummonerWorker>().build()
+        val initChampionTierRequest: WorkRequest = OneTimeWorkRequestBuilder<InitChampionTierWorker>().build()
         WorkManager.getInstance(applicationContext)
             .beginWith(initChampionWorkRequest as OneTimeWorkRequest)
             .then(initItemWorkRequest as OneTimeWorkRequest)
             .then(initSummonerWorkRequest as OneTimeWorkRequest)
+            .then(initChampionTierRequest as OneTimeWorkRequest)
             .enqueue()
     }
 
