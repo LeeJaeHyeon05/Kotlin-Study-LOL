@@ -1,4 +1,4 @@
-package com.example.firstapp.bottomsheet
+package com.example.firstapp.fragment.bottomsheet
 
 import android.os.Bundle
 import android.view.LayoutInflater
