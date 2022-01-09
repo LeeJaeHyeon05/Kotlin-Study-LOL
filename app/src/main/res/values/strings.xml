@@ -141,6 +141,13 @@
     <string name="movement_item_filter1">장화</string>
     <string name="movement_item_filter2">기타 이동 관련</string>
 
+    <!-- 내 빌드 -->
+    <string name="mybuild_item_menu_edit">편집</string>
+    <string name="mybuild_item_menu_buildstats">빌드 통계</string>
+    <string name="mybuild_item_menu_reorder">재주문</string>
+    <string name="mybuild_item_menu_delete">삭제</string>
+    <!-- 여기까지 -->
+  
     <string name="champion_name">챔피언 이름</string>
     <string name="Info">정보</string>
 
