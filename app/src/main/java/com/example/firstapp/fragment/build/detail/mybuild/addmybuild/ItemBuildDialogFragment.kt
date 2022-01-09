@@ -1,10 +1,9 @@
-package com.example.firstapp.fragment.build.detail.mybuild.dialog
+package com.example.firstapp.fragment.build.detail.mybuild.addmybuild
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.example.firstapp.databinding.FragmentItemBuildDialogBinding
 
