@@ -38,7 +38,7 @@ class ItemDetailBottomSheet(private val itemId: String) : BottomSheetDialogFragm
     ): View {
         binding = ItemDetailBottomSheetContentBinding.inflate(layoutInflater)
 
-        val item: Item = itemViewModel.allItemList.value?.find { it.id === itemId }!!
+        val item: Item = itemViewModel.allItemList.value?.find { it.id == itemId }!!
 
         Picasso.get().load("${getBaseImageUrl()}/item/${item.id}.png").into(binding.itemDetailImage)
         binding.itemDetailName.text = item.name
