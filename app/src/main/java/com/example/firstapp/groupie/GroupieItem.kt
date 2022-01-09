@@ -19,6 +19,4 @@ class GroupieItem(val item: Item) : BindableItem<ItemBinding>() {
 
     override fun initializeViewBinding(view: View): ItemBinding = ItemBinding.bind(view)
 
-    override fun getSpanSize(spanCount: Int, position: Int): Int = 1
-
 }

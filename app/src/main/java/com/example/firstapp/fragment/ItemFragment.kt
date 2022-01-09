@@ -72,7 +72,6 @@ class ItemFragment : Fragment() {
         binding = FragmentItemBinding.inflate(layoutInflater)
 
         groupAdapter = GroupieAdapter().apply {
-            spanCount = 5
             setOnItemClickListener { item, view ->
                 if (item is GroupieItem) {
                     view.clicks()
@@ -83,7 +82,9 @@ class ItemFragment : Fragment() {
         }
 
         binding.itemList.run {
-            layoutManager = GridLayoutManager(requireContext(), groupAdapter.spanCount).apply { spanSizeLookup = groupAdapter.spanSizeLookup }
+            layoutManager = GridLayoutManager(requireContext(), 5).apply {
+                spanSizeLookup = groupAdapter.spanSizeLookup
+            }
             adapter = groupAdapter
         }
 
