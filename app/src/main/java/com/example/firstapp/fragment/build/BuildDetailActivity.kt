@@ -2,14 +2,12 @@ package com.example.firstapp.fragment.build
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager2.widget.ViewPager2
 import com.example.firstapp.R
 import com.example.firstapp.databinding.ActivityBuildDetailBinding
 import com.example.firstapp.fragment.build.detail.DetailViewPagerAdapter
 import com.example.firstapp.fragment.build.detail.mybuild.addmybuild.AddMyBuildFragment
 import com.example.firstapp.fragment.build.detail.mybuild.addmybuild.ItemBuildDialogFragment
 import com.example.firstapp.fragment.build.detail.mybuild.addmybuild.SkillBuildDialogFragment
-import com.example.firstapp.model.MyBuild
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -61,9 +59,4 @@ class BuildDetailActivity : AppCompatActivity() {
         val dialog = ItemBuildDialogFragment()
         dialog.show(supportFragmentManager, "Item Build")
     }
-
-    fun refreshMyBuildItemAdapter(list: List<MyBuild>){
-
-    }
-
 }

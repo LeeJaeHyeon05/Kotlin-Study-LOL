@@ -16,6 +16,6 @@ interface MyBuildDao {
     @Insert
     fun insert(myBuild: MyBuild)
 
-    @Query("DELETE FROM mybuild WHERE id = :position")
-    fun delete(position: Int)
+    @Query("DELETE FROM mybuild WHERE id = :id")
+    fun delete(id: Int)
 }

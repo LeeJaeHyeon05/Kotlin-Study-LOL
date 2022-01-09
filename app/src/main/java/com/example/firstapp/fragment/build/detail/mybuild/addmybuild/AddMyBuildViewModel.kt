@@ -1,6 +1,5 @@
 package com.example.firstapp.fragment.build.detail.mybuild.addmybuild
 
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,8 +7,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepository
 import com.example.firstapp.model.MyBuild
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -34,11 +31,5 @@ class AddMyBuildViewModel @Inject constructor(
 //        -> 룬
 //        -> 빌드 노트
         myBuildRepository.insert(newData = newBuild)
-    }
-
-    fun getMyBuildList(championName: String){
-        viewModelScope.launch {
-            _newList.value = myBuildRepository.getListByChampionName(championName)
-        }
     }
 }

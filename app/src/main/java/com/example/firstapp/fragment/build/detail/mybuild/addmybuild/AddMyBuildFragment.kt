@@ -4,17 +4,20 @@ import android.os.Bundle
 import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentAddMyBuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
+import com.example.firstapp.fragment.build.detail.mybuild.detailmybuild.DetailMyBuildViewModel
 import com.example.firstapp.model.MyBuild
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AddMyBuildFragment : Fragment() {
 
-    private val viewModel : AddMyBuildViewModel by viewModels()
+    private val addMyBuildViewModel : AddMyBuildViewModel by viewModels()
+    private val detailMyBuildViewModel : DetailMyBuildViewModel by activityViewModels()
     private lateinit var binding: FragmentAddMyBuildBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,10 +34,8 @@ class AddMyBuildFragment : Fragment() {
         when (item.itemId) {
             R.id.save_add_build -> {
                 saveAddBuild()
-
-                viewModel.getMyBuildList("champion name")
-                val newList = viewModel.newList
-                (activity as BuildDetailActivity).refreshMyBuildItemAdapter(newList.value!!)
+                //DetailMyBuildFragment의 List 업데이트 해줄 것!
+                //detailMyBuildViewModel.getMyBuildListByChampionName("champion name")
             }
             android.R.id.home -> {
                 (activity as BuildDetailActivity).closeAddMyBuild()
@@ -46,9 +47,9 @@ class AddMyBuildFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_my_build, container, false)
-        binding.addMyBuildViewModel = viewModel
+        binding.addMyBuildViewModel = addMyBuildViewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
 
         setFunctions()
@@ -73,10 +74,6 @@ class AddMyBuildFragment : Fragment() {
         }
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
     private fun saveAddBuild() {
 //        현재 페이지에 있는 정보 저장
 //        * 빌드 이름 String
@@ -92,7 +89,7 @@ class AddMyBuildFragment : Fragment() {
             binding.myBuildNameET.text.toString(),
             binding.myBuildNoteET.text.toString()
         )
-        viewModel.saveAddBuild(newBuild)
+        addMyBuildViewModel.saveAddBuild(newBuild)
 
         (activity as BuildDetailActivity).closeAddMyBuild()
     }
