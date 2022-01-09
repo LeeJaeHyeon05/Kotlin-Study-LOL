@@ -78,6 +78,7 @@ class ItemFragment : Fragment() {
                         .throttleFirst(300, TimeUnit.MILLISECONDS)
                         .subscribe { handleClickItem(item.item.id) }
                 }
+                view.performClick()
             }
         }
 
