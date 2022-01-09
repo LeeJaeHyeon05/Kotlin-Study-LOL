@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Room
 import com.example.firstapp.database.AppDatabase
 import com.example.firstapp.database.dao.ChampionDao
+import com.example.firstapp.database.dao.ChampionTierDao
 import com.example.firstapp.database.dao.ItemDao
 import com.example.firstapp.database.dao.MyBuildDao
 import com.example.firstapp.database.dao.SummonerDao
@@ -79,5 +80,9 @@ class AppModule {
     @Singleton
     fun provideMyBuildDao(appDatabase: AppDatabase): MyBuildDao {
         return appDatabase.myBuildDao()
+    }
+
+    fun provideChampionTierDao(appDatabase: AppDatabase): ChampionTierDao {
+        return appDatabase.championTierDao()
     }
 }
