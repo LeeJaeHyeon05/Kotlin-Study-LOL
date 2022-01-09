@@ -10,6 +10,8 @@ import com.example.firstapp.databinding.FragmentAddMyBuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
 import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepository
 import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepositoryData
+import androidx.lifecycle.Observer
+import com.example.firstapp.databinding.FragmentAddMyBuildBinding
 import com.example.firstapp.fragment.build.detail.mybuild.viewmodel.AddMyBuildViewModel
 import timber.log.Timber
 

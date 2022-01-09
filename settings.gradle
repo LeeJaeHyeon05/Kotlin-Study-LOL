@@ -4,6 +4,7 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
+        maven { url "https://oss.jfrog.org/libs-snapshot" }
     }
 }
 rootProject.name = "FirstApp"

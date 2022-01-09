@@ -36,6 +36,7 @@
             android:exported="true"
             android:theme="@style/Theme.FirstApp.NoActionBar" />
 
+
         <provider
             android:name="androidx.startup.InitializationProvider"
             android:authorities="${applicationId}.androidx-startup"
