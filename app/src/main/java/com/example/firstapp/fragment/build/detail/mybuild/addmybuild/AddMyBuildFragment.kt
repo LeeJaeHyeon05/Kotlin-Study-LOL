@@ -12,9 +12,6 @@ import com.example.firstapp.fragment.build.BuildDetailActivity
 import com.example.firstapp.fragment.build.detail.mybuild.detailmybuild.DetailMyBuildViewModel
 import com.example.firstapp.model.MyBuild
 import dagger.hilt.android.AndroidEntryPoint
-import androidx.lifecycle.Observer
-import com.example.firstapp.fragment.build.detail.mybuild.viewmodel.AddMyBuildViewModel
-import timber.log.Timber
 
 @AndroidEntryPoint
 class AddMyBuildFragment : Fragment() {
