@@ -82,6 +82,8 @@ class AppModule {
         return appDatabase.myBuildDao()
     }
 
+    @Provides
+    @Singleton
     fun provideChampionTierDao(appDatabase: AppDatabase): ChampionTierDao {
         return appDatabase.championTierDao()
     }
