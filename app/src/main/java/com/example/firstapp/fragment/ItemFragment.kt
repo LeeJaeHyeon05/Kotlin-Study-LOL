@@ -10,13 +10,10 @@ import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentItemBinding
 import com.example.firstapp.fragment.bottomsheet.ItemDetailBottomSheet
 import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet
-import com.example.firstapp.groupie.GroupieItem
 import com.example.firstapp.model.ItemViewModel
-import com.jakewharton.rxbinding4.view.clicks
 import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class ItemFragment : Fragment() {
@@ -71,16 +68,7 @@ class ItemFragment : Fragment() {
     ): View {
         binding = FragmentItemBinding.inflate(layoutInflater)
 
-        groupAdapter = GroupieAdapter().apply {
-            setOnItemClickListener { item, view ->
-                if (item is GroupieItem) {
-                    view.clicks()
-                        .throttleFirst(300, TimeUnit.MILLISECONDS)
-                        .subscribe { handleClickItem(item.item.id) }
-                    view.performClick()
-                }
-            }
-        }
+        groupAdapter = GroupieAdapter()
 
         binding.itemList.run {
             layoutManager = GridLayoutManager(requireContext(), 5).apply {
@@ -90,6 +78,7 @@ class ItemFragment : Fragment() {
         }
 
         itemViewModel.uiDataList.observe(viewLifecycleOwner) { items ->
+            items.forEach { it.handleClickItem = handleClickItem }
             groupAdapter.update(items)
         }
 
