@@ -9,9 +9,9 @@ import androidx.core.text.HtmlCompat
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.R
-import com.example.firstapp.adapter.ItemDetailCombinationListAdapter
-import com.example.firstapp.adapter.ItemDetailUpperBuildListAdapter
 import com.example.firstapp.databinding.ItemDetailBottomSheetContentBinding
+import com.example.firstapp.groupie.GroupieItemFrom
+import com.example.firstapp.groupie.GroupieItemInto
 import com.example.firstapp.model.Item
 import com.example.firstapp.model.ItemViewModel
 import com.example.firstapp.util.getBaseImageUrl
@@ -20,10 +20,13 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.squareup.picasso.Picasso
+import com.xwray.groupie.GroupieAdapter
 
 class ItemDetailBottomSheet(private val itemId: String) : BottomSheetDialogFragment() {
 
     private lateinit var binding: ItemDetailBottomSheetContentBinding
+    private lateinit var fromAdapter: GroupieAdapter
+    private lateinit var intoAdapter: GroupieAdapter
 
     private val itemViewModel: ItemViewModel by activityViewModels()
 
@@ -61,14 +64,20 @@ class ItemDetailBottomSheet(private val itemId: String) : BottomSheetDialogFragm
         if (intoItemList.isEmpty()) binding.itemUpperBuildLayout.visibility = View.GONE
         else binding.itemUpperBuildLayout.visibility = View.VISIBLE
 
+        fromAdapter = GroupieAdapter()
+        fromAdapter.addAll(fromItemList.map { GroupieItemFrom(it, handleClickItem) })
+
+        intoAdapter = GroupieAdapter()
+        intoAdapter.addAll(intoItemList.map { GroupieItemInto(it, handleClickItem) })
+
         binding.itemCombinationRecyclerView.apply {
-            adapter = ItemDetailCombinationListAdapter(fromItemList, handleClickItem)
             layoutManager = LinearLayoutManager(context)
+            adapter = fromAdapter
         }
 
         binding.itemUpperBuildRecyclerView.apply {
-            adapter = ItemDetailUpperBuildListAdapter(intoItemList, handleClickItem)
             layoutManager = LinearLayoutManager(context)
+            adapter = intoAdapter
         }
 
         return binding.root
