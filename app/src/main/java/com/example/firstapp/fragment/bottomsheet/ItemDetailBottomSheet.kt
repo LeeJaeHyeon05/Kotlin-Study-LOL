@@ -56,8 +56,8 @@ class ItemDetailBottomSheet(private val itemId: String) : BottomSheetDialogFragm
         val fromList = Gson().fromJson<List<String>>(item.from, typeToken)
         val intoList = Gson().fromJson<List<String>>(item.into, typeToken)
 
-        val fromItemList = itemViewModel.allItemList.value?.filter { fromList.contains(it.id) }.orEmpty()
-        val intoItemList = itemViewModel.allItemList.value?.filter { intoList.contains(it.id) }.orEmpty()
+        val fromItemList = fromList.mapNotNull { from -> itemViewModel.allItemList.value?.find { item -> item.id == from } }
+        val intoItemList = intoList.mapNotNull { into -> itemViewModel.allItemList.value?.find { item -> item.id == into } }
 
         if (fromItemList.isEmpty()) binding.itemCombinationLayout.visibility = View.GONE
         else binding.itemCombinationLayout.visibility = View.VISIBLE
