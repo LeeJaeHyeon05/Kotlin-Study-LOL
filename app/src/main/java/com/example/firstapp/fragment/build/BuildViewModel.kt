@@ -23,7 +23,13 @@ class BuildViewModel @Inject constructor(
     val mChampionList = _ChampionList
 
 
-     val tabData = listOf<String>(    "공통", "무료", "역할군","지역")
+     val tabData = listOf<String>("공통", "역할", "역할군","지역")
+
+    //ViewPager Groupie에 들어갈 내용
+    val commonItem = listOf<String>("모두", "무료", "즐겨찾기","버프", "너프")
+    val ruleItem = listOf<String>("탑", "정글", "미드","원거리 딜러","서포터")
+    val ruleguneItem = listOf<String>("암살자", "전사", "마법사","탱커","원거리 딜러","서포터")
+    val locationData = listOf<String>("준비중")
 
     private val _searchQuery = MutableStateFlow("")
 

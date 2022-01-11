@@ -31,18 +31,9 @@ class BuildFilterBottomSheet : BottomSheetDialogFragment() {
 
         _binding =  DataBindingUtil.inflate(inflater, R.layout.build_fiter_bottom, container, false)
 
-//        binding.tabLayout2.run {
-//            this.addTab(newTab().setText("공통"))
-//            this.addTab(newTab().setText("무료"))
-//            this.addTab(newTab().setText("역할군"))
-//            this.addTab(newTab().setText("지역"))
-//        }
-
-
 
         TabLayoutMediator(binding.tabLayout2,binding.viewPager2){tab,position->
             tab.text = buildViewModel.tabData[position]
-
         }.attach()
 
 
