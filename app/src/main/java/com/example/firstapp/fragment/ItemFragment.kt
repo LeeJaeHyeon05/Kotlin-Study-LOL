@@ -7,18 +7,22 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
-import com.example.firstapp.adapter.ItemListAdapter
 import com.example.firstapp.databinding.FragmentItemBinding
 import com.example.firstapp.fragment.bottomsheet.ItemDetailBottomSheet
 import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet
+import com.example.firstapp.groupie.GroupieItem
 import com.example.firstapp.model.ItemViewModel
+import com.jakewharton.rxbinding4.view.clicks
+import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 
 @AndroidEntryPoint
 class ItemFragment : Fragment() {
 
     private lateinit var binding: FragmentItemBinding
+    private lateinit var groupAdapter: GroupieAdapter
 
     private val itemViewModel: ItemViewModel by activityViewModels()
 
@@ -67,13 +71,26 @@ class ItemFragment : Fragment() {
     ): View {
         binding = FragmentItemBinding.inflate(layoutInflater)
 
-        binding.itemList.run {
-            adapter = ItemListAdapter(emptyList(), handleClickItem)
-            layoutManager = GridLayoutManager(requireContext(), 5)
+        groupAdapter = GroupieAdapter().apply {
+            setOnItemClickListener { item, view ->
+                if (item is GroupieItem) {
+                    view.clicks()
+                        .throttleFirst(300, TimeUnit.MILLISECONDS)
+                        .subscribe { handleClickItem(item.item.id) }
+                }
+                view.performClick()
+            }
         }
 
-        itemViewModel.uiDataList.observe(viewLifecycleOwner) {
-            (binding.itemList.adapter as ItemListAdapter).setData(it)
+        binding.itemList.run {
+            layoutManager = GridLayoutManager(requireContext(), 5).apply {
+                spanSizeLookup = groupAdapter.spanSizeLookup
+            }
+            adapter = groupAdapter
+        }
+
+        itemViewModel.uiDataList.observe(viewLifecycleOwner) { items ->
+            groupAdapter.update(items)
         }
 
         binding.filterListButton.setOnClickListener {
