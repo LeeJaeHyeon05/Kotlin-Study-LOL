@@ -1,21 +1,16 @@
 package com.example.firstapp.fragment.build.detail.mybuild
 
-import android.content.Context
 import android.os.Bundle
 import android.view.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentAddMyBuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
-import com.example.firstapp.fragment.build.detail.mybuild.repository.DataForMyBuildRepository
 import com.example.firstapp.fragment.build.detail.mybuild.viewmodel.AddMyBuildViewModel
+
 
 class AddMyBuildFragment : Fragment() {
 
