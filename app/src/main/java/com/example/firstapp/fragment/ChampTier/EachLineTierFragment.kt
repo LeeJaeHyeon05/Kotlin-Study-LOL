@@ -53,11 +53,11 @@ class EachLineTierFragment(val position: Int) : Fragment() {
         binding.tier5Recycler.layoutManager =
             GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
 
-        val firstTierAdapter = Tier1Adapter(requireContext(), database)
-        val secondTierAdapter = Tier1Adapter(requireContext(), database)
-        val thirdTierAdapter = Tier1Adapter(requireContext(), database)
-        val forthTierAdapter = Tier1Adapter(requireContext(), database)
-        val fifthTierAdapter = Tier1Adapter(requireContext(), database)
+        val firstTierAdapter = Tier1Adapter(requireContext(), database, childFragmentManager)
+        val secondTierAdapter = Tier1Adapter(requireContext(), database, childFragmentManager)
+        val thirdTierAdapter = Tier1Adapter(requireContext(), database, childFragmentManager)
+        val forthTierAdapter = Tier1Adapter(requireContext(), database, childFragmentManager)
+        val fifthTierAdapter = Tier1Adapter(requireContext(), database, childFragmentManager)
 
         binding.tier1Recycler.let {
             it.adapter = firstTierAdapter

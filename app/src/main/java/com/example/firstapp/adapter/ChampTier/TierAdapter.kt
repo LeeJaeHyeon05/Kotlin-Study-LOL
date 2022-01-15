@@ -1,9 +1,11 @@
 package com.example.firstapp.adapter.ChampTier
 
 import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.FragmentManager
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +14,7 @@ import com.example.firstapp.R
 import com.example.firstapp.database.AppDatabase
 import com.example.firstapp.databinding.ItemTierBinding
 import com.example.firstapp.model.tier.TierChamp
+import com.example.firstapp.scene.champion.info.ChampionInfoFragment
 import com.example.firstapp.util.translateToEn
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +25,7 @@ import kotlinx.coroutines.launch
  * @email ljws93@naver.com
  * @since 2021/11/10
  **/
-class Tier1Adapter(val context: Context, val database: AppDatabase) : RecyclerView.Adapter<Tier1ViewHolder>() {
+class Tier1Adapter(val context: Context, val database: AppDatabase, val fragmentManager: FragmentManager) : RecyclerView.Adapter<Tier1ViewHolder>() {
     // DiffUtil로 다른 부분만 업데이트 한다
     private val diiUtilCallback = object : DiffUtil.ItemCallback<TierChamp>(){
         override fun areItemsTheSame(oldItem: TierChamp, newItem: TierChamp): Boolean {
@@ -49,14 +52,20 @@ class Tier1Adapter(val context: Context, val database: AppDatabase) : RecyclerVi
 
     override fun onBindViewHolder(holder: Tier1ViewHolder, position: Int) {
         val championName = differ.currentList[position].championName
+        var championName_en = ""
 
         CoroutineScope(Dispatchers.Main).launch {
-            val championName_en = translateToEn(database, championName)
+            championName_en = translateToEn(database, championName)!!
             Glide.with(context)
                 .load("http://ddragon.leagueoflegends.com/cdn/11.22.1/img/champion/$championName_en.png")
                 .placeholder(R.drawable.camille_chac).into(holder.champImage)
             holder.champName.text = differ.currentList[position].championName
             holder.chapWinRate.text = differ.currentList[position].winRate
+        }
+
+        holder.binding.itemLayout.setOnClickListener {
+            ChampionInfoFragment.newInstance(championName_en)
+                .show(fragmentManager, "")
         }
     }
 
