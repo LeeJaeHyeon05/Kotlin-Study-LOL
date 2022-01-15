@@ -2,7 +2,7 @@ package com.example.firstapp.groupie
 
 import android.view.View
 import com.example.firstapp.R
-import com.example.firstapp.databinding.ItemBinding
+import com.example.firstapp.databinding.ItemUpperbuildBinding
 import com.example.firstapp.model.Item
 import com.example.firstapp.util.getBaseImageUrl
 import com.jakewharton.rxbinding4.view.clicks
@@ -10,13 +10,11 @@ import com.squareup.picasso.Picasso
 import com.xwray.groupie.viewbinding.BindableItem
 import java.util.concurrent.TimeUnit
 
-class GroupieItem(val item: Item) : BindableItem<ItemBinding>() {
+class GroupieItemInto(val item: Item, private var handleClickItem: (String) -> Unit) : BindableItem<ItemUpperbuildBinding>() {
 
-    lateinit var handleClickItem: (String) -> Unit
+    override fun getLayout() = R.layout.item_upperbuild
 
-    override fun getLayout() = R.layout.item
-
-    override fun bind(binding: ItemBinding, position: Int) {
+    override fun bind(binding: ItemUpperbuildBinding, position: Int) {
         Picasso.get().load("${getBaseImageUrl()}/item/${item.id}.png").into(binding.itemImage)
         binding.itemName.text = item.name
         binding.itemImage.clicks()
@@ -24,6 +22,6 @@ class GroupieItem(val item: Item) : BindableItem<ItemBinding>() {
             .subscribe { handleClickItem(item.id) }
     }
 
-    override fun initializeViewBinding(view: View): ItemBinding = ItemBinding.bind(view)
+    override fun initializeViewBinding(view: View): ItemUpperbuildBinding = ItemUpperbuildBinding.bind(view)
 
 }
