@@ -140,4 +140,15 @@
     <string name="movement_item_filter2">기타 이동 관련</string>
     <string name="lolText">리그 오브 레전드</string>
     <string name="knifeWind">칼바람</string>
+    <string name="dominationText">지배</string>
+    <string name="dominationDesText">사냥감 추격 및 처치</string>
+    <string name="mainRuneText">핵심 룬</string>
+    <string name="precisionText">정밀</string>
+    <string name="precisionDesText">전설의 시작</string>
+    <string name="resolveText">결의</string>
+    <string name="resolveDesText">끈질긴 생명력</string>
+    <string name="sorceryText">마법</string>
+    <string name="sorceryDesText">강력한 파괴력</string>
+    <string name="whimsyText">영감</string>
+    <string name="whimsyDesText">비범한 능력</string>
 </resources>

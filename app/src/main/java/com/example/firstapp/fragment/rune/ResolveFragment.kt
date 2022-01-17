@@ -14,6 +14,6 @@ class ResolveFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_resolve, container, false)
+        return inflater.inflate(R.layout.fragment_rune_resolve, container, false)
     }
 }

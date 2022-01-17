@@ -6,14 +6,22 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.firstapp.R
+import com.example.firstapp.databinding.FragmentRunePrecisionBinding
 
 class PrecisionFragment : Fragment() {
+
+    private var mBinding: FragmentRunePrecisionBinding? = null
+    private val binding get() = mBinding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_precision, container, false)
+        mBinding = FragmentRunePrecisionBinding.inflate(inflater, container, false)
+
+
+
+        return binding.root
     }
 
 }
