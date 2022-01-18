@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.rune.DominationFragment"
-    android:background="@drawable/domination_bg">
+    android:background="@drawable/domination_bg"
+    tools:context=".fragment.rune.DominationFragment">
 
     <TextView
         android:id="@+id/runeNameText"
@@ -38,10 +38,22 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="35dp"
         android:text="@string/mainRuneText"
-        android:textSize="20sp"
         android:textColor="@color/white"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/runeDesText" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/dominationRecyclerView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mainRuneText" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
