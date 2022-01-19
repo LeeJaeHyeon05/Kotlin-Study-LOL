@@ -7,19 +7,12 @@ import com.xwray.groupie.databinding.BindableItem
 
 class BuildBottomItem (val tabName2: String) : BindableItem<BuildFilterBottomItemBinding>() {
 
-    interface OnClickedListener {
-        fun onClicked(item: Item, product: Product)
-    }
 
-    private val onClickListener = View.OnClickListener { OnClickedListener.onClicked(this@ProductItem, product) }
 
     override fun bind(binding: BuildFilterBottomItemBinding, position: Int) {
         with(binding){
 
        tabName = tabName2
-       filterButton.setOnClickListener {
-
-       }
 
 
         }

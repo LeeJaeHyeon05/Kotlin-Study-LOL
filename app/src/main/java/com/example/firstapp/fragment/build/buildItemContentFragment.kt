@@ -1,5 +1,7 @@
 package com.example.firstapp.fragment.build
 
+import android.view.Gravity
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
@@ -18,10 +20,22 @@ class buildItemContentFragment (val data : List<BuildFilter>): BaseFragment<Buil
 
     override fun init() {
 
-        groupLayoutManager = GridLayoutManager(context, 5).apply {
-//            spanSizeLookup = groupAdapter.spanSizeLookup
+        val handleClickFilterItem = {
+//            viewModel.toggleTag(it)
+            viewModel.removeBottomFragment()
         }
-        binding.recycleBuildSort.apply { adapter = groupAdapter
+
+        groupLayoutManager = GridLayoutManager(context, 5).apply {
+            spanSizeLookup = groupAdapter.spanSizeLookup
+        }
+        binding.recycleBuildSort.apply {
+            adapter = groupAdapter.also {groupieAdapter ->
+                groupieAdapter.setOnItemClickListener { item, view ->
+                    if(item is BuildBottomItem){
+                        handleClickFilterItem()
+                    }
+                }
+            }
             layoutManager = groupLayoutManager
         }
 

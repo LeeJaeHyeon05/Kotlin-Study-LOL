@@ -36,7 +36,7 @@ private class EventFlowImpl<T>(
     @InternalCoroutinesApi
     override suspend fun collect(collector: FlowCollector<T>) = flow
         .collect { slot ->
-            //만약 F
+
             if (!slot.markConsumed()) {
                 collector.emit(slot.value)
             }
