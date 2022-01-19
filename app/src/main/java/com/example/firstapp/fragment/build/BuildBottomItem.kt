@@ -1,15 +1,29 @@
 package com.example.firstapp.fragment.build
 
+import android.view.View
 import com.example.firstapp.R
 import com.example.firstapp.databinding.BuildFilterBottomItemBinding
-import com.example.firstapp.databinding.ItemBuildMainBinding
-import com.example.firstapp.model.mychampion.Datum
 import com.xwray.groupie.databinding.BindableItem
 
-class BuildBottomItem (val tabName: String) : BindableItem<BuildFilterBottomItemBinding>() {
+class BuildBottomItem (val tabName2: String) : BindableItem<BuildFilterBottomItemBinding>() {
 
-    override fun bind(viewBinding: BuildFilterBottomItemBinding, position: Int) {
-        viewBinding.tabName = tabName
+    interface OnClickedListener {
+        fun onClicked(item: Item, product: Product)
+    }
+
+    private val onClickListener = View.OnClickListener { OnClickedListener.onClicked(this@ProductItem, product) }
+
+    override fun bind(binding: BuildFilterBottomItemBinding, position: Int) {
+        with(binding){
+
+       tabName = tabName2
+       filterButton.setOnClickListener {
+
+       }
+
+
+        }
+
     }
 
     override fun getLayout(): Int {

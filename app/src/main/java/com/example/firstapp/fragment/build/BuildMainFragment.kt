@@ -1,5 +1,6 @@
 package com.example.firstapp.fragment.build
 
+import android.content.Intent
 import android.view.*
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
@@ -82,6 +83,6 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
     }
 
 
-
 }
+
 

@@ -1,5 +1,6 @@
 package com.example.firstapp.fragment.build
 
+import android.content.Intent
 import com.example.firstapp.R
 import com.example.firstapp.databinding.ItemBuildMainBinding
 import com.example.firstapp.model.mychampion.Datum
@@ -18,6 +19,14 @@ class BuildItem(val dataNum: Datum) : BindableItem<ItemBuildMainBinding>() {
 
     override fun bind(binding: ItemBuildMainBinding, position: Int) {
         binding.championData = dataNum
+
+        //TODO
+        // 하나님 있을때 한번 물어보자
+        binding.championImage.setOnClickListener {
+            val intent = Intent(binding.championImage.context, BuildDetailActivity::class.java)
+            binding.championImage.context?.startActivity(intent)
+
+        }
     }
 
     override fun getLayout(): Int {
