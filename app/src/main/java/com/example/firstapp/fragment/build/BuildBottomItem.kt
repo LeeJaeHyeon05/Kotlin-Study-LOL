@@ -5,16 +5,19 @@ import com.example.firstapp.R
 import com.example.firstapp.databinding.BuildFilterBottomItemBinding
 import com.xwray.groupie.databinding.BindableItem
 
-class BuildBottomItem (val tabName2: String) : BindableItem<BuildFilterBottomItemBinding>() {
+class BuildBottomItem (val buildFilteritem: BuildFilter) : BindableItem<BuildFilterBottomItemBinding>() {
+
 
 
 
     override fun bind(binding: BuildFilterBottomItemBinding, position: Int) {
         with(binding){
+            buildFilter = buildFilteritem
 
-       tabName = tabName2
-
-
+            when (buildFilteritem.selected) {
+                true -> binding.filterButton.visibility = View.GONE
+                false -> binding.filterButton.visibility = View.VISIBLE
+            }
         }
 
     }

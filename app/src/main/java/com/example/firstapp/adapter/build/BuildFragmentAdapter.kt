@@ -4,7 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.fragment.build.BuildFilter
-import com.example.firstapp.fragment.build.buildItemContentFragment
+import com.example.firstapp.fragment.build.BuildItemContentFragment
+import kotlinx.coroutines.flow.StateFlow
 
 /**
  * FirstApp
@@ -15,15 +16,20 @@ import com.example.firstapp.fragment.build.buildItemContentFragment
  * 빌드 바텀시트의 뷰페이저 어뎁터이다.
  */
 
-//생성자가 들어가야하는 이유 알아야해
-class BuildFragmentAdapter(BuildGroupData:  ArrayList<List<BuildFilter>>, fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
 
 
-    val fragmentList = BuildGroupData.map{buildItemContentFragment(it)}
+
+class BuildFragmentAdapter(fragmentSize: Int, fragmentActivity: FragmentActivity) : FragmentStateAdapter(fragmentActivity) {
+
+
+
+    //add BuildItemContentFragment for fragmentSize
+    val fragmentList = (1..fragmentSize).map {BuildItemContentFragment(it)}
 
 
 
     override fun getItemCount() = fragmentList.size
+
 
     override fun createFragment(position: Int): Fragment  = fragmentList[position]
 }

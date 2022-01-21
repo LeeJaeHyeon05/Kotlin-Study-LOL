@@ -9,8 +9,6 @@ import androidx.fragment.app.activityViewModels
 import com.example.firstapp.R
 import com.example.firstapp.adapter.build.BuildFragmentAdapter
 import com.example.firstapp.databinding.BuildFiterBottomBinding
-import com.example.firstapp.fragment.build.BuildFilter
-import com.example.firstapp.fragment.build.buildItemContentFragment
 
 
 import com.example.firstapp.model.BuildViewModel
@@ -51,14 +49,8 @@ class BuildFilterBottomSheet : BottomSheetDialogFragment() {
 
     private fun initLayout() {
 
-
-
-        buildFragmentAdapter  = BuildFragmentAdapter(buildViewModel.totalItems, this.activity?: this.requireActivity())
+        buildFragmentAdapter  = BuildFragmentAdapter(buildViewModel.totalItem.size, this.activity?: this.requireActivity())
         binding.viewPager2.adapter = buildFragmentAdapter
-
-
-
-
         TabLayoutMediator(binding.tabLayout2,binding.viewPager2){tab,position->
             tab.text = tabData[position]
         }.attach()

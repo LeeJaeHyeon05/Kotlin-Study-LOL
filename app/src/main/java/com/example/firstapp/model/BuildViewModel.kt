@@ -3,10 +3,13 @@ package com.example.firstapp.model
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.firstapp.data.repository.di.BuildRepository
+import com.example.firstapp.databinding.BuildFilterBottomItemBinding
+import com.example.firstapp.fragment.build.BuildBottomItem
 import com.example.firstapp.fragment.build.BuildFilter
 import com.example.firstapp.fragment.build.BuildItem
 import com.example.firstapp.util.MutableEventFlow
 import com.example.firstapp.util.asEventFlow
+import com.xwray.groupie.databinding.BindableItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -17,9 +20,9 @@ class BuildViewModel @Inject constructor(
     private val buildRepository: BuildRepository
 ) : ViewModel() {
 
-    private lateinit var originalChampionList : List<BuildItem>
+    private lateinit var originalChampionList: List<BuildItem>
 
-    private val _ChampionList  = MutableStateFlow<List<BuildItem>>(emptyList())
+    private val _ChampionList = MutableStateFlow<List<BuildItem>>(emptyList())
     val mChampionList = _ChampionList
 
 
@@ -31,69 +34,93 @@ class BuildViewModel @Inject constructor(
     val eventFlow = _eventFlow.asEventFlow()
 
 
+    //todo 해당 viewmodel에서 stateflow를 하나 만든다.
 
-    val commonItems: ArrayList<BuildFilter> = arrayListOf(
-        BuildFilter("모두", "all"),
-        BuildFilter("무료", "free"),
-        BuildFilter("버프", "buff"),
-        BuildFilter("너프", "nerf"),
-        BuildFilter("즐겨찾기", "free"),
+
+    private val _commonItemFlow = MutableStateFlow<List<BuildBottomItem>>(
+        arrayListOf(
+            BuildBottomItem(BuildFilter("모두", "all")),
+            BuildBottomItem(BuildFilter("무료", "free")),
+            BuildBottomItem(BuildFilter("버프", "buff")),
+            BuildBottomItem(BuildFilter("너프", "nerf")),
+            BuildBottomItem(BuildFilter("즐겨찾기", "free")),
+        )
+    )
+    val commonItemFlow = _commonItemFlow.asStateFlow()
+
+    private val _roleItemFlow = MutableStateFlow<List<BuildBottomItem>>(
+        arrayListOf(
+            BuildBottomItem(BuildFilter("탑", "Top")),
+            BuildBottomItem(BuildFilter("미드", "Mid")),
+            BuildBottomItem(BuildFilter("마법사", "MarksMan")),
+            BuildBottomItem(BuildFilter("탱커", "MarksMan")),
+            BuildBottomItem(BuildFilter("원거리 딜러", "MarksMan")),
+            BuildBottomItem(BuildFilter("서포터", "Support")),
+        )
     )
 
-    val roleItems: ArrayList<BuildFilter> = arrayListOf(
-        BuildFilter("탑", "Top"),
-        BuildFilter("정글", "jungle"),
-        BuildFilter("미드", "Mid"),
-        BuildFilter("원거리딜러", "MarksMan"),
-        BuildFilter("서포터", "Support")
+    val roleItemFlow : StateFlow<List<BuildBottomItem>> =  _roleItemFlow
+
+    private val _roleGroupItemFlow = MutableStateFlow<List<BuildBottomItem>>(
+        arrayListOf(
+            BuildBottomItem(BuildFilter("암살자", "Top")),
+            BuildBottomItem(BuildFilter("전사", "Mid")),
+            BuildBottomItem(BuildFilter("마법사", "MarksMan")),
+            BuildBottomItem(BuildFilter("탱커", "MarksMan")),
+            BuildBottomItem(BuildFilter("원거리 딜러", "MarksMan")),
+            BuildBottomItem(BuildFilter("서포터", "Support")),
+        )
     )
 
-    val roleGroupItems : ArrayList<BuildFilter> = arrayListOf(
-        BuildFilter("암살자", "Top"),
-        BuildFilter("전사", "Mid"),
-        BuildFilter("마법사", "MarksMan"),
-        BuildFilter("탱커", "MarksMan"),
-        BuildFilter("원거리 딜러", "MarksMan"),
-        BuildFilter("서포터", "Support")
+    val roleGroupItemFlow = _roleGroupItemFlow.asStateFlow()
+
+    private val _locationItemFlow = MutableStateFlow<List<BuildBottomItem>>(
+        arrayListOf(
+            BuildBottomItem(BuildFilter("준비", "준비중")),
+        )
     )
 
-    val locationItems : ArrayList<BuildFilter> = arrayListOf(
-        BuildFilter("준비" ,"준비중")
-    )
+    val locationItemFlow = _locationItemFlow.asStateFlow()
 
-    val totalItems  = arrayListOf<List<BuildFilter>>(commonItems,roleItems,roleGroupItems,locationItems)
-
-
-
+    val totalItem = arrayListOf(commonItemFlow,roleItemFlow,roleGroupItemFlow, locationItemFlow  )
 
     fun getChampion() {
         viewModelScope.launch {
             buildRepository.getChampions(
-                    onSuccess = {
+                onSuccess = {
 
-                    },
-                    onError = {
+                },
+                onError = {
 
-                    },
-                    onException = {
+                },
+                onException = {
 
-                    }
+                }
 
-            ).collect {Champion ->
+            ).collect { Champion ->
                 originalChampionList = Champion.data.values.toList()
                     .sortedBy { it.name }
-                    .map{ BuildItem(it) }
+                    .map { BuildItem(it) }
 
                 _ChampionList.value = originalChampionList
             }
         }
     }
 
+    fun changeColor(size : Int) = viewModelScope.launch {
+//        val list = totalItem.get(size)
+//        list.emit(list.value)
+
+    }
+
+
+
     fun setSearchQuery(searchQuery: String) = viewModelScope.launch {
         _searchQuery.value = searchQuery
-        _ChampionList.value = originalChampionList.filter {chapion->
-            chapion.dataNum.name.contains(_searchQuery.value.toString())}
+        _ChampionList.value = originalChampionList.filter { chapion ->
+            chapion.dataNum.name.contains(_searchQuery.value.toString())
         }
+    }
 
     fun removeBottomFragment() {
         event(Event.removeBottomFragment("dummy"))
@@ -105,6 +132,8 @@ class BuildViewModel @Inject constructor(
             _eventFlow.emit(event)
         }
     }
+
+
 
 
     sealed class Event {

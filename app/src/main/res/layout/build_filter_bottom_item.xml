@@ -5,8 +5,8 @@
 
     <data>
 <variable
-    name="tabName"
-    type="String" />
+    name="buildFilter"
+    type="com.example.firstapp.fragment.build.BuildFilter" />
 
     </data>
 
@@ -22,12 +22,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/round_build"
-            android:backgroundTint="#9C9C9C"
+            android:backgroundTint="@{buildFilter.selected ? @color/colorAccent : @color/noSelectColor}"
             android:paddingLeft="12dp"
             android:paddingTop="8dp"
             android:paddingRight="12dp"
             android:paddingBottom="8dp"
-            android:text="@{tabName}"
+            android:text="@{buildFilter.name}"
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
