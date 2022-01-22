@@ -3,7 +3,9 @@ package com.example.firstapp.data.repository.di
 import android.content.Context
 import com.example.firstapp.data.api.FirstApi
 import com.example.firstapp.data.api.TierData
+import com.example.firstapp.data.db.dao.ItemDao
 import com.example.firstapp.data.repository.ChampionRepository
+import com.example.firstapp.data.repository.ItemRepository
 import com.example.firstapp.data.repository.TierRepository
 import dagger.Module
 import dagger.Provides
@@ -29,5 +31,11 @@ class RepositoryModule {
     @Singleton
     fun provideTierRepository(tierData: TierData, context: Context):TierRepository{
         return TierRepository(tierData, context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideItemRepository(itemDao: ItemDao): ItemRepository {
+        return ItemRepository(itemDao)
     }
 }

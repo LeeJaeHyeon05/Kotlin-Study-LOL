@@ -2,7 +2,6 @@ package com.example.firstapp.di
 
 import android.content.Context
 import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepository
-import com.example.firstapp.data.repository.ItemRepository
 import com.example.firstapp.resource.ResourceProvider
 import dagger.Module
 import dagger.Provides
@@ -31,12 +30,6 @@ class AppModule {
     @Provides
     fun provideResourceProvider(@ApplicationContext context: Context): ResourceProvider {
         return ResourceProvider(context)
-    }
-
-    @Provides
-    @Singleton
-    fun provideItemRepository(itemDao: com.example.firstapp.data.db.dao.ItemDao): ItemRepository {
-        return ItemRepository(itemDao)
     }
 
     @Provides
