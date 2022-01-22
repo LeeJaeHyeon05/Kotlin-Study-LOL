@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
         <variable
@@ -7,17 +8,11 @@
             type="com.example.firstapp.fragment.build.detail.mybuild.addmybuild.AddMyBuildViewModel" />
     </data>
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragment.build.detail.mybuild.addmybuild.AddMyBuildFragment"
         android:background="@color/white">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -149,9 +144,11 @@
                     android:id="@+id/skillBuildTable">
                     <TableRow
                         android:id="@+id/QRow">
+
                         <TextView
                             style="@style/SkillBuildTextView"
-                            android:text="Q"/>
+                            android:layout_height="19dp"
+                            android:text="Q" />
                         <TextView
                             style="@style/SkillBuildTextView" />
                         <TextView
@@ -340,7 +337,5 @@
                     android:text="@={addMyBuildViewModel.myBuildNoteET}"/>
 
             </LinearLayout>
-        </LinearLayout>
-
     </FrameLayout>
 </layout>

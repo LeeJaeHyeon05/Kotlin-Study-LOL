@@ -93,4 +93,9 @@ class AddMyBuildFragment : Fragment() {
 
         (activity as BuildDetailActivity).closeAddMyBuild()
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding.unbind()
+    }
 }
