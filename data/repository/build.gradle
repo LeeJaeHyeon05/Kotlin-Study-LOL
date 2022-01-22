@@ -34,6 +34,7 @@ android {
 dependencies {
 
     implementation(project(":data:api"))
+    implementation(project(":data:db"))
     implementation(project(":model"))
 
 

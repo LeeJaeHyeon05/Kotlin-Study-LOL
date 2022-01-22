@@ -2,7 +2,7 @@ package com.example.firstapp.di
 
 import android.content.Context
 import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepository
-import com.example.firstapp.repository.ItemRepository
+import com.example.firstapp.data.repository.ItemRepository
 import com.example.firstapp.resource.ResourceProvider
 import dagger.Module
 import dagger.Provides
