@@ -1,7 +1,10 @@
-package com.example.firstapp.model
+package com.example.firstapp.viewmodel
 
 import androidx.lifecycle.*
 import com.example.firstapp.groupie.GroupieItem
+import com.example.firstapp.model.Item
+import com.example.firstapp.model.ItemGold
+import com.example.firstapp.model.ItemImage
 import com.example.firstapp.repository.ItemRepository
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

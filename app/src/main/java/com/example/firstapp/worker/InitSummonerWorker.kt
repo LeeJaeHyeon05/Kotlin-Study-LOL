@@ -5,7 +5,7 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.firstapp.R
-import com.example.firstapp.database.dao.SummonerDao
+import com.example.firstapp.data.db.dao.SummonerDao
 import com.example.firstapp.eventbus.EventBus
 import com.example.firstapp.eventbus.InitDataEvent
 import com.example.firstapp.model.Summoner
@@ -21,9 +21,9 @@ import timber.log.Timber
 
 @HiltWorker
 class InitSummonerWorker @AssistedInject constructor(
-        @Assisted appContext: Context,
-        @Assisted workerParams: WorkerParameters,
-        private val summonerDao: SummonerDao,
+    @Assisted appContext: Context,
+    @Assisted workerParams: WorkerParameters,
+    private val summonerDao: com.example.firstapp.data.db.dao.SummonerDao,
 ) : CoroutineWorker(appContext, workerParams) {
 
     private var cachedSummonerCount: Int = 0

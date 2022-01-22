@@ -10,7 +10,7 @@ import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentItemBinding
 import com.example.firstapp.fragment.bottomsheet.ItemDetailBottomSheet
 import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet
-import com.example.firstapp.model.ItemViewModel
+import com.example.firstapp.viewmodel.ItemViewModel
 import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber

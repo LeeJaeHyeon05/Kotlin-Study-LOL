@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.example.firstapp.R
 import com.example.firstapp.databinding.ItemSortBottomSheetContentBinding
-import com.example.firstapp.model.ItemSortType
-import com.example.firstapp.model.ItemViewModel
+import com.example.firstapp.viewmodel.ItemSortType
+import com.example.firstapp.viewmodel.ItemViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -1,4 +1,4 @@
-package com.example.firstapp.database
+package com.example.firstapp.data.db
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson

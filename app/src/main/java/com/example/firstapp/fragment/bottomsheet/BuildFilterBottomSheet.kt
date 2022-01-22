@@ -11,7 +11,6 @@ import com.example.firstapp.databinding.BuildFiterBottomBinding
 
 
 import com.example.firstapp.fragment.build.BuildViewModel
-import com.example.firstapp.model.ItemViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
 class BuildFilterBottomSheet : BottomSheetDialogFragment() {

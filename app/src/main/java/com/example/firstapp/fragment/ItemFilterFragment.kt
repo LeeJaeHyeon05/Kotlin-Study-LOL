@@ -14,7 +14,7 @@ import com.example.firstapp.databinding.FragmentItemFilterBinding
 import com.example.firstapp.groupie.GroupieItemFilter
 import com.example.firstapp.groupie.GroupieItemFilterHeader
 import com.example.firstapp.model.ItemFilter
-import com.example.firstapp.model.ItemViewModel
+import com.example.firstapp.viewmodel.ItemViewModel
 import com.xwray.groupie.GroupieAdapter
 import com.xwray.groupie.Section
 import com.xwray.groupie.groupiex.plusAssign
