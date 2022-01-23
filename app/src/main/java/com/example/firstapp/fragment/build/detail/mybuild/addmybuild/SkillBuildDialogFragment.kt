@@ -10,6 +10,7 @@ import android.widget.RadioButton
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.viewModels
 import com.example.firstapp.databinding.FragmentSkillBuildDialogBinding
+import timber.log.Timber
 
 class SkillBuildDialogFragment : DialogFragment(){
 
@@ -21,7 +22,7 @@ class SkillBuildDialogFragment : DialogFragment(){
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSkillBuildDialogBinding.inflate(inflater, container, false)
+        binding = FragmentSkillBuildDialogBinding.inflate(layoutInflater)
 
         val bindingList = listOf(
             binding.skillLv1,
@@ -50,19 +51,40 @@ class SkillBuildDialogFragment : DialogFragment(){
             dismiss()
         }
 
-        skillBuildDialogViewModel.skillNum.observe(viewLifecycleOwner){ num ->
-            bindingList.forEachIndexed { index, it ->
-                it.setOnCheckedChangeListener { radioGroup, _ ->
-                    for (i in 0 until radioGroup.childCount){
-                        val rb = radioGroup.getChildAt(i) as RadioButton
-                        if (rb.isChecked) {
-                            skillBuildDialogViewModel.changeSkillNum(index + 1)
-                            rb.text = "$num"
-                        } else {
-                            rb.text = ""
+        skillBuildDialogViewModel.skillTree.observe(viewLifecycleOwner) { skillTree ->
+            skillTree.forEachIndexed { index: Int, skill: String ->
+                val rg = bindingList[index]
+                for (i in 0 until rg.childCount) {
+                    val rb = rg.getChildAt(i) as RadioButton
+                    if(rb.isChecked){
+                        val skillNum = index + 1
+                        rb.text = "$skillNum"
+                    } else {
+                        rb.text = ""
+                    }
+                }
+            }
+        }
+
+        bindingList.forEachIndexed { index, it ->
+            it.setOnCheckedChangeListener { radioGroup, it ->
+                var skill = ""
+                for (i in 0 until radioGroup.childCount) {
+                    val rb = radioGroup.getChildAt(i) as RadioButton
+                    if (rb.isChecked) {
+                        when (i) {
+                            0 -> skill = "Q"
+                            1 -> skill = "W"
+                            2 -> skill = "E"
+                            3 -> skill = "R"
                         }
                     }
                 }
+                Timber.d(index.toString())
+                Timber.d(skill)
+                skillBuildDialogViewModel.changeSkillTree(index, skill)
+                val a = skillBuildDialogViewModel.skillTree.value
+                Timber.d(a.toString())
             }
         }
 
