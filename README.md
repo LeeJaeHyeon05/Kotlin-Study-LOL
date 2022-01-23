@@ -21,7 +21,7 @@ https://gather.town/app/DV5g4hlp5HkDrejJ/Kotlin%20study
 [First App 클론 코딩 대상]
 
 https://play.google.com/store/apps/details?id=com.wuochoang.lolegacy&hl=ko&gl=US
-
+https://apkpure.com/lol-wild-rift-ultimate-app/com.wuochoang.lolegacy
 
 [진행 방식]
 
