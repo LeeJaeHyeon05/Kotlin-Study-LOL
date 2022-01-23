@@ -1,9 +1,10 @@
 package com.example.firstapp.util
 
-import android.content.Context
-import androidx.room.Room
-import com.example.firstapp.database.AppDatabase
-import kotlinx.coroutines.*
+import com.example.firstapp.data.db.dao.ChampionDao
+import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
 
 
 /**
@@ -13,12 +14,12 @@ import kotlinx.coroutines.*
  **/
 
 // 영문 챔피언명을 한글로 바꾸기
-suspend fun translateToKr(database: AppDatabase, englishName:String):String?{
+suspend fun translateToKr(championDao: ChampionDao, englishName:String):String?{
     // 코루틴 결과를 반환하기 위해 Deferred를 사용하여 코루틴 생성
     var deffered : Deferred<String>
     coroutineScope {
         deffered = async(Dispatchers.IO) {
-            val championName_kr = database.championDao().getChampKrName(englishName)
+            val championName_kr = championDao.getChampKrName(englishName)
             return@async championName_kr
         }
     }
@@ -26,11 +27,11 @@ suspend fun translateToKr(database: AppDatabase, englishName:String):String?{
 }
 
 // 한글 챔피언명을 영문으로 바꾸기
-suspend fun translateToEn(database: AppDatabase, koreanName:String):String?{
+suspend fun translateToEn(championDao: ChampionDao, koreanName:String):String?{
     var deffered : Deferred<String>
     coroutineScope {
         deffered = async(Dispatchers.IO) {
-            val championName_en = database.championDao().getChampEnName(koreanName)
+            val championName_en = championDao.getChampEnName(koreanName)
             return@async championName_en
         }
     }

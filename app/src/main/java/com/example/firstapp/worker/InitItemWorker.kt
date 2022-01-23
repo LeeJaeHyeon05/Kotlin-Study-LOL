@@ -5,7 +5,7 @@ import androidx.hilt.work.HiltWorker
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.firstapp.R
-import com.example.firstapp.database.dao.ItemDao
+import com.example.firstapp.data.db.dao.ItemDao
 import com.example.firstapp.eventbus.EventBus
 import com.example.firstapp.eventbus.InitDataEvent
 import com.example.firstapp.model.Item
@@ -21,9 +21,9 @@ import timber.log.Timber
 
 @HiltWorker
 class InitItemWorker @AssistedInject constructor(
-        @Assisted appContext: Context,
-        @Assisted workerParams: WorkerParameters,
-        private val itemDao: ItemDao,
+    @Assisted appContext: Context,
+    @Assisted workerParams: WorkerParameters,
+    private val itemDao: com.example.firstapp.data.db.dao.ItemDao,
 ) : CoroutineWorker(appContext, workerParams) {
 
     private var cachedItemCount: Int = 0

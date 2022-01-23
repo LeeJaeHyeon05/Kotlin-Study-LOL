@@ -8,15 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.room.Room
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.R
-import com.example.firstapp.data.api.TierData
-import com.example.firstapp.database.AppDatabase
+import com.example.firstapp.data.db.dao.ChampionDao
+import com.example.firstapp.data.db.dao.ChampionTierDao
 import com.example.firstapp.databinding.FragmentTierBinding
-import com.example.firstapp.model.TierViewModel
 import com.example.firstapp.model.tier.TierChamp
+import com.example.firstapp.viewmodel.TierViewModel
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +22,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -39,7 +36,10 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
     private val tierViewModel: TierViewModel by activityViewModels()
 
     @Inject
-    lateinit var database: AppDatabase
+    lateinit var championDao: ChampionDao
+
+    @Inject
+    lateinit var championTierDao: ChampionTierDao
 
     @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreateView(
@@ -103,7 +103,7 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
     // 그렇기 때문에 Fragment에서 데이터 정의 및 정리를 실시한다
     private fun separateTierDataForEachLine(){
         CoroutineScope(Dispatchers.IO).launch {
-            val tierData = database.championTierDao().selectAll()
+            val tierData = championTierDao.selectAll()
 
             val topTierData = ArrayList<TierChamp>()
             val jungleTierData = ArrayList<TierChamp>()

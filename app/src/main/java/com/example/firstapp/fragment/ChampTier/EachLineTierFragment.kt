@@ -11,20 +11,19 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.room.Room
 import com.example.firstapp.R
 import com.example.firstapp.adapter.ChampTier.Tier1Adapter
-import com.example.firstapp.database.AppDatabase
+import com.example.firstapp.data.db.dao.ChampionDao
 import com.example.firstapp.databinding.FragmentTierMidBinding
-import com.example.firstapp.model.TierViewModel
 import com.example.firstapp.model.tier.TierChamp
+import com.example.firstapp.viewmodel.TierViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class EachLineTierFragment(val position: Int) : Fragment() {
     @Inject
-    lateinit var database: AppDatabase
+    lateinit var championDao: ChampionDao
 
     // activityViewModels: Activity의 viewModel에 접근하도록 한다
     private val tierViewModel: TierViewModel by activityViewModels()
@@ -53,11 +52,11 @@ class EachLineTierFragment(val position: Int) : Fragment() {
         binding.tier5Recycler.layoutManager =
             GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
 
-        val firstTierAdapter = Tier1Adapter(requireContext(), database)
-        val secondTierAdapter = Tier1Adapter(requireContext(), database)
-        val thirdTierAdapter = Tier1Adapter(requireContext(), database)
-        val forthTierAdapter = Tier1Adapter(requireContext(), database)
-        val fifthTierAdapter = Tier1Adapter(requireContext(), database)
+        val firstTierAdapter = Tier1Adapter(requireContext(), championDao)
+        val secondTierAdapter = Tier1Adapter(requireContext(), championDao)
+        val thirdTierAdapter = Tier1Adapter(requireContext(), championDao)
+        val forthTierAdapter = Tier1Adapter(requireContext(), championDao)
+        val fifthTierAdapter = Tier1Adapter(requireContext(), championDao)
 
         binding.tier1Recycler.let {
             it.adapter = firstTierAdapter

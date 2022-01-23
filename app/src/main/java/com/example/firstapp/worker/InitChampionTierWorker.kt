@@ -7,7 +7,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.firstapp.R
 import com.example.firstapp.data.repository.TierRepository
-import com.example.firstapp.database.dao.ChampionTierDao
+import com.example.firstapp.data.db.dao.ChampionTierDao
 import com.example.firstapp.eventbus.EventBus
 import com.example.firstapp.eventbus.InitDataEvent
 import com.example.firstapp.model.ApiResponse
@@ -18,10 +18,10 @@ import timber.log.Timber
 
 @HiltWorker
 class InitChampionTierWorker @AssistedInject constructor(
-        @Assisted appContext: Context,
-        @Assisted workerParams: WorkerParameters,
-        private val tierRepository: TierRepository,
-        private val championTierDao: ChampionTierDao,
+    @Assisted appContext: Context,
+    @Assisted workerParams: WorkerParameters,
+    private val tierRepository: TierRepository,
+    private val championTierDao: com.example.firstapp.data.db.dao.ChampionTierDao,
 ) : CoroutineWorker(appContext, workerParams) {
 
     private var cachedSummonerCount: Int = 0

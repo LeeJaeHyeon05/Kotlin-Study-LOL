@@ -1,6 +1,6 @@
-package com.example.firstapp.repository
+package com.example.firstapp.data.repository
 
-import com.example.firstapp.database.dao.ItemDao
+import com.example.firstapp.data.db.dao.ItemDao
 import com.example.firstapp.model.Item
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

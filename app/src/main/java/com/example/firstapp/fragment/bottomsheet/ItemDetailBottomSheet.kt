@@ -13,9 +13,9 @@ import com.example.firstapp.databinding.ItemDetailBottomSheetContentBinding
 import com.example.firstapp.groupie.GroupieItemFrom
 import com.example.firstapp.groupie.GroupieItemInto
 import com.example.firstapp.model.Item
-import com.example.firstapp.model.ItemViewModel
 import com.example.firstapp.util.getBaseImageUrl
 import com.example.firstapp.util.getItemDescriptionToHtml
+import com.example.firstapp.viewmodel.ItemViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken

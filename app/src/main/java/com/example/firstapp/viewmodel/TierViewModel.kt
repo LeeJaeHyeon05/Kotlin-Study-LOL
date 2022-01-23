@@ -1,17 +1,12 @@
-package com.example.firstapp.model
+package com.example.firstapp.viewmodel
 
-import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.*
-import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.firstapp.data.repository.TierRepository
-import com.example.firstapp.database.AppDatabase
+import com.example.firstapp.model.ApiResponse
 import com.example.firstapp.model.tier.TierChamp
 import com.example.firstapp.model.tier.TierLine
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 

@@ -2,14 +2,13 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
-
 }
 
 android {
     compileSdk 31
 
     defaultConfig {
-        minSdk 16
+        minSdk 21
         targetSdk 31
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -45,14 +44,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
-    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-    implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"
-
-    // skydoves
-    implementation "com.github.skydoves:sandwich:1.2.1"
-    implementation "com.github.skydoves:whatif:1.1.0"
-
-    // Jsoup
-    implementation "org.jsoup:jsoup:$jsoup_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "com.google.code.gson:gson:$gson_version"
 }
