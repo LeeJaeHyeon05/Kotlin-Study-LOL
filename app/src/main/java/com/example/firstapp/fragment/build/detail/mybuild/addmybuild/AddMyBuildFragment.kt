@@ -2,6 +2,8 @@ package com.example.firstapp.fragment.build.detail.mybuild.addmybuild
 
 import android.os.Bundle
 import android.view.*
+import android.widget.TextView
+import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -18,6 +20,7 @@ class AddMyBuildFragment : Fragment() {
 
     private val addMyBuildViewModel : AddMyBuildViewModel by viewModels()
     private val detailMyBuildViewModel : DetailMyBuildViewModel by activityViewModels()
+    private val skillBuildDialogViewModel : SkillBuildDialogViewModel by activityViewModels()
     private lateinit var binding: FragmentAddMyBuildBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +62,42 @@ class AddMyBuildFragment : Fragment() {
     }
 
     private fun setObservers() {
+        skillBuildDialogViewModel.isSaved.observe(viewLifecycleOwner){
+            if(it){
+                setSkillTree()
+            }
+        }
+    }
 
+    private fun setSkillTree() {
+        listOf(
+            binding.QRow,
+            binding.WRow,
+            binding.ERow,
+            binding.RRow
+        ).forEach {
+            for(i in 1 until it.childCount){
+                (it.getChildAt(i) as TextView).text = ""
+            }
+        }
+
+        skillBuildDialogViewModel.skillTree.value?.forEachIndexed { index, skill ->
+            val num = index + 1
+            when (skill) {
+                "Q" -> {
+                    (binding.QRow.getChildAt(num) as TextView).text = "$num"
+                }
+                "W" -> {
+                    (binding.WRow.getChildAt(num) as TextView).text = "$num"
+                }
+                "E" -> {
+                    (binding.ERow.getChildAt(num) as TextView).text = "$num"
+                }
+                "R" -> {
+                    (binding.RRow.getChildAt(num) as TextView).text = "$num"
+                }
+            }
+        }
     }
 
     private fun setFunctions() {
@@ -80,14 +118,15 @@ class AddMyBuildFragment : Fragment() {
 //        -> 소환사 주문 Image 2개
 //        -> 아이템 + 장신구 이미지 7개
 //        -> 새로운 아이템 카테고리 RV
-//        -> 스킬 순서
+//        * 스킬 순서
 //        -> 룬
 //        * 빌드 노트
         val newBuild = MyBuild(
-            0,
-            "champion name",
-            binding.myBuildNameET.text.toString(),
-            binding.myBuildNoteET.text.toString()
+            id = 0,
+            champion = "champion name",
+            name = binding.myBuildNameET.text.toString(),
+            skillTree = skillBuildDialogViewModel.skillTree.value,
+            notes = binding.myBuildNoteET.text.toString()
         )
         addMyBuildViewModel.saveAddBuild(newBuild)
 

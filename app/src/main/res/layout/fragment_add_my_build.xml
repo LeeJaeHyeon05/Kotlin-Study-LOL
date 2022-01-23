@@ -193,8 +193,10 @@
                         <TextView
                             style="@style/SkillBuildTextView"
                             android:text="W"/>
+
                         <TextView
-                            style="@style/SkillBuildTextView" />
+                            style="@style/SkillBuildTextView"
+                            android:layout_height="match_parent" />
                         <TextView
                             style="@style/SkillBuildTextView" />
                         <TextView
@@ -236,8 +238,11 @@
                         <TextView
                             style="@style/SkillBuildTextView"
                             android:text="E"/>
+
                         <TextView
-                            style="@style/SkillBuildTextView" />
+                            style="@style/SkillBuildTextView"
+                            android:layout_width="13dp"
+                            android:layout_height="19dp" />
                         <TextView
                             style="@style/SkillBuildTextView" />
                         <TextView

@@ -7,15 +7,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.example.firstapp.databinding.FragmentSkillBuildDialogBinding
-import timber.log.Timber
 
 class SkillBuildDialogFragment : DialogFragment(){
 
     lateinit var binding: FragmentSkillBuildDialogBinding
-    private val skillBuildDialogViewModel : SkillBuildDialogViewModel by viewModels()
+    private val skillBuildDialogViewModel : SkillBuildDialogViewModel by activityViewModels()
+    private var bindingList = listOf<RadioGroup>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,8 +24,9 @@ class SkillBuildDialogFragment : DialogFragment(){
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSkillBuildDialogBinding.inflate(layoutInflater)
+        skillBuildDialogViewModel.editSkillTree()
 
-        val bindingList = listOf(
+        bindingList = listOf(
             binding.skillLv1,
             binding.skillLv2,
             binding.skillLv3,
@@ -45,33 +47,24 @@ class SkillBuildDialogFragment : DialogFragment(){
             binding.skillLv18,
         )
 
+        setRadioButtonFunction()
+        observeViewModel()
+
         binding.skillBuildCancel.setOnClickListener { dismiss() }
         binding.skillBuildConfirm.setOnClickListener {
-
+            skillBuildDialogViewModel.saveSkillTree()
             dismiss()
         }
 
-        skillBuildDialogViewModel.skillTree.observe(viewLifecycleOwner) { skillTree ->
-            skillTree.forEachIndexed { index: Int, skill: String ->
-                val rg = bindingList[index]
-                for (i in 0 until rg.childCount) {
-                    val rb = rg.getChildAt(i) as RadioButton
-                    if(rb.isChecked){
-                        val skillNum = index + 1
-                        rb.text = "$skillNum"
-                    } else {
-                        rb.text = ""
-                    }
-                }
-            }
-        }
+        return binding.root
+    }
 
+    private fun setRadioButtonFunction() {
         bindingList.forEachIndexed { index, it ->
-            it.setOnCheckedChangeListener { radioGroup, it ->
+            it.setOnCheckedChangeListener { radioGroup, _ ->
                 var skill = ""
                 for (i in 0 until radioGroup.childCount) {
-                    val rb = radioGroup.getChildAt(i) as RadioButton
-                    if (rb.isChecked) {
+                    if ((radioGroup.getChildAt(i) as RadioButton).isChecked) {
                         when (i) {
                             0 -> skill = "Q"
                             1 -> skill = "W"
@@ -80,15 +73,28 @@ class SkillBuildDialogFragment : DialogFragment(){
                         }
                     }
                 }
-                Timber.d(index.toString())
-                Timber.d(skill)
                 skillBuildDialogViewModel.changeSkillTree(index, skill)
-                val a = skillBuildDialogViewModel.skillTree.value
-                Timber.d(a.toString())
             }
         }
+    }
 
-        return binding.root
+    private fun observeViewModel() {
+        skillBuildDialogViewModel.skillTree.observe(viewLifecycleOwner) { skillTree ->
+            skillTree.forEachIndexed { index: Int, skill: String ->
+                val rg = bindingList[index]
+                for (i in 0 until rg.childCount) {
+                    val rb = rg.getChildAt(i) as RadioButton
+                    rb.text = ""
+                }
+                val num = index + 1
+                when(skill){
+                    "Q" -> (rg.getChildAt(0) as RadioButton).text = "$num"
+                    "W" -> (rg.getChildAt(1) as RadioButton).text = "$num"
+                    "E" -> (rg.getChildAt(2) as RadioButton).text = "$num"
+                    "R" -> (rg.getChildAt(3) as RadioButton).text = "$num"
+                }
+            }
+        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

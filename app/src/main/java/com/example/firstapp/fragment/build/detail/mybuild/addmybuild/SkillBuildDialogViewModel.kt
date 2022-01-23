@@ -10,9 +10,13 @@ class SkillBuildDialogViewModel : ViewModel() {
     private val _skillTree = MutableLiveData<MutableList<String>>()
     val skillTree: LiveData<MutableList<String>> get() = _skillTree
 
+    private val _isSaved = MutableLiveData<Boolean>()
+    val isSaved: LiveData<Boolean> get() = _isSaved
+
     fun changeSkillTree(index: Int, skill: String){
         val list = _skillTree.value
 
+        //첫 스킬 추가 시
         if (list == null) {
             val newList = mutableListOf(skill)
             _skillTree.value = newList
@@ -20,15 +24,24 @@ class SkillBuildDialogViewModel : ViewModel() {
         }
 
         if(list != null) {
+            //새로운 스킬 추가 시
             if(index == list.size){
                 list.add(skill)
                 _skillTree.value = list!!
-                Timber.d("done null1")
-            } else if(index < list.size) {
+            }
+            //기존 스킬 변경 시
+            else if(index < list.size) {
                 list[index] = skill
                 _skillTree.value = list!!
-                Timber.d("done null2")
             }
         }
+    }
+
+    fun saveSkillTree(){
+        _isSaved.value = true
+    }
+
+    fun editSkillTree(){
+        _isSaved.value = false
     }
 }

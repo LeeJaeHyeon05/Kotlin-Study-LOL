@@ -40,15 +40,6 @@
         <item name="android:layout_height">18dp</item>
         <item name="android:layout_margin">0.8dp</item>
     </style>
-    <style name="EditSkillBuildTextView">
-        <item name="android:background">#424242</item>
-        <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_width">25dp</item>
-        <item name="android:layout_height">25dp</item>
-        <item name="android:layout_margin">1dp</item>
-    </style>
 
     <style name="SquareSlot">
         <item name="android:layout_width">40dp</item>
