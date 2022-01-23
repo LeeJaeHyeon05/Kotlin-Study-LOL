@@ -1,10 +1,13 @@
 package com.example.firstapp.fragment.ChampTier
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isGone
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -49,32 +52,32 @@ class EachLineTierFragment(val position: Int) : Fragment() {
 
         // 각 recyclerView를 초기화
         binding.tier1Recycler.run{
-            adapter = tier1groupieAdapter
-            layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
+            setAdapter(tier1groupieAdapter)
+            setLayoutManager(GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false))
             isNestedScrollingEnabled = false
         }
 
         binding.tier2Recycler.run{
-            adapter = tier2groupieAdapter
-            layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
+            setAdapter(tier2groupieAdapter)
+            setLayoutManager(GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false))
             isNestedScrollingEnabled = false
         }
 
         binding.tier3Recycler.run{
-            adapter = tier3groupieAdapter
-            layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
+            setAdapter(tier3groupieAdapter)
+            setLayoutManager(GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false))
             isNestedScrollingEnabled = false
         }
 
         binding.tier4Recycler.run{
-            adapter = tier4groupieAdapter
-            layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
+            setAdapter(tier4groupieAdapter)
+            setLayoutManager(GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false))
             isNestedScrollingEnabled = false
         }
 
         binding.tier5Recycler.run{
-            adapter = tier5groupieAdapter
-            layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
+            setAdapter(tier5groupieAdapter)
+            setLayoutManager(GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false))
             isNestedScrollingEnabled = false
         }
 
@@ -97,6 +100,38 @@ class EachLineTierFragment(val position: Int) : Fragment() {
                     }
                 }
 
+                // 데이터가 없는 티어 layout의 경우 isGone을 적용
+                // 데이터가 있을 경우에는 해당 데이터 갯수만큼 recyclerView에 가상 데이터를 넣어 애니메이션 적용
+                if (tier1Champs.size == 0){
+                    binding.tier1Container.isGone = true
+                }else{
+                    binding.tier1Recycler.addVeiledItems(tier1Champs.size)
+                }
+
+                if (tier2Champs.size == 0){
+                    binding.tier2Container.isGone = true
+                }else{
+                    binding.tier2Recycler.addVeiledItems(tier2Champs.size)
+                }
+
+                if (tier3Champs.size == 0) {
+                    binding.tier3Container.isGone = true
+                }else{
+                    binding.tier3Recycler.addVeiledItems(tier3Champs.size)
+                }
+
+                if (tier4Champs.size == 0){
+                    binding.tier4Container.isGone = true
+                }else{
+                    binding.tier4Recycler.addVeiledItems(tier4Champs.size)
+                }
+
+                if (tier5Champs.size == 0){
+                    binding.tier5Container.isGone = true
+                }else{
+                    binding.tier5Recycler.addVeiledItems(tier5Champs.size)
+                }
+
                 // Groupie adapter에 각 데이터 업데이트
                 tier1Champs.map { TierGroupie(requireContext(), database, tier1Champs) }
                     .also { tier1groupieAdapter.update(it) }
@@ -108,6 +143,20 @@ class EachLineTierFragment(val position: Int) : Fragment() {
                     .also { tier4groupieAdapter.update(it) }
                 tier5Champs.map { TierGroupie(requireContext(), database, tier5Champs) }
                     .also { tier5groupieAdapter.update(it) }
+
+                Handler(Looper.getMainLooper()).postDelayed(
+                    {
+                        binding.apply {
+                            tier1Recycler.unVeil()
+                            tier2Recycler.unVeil()
+                            tier3Recycler.unVeil()
+                            tier4Recycler.unVeil()
+                            tier5Recycler.unVeil()
+                        }
+                    },
+                    // 스켈레톤 애니메이션을 보여줄 시간 설정
+                    2000
+                )
             })
         }
 
