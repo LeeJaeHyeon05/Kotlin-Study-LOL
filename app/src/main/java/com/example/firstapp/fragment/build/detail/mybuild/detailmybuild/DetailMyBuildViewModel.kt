@@ -8,6 +8,7 @@ import com.example.firstapp.fragment.build.detail.mybuild.repository.MyBuildRepo
 import com.example.firstapp.model.MyBuild
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel

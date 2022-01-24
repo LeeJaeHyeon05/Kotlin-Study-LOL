@@ -10,11 +10,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.databinding.FragmentBuildDetailMybuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class DetailMyBuildFragment : Fragment() {
 
-    private val viewModel : DetailMyBuildViewModel by activityViewModels()
+    private val detailMyBuildViewModel : DetailMyBuildViewModel by activityViewModels()
     lateinit var binding : FragmentBuildDetailMybuildBinding
 
     override fun onCreateView(
@@ -25,13 +26,13 @@ class DetailMyBuildFragment : Fragment() {
         setupUi()
         setupObserver()
 
-        viewModel.getMyBuildListByChampionName("champion name")
+        detailMyBuildViewModel.getMyBuildListByChampionName("champion name")
 
         return binding.root
     }
 
     private fun setupObserver() {
-        viewModel.list.observe(viewLifecycleOwner){
+        detailMyBuildViewModel.list.observe(viewLifecycleOwner){
             val adapter = MyBuildItemAdapter(requireContext())
             adapter.myBuildData = it
             binding.buildMyBuildRv.apply {
@@ -45,5 +46,15 @@ class DetailMyBuildFragment : Fragment() {
         binding.fabAddMyBuild.setOnClickListener {
             (activity as BuildDetailActivity).openAddMyBuild()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.d("Resumed")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.d("Stopped")
     }
 }

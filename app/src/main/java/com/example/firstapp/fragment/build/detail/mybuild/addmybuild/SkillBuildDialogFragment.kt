@@ -11,7 +11,6 @@ import android.widget.RadioGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.firstapp.databinding.FragmentSkillBuildDialogBinding
-import timber.log.Timber
 
 class SkillBuildDialogFragment : DialogFragment(){
 
@@ -51,13 +50,11 @@ class SkillBuildDialogFragment : DialogFragment(){
         setObserver()
 
         binding.skillBuildCancel.setOnClickListener {
-            seeList()
             dismiss()
             clearRadioButtons()
         }
         binding.skillBuildConfirm.setOnClickListener {
             skillBuildDialogViewModel.saveSkillTree()
-            seeList()
             dismiss()
         }
 
@@ -106,11 +103,6 @@ class SkillBuildDialogFragment : DialogFragment(){
         bindingList.forEach{
             it.clearCheck()
         }
-    }
-
-    private fun seeList(){
-        Timber.d(skillBuildDialogViewModel.skillTree.value.toString())
-        Timber.d(skillBuildDialogViewModel.skillTreeDisplay.value.toString())
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

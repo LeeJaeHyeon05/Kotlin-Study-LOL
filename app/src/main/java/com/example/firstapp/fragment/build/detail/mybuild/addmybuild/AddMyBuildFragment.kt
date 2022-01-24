@@ -44,7 +44,7 @@ class AddMyBuildFragment : Fragment() {
             R.id.save_add_build -> {
                 saveAddBuild()
                 //DetailMyBuildFragment의 List 업데이트 해줄 것!
-                //detailMyBuildViewModel.getMyBuildListByChampionName("champion name")
+                (activity as BuildDetailActivity).refreshMyBuildViewPager()
             }
             android.R.id.home -> {
                 (activity as BuildDetailActivity).closeAddMyBuild()

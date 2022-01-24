@@ -59,4 +59,16 @@ class BuildDetailActivity : AppCompatActivity() {
         val dialog = ItemBuildDialogFragment()
         dialog.show(supportFragmentManager, "Item Build")
     }
+
+    fun refreshMyBuildViewPager(){
+       val viewPagerAdapter = DetailViewPagerAdapter(this)
+       binding.viewPager.adapter = viewPagerAdapter
+
+       val tabTitles = arrayListOf("빌드", "프로 빌드", "기타 빌드" , "통계", "카운터", "팁", "내 빌드")
+       TabLayoutMediator(binding.tabLayout, binding.viewPager){ tab , position ->
+           tab.text = tabTitles[position]
+       }.attach()
+
+       binding.viewPager.currentItem = 6
+   }
 }
