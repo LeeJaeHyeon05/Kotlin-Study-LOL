@@ -10,8 +10,8 @@ class SkillBuildDialogViewModel : ViewModel() {
     private val _skillTree = MutableLiveData<MutableList<String>>()
     val skillTree: LiveData<MutableList<String>> get() = _skillTree
 
-    private val _isSaved = MutableLiveData<Boolean>()
-    val isSaved: LiveData<Boolean> get() = _isSaved
+    private val _skillTreeDisplay = MutableLiveData<MutableList<String>>()
+    val skillTreeDisplay: LiveData<MutableList<String>> get() = _skillTreeDisplay
 
     fun changeSkillTree(index: Int, skill: String){
         val list = _skillTree.value
@@ -20,7 +20,6 @@ class SkillBuildDialogViewModel : ViewModel() {
         if (list == null) {
             val newList = mutableListOf(skill)
             _skillTree.value = newList
-            Timber.d("done new")
         }
 
         if(list != null) {
@@ -38,10 +37,10 @@ class SkillBuildDialogViewModel : ViewModel() {
     }
 
     fun saveSkillTree(){
-        _isSaved.value = true
+        _skillTreeDisplay.value = _skillTree.value
+
+        Timber.d(_skillTree.value.toString())
+        Timber.d(_skillTreeDisplay.value.toString())
     }
 
-    fun editSkillTree(){
-        _isSaved.value = false
-    }
 }

@@ -11,6 +11,7 @@ import android.widget.RadioGroup
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import com.example.firstapp.databinding.FragmentSkillBuildDialogBinding
+import timber.log.Timber
 
 class SkillBuildDialogFragment : DialogFragment(){
 
@@ -24,7 +25,6 @@ class SkillBuildDialogFragment : DialogFragment(){
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentSkillBuildDialogBinding.inflate(layoutInflater)
-        skillBuildDialogViewModel.editSkillTree()
 
         bindingList = listOf(
             binding.skillLv1,
@@ -48,11 +48,16 @@ class SkillBuildDialogFragment : DialogFragment(){
         )
 
         setRadioButtonFunction()
-        observeViewModel()
+        setObserver()
 
-        binding.skillBuildCancel.setOnClickListener { dismiss() }
+        binding.skillBuildCancel.setOnClickListener {
+            seeList()
+            dismiss()
+            clearRadioButtons()
+        }
         binding.skillBuildConfirm.setOnClickListener {
             skillBuildDialogViewModel.saveSkillTree()
+            seeList()
             dismiss()
         }
 
@@ -78,7 +83,7 @@ class SkillBuildDialogFragment : DialogFragment(){
         }
     }
 
-    private fun observeViewModel() {
+    private fun setObserver() {
         skillBuildDialogViewModel.skillTree.observe(viewLifecycleOwner) { skillTree ->
             skillTree.forEachIndexed { index: Int, skill: String ->
                 val rg = bindingList[index]
@@ -95,6 +100,17 @@ class SkillBuildDialogFragment : DialogFragment(){
                 }
             }
         }
+    }
+
+    private fun clearRadioButtons(){
+        bindingList.forEach{
+            it.clearCheck()
+        }
+    }
+
+    private fun seeList(){
+        Timber.d(skillBuildDialogViewModel.skillTree.value.toString())
+        Timber.d(skillBuildDialogViewModel.skillTreeDisplay.value.toString())
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

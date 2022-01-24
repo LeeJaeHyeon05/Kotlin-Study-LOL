@@ -9,11 +9,17 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.example.firstapp.R
+import com.example.firstapp.database.Converters
 import com.example.firstapp.databinding.FragmentAddMyBuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
 import com.example.firstapp.fragment.build.detail.mybuild.detailmybuild.DetailMyBuildViewModel
 import com.example.firstapp.model.MyBuild
+import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.AndroidEntryPoint
+import org.json.JSONArray
+import timber.log.Timber
 
 @AndroidEntryPoint
 class AddMyBuildFragment : Fragment() {
@@ -62,39 +68,33 @@ class AddMyBuildFragment : Fragment() {
     }
 
     private fun setObservers() {
-        skillBuildDialogViewModel.isSaved.observe(viewLifecycleOwner){
-            if(it){
-                setSkillTree()
+        skillBuildDialogViewModel.skillTreeDisplay.observe(viewLifecycleOwner){
+            listOf(
+                binding.QRow,
+                binding.WRow,
+                binding.ERow,
+                binding.RRow
+            ).forEach {
+                for(i in 1 until it.childCount){
+                    (it.getChildAt(i) as TextView).text = ""
+                }
             }
-        }
-    }
 
-    private fun setSkillTree() {
-        listOf(
-            binding.QRow,
-            binding.WRow,
-            binding.ERow,
-            binding.RRow
-        ).forEach {
-            for(i in 1 until it.childCount){
-                (it.getChildAt(i) as TextView).text = ""
-            }
-        }
-
-        skillBuildDialogViewModel.skillTree.value?.forEachIndexed { index, skill ->
-            val num = index + 1
-            when (skill) {
-                "Q" -> {
-                    (binding.QRow.getChildAt(num) as TextView).text = "$num"
-                }
-                "W" -> {
-                    (binding.WRow.getChildAt(num) as TextView).text = "$num"
-                }
-                "E" -> {
-                    (binding.ERow.getChildAt(num) as TextView).text = "$num"
-                }
-                "R" -> {
-                    (binding.RRow.getChildAt(num) as TextView).text = "$num"
+            skillBuildDialogViewModel.skillTreeDisplay.value?.forEachIndexed { index, skill ->
+                val num = index + 1
+                when (skill) {
+                    "Q" -> {
+                        (binding.QRow.getChildAt(num) as TextView).text = "$num"
+                    }
+                    "W" -> {
+                        (binding.WRow.getChildAt(num) as TextView).text = "$num"
+                    }
+                    "E" -> {
+                        (binding.ERow.getChildAt(num) as TextView).text = "$num"
+                    }
+                    "R" -> {
+                        (binding.RRow.getChildAt(num) as TextView).text = "$num"
+                    }
                 }
             }
         }
@@ -121,11 +121,13 @@ class AddMyBuildFragment : Fragment() {
 //        * 스킬 순서
 //        -> 룬
 //        * 빌드 노트
+        val skillTreeList = Converters().jsonToJsonArray(skillBuildDialogViewModel.skillTreeDisplay.value.toString())
+
         val newBuild = MyBuild(
             id = 0,
             champion = "champion name",
             name = binding.myBuildNameET.text.toString(),
-            skillTree = skillBuildDialogViewModel.skillTree.value,
+            skillTree = skillTreeList,
             notes = binding.myBuildNoteET.text.toString()
         )
         addMyBuildViewModel.saveAddBuild(newBuild)
