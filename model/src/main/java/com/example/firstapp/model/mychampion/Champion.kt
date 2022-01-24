@@ -12,9 +12,6 @@ import kotlinx.parcelize.Parcelize
  */
 @Parcelize
 data class Champion (
-//    val type: Type,
-//    val format: String,
-//    val version: Version,
     val data: Map<String, Datum>
 ) : Parcelable
 

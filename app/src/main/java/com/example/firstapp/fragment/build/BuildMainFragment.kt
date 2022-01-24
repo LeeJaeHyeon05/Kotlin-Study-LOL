@@ -1,19 +1,15 @@
 package com.example.firstapp.fragment.build
 
-import android.os.Bundle
 import android.view.*
 import androidx.appcompat.widget.SearchView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentBuildMainBinding
 import com.example.firstapp.fragment.bottomsheet.BuildFilterBottomSheet
-import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet
-import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet.Companion.TAG
+import com.example.firstapp.model.BuildViewModel
+import com.example.firstapp.model.ItemFilter
 import com.example.waterexample.ui.base.BaseFragment
-import com.xwray.groupie.Group
 import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -27,9 +23,8 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
     private val groupAdapter = GroupieAdapter()
     private lateinit var groupLayoutManager: GridLayoutManager
 
-    //
-    //private  championlist
-    //
+
+
 
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -85,6 +80,7 @@ class BuildMainFragment : BaseFragment<FragmentBuildMainBinding>(R.layout.fragme
 
         return super.onOptionsItemSelected(item)
     }
+
 
 
 }

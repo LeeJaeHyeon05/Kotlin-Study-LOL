@@ -1,10 +1,9 @@
-package com.example.firstapp.fragment.build
+package com.example.firstapp.model
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.firstapp.data.repository.di.BuildRepository
-import com.example.firstapp.model.mychampion.Champion
-import com.example.firstapp.model.mychampion.Datum
+import com.example.firstapp.fragment.build.BuildItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -18,9 +17,14 @@ class BuildViewModel @Inject constructor(
     private lateinit var originalChampionList : List<BuildItem>
 
 
-    // 원래는 챔피언 객체 였다.
+
     private val _ChampionList  = MutableStateFlow<List<BuildItem>>(emptyList())
     val mChampionList = _ChampionList
+
+
+
+
+
 
     private val _searchQuery = MutableStateFlow("")
 
@@ -42,7 +46,7 @@ class BuildViewModel @Inject constructor(
             ).collect {Champion ->
                 originalChampionList = Champion.data.values.toList()
                     .sortedBy { it.name }
-                    .map{BuildItem(it)}
+                    .map{ BuildItem(it) }
 
                 _ChampionList.value = originalChampionList
             }
