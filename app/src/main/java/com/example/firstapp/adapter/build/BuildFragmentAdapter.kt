@@ -24,7 +24,7 @@ class BuildFragmentAdapter(fragmentSize: Int, fragmentActivity: FragmentActivity
 
 
     //add BuildItemContentFragment for fragmentSize
-    val fragmentList = (1..fragmentSize).map {BuildItemContentFragment(it)}
+    val fragmentList = (0 until fragmentSize).map {BuildItemContentFragment(it)}
 
 
 

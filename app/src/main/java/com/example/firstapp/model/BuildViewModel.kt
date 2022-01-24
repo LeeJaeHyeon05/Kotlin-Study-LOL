@@ -13,6 +13,7 @@ import com.xwray.groupie.databinding.BindableItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -37,52 +38,53 @@ class BuildViewModel @Inject constructor(
     //todo 해당 viewmodel에서 stateflow를 하나 만든다.
 
 
-    private val _commonItemFlow = MutableStateFlow<List<BuildBottomItem>>(
+    private val _commonItemFlow = MutableStateFlow<List<BuildFilter>>(
         arrayListOf(
-            BuildBottomItem(BuildFilter("모두", "all")),
-            BuildBottomItem(BuildFilter("무료", "free")),
-            BuildBottomItem(BuildFilter("버프", "buff")),
-            BuildBottomItem(BuildFilter("너프", "nerf")),
-            BuildBottomItem(BuildFilter("즐겨찾기", "free")),
+            BuildFilter("모두", "all"),
+            BuildFilter("무료", "free"),
+            BuildFilter("버프", "buff"),
+            BuildFilter("너프", "nerf"),
+            BuildFilter("즐겨찾기", "free"),
         )
     )
     val commonItemFlow = _commonItemFlow.asStateFlow()
 
-    private val _roleItemFlow = MutableStateFlow<List<BuildBottomItem>>(
+    private val _roleItemFlow = MutableStateFlow<List<BuildFilter>>(
         arrayListOf(
-            BuildBottomItem(BuildFilter("탑", "Top")),
-            BuildBottomItem(BuildFilter("미드", "Mid")),
-            BuildBottomItem(BuildFilter("마법사", "MarksMan")),
-            BuildBottomItem(BuildFilter("탱커", "MarksMan")),
-            BuildBottomItem(BuildFilter("원거리 딜러", "MarksMan")),
-            BuildBottomItem(BuildFilter("서포터", "Support")),
+            BuildFilter("탑", "Top"),
+            BuildFilter("미드", "Mid"),
+            BuildFilter("마법사", "MarksMan"),
+            BuildFilter("탱커", "MarksMan"),
+            BuildFilter("원거리 딜러", "MarksMan"),
+            BuildFilter("서포터", "Support"),
         )
     )
 
-    val roleItemFlow : StateFlow<List<BuildBottomItem>> =  _roleItemFlow
+    val roleItemFlow: StateFlow<List<BuildFilter>> = _roleItemFlow
 
-    private val _roleGroupItemFlow = MutableStateFlow<List<BuildBottomItem>>(
-        arrayListOf(
-            BuildBottomItem(BuildFilter("암살자", "Top")),
-            BuildBottomItem(BuildFilter("전사", "Mid")),
-            BuildBottomItem(BuildFilter("마법사", "MarksMan")),
-            BuildBottomItem(BuildFilter("탱커", "MarksMan")),
-            BuildBottomItem(BuildFilter("원거리 딜러", "MarksMan")),
-            BuildBottomItem(BuildFilter("서포터", "Support")),
+    private val _roleGroupItemFlow = MutableStateFlow<List<BuildFilter>>(
+        mutableListOf(
+            BuildFilter("암살자", "Top"),
+            BuildFilter("전사", "Mid"),
+            BuildFilter("마법사", "MarksMan"),
+            BuildFilter("탱커", "MarksMan"),
+            BuildFilter("원거리 딜러", "MarksMan"),
+            BuildFilter("서포터", "Support"),
         )
     )
 
     val roleGroupItemFlow = _roleGroupItemFlow.asStateFlow()
 
-    private val _locationItemFlow = MutableStateFlow<List<BuildBottomItem>>(
+    private val _locationItemFlow = MutableStateFlow<List<BuildFilter>>(
         arrayListOf(
-            BuildBottomItem(BuildFilter("준비", "준비중")),
+            BuildFilter("준비", "준비중"),
         )
     )
 
     val locationItemFlow = _locationItemFlow.asStateFlow()
 
-    val totalItem = arrayListOf(commonItemFlow,roleItemFlow,roleGroupItemFlow, locationItemFlow  )
+    val totalItem =
+        arrayListOf(_commonItemFlow, _roleItemFlow, _roleGroupItemFlow, _locationItemFlow)
 
     fun getChampion() {
         viewModelScope.launch {
@@ -107,12 +109,27 @@ class BuildViewModel @Inject constructor(
         }
     }
 
-    fun changeColor(size : Int) = viewModelScope.launch {
-//        val list = totalItem.get(size)
-//        list.emit(list.value)
+    fun changeColor(size: Int, buildFilter: BuildFilter?) = viewModelScope.launch {
+        //안의 객체가 바뀌지않아서 emit을 해도 호출이 되지 않았던거야.
+        // dont emit var, and easily not use to MutableList
+
+//        val newObject = totalItem.get(size).value.find { it == buildFilter }?.run {
+//            copy(selected = true)
+//        }
+
+        val newList = totalItem.get(size).value.toMutableList().also {
+            it.reverse()
+        }
+        newList?.find { it == buildFilter }?.selected = true
+
+
+//        totalItem.get(size).value.find { it == buildFilter }?.selected = true
+//        ho = totalItem.get(size).value.find { it == buildFilter }
+        totalItem.get(size).value = newList
+//        Timber.d("해당 totalItem 값 $ho")
+
 
     }
-
 
 
     fun setSearchQuery(searchQuery: String) = viewModelScope.launch {
@@ -132,8 +149,6 @@ class BuildViewModel @Inject constructor(
             _eventFlow.emit(event)
         }
     }
-
-
 
 
     sealed class Event {
