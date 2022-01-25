@@ -18,6 +18,7 @@ import android.widget.ArrayAdapter
 import android.text.Editable
 
 import android.text.TextWatcher
+import android.util.Log
 
 
 @AndroidEntryPoint
@@ -99,11 +100,20 @@ class SummonerFragment : Fragment() {
             for(i in result.indices){
                 var bResult : Boolean = SoundSearcher.matchString(result[i], tvAutoFirst.text.toString())
                 if(bResult){
-
+                    rstList.add(result[i])
                 }
+            }
 
+            if(rstList.size > 0){
+                tvAutoFirst.setAdapter(ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, rstList))
+                tvAutoFirst.showDropDown()
+            }else{
+                tvAutoFirst.dismissDropDown()
+            }
         }
-    }
+        else{
+                tvAutoFirst.dismissDropDown()
+        }
 
 
 }
