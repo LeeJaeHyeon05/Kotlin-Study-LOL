@@ -4,14 +4,14 @@
     <data>
         <variable
             name="addMyBuildViewModel"
-            type="com.example.firstapp.fragment.build.detail.mybuild.viewmodel.AddMyBuildViewModel" />
+            type="com.example.firstapp.fragment.build.detail.mybuild.addmybuild.AddMyBuildViewModel" />
     </data>
 
     <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.build.detail.mybuild.AddMyBuildFragment"
+        tools:context=".fragment.build.detail.mybuild.addmybuild.AddMyBuildFragment"
         android:background="@color/white">
 
         <LinearLayout
@@ -34,11 +34,12 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{addMyBuildViewModel.myBuildNameET}"/>
+                        android:text="빌드 이름"/>
                     <EditText
                         android:id="@+id/myBuildNameET"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:text="@={addMyBuildViewModel.myBuildNameET}"/>
 
                 </LinearLayout>
 
@@ -56,11 +57,11 @@
                     <ImageView
                         style="@style/SquareSlot"
                         android:background="@drawable/square_slot"
-                        android:src="@android:drawable/ic_menu_edit"/>
+                        android:src="@drawable/ic_baseline_create_24"/>
                     <ImageView
                         style="@style/SquareSlot"
                         android:background="@drawable/square_slot"
-                        android:src="@android:drawable/ic_menu_edit"/>
+                        android:src="@drawable/ic_baseline_create_24"/>
                 </LinearLayout>
 
                 <!--아이템-->
@@ -88,27 +89,27 @@
                             <ImageView
                                 style="@style/SquareSlot"
                                 android:background="@drawable/square_slot"
-                                android:src="@android:drawable/ic_menu_edit"/>
+                                android:src="@drawable/ic_baseline_create_24"/>
                             <ImageView
                                 style="@style/SquareSlot"
                                 android:background="@drawable/square_slot"
-                                android:src="@android:drawable/ic_menu_edit"/>
+                                android:src="@drawable/ic_baseline_create_24"/>
                             <ImageView
                                 style="@style/SquareSlot"
                                 android:background="@drawable/square_slot"
-                                android:src="@android:drawable/ic_menu_edit"/>
+                                android:src="@drawable/ic_baseline_create_24"/>
                             <ImageView
                                 style="@style/SquareSlot"
                                 android:background="@drawable/square_slot"
-                                android:src="@android:drawable/ic_menu_edit"/>
+                                android:src="@drawable/ic_baseline_create_24"/>
                             <ImageView
                                 style="@style/SquareSlot"
                                 android:background="@drawable/square_slot"
-                                android:src="@android:drawable/ic_menu_edit"/>
+                                android:src="@drawable/ic_baseline_create_24"/>
                             <ImageView
                                 style="@style/SquareSlot"
                                 android:background="@drawable/square_slot"
-                                android:src="@android:drawable/ic_menu_edit"/>
+                                android:src="@drawable/ic_baseline_create_24"/>
                         </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
@@ -122,7 +123,7 @@
                         <ImageView
                             style="@style/SquareSlot"
                             android:background="@drawable/square_slot"
-                            android:src="@android:drawable/ic_menu_edit"/>
+                            android:src="@drawable/ic_baseline_create_24"/>
 
                     </LinearLayout>
                 </LinearLayout>
@@ -331,6 +332,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="빌드 노트"/>
+
+                <EditText
+                    android:id="@+id/myBuildNoteET"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@={addMyBuildViewModel.myBuildNoteET}"/>
 
             </LinearLayout>
         </LinearLayout>

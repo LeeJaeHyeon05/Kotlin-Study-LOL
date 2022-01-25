@@ -10,6 +10,6 @@ import retrofit2.http.GET
 interface BuildService {
 
 
-    @GET("https://ddragon.leagueoflegends.com/cdn/11.23.1/data/ko_KR/champion.json")
+    @GET("http://ddragon.leagueoflegends.com/cdn/12.1.1/data/ko_KR/champion.json")
     suspend fun fetchChampions(): ApiResponse<Champion>
 }

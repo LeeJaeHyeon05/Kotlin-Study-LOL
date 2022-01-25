@@ -1,4 +1,4 @@
-package com.example.firstapp.fragment.build.detail.mybuild.dialog
+package com.example.firstapp.fragment.build.detail.mybuild.addmybuild
 
 import android.app.Dialog
 import android.os.Bundle

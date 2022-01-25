@@ -39,7 +39,7 @@ class InitChampionWorker @AssistedInject constructor(
         val champions: Map<String, Champion> = championAll.champions
 
         val championList = champions.map { it.value }
-        if (championCount === 0) championDao.insertAll(championList)
+        if (championCount == 0) championDao.insertAll(championList)
 
         championList.forEach { champion ->
             Picasso.get().load("${getBaseImageUrl()}/champion/${champion.image.get("full").asString}").fetch(object : Callback {

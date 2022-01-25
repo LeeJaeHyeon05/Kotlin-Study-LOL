@@ -11,16 +11,24 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.room.Room
 import com.example.firstapp.R
-import com.example.firstapp.adapter.ChampTier.Tier1Adapter
+import com.example.firstapp.adapter.ChampTier.TierGroupie
+import com.example.firstapp.database.AppDatabase
 import com.example.firstapp.databinding.FragmentTierMidBinding
 import com.example.firstapp.model.TierViewModel
 import com.example.firstapp.model.tier.TierChamp
+import com.xwray.groupie.GroupieAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
+@AndroidEntryPoint
 class EachLineTierFragment(val position: Int) : Fragment() {
+    @Inject
+    lateinit var database: AppDatabase
+
     // activityViewModels: Activity의 viewModel에 접근하도록 한다
     private val tierViewModel: TierViewModel by activityViewModels()
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,45 +40,42 @@ class EachLineTierFragment(val position: Int) : Fragment() {
             false
         )
 
-        Log.d("viewPager2", "current position: $position")
+        // Groupie Adapter - test
+        val tier1groupieAdapter = GroupieAdapter()
+        val tier2groupieAdapter = GroupieAdapter()
+        val tier3groupieAdapter = GroupieAdapter()
+        val tier4groupieAdapter = GroupieAdapter()
+        val tier5groupieAdapter = GroupieAdapter()
 
-        // RecyclerView 초기화
-        binding.tier1Recycler.layoutManager =
-            GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
-        binding.tier2Recycler.layoutManager =
-            GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
-        binding.tier3Recycler.layoutManager =
-            GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
-        binding.tier4Recycler.layoutManager =
-            GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
-        binding.tier5Recycler.layoutManager =
-            GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
+        // 각 recyclerView를 초기화
+        binding.tier1Recycler.run{
+            adapter = tier1groupieAdapter
+            layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
+            isNestedScrollingEnabled = false
+        }
 
-        val firstTierAdapter = Tier1Adapter(requireContext())
-        val secondTierAdapter = Tier1Adapter(requireContext())
-        val thirdTierAdapter = Tier1Adapter(requireContext())
-        val forthTierAdapter = Tier1Adapter(requireContext())
-        val fifthTierAdapter = Tier1Adapter(requireContext())
+        binding.tier2Recycler.run{
+            adapter = tier2groupieAdapter
+            layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
+            isNestedScrollingEnabled = false
+        }
 
-        binding.tier1Recycler.let {
-            it.adapter = firstTierAdapter
-            it.isNestedScrollingEnabled = false
+        binding.tier3Recycler.run{
+            adapter = tier3groupieAdapter
+            layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
+            isNestedScrollingEnabled = false
         }
-        binding.tier2Recycler.let {
-            it.adapter = secondTierAdapter
-            it.isNestedScrollingEnabled = false
+
+        binding.tier4Recycler.run{
+            adapter = tier4groupieAdapter
+            layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
+            isNestedScrollingEnabled = false
         }
-        binding.tier3Recycler.let {
-            it.adapter = thirdTierAdapter
-            it.isNestedScrollingEnabled = false
-        }
-        binding.tier4Recycler.let {
-            it.adapter = forthTierAdapter
-            it.isNestedScrollingEnabled = false
-        }
-        binding.tier5Recycler.let {
-            it.adapter = fifthTierAdapter
-            it.isNestedScrollingEnabled = false
+
+        binding.tier5Recycler.run{
+            adapter = tier5groupieAdapter
+            layoutManager = GridLayoutManager(context, 4, GridLayoutManager.VERTICAL, false)
+            isNestedScrollingEnabled = false
         }
 
         fun setDataInAdapter(tierData: MutableLiveData<ArrayList<TierChamp>?>) {
@@ -92,13 +97,17 @@ class EachLineTierFragment(val position: Int) : Fragment() {
                     }
                 }
 
-                // 이를 이제 각 adapter에 넣는다
-                // adapter에 데이터를 set 하면서 차이가 있는 부분만 변경한다
-                firstTierAdapter.differ.submitList(tier1Champs)
-                secondTierAdapter.differ.submitList(tier2Champs)
-                thirdTierAdapter.differ.submitList(tier3Champs)
-                forthTierAdapter.differ.submitList(tier4Champs)
-                fifthTierAdapter.differ.submitList(tier5Champs)
+                // Groupie adapter에 각 데이터 업데이트
+                tier1Champs.map { TierGroupie(requireContext(), database, tier1Champs) }
+                    .also { tier1groupieAdapter.update(it) }
+                tier2Champs.map { TierGroupie(requireContext(), database, tier2Champs) }
+                    .also { tier2groupieAdapter.update(it) }
+                tier3Champs.map { TierGroupie(requireContext(), database, tier3Champs) }
+                    .also { tier3groupieAdapter.update(it) }
+                tier4Champs.map { TierGroupie(requireContext(), database, tier4Champs) }
+                    .also { tier4groupieAdapter.update(it) }
+                tier5Champs.map { TierGroupie(requireContext(), database, tier5Champs) }
+                    .also { tier5groupieAdapter.update(it) }
             })
         }
 

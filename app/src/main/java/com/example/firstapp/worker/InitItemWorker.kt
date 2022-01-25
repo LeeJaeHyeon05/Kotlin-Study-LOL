@@ -40,7 +40,7 @@ class InitItemWorker @AssistedInject constructor(
 
         for ((key, value) in items) value.id = key
         val itemList = items.map { it.value }
-        if (itemCount === 0) itemDao.insertAll(itemList)
+        if (itemCount == 0) itemDao.insertAll(itemList)
 
         itemList.forEach { item ->
             Picasso.get().load("${getBaseImageUrl()}/item/${item.id}.png").fetch(object : Callback {

@@ -1,22 +1,20 @@
 package com.example.firstapp.fragment.build.detail.mybuild.repository
 
-class MyBuildRepository {
+import com.example.firstapp.database.dao.MyBuildDao
+import com.example.firstapp.model.MyBuild
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
-    companion object{
-        var myBuildByChampion = hashMapOf(String to mutableListOf<DataForMyBuildRepository>())
+class MyBuildRepository(val myBuildDao: MyBuildDao) {
+    suspend fun getAll(): List<MyBuild> = withContext(Dispatchers.IO){
+        return@withContext myBuildDao.selectAll()
     }
 
-    fun insertNewDataToChampionName(data: DataForMyBuildRepository, championName: String.Companion){
-        myBuildByChampion[championName]?.add(data)
+    suspend fun insert(newData: MyBuild) = withContext(Dispatchers.IO) {
+        myBuildDao.insert(newData)
+    }
+
+    suspend fun getListByChampionName(championName: String): List<MyBuild> = withContext(Dispatchers.IO) {
+        return@withContext myBuildDao.selectByChampionName(championName)
     }
 }
-
-data class DataForMyBuildRepository(
-    var buildName: String
-    //var summonerSpells,
-    //var fullBuilds
-    //var Trinket
-    //var customItemBuilds
-    //var skillOrder
-    //var rune
-)
