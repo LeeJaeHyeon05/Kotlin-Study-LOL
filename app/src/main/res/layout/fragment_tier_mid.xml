@@ -13,6 +13,7 @@
             android:background="@color/black">
 
             <LinearLayout
+                android:id="@+id/tier1Container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -30,20 +31,28 @@
                     android:layout_marginRight="15dp"
                     android:text="1" />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.skydoves.androidveil.VeilRecyclerFrameView
                     android:id="@+id/tier1Recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    app:veilFrame_baseAlpha="0.6"
+                    app:veilFrame_baseColor="@color/veiled_base"
+                    app:veilFrame_highlightAlpha="1.0"
+                    app:veilFrame_highlightColor="@color/veiled_highlight"
+                    app:veilFrame_layout="@layout/item_tier"
+                    app:veilFrame_radius="4dp"
+                    app:veilFrame_shimmerEnable="true"
+                    app:veilFrame_veiled="true" />
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/tier2Container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:gravity="center_vertical"
                 android:background="@color/brightGray"
                 android:layout_marginTop="10dp"
-
                 >
 
                 <Button
@@ -57,13 +66,22 @@
                     android:layout_gravity="center_vertical"
                     android:text="2" />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.skydoves.androidveil.VeilRecyclerFrameView
                     android:id="@+id/tier2Recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    app:veilFrame_baseAlpha="0.6"
+                    app:veilFrame_baseColor="@color/veiled_base"
+                    app:veilFrame_highlightAlpha="1.0"
+                    app:veilFrame_highlightColor="@color/veiled_highlight"
+                    app:veilFrame_layout="@layout/item_tier"
+                    app:veilFrame_radius="4dp"
+                    app:veilFrame_shimmerEnable="true"
+                    app:veilFrame_veiled="true"/>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/tier3Container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -82,13 +100,22 @@
                     android:layout_gravity="center_vertical"
                     android:text="3" />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.skydoves.androidveil.VeilRecyclerFrameView
                     android:id="@+id/tier3Recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    app:veilFrame_baseAlpha="0.6"
+                    app:veilFrame_baseColor="@color/veiled_base"
+                    app:veilFrame_highlightAlpha="1.0"
+                    app:veilFrame_highlightColor="@color/veiled_highlight"
+                    app:veilFrame_layout="@layout/item_tier"
+                    app:veilFrame_radius="4dp"
+                    app:veilFrame_shimmerEnable="true"
+                    app:veilFrame_veiled="true"/>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/tier4Container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -106,13 +133,22 @@
                     android:layout_marginRight="15dp"
                     android:text="4" />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.skydoves.androidveil.VeilRecyclerFrameView
                     android:id="@+id/tier4Recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    app:veilFrame_baseAlpha="0.6"
+                    app:veilFrame_baseColor="@color/veiled_base"
+                    app:veilFrame_highlightAlpha="1.0"
+                    app:veilFrame_highlightColor="@color/veiled_highlight"
+                    app:veilFrame_layout="@layout/item_tier"
+                    app:veilFrame_radius="4dp"
+                    app:veilFrame_shimmerEnable="true"
+                    app:veilFrame_veiled="true"/>
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/tier5Container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -130,10 +166,18 @@
                     android:layout_marginRight="15dp"
                     android:text="5" />
 
-                <androidx.recyclerview.widget.RecyclerView
+                <com.skydoves.androidveil.VeilRecyclerFrameView
                     android:id="@+id/tier5Recycler"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    app:veilFrame_baseAlpha="0.6"
+                    app:veilFrame_baseColor="@color/veiled_base"
+                    app:veilFrame_highlightAlpha="1.0"
+                    app:veilFrame_highlightColor="@color/veiled_highlight"
+                    app:veilFrame_layout="@layout/item_tier"
+                    app:veilFrame_radius="4dp"
+                    app:veilFrame_shimmerEnable="true"
+                    app:veilFrame_veiled="true"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

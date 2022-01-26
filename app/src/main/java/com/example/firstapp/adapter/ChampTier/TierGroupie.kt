@@ -20,7 +20,7 @@ class TierGroupie(val context: Context, val database:AppDatabase, val tierData: 
             val championName_en = translateToEn(database, championName)
             Glide.with(context)
                 .load("http://ddragon.leagueoflegends.com/cdn/11.22.1/img/champion/$championName_en.png")
-                .placeholder(R.drawable.camille_chac).into(binding.champImage)
+                .placeholder(R.drawable.unknown).into(binding.champImage)
             binding.champName.text = tierData[position].championName
             binding.champWinRate.text = tierData[position].winRate
         }
