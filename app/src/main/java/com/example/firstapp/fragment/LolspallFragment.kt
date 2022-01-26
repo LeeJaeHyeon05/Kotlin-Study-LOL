@@ -1,4 +1,4 @@
-package com.example.firstapp
+package com.example.firstapp.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,10 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.firstapp.R
 import com.example.firstapp.adapter.summorSpell.CustomAdapter
 import com.example.firstapp.adapter.summorSpell.ItemsViewModel
 import com.example.firstapp.databinding.FragmentLolspallBinding
-import com.example.firstapp.databinding.FragmentSummonerSpellBinding
 
 class LolspallFragment : Fragment() {
 
@@ -42,15 +42,69 @@ class LolspallFragment : Fragment() {
         }
 
         //데이터 추가하기
-        data.add(ItemsViewModel(R.drawable.smite, R.string.smite, R.string.smiteDialogText, R.drawable.smite, R.string.smiteDialogTitle))
-        data.add(ItemsViewModel(R.drawable.tel, R.string.tel, R.string.telDialogText, R.drawable.tel, R.string.telDialogTitle))
-        data.add(ItemsViewModel(R.drawable.sheild, R.string.sheild, R.string.sheildDialogText, R.drawable.sheild, R.string.sheildDialogTitle))
-        data.add(ItemsViewModel(R.drawable.flash, R.string.flash, R.string.fireDialogText, R.drawable.flash, R.string.flashDialogTitle))
-        data.add(ItemsViewModel(R.drawable.heal, R.string.heal, R.string.healDialogText, R.drawable.heal, R.string.healDialogTitle))
-        data.add(ItemsViewModel(R.drawable.fire, R.string.ignite, R.string.fireDialogText, R.drawable.fire, R.string.fireDialogTitle))
-        data.add(ItemsViewModel(R.drawable.clean, R.string.clean, R.string.cleanDialogText, R.drawable.clean, R.string.cleanDialogTitle))
-        data.add(ItemsViewModel(R.drawable.ghost, R.string.ghost, R.string.ghostDialogText, R.drawable.ghost, R.string.ghostDialogTitle))
-        data.add(ItemsViewModel(R.drawable.exhasuted, R.string.exhasuted, R.string.exhaustedDialogText, R.drawable.exhasuted, R.string.exhaustedDialogTitle))
+        data.add(ItemsViewModel(
+            R.drawable.smite,
+            R.string.smite,
+            R.string.smiteDialogText,
+            R.drawable.smite,
+            R.string.smiteDialogTitle
+        ))
+        data.add(ItemsViewModel(
+            R.drawable.tel,
+            R.string.tel,
+            R.string.telDialogText,
+            R.drawable.tel,
+            R.string.telDialogTitle
+        ))
+        data.add(ItemsViewModel(
+            R.drawable.sheild,
+            R.string.sheild,
+            R.string.sheildDialogText,
+            R.drawable.sheild,
+            R.string.sheildDialogTitle
+        ))
+        data.add(ItemsViewModel(
+            R.drawable.flash,
+            R.string.flash,
+            R.string.fireDialogText,
+            R.drawable.flash,
+            R.string.flashDialogTitle
+        ))
+        data.add(ItemsViewModel(
+            R.drawable.heal,
+            R.string.heal,
+            R.string.healDialogText,
+            R.drawable.heal,
+            R.string.healDialogTitle
+        ))
+        data.add(ItemsViewModel(
+            R.drawable.fire,
+            R.string.ignite,
+            R.string.fireDialogText,
+            R.drawable.fire,
+            R.string.fireDialogTitle
+        ))
+        data.add(ItemsViewModel(
+            R.drawable.clean,
+            R.string.clean,
+            R.string.cleanDialogText,
+            R.drawable.clean,
+            R.string.cleanDialogTitle
+        ))
+        data.add(ItemsViewModel(
+            R.drawable.ghost,
+            R.string.ghost,
+            R.string.ghostDialogText,
+            R.drawable.ghost,
+            R.string.ghostDialogTitle
+        ))
+        data.add(ItemsViewModel(
+            R.drawable.exhasuted,
+            R.string.exhasuted,
+            R.string.exhaustedDialogText,
+            R.drawable.exhasuted,
+            R.string.exhaustedDialogTitle
+        ))
 
 
         return binding.root

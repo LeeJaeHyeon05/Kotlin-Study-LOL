@@ -1,4 +1,4 @@
-package com.example.firstapp
+package com.example.firstapp.fragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.firstapp.R
 import com.example.firstapp.adapter.summorSpell.CustomAdapter
 import com.example.firstapp.adapter.summorSpell.ItemsViewModel
 import com.example.firstapp.databinding.FragmentHowlingBinding
-import com.example.firstapp.databinding.FragmentLolspallBinding
-import com.example.firstapp.databinding.FragmentSummonerSpellBinding
 
 class HowlingFragment : Fragment() {
 
@@ -49,9 +48,27 @@ class HowlingFragment : Fragment() {
         }
 
         //두번째 줄 데이터 추가하기
-        data2.add(ItemsViewModel(R.drawable.totheking, R.string.totheking, R.string.tothekingDialogText, R.drawable.totheking, R.string.tothekingDialogTitle))
-        data2.add(ItemsViewModel(R.drawable.aiblue, R.string.aiblue, R.string.throwforoDialogText, R.drawable.aiblue, R.string.throwforoDialogTitle))
-        data2.add(ItemsViewModel(R.drawable.blue, R.string.blue, R.string.blueDialogText, R.drawable.blue, R.string.blueDialogTitle))
+        data2.add(ItemsViewModel(
+            R.drawable.totheking,
+            R.string.totheking,
+            R.string.tothekingDialogText,
+            R.drawable.totheking,
+            R.string.tothekingDialogTitle
+        ))
+        data2.add(ItemsViewModel(
+            R.drawable.aiblue,
+            R.string.aiblue,
+            R.string.throwforoDialogText,
+            R.drawable.aiblue,
+            R.string.throwforoDialogTitle
+        ))
+        data2.add(ItemsViewModel(
+            R.drawable.blue,
+            R.string.blue,
+            R.string.blueDialogText,
+            R.drawable.blue,
+            R.string.blueDialogTitle
+        ))
 
         return binding.root
     }

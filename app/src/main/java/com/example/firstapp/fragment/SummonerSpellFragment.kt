@@ -5,13 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.firstapp.HowlingFragment
-import com.example.firstapp.LolspallFragment
-import com.example.firstapp.adapter.summorSpell.ItemsViewModel
 import com.example.firstapp.R
-import com.example.firstapp.adapter.summorSpell.CustomAdapter
 import com.example.firstapp.databinding.FragmentSummonerSpellBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
