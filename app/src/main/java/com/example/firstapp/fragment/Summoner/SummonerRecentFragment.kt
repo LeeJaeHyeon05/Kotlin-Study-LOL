@@ -1,4 +1,4 @@
-package com.example.firstapp.fragment.Summoner
+package com.example.firstapp.fragment.summoner
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

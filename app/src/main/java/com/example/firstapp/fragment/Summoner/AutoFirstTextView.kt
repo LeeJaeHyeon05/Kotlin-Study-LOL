@@ -1,4 +1,4 @@
-package com.example.firstapp.fragment.Summoner
+package com.example.firstapp.fragment.summoner
 
 import android.content.Context
 import android.util.AttributeSet

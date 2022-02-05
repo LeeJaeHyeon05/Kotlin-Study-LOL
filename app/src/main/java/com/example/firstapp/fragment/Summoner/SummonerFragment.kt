@@ -1,4 +1,4 @@
-package com.example.firstapp.fragment.Summoner
+package com.example.firstapp.fragment.summoner
 
 import android.R
 import android.annotation.SuppressLint
@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.databinding.FragmentSummonerBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -18,7 +17,6 @@ import android.widget.ArrayAdapter
 import android.text.Editable
 
 import android.text.TextWatcher
-import android.util.Log
 
 
 @AndroidEntryPoint
@@ -34,13 +32,10 @@ class SummonerFragment : Fragment() {
         fragments.add(SummonerRecentFragment())
 
         val binding = FragmentSummonerBinding.inflate(inflater, container, false)
-        val summonerButton : Button;
-        val result = arrayOf("소환사","어쩌고", "산타할아버러지", "몰라")
+        val result = arrayOf("소환사", "어쩌고", "산타할아버러지", "몰라")
 
 
-
-
-        val adapter = object :FragmentStateAdapter(this){
+        val adapter = object : FragmentStateAdapter(this) {
             override fun getItemCount(): Int {
                 return fragments.size
             }
@@ -51,8 +46,8 @@ class SummonerFragment : Fragment() {
         }
         binding.viewPager2.adapter = adapter
 
-        binding.tvAutoFirst.setAdapter<ArrayAdapter<String>>(
-            ArrayAdapter<String>(
+        binding.tvAutoFirst.setAdapter(
+            ArrayAdapter(
                 requireContext(),
                 R.layout.simple_dropdown_item_1line,
                 result
@@ -63,21 +58,20 @@ class SummonerFragment : Fragment() {
             override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
             override fun onTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
             override fun afterTextChanged(editable: Editable) {
-//초성검색 후
-//해당내용만 items에 담은 후 showdropdown
+            //초성검색 후
+            //해당내용만 items에 담은 후 showdropdown
                 runFirstComplete(binding.tvAutoFirst, result)
             }
         })
 
 
 
-        TabLayoutMediator(binding.tabs2, binding.viewPager2) {tab, position ->
-            if(position == 0){
+        TabLayoutMediator(binding.tabs2, binding.viewPager2) { tab, position ->
+            if (position == 0) {
                 tab.icon = requireContext().getDrawable(com.example.firstapp.R.drawable.ic_heart)
                 tab.text = resources.getString(com.example.firstapp.R.string.summoner_tab_favorite)
 
-            }
-            else if(position ==1){
+            } else if (position == 1) {
                 tab.icon = requireContext().getDrawable(com.example.firstapp.R.drawable.ic_history)
                 tab.text = resources.getString(com.example.firstapp.R.string.summoner_tab_recent)
 
@@ -90,34 +84,37 @@ class SummonerFragment : Fragment() {
     }
 
 
-
-
     private fun runFirstComplete(tvAutoFirst: AutoFirstTextView, result: Array<String>) {
 
-        val rstList: ArrayList<String> = ArrayList();
-        if(tvAutoFirst.length() > 1){
+        val rstList: ArrayList<String> = ArrayList()
+        if (tvAutoFirst.length() > 1) {
 
-            for(i in result.indices){
-                var bResult : Boolean = SoundSearcher.matchString(result[i], tvAutoFirst.text.toString())
-                if(bResult){
+            for (i in result.indices) {
+                val bResult: Boolean =
+                    SoundSearcher.matchString(result[i], tvAutoFirst.text.toString())
+                if (bResult) {
                     rstList.add(result[i])
                 }
             }
 
-            if(rstList.size > 0){
-                tvAutoFirst.setAdapter(ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, rstList))
+            if (rstList.size > 0) {
+                tvAutoFirst.setAdapter(
+                    ArrayAdapter(
+                        requireContext(),
+                        R.layout.simple_dropdown_item_1line,
+                        rstList
+                    )
+                )
                 tvAutoFirst.showDropDown()
-            }else{
+            } else {
                 tvAutoFirst.dismissDropDown()
             }
+        } else {
+            tvAutoFirst.dismissDropDown()
         }
-        else{
-                tvAutoFirst.dismissDropDown()
-        }
 
 
-}
-
+    }
 
 
 }

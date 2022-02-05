@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.Summoner.SummonerFragment"
+    tools:context=".fragment.summoner.SummonerFragment"
     android:orientation="vertical">
 
     <LinearLayout
@@ -14,7 +14,7 @@
         android:backgroundTint="@color/lightGreen"
         android:layout_marginVertical="15dp">
 
-        <com.example.firstapp.fragment.Summoner.AutoFirstTextView
+        <com.example.firstapp.fragment.summoner.AutoFirstTextView
             android:id="@+id/tv_auto_first"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
