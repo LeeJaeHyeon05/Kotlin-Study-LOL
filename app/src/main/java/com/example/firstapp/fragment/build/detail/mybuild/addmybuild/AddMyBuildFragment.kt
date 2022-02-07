@@ -1,28 +1,25 @@
 package com.example.firstapp.fragment.build.detail.mybuild.addmybuild
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
-import androidx.core.view.size
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.NavHostFragment
 import com.example.firstapp.R
 import com.example.firstapp.database.Converters
 import com.example.firstapp.databinding.FragmentAddMyBuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
 import com.example.firstapp.fragment.build.detail.mybuild.detailmybuild.DetailMyBuildViewModel
 import com.example.firstapp.model.MyBuild
-import com.google.gson.Gson
-import com.google.gson.JsonArray
-import com.google.gson.reflect.TypeToken
 import dagger.hilt.android.AndroidEntryPoint
-import org.json.JSONArray
-import timber.log.Timber
+
 
 @AndroidEntryPoint
-class AddMyBuildFragment : Fragment() {
+class AddMyBuildFragment : DialogFragment() {
 
     private val addMyBuildViewModel : AddMyBuildViewModel by viewModels()
     private val detailMyBuildViewModel : DetailMyBuildViewModel by activityViewModels()
@@ -43,14 +40,20 @@ class AddMyBuildFragment : Fragment() {
         when (item.itemId) {
             R.id.save_add_build -> {
                 saveAddBuild()
-                //DetailMyBuildFragment의 List 업데이트 해줄 것!
-                (activity as BuildDetailActivity).refreshMyBuildViewPager()
+
+                detailMyBuildViewModel.getMyBuildListByChampionName("champion name")
+
             }
             android.R.id.home -> {
-                (activity as BuildDetailActivity).closeAddMyBuild()
+                NavHostFragment.findNavController(this).navigate(R.id.nav_build_detail_main)
             }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        return Dialog(requireContext(), R.style.fullscreen_dialog)
     }
 
     override fun onCreateView(
@@ -60,6 +63,7 @@ class AddMyBuildFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_my_build, container, false)
         binding.addMyBuildViewModel = addMyBuildViewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
+
 
         setFunctions()
         setObservers()
@@ -103,12 +107,12 @@ class AddMyBuildFragment : Fragment() {
     private fun setFunctions() {
         (activity as BuildDetailActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        binding.mbLayoutCustomItem.setOnClickListener {
-            (activity as BuildDetailActivity).showItemBuildDialog()
+        binding.addMyItemBuild.setOnClickListener {
+            NavHostFragment.findNavController(this).navigate(R.id.open_item_build_dialog)
         }
 
         binding.skillBuildTable.setOnClickListener {
-            (activity as BuildDetailActivity).showSkillBuildDialog()
+            NavHostFragment.findNavController(this).navigate(R.id.open_skill_build_dialog)
         }
     }
 
@@ -132,7 +136,7 @@ class AddMyBuildFragment : Fragment() {
         )
         addMyBuildViewModel.saveAddBuild(newBuild)
 
-        (activity as BuildDetailActivity).closeAddMyBuild()
+//        (activity as BuildDetailActivity).closeAddMyBuild()
     }
 
     override fun onDestroyView() {

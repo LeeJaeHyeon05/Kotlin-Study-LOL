@@ -1,6 +1,7 @@
 package com.example.firstapp.fragment.build
 
-import android.content.Intent
+import android.util.Log
+import androidx.navigation.findNavController
 import com.example.firstapp.R
 import com.example.firstapp.databinding.ItemBuildMainBinding
 import com.example.firstapp.model.mychampion.Datum
@@ -21,8 +22,7 @@ class BuildItem(val dataNum: Datum) : BindableItem<ItemBuildMainBinding>() {
         binding.championData = dataNum
 
         binding.championImage.setOnClickListener {
-            val intent = Intent(binding.championImage.context, BuildDetailActivity::class.java)
-            binding.championImage.context?.startActivity(intent)
+            it.findNavController().navigate(R.id.open_build_detail)
         }
     }
 

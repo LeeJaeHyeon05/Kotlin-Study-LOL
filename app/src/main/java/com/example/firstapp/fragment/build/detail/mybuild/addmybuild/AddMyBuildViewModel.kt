@@ -24,5 +24,6 @@ class AddMyBuildViewModel @Inject constructor(
     fun saveAddBuild(newBuild: MyBuild) =
         viewModelScope.launch {
             myBuildRepository.insert(newData = newBuild)
+
         }
 }

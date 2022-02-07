@@ -6,11 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentBuildDetailMybuildBinding
-import com.example.firstapp.fragment.build.BuildDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class DetailMyBuildFragment : Fragment() {
@@ -23,13 +23,19 @@ class DetailMyBuildFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentBuildDetailMybuildBinding.inflate(inflater,container,false)
-        setupUi()
-        setupObserver()
 
+        setupObserver()
         detailMyBuildViewModel.getMyBuildListByChampionName("champion name")
 
         return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.fabAddMyBuild.setOnClickListener {
+            it.findNavController().navigate(R.id.nav_add_my_build)
+        }
+    }
+
 
     private fun setupObserver() {
         detailMyBuildViewModel.list.observe(viewLifecycleOwner){
@@ -42,19 +48,4 @@ class DetailMyBuildFragment : Fragment() {
         }
     }
 
-    private fun setupUi() {
-        binding.fabAddMyBuild.setOnClickListener {
-            (activity as BuildDetailActivity).openAddMyBuild()
-        }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Timber.d("Resumed")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Timber.d("Stopped")
-    }
 }
