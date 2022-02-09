@@ -1,6 +1,7 @@
 package com.example.firstapp.data.api.di
 
 import com.example.firstapp.data.api.ApiKeyInterceptor
+import com.example.firstapp.data.api.PatchApi
 import com.example.firstapp.data.api.SummonerApi
 import com.example.firstapp.data.api.TierData
 import dagger.Module
@@ -50,5 +51,16 @@ class ApiModule {
             .client(okHttpClient)
             .build()
             .create(SummonerApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun providePatchApi(okHttpClient: OkHttpClient): PatchApi {
+        return Retrofit.Builder()
+            .baseUrl("https://ddragon.leagueoflegends.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build()
+            .create(PatchApi::class.java)
     }
 }
