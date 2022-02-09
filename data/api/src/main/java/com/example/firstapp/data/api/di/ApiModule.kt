@@ -30,6 +30,7 @@ class ApiModule {
 
     @Provides
     @Singleton
+    @ApiOkHttpClient
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(ApiKeyInterceptor())
@@ -43,7 +44,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideSummonerApi(okHttpClient: OkHttpClient): SummonerApi {
+    fun provideSummonerApi(@ApiOkHttpClient okHttpClient: OkHttpClient): SummonerApi {
         return Retrofit.Builder()
             .baseUrl("https://kr.api.riotgames.com")
             .addConverterFactory(GsonConverterFactory.create())
