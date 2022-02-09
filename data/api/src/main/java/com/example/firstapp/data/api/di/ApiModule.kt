@@ -31,6 +31,7 @@ class ApiModule {
 
     @Provides
     @Singleton
+    @ApiOkHttpClient
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(ApiKeyInterceptor())
@@ -44,7 +45,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun provideSummonerApi(okHttpClient: OkHttpClient): SummonerApi {
+    fun provideSummonerApi(@ApiOkHttpClient okHttpClient: OkHttpClient): SummonerApi {
         return Retrofit.Builder()
             .baseUrl("https://kr.api.riotgames.com")
             .addConverterFactory(GsonConverterFactory.create())
@@ -55,7 +56,7 @@ class ApiModule {
 
     @Provides
     @Singleton
-    fun providePatchApi(okHttpClient: OkHttpClient): PatchApi {
+    fun providePatchApi(@ApiOkHttpClient okHttpClient: OkHttpClient): PatchApi {
         return Retrofit.Builder()
             .baseUrl("https://ddragon.leagueoflegends.com")
             .addConverterFactory(GsonConverterFactory.create())
