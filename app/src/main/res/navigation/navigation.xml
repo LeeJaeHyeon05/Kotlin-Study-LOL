@@ -48,4 +48,10 @@
         android:label="fragment_universe"
         tools:layout="@layout/fragment_universe" />
 
+    <fragment
+        android:id="@+id/patchFragment"
+        android:name="com.example.firstapp.PatchFragment"
+        android:label="fragment_patch"
+        tools:layout="@layout/fragment_patch" />
+
 </navigation>
