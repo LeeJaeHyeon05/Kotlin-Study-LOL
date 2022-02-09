@@ -2,9 +2,11 @@ package com.example.firstapp.data.repository.di
 
 import android.content.Context
 import com.example.firstapp.data.api.FirstApi
+import com.example.firstapp.data.api.PatchApi
 import com.example.firstapp.data.api.SummonerApi
 import com.example.firstapp.data.api.TierData
 import com.example.firstapp.data.repository.ChampionRepository
+import com.example.firstapp.data.repository.PatchRepository
 import com.example.firstapp.data.repository.SummonerRepository
 import com.example.firstapp.data.repository.TierRepository
 import dagger.Module
@@ -37,5 +39,11 @@ class RepositoryModule {
     @Singleton
     fun provideSummonerRepository(summonerApi: SummonerApi): SummonerRepository {
         return SummonerRepository(summonerApi)
+    }
+
+    @Provides
+    @Singleton
+    fun providePatchRepository(patchApi: PatchApi): PatchRepository{
+        return PatchRepository(patchApi)
     }
 }

@@ -57,7 +57,7 @@ class ApiModule {
     @Singleton
     fun providePatchApi(okHttpClient: OkHttpClient): PatchApi {
         return Retrofit.Builder()
-            .baseUrl("https://ddragon.leagueoflegends.com/api/versions.json")
+            .baseUrl("https://ddragon.leagueoflegends.com")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
