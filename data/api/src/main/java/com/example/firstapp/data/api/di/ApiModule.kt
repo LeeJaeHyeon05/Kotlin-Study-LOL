@@ -1,6 +1,7 @@
 package com.example.firstapp.data.api.di
 
 import com.example.firstapp.data.api.ApiKeyInterceptor
+import com.example.firstapp.data.api.MatchApi
 import com.example.firstapp.data.api.SummonerApi
 import com.example.firstapp.data.api.TierData
 import dagger.Module
@@ -36,7 +37,7 @@ class ApiModule {
             .addInterceptor(ApiKeyInterceptor())
             .addInterceptor(
                 HttpLoggingInterceptor().apply {
-                    setLevel(HttpLoggingInterceptor.Level.BASIC)
+                    setLevel(HttpLoggingInterceptor.Level.BODY)
                 }
             )
             .build()
@@ -51,5 +52,16 @@ class ApiModule {
             .client(okHttpClient)
             .build()
             .create(SummonerApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideMatchApi(@ApiOkHttpClient okHttpClient: OkHttpClient): MatchApi {
+        return Retrofit.Builder()
+            .baseUrl("https://asia.api.riotgames.com")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(okHttpClient)
+            .build()
+            .create(MatchApi::class.java)
     }
 }
