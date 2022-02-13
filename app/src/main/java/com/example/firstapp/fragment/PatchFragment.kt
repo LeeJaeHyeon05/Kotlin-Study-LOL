@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.firstapp.R
 import com.example.firstapp.model.PatchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -18,8 +19,10 @@ class PatchFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val patchVersionData = viewModel.patchVersionData.value
-        Timber.d("patchVersionData: $patchVersionData")
+        lifecycleScope.launchWhenStarted {
+            val patchVersionData = viewModel.getPatchVersionData()
+            Timber.d("patchVersionData: $patchVersionData")
+        }
         return inflater.inflate(R.layout.fragment_patch, container, false)
     }
 }
