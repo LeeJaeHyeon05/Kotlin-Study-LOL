@@ -12,7 +12,8 @@ class PatchViewModel @Inject constructor(private val patchRepository: PatchRepos
     suspend fun getPatchVersionData() = withContext(Dispatchers.IO){
         return@withContext patchRepository.getPatchVersion()
     }
-//    val patchVersionData = liveData<String>(Dispatchers.IO) {
-//        patchRepository.getPatchVersion()
-//    }
+
+    suspend fun getPatchData(patchVersion: String) = withContext(Dispatchers.IO){
+        patchRepository.getPatchData(patchVersion)
+    }
 }

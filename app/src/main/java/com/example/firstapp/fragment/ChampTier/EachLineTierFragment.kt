@@ -3,7 +3,6 @@ package com.example.firstapp.fragment.ChampTier
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.room.Room
 import com.example.firstapp.R
 import com.example.firstapp.adapter.ChampTier.TierGroupie
 import com.example.firstapp.database.AppDatabase
