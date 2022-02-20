@@ -15,7 +15,7 @@
             app:destination="@id/nav_add_my_build" />
     </fragment>
 
-    <dialog
+    <fragment
         android:id="@+id/nav_add_my_build"
         android:name="com.example.firstapp.fragment.build.detail.mybuild.addmybuild.AddMyBuildFragment"
         android:label="AddMyBuildFragment"
@@ -26,7 +26,7 @@
         <action
             android:id="@+id/open_item_build_dialog"
             app:destination="@id/itemBuildDialogFragment" />
-    </dialog>
+    </fragment>
     <dialog
         android:id="@+id/skillBuildDialogFragment"
         android:name="com.example.firstapp.fragment.build.detail.mybuild.addmybuild.SkillBuildDialogFragment"

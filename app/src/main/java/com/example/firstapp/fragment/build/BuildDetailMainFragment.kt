@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentBuildDetailMainBinding
 import com.example.firstapp.fragment.build.detail.DetailViewPagerAdapter
 import com.google.android.material.tabs.TabLayoutMediator
+import timber.log.Timber
 
 
 class BuildDetailMainFragment : Fragment() {
@@ -21,6 +21,8 @@ class BuildDetailMainFragment : Fragment() {
         binding = FragmentBuildDetailMainBinding.inflate(layoutInflater)
         setViewPager()
 
+        Timber.d("onCreate")
+
         return binding.root
     }
 
@@ -32,5 +34,15 @@ class BuildDetailMainFragment : Fragment() {
         TabLayoutMediator(binding.tabLayout, binding.viewPager) { tab, position ->
             tab.text = tabTitles[position]
         }.attach()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Timber.d("onResume")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.d("onStop")
     }
 }

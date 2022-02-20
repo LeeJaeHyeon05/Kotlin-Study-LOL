@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentBuildDetailMybuildBinding
 import dagger.hilt.android.AndroidEntryPoint
+import timber.log.Timber
 
 @AndroidEntryPoint
 class DetailMyBuildFragment : Fragment() {
@@ -26,6 +27,8 @@ class DetailMyBuildFragment : Fragment() {
 
         setupObserver()
         detailMyBuildViewModel.getMyBuildListByChampionName("champion name")
+
+        Timber.d("onCreate")
 
         return binding.root
     }
@@ -48,4 +51,13 @@ class DetailMyBuildFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        Timber.d("onResume")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Timber.d("onStop")
+    }
 }

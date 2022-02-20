@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
@@ -19,7 +19,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class AddMyBuildFragment : DialogFragment() {
+class AddMyBuildFragment : Fragment() {
 
     private val addMyBuildViewModel : AddMyBuildViewModel by viewModels()
     private val detailMyBuildViewModel : DetailMyBuildViewModel by activityViewModels()
@@ -40,20 +40,15 @@ class AddMyBuildFragment : DialogFragment() {
         when (item.itemId) {
             R.id.save_add_build -> {
                 saveAddBuild()
-
                 detailMyBuildViewModel.getMyBuildListByChampionName("champion name")
+                NavHostFragment.findNavController(this).navigateUp()
 
             }
             android.R.id.home -> {
-                NavHostFragment.findNavController(this).navigate(R.id.nav_build_detail_main)
+                NavHostFragment.findNavController(this).navigateUp()
             }
         }
         return super.onOptionsItemSelected(item)
-    }
-
-
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return Dialog(requireContext(), R.style.fullscreen_dialog)
     }
 
     override fun onCreateView(
@@ -136,7 +131,6 @@ class AddMyBuildFragment : DialogFragment() {
         )
         addMyBuildViewModel.saveAddBuild(newBuild)
 
-//        (activity as BuildDetailActivity).closeAddMyBuild()
     }
 
     override fun onDestroyView() {
