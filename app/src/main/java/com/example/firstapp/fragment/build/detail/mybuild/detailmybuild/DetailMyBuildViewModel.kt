@@ -16,13 +16,8 @@ class DetailMyBuildViewModel @Inject constructor(
     private val myBuildRepository: MyBuildRepository
 ): ViewModel() {
 
-    private val _list = MutableLiveData<List<MyBuild>>(emptyList())
-    val list: LiveData<List<MyBuild>> get() = _list
-
-    fun getMyBuildListByChampionName(championName: String) {
-        viewModelScope.launch {
-            val list = myBuildRepository.getListByChampionName(championName)
-            _list.value = list
-        }
+    val list: LiveData<List<MyBuild>> by lazy {
+        myBuildRepository.getListByChampionName("champion name")
     }
-}  
+
+}

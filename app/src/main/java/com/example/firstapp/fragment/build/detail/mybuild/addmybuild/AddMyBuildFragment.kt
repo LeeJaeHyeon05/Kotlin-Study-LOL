@@ -40,7 +40,7 @@ class AddMyBuildFragment : Fragment() {
         when (item.itemId) {
             R.id.save_add_build -> {
                 saveAddBuild()
-                detailMyBuildViewModel.getMyBuildListByChampionName("champion name")
+
                 NavHostFragment.findNavController(this).navigateUp()
 
             }

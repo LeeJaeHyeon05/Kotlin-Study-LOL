@@ -1,6 +1,8 @@
 package com.example.firstapp.fragment.build.detail.mybuild.detailmybuild
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,9 +28,6 @@ class DetailMyBuildFragment : Fragment() {
         binding = FragmentBuildDetailMybuildBinding.inflate(inflater,container,false)
 
         setupObserver()
-        detailMyBuildViewModel.getMyBuildListByChampionName("champion name")
-
-        Timber.d("onCreate")
 
         return binding.root
     }
@@ -39,25 +38,16 @@ class DetailMyBuildFragment : Fragment() {
         }
     }
 
-
     private fun setupObserver() {
         detailMyBuildViewModel.list.observe(viewLifecycleOwner){
             val adapter = MyBuildItemAdapter(requireContext())
-            adapter.myBuildData = it
-            binding.buildMyBuildRv.apply {
-                this.adapter = adapter
-                layoutManager = LinearLayoutManager(this.context)
+            if (it != null){
+                adapter.myBuildData = it
+                binding.buildMyBuildRv.apply {
+                    this.adapter = adapter
+                    layoutManager = LinearLayoutManager(this.context)
+                }
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        Timber.d("onResume")
-    }
-
-    override fun onStop() {
-        super.onStop()
-        Timber.d("onStop")
     }
 }
