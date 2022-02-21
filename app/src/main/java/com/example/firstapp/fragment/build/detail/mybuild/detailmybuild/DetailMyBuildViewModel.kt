@@ -20,4 +20,10 @@ class DetailMyBuildViewModel @Inject constructor(
         myBuildRepository.getListByChampionName("champion name")
     }
 
+    fun deleteItem(id: Int){
+        viewModelScope.launch {
+            myBuildRepository.delete(id)
+        }
+    }
+
 }

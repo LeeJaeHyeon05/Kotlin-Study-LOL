@@ -15,4 +15,9 @@ class MyBuildRepository(val myBuildDao: MyBuildDao) {
      fun getListByChampionName(championName: String): LiveData<List<MyBuild>>  {
          return myBuildDao.getListByChampionName(championName)
     }
+
+    suspend fun delete(id: Int) = withContext(Dispatchers.IO) {
+        myBuildDao.delete(id)
+    }
+
 }

@@ -40,7 +40,7 @@ class DetailMyBuildFragment : Fragment() {
 
     private fun setupObserver() {
         detailMyBuildViewModel.list.observe(viewLifecycleOwner){
-            val adapter = MyBuildItemAdapter(requireContext())
+            val adapter = MyBuildItemAdapter() {id -> delete(id)}
             if (it != null){
                 adapter.myBuildData = it
                 binding.buildMyBuildRv.apply {
@@ -49,5 +49,9 @@ class DetailMyBuildFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun delete(id: Int) {
+        detailMyBuildViewModel.deleteItem(id)
     }
 }

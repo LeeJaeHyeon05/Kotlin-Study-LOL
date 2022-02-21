@@ -11,9 +11,13 @@ import com.example.firstapp.R
 import com.example.firstapp.databinding.ItemMyBuildBinding
 import com.example.firstapp.model.MyBuild
 
-class MyBuildItemAdapter(val context: Context):
-    RecyclerView.Adapter<MyBuildItemAdapter.MyBuildItemViewHolder>(){
+class MyBuildItemAdapter(
+    private val delete: (Int) -> Unit
+)
+    : RecyclerView.Adapter<MyBuildItemAdapter.MyBuildItemViewHolder>(){
+
     var myBuildData : List<MyBuild> = emptyList()
+    private lateinit var context: Context
 
     private val diffUtilCallback = object : DiffUtil.ItemCallback<MyBuild>(){
         override fun areItemsTheSame(oldItem: MyBuild, newItem: MyBuild): Boolean {
@@ -28,6 +32,7 @@ class MyBuildItemAdapter(val context: Context):
     val differ = AsyncListDiffer(this, diffUtilCallback)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyBuildItemViewHolder {
+        context = parent.context
         return MyBuildItemViewHolder(ItemMyBuildBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
@@ -59,6 +64,7 @@ class MyBuildItemAdapter(val context: Context):
 
                     R.id.myBuildItem_Delete -> {
                         Toast.makeText(context, "삭제 $position", Toast.LENGTH_SHORT).show()
+                        delete(myBuildData[position].id)
                         false
                     }
 
