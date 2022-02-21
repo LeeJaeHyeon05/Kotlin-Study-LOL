@@ -42,7 +42,7 @@ class DetailMyBuildFragment : Fragment() {
         detailMyBuildViewModel.list.observe(viewLifecycleOwner){
             val adapter = MyBuildItemAdapter() {id -> delete(id)}
             if (it != null){
-                adapter.myBuildData = it
+                adapter.differ.submitList(it)
                 binding.buildMyBuildRv.apply {
                     this.adapter = adapter
                     layoutManager = LinearLayoutManager(this.context)

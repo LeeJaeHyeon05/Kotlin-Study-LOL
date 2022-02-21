@@ -13,10 +13,8 @@ import com.example.firstapp.model.MyBuild
 
 class MyBuildItemAdapter(
     private val delete: (Int) -> Unit
-)
-    : RecyclerView.Adapter<MyBuildItemAdapter.MyBuildItemViewHolder>(){
+) : RecyclerView.Adapter<MyBuildItemAdapter.MyBuildItemViewHolder>(){
 
-    var myBuildData : List<MyBuild> = emptyList()
     private lateinit var context: Context
 
     private val diffUtilCallback = object : DiffUtil.ItemCallback<MyBuild>(){
@@ -36,13 +34,12 @@ class MyBuildItemAdapter(
         return MyBuildItemViewHolder(ItemMyBuildBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
-    override fun getItemCount(): Int = myBuildData.size
+    override fun getItemCount(): Int = differ.currentList.size
 
     override fun onBindViewHolder(holder: MyBuildItemViewHolder, position: Int) {
         holder.setData()
 
         holder.binding.itemMyBuildMenu.setOnClickListener {
-
             val menu = PopupMenu(context, holder.binding.itemMyBuildMenu)
             menu.inflate(R.menu.mybuild_item_menu)
             menu.setOnMenuItemClickListener {
@@ -63,8 +60,7 @@ class MyBuildItemAdapter(
                     }
 
                     R.id.myBuildItem_Delete -> {
-                        Toast.makeText(context, "삭제 $position", Toast.LENGTH_SHORT).show()
-                        delete(myBuildData[position].id)
+                        delete(differ.currentList[position].id)
                         false
                     }
 
@@ -79,7 +75,7 @@ class MyBuildItemAdapter(
         : RecyclerView.ViewHolder(binding.root) {
 
         fun setData() {
-            binding.itemMyBuildName.text = myBuildData[absoluteAdapterPosition].name
+            binding.itemMyBuildName.text = differ.currentList[absoluteAdapterPosition].name
         }
     }
 }
