@@ -1,24 +1,21 @@
 package com.example.firstapp.fragment.build.detail.mybuild.detailmybuild
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentBuildDetailMybuildBinding
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class DetailMyBuildFragment : Fragment() {
 
-    private val detailMyBuildViewModel : DetailMyBuildViewModel by activityViewModels()
+    private val detailMyBuildViewModel : DetailMyBuildViewModel by viewModels()
     lateinit var binding : FragmentBuildDetailMybuildBinding
 
     override fun onCreateView(
@@ -27,7 +24,9 @@ class DetailMyBuildFragment : Fragment() {
     ): View {
         binding = FragmentBuildDetailMybuildBinding.inflate(inflater,container,false)
 
+        detailMyBuildViewModel.championName = "champion name"
         setupObserver()
+
 
         return binding.root
     }

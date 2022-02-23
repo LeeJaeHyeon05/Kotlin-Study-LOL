@@ -16,8 +16,10 @@ class DetailMyBuildViewModel @Inject constructor(
     private val myBuildRepository: MyBuildRepository
 ): ViewModel() {
 
+    var championName = ""
+
     val list: LiveData<List<MyBuild>> by lazy {
-        myBuildRepository.getListByChampionName("champion name")
+        myBuildRepository.getListByChampionName(championName)
     }
 
     fun deleteItem(id: Int){
@@ -25,5 +27,4 @@ class DetailMyBuildViewModel @Inject constructor(
             myBuildRepository.delete(id)
         }
     }
-
 }

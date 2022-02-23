@@ -1,6 +1,5 @@
 package com.example.firstapp.fragment.build.detail.mybuild.addmybuild
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
@@ -13,7 +12,6 @@ import com.example.firstapp.R
 import com.example.firstapp.database.Converters
 import com.example.firstapp.databinding.FragmentAddMyBuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
-import com.example.firstapp.fragment.build.detail.mybuild.detailmybuild.DetailMyBuildViewModel
 import com.example.firstapp.model.MyBuild
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,7 +20,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class AddMyBuildFragment : Fragment() {
 
     private val addMyBuildViewModel : AddMyBuildViewModel by viewModels()
-    private val detailMyBuildViewModel : DetailMyBuildViewModel by activityViewModels()
     private val skillBuildDialogViewModel : SkillBuildDialogViewModel by activityViewModels()
     private lateinit var binding: FragmentAddMyBuildBinding
 
@@ -58,7 +55,6 @@ class AddMyBuildFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_add_my_build, container, false)
         binding.addMyBuildViewModel = addMyBuildViewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
-
 
         setFunctions()
         setObservers()

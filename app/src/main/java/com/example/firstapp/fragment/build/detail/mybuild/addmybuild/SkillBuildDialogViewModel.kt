@@ -7,8 +7,8 @@ import timber.log.Timber
 
 class SkillBuildDialogViewModel : ViewModel() {
 
-    private val _skillTree = MutableLiveData<MutableList<String>>()
-    val skillTree: LiveData<MutableList<String>> get() = _skillTree
+    private val _skillTree = MutableLiveData<MutableList<String>?>()
+    val skillTree: LiveData<MutableList<String>?> get() = _skillTree
 
     private val _skillTreeDisplay = MutableLiveData<MutableList<String>>()
     val skillTreeDisplay: LiveData<MutableList<String>> get() = _skillTreeDisplay
@@ -36,11 +36,16 @@ class SkillBuildDialogViewModel : ViewModel() {
         }
     }
 
+    fun removeSkillTree(){
+        _skillTree.value = null
+    }
+
+    fun getSkillTree(){
+        _skillTree.value = _skillTreeDisplay.value
+    }
+
     fun saveSkillTree(){
         _skillTreeDisplay.value = _skillTree.value
-
-        Timber.d(_skillTree.value.toString())
-        Timber.d(_skillTreeDisplay.value.toString())
     }
 
 }
