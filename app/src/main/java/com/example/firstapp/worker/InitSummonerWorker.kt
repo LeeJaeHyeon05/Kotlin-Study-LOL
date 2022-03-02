@@ -39,7 +39,7 @@ class InitSummonerWorker @AssistedInject constructor(
         val summoners: Map<String, Summoner> = summonerAll.summoners
 
         val summonerList = summoners.map { it.value }
-        if (summonerCount === 0) summonerDao.insertAll(summonerList)
+        if (summonerCount == 0) summonerDao.insertAll(summonerList)
 
         summonerList.forEach { summoner ->
             Picasso.get().load("${getBaseImageUrl()}/spell/${summoner.id}.png").fetch(object : Callback {
@@ -57,7 +57,6 @@ class InitSummonerWorker @AssistedInject constructor(
             Thread.sleep(100)
         }
 
-        EventBus.post(InitDataEvent(Integer.MAX_VALUE, applicationContext.getString(R.string.finish)))
         return Result.success()
     }
 

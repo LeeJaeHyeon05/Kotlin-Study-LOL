@@ -1,12 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="100dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="75dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="8dp"
+    android:background="@color/brightGray">
 
     <TextView
+        android:id="@+id/item_my_build_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_marginStart="10dp"
         android:text="빌드 이름"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -16,9 +21,11 @@
         app:layout_constraintHorizontal_bias="0"/>
 
     <ImageButton
+        android:id="@+id/item_my_build_menu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@android:drawable/btn_default_small"
+        android:background="#00000000"
+        android:src="@drawable/ic_baseline_more_vert_24"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -39,27 +46,39 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@android:drawable/ic_menu_edit"/>
+            android:background="@drawable/square_slot"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_baseline_create_24"/>
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@android:drawable/ic_menu_edit"/>
+            android:background="@drawable/square_slot"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_baseline_create_24"/>
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@android:drawable/ic_menu_edit"/>
+            android:background="@drawable/square_slot"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_baseline_create_24"/>
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@android:drawable/ic_menu_edit"/>
+            android:background="@drawable/square_slot"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_baseline_create_24"/>
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@android:drawable/ic_menu_edit"/>
+            android:background="@drawable/square_slot"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_baseline_create_24"/>
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@android:drawable/ic_menu_edit"/>
+            android:background="@drawable/square_slot"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_baseline_create_24"/>
     </LinearLayout>
 
     <LinearLayout
@@ -75,11 +94,15 @@
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@android:drawable/ic_menu_edit"/>
+            android:background="@drawable/square_slot"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_baseline_create_24"/>
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:src="@android:drawable/ic_menu_edit"/>
+            android:background="@drawable/square_slot"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_baseline_create_24"/>
 
     </LinearLayout>
 

@@ -10,15 +10,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.R
-import com.example.firstapp.adapter.ItemFilterGroupListAdapter
 import com.example.firstapp.databinding.FragmentItemFilterBinding
+import com.example.firstapp.groupie.GroupieItemFilter
+import com.example.firstapp.groupie.GroupieItemFilterHeader
 import com.example.firstapp.model.ItemFilter
-import com.example.firstapp.model.ItemFilterGroup
 import com.example.firstapp.model.ItemViewModel
+import com.xwray.groupie.GroupieAdapter
+import com.xwray.groupie.Section
+import com.xwray.groupie.groupiex.plusAssign
 
 class ItemFilterFragment : Fragment() {
 
     private lateinit var binding: FragmentItemFilterBinding
+    private lateinit var groupAdapter: GroupieAdapter
 
     private val itemViewModel: ItemViewModel by activityViewModels()
 
@@ -35,12 +39,19 @@ class ItemFilterFragment : Fragment() {
 
     private fun initLayout() {
 
-        val allItems: ArrayList<ItemFilter> = arrayListOf(
-            ItemFilter(getString(R.string.all_item_filter1), ""),
-            ItemFilter(getString(R.string.all_item_filter2), ""),
-            ItemFilter(getString(R.string.all_item_filter3), ""),
-            ItemFilter(getString(R.string.all_item_filter4), "")
-        )
+        val handleClickFilterItem: (String) -> Unit = {
+            itemViewModel.toggleTag(it)
+            (binding.root.parent as DrawerLayout).closeDrawer(Gravity.END)
+        }
+
+        groupAdapter = GroupieAdapter().apply {
+            setOnItemClickListener { item, _ ->
+                if (item is GroupieItemFilter) {
+                    handleClickFilterItem(item.itemFilter.key)
+                }
+            }
+        }
+
         val startItems: ArrayList<ItemFilter> = arrayListOf(
             ItemFilter(getString(R.string.start_item_filter1), "Lane"),
             ItemFilter(getString(R.string.start_item_filter2), "Jungle")
@@ -76,29 +87,42 @@ class ItemFilterFragment : Fragment() {
             ItemFilter(getString(R.string.movement_item_filter2), "NonbootsMovement"),
         )
 
-        val allItemsGroup = ItemFilterGroup(getString(R.string.all_item), allItems)
-        val startItemsGroup = ItemFilterGroup(getString(R.string.start_item), startItems)
-        val specializationItemsGroup = ItemFilterGroup(getString(R.string.specialization_item), specializationItems)
-        val defenseItemsGroup = ItemFilterGroup(getString(R.string.defense_item), defenseItems)
-        val attackItemsGroup = ItemFilterGroup(getString(R.string.start_item), attackItems)
-        val magicItemsGroup = ItemFilterGroup(getString(R.string.magic_item), magicItems)
-        val movementItemsGroup = ItemFilterGroup(getString(R.string.movement_item), movementItems)
+        val startItemSection = Section()
+        startItemSection.setHeader(GroupieItemFilterHeader(getString(R.string.start_item)))
+        startItemSection.addAll(startItems.map { GroupieItemFilter(it) })
+        groupAdapter += startItemSection
 
-        val itemFilterGroupList: ArrayList<ItemFilterGroup> =
-            arrayListOf(allItemsGroup, startItemsGroup, specializationItemsGroup, defenseItemsGroup, attackItemsGroup, magicItemsGroup, movementItemsGroup)
+        val specializationItemSection = Section()
+        specializationItemSection.setHeader(GroupieItemFilterHeader(getString(R.string.specialization_item)))
+        specializationItemSection.addAll(specializationItems.map { GroupieItemFilter(it) })
+        groupAdapter += specializationItemSection
 
-        val handleClickFilterItem: (String) -> Unit = {
-            itemViewModel.toggleTag(it)
-            (binding.root.parent as DrawerLayout).closeDrawer(Gravity.END)
-        }
+        val defenseItemSection = Section()
+        defenseItemSection.setHeader(GroupieItemFilterHeader(getString(R.string.defense_item)))
+        defenseItemSection.addAll(defenseItems.map { GroupieItemFilter(it) })
+        groupAdapter += defenseItemSection
+
+        val attackItemSection = Section()
+        attackItemSection.setHeader(GroupieItemFilterHeader(getString(R.string.attack_item)))
+        attackItemSection.addAll(attackItems.map { GroupieItemFilter(it) })
+        groupAdapter += attackItemSection
+
+        val magicItemSection = Section()
+        magicItemSection.setHeader(GroupieItemFilterHeader(getString(R.string.magic_item)))
+        magicItemSection.addAll(magicItems.map { GroupieItemFilter(it) })
+        groupAdapter += magicItemSection
+
+        val movementItemSection = Section()
+        movementItemSection.setHeader(GroupieItemFilterHeader(getString(R.string.movement_item)))
+        movementItemSection.addAll(movementItems.map { GroupieItemFilter(it) })
+        groupAdapter += movementItemSection
 
         binding.itemFilterGroupRecyclerView.run {
-            adapter = ItemFilterGroupListAdapter(itemFilterGroupList, handleClickFilterItem)
             layoutManager = LinearLayoutManager(context)
+            adapter = groupAdapter
         }
 
         itemViewModel.tags.observe(viewLifecycleOwner) { tags ->
-            allItems.forEach { it.selected = tags.contains(it.key) }
             startItems.forEach { it.selected = tags.contains(it.key) }
             specializationItems.forEach { it.selected = tags.contains(it.key) }
             defenseItems.forEach { it.selected = tags.contains(it.key) }

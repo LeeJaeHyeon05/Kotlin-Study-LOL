@@ -7,10 +7,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.firstapp.R
-import com.example.firstapp.adapter.ItemListAdapter
-import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet
 import com.example.firstapp.databinding.FragmentItemBinding
+import com.example.firstapp.fragment.bottomsheet.ItemDetailBottomSheet
+import com.example.firstapp.fragment.bottomsheet.ItemSortBottomSheet
 import com.example.firstapp.model.ItemViewModel
+import com.xwray.groupie.GroupieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -18,6 +19,7 @@ import timber.log.Timber
 class ItemFragment : Fragment() {
 
     private lateinit var binding: FragmentItemBinding
+    private lateinit var groupAdapter: GroupieAdapter
 
     private val itemViewModel: ItemViewModel by activityViewModels()
 
@@ -34,7 +36,7 @@ class ItemFragment : Fragment() {
         val searchView: SearchView = menuItem.actionView as SearchView
         searchView.queryHint = getString(R.string.item_name)
 
-        searchView.setOnQueryTextFocusChangeListener { v, hasFocus ->
+        searchView.setOnQueryTextFocusChangeListener { _, hasFocus ->
             menu.findItem(R.id.action_sort).isVisible = !hasFocus
         }
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -52,19 +54,32 @@ class ItemFragment : Fragment() {
         })
     }
 
+    private val handleClickItem: (String) -> Unit = {
+        val itemDetailBottomSheet = ItemDetailBottomSheet(it)
+        itemDetailBottomSheet.show(
+            requireActivity().supportFragmentManager,
+            ItemDetailBottomSheet.TAG
+        )
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentItemBinding.inflate(layoutInflater)
 
+        groupAdapter = GroupieAdapter()
+
         binding.itemList.run {
-            adapter = ItemListAdapter(emptyList())
-            layoutManager = GridLayoutManager(requireContext(), 5)
+            layoutManager = GridLayoutManager(requireContext(), 5).apply {
+                spanSizeLookup = groupAdapter.spanSizeLookup
+            }
+            adapter = groupAdapter
         }
 
-        itemViewModel.dataList.observe(viewLifecycleOwner) {
-            (binding.itemList.adapter as ItemListAdapter).setData(it)
+        itemViewModel.uiDataList.observe(viewLifecycleOwner) { items ->
+            items.forEach { it.handleClickItem = handleClickItem }
+            groupAdapter.update(items)
         }
 
         binding.filterListButton.setOnClickListener {
@@ -86,11 +101,5 @@ class ItemFragment : Fragment() {
         }
 
         return super.onOptionsItemSelected(item)
-    }
-
-    override fun onResume() {
-        super.onResume()
-
-        itemViewModel.loadData()
     }
 }

@@ -1,6 +1,7 @@
 package com.example.firstapp.fragment.build.network
 
 import com.example.firstapp.data.api.BuildService
+import com.example.firstapp.di.DefaultOkHttpClient
 import com.skydoves.sandwich.coroutines.CoroutinesResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
@@ -16,6 +17,7 @@ import javax.inject.Singleton
 class NetworkModule {
     @Provides
     @Singleton
+    @DefaultOkHttpClient
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(HttpRequestInterceptor())
@@ -24,7 +26,7 @@ class NetworkModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofit(@DefaultOkHttpClient okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .client(okHttpClient)
             .baseUrl("http://ddragon.leagueoflegends.com/")
