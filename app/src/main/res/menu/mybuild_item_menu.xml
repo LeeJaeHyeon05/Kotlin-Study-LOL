@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/myBuildItem_Edit"
+        android:title="@string/mybuild_item_menu_edit">
+    </item>
+
+    <item
+        android:id="@+id/myBuildItem_BuildStats"
+        android:title="@string/mybuild_item_menu_buildstats">
+    </item>
+
+    <item
+        android:id="@+id/myBuildItem_Reorder"
+        android:title="@string/mybuild_item_menu_reorder">
+    </item>
+
+    <item
+        android:id="@+id/myBuildItem_Delete"
+        android:title="@string/mybuild_item_menu_delete">
+    </item>
+</menu>

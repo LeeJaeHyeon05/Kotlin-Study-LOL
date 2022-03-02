@@ -31,7 +31,7 @@
         android:label="@string/item" />
     <fragment
         android:id="@+id/nav_summoner"
-        android:name="com.example.firstapp.fragment.SummonerFragment"
+        android:name="com.example.firstapp.fragment.summoner.SummonerFragment"
         android:label="SummonerFragment" />
     <fragment
         android:id="@+id/nav_summonerSpell"
@@ -43,7 +43,8 @@
         android:label="BuildMainFragment"/>
     <fragment
         android:id="@+id/nav_universe"
-        android:name="com.example.firstapp.fragment.ChampTier.UniverseFragment"
+        android:name="com.example.firstapp.fragment.universe.UniverseFragment"
+
         android:label="fragment_universe"
         tools:layout="@layout/fragment_universe" />
     <fragment

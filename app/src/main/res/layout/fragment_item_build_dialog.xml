@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.build.detail.mybuild.addmybuild.ItemBuildDialogFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="태그 선택"
+            android:textSize="20sp"
+            android:layout_marginRight="15dp" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/item_build_dialog_tag_startingitems"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="@drawable/roundtextview"
+                    android:backgroundTint="#FB2C00"
+                    android:layout_margin="5dp"
+                    android:text="시작 아이템"/>
+
+                <TextView
+                    android:id="@+id/item_build_dialog_tag_core"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="@drawable/roundtextview"
+                    android:backgroundTint="#00A2FB"
+                    android:layout_margin="5dp"
+                    android:text="핵심"/>
+
+                <TextView
+                    android:id="@+id/item_build_dialog_tag_boots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="@drawable/roundtextview"
+                    android:backgroundTint="#00FB12"
+                    android:layout_margin="5dp"
+                    android:text="장화"/>
+
+                <TextView
+                    android:id="@+id/item_build_dialog_tag_situational"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="@drawable/roundtextview"
+                    android:backgroundTint="#F400FB"
+                    android:layout_margin="5dp"
+                    android:text="상황에 따른"/>
+
+                <TextView
+                    android:id="@+id/item_build_dialog_tag_offensive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="@drawable/roundtextview"
+                    android:backgroundTint="#00FBE6"
+                    android:layout_margin="5dp"
+                    android:text="공격적인"/>
+
+                <TextView
+                    android:id="@+id/item_build_dialog_tag_defensive"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:background="@drawable/roundtextview"
+                    android:backgroundTint="#6F00FB"
+                    android:layout_margin="5dp"
+                    android:text="방어적인"/>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+
+        <EditText
+            android:id="@+id/item_build_dialog_my_tag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="나의 것 만들기"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이템"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/itemBuildCancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cancel"
+                android:textSize="20sp"
+                android:layout_marginRight="15dp" />
+
+            <TextView
+                android:id="@+id/itemBuildConfirm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/confirm"
+                android:textSize="20sp"
+                android:layout_marginRight="15dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</FrameLayout>
