@@ -15,14 +15,15 @@
     <string name="totheking">왕을 향해!</string>
     <string name="ghost">유체화</string>
     <string name="ignite">점화</string>
+    <string name="lol">리그 오브 레전드 스펠</string>
+    <string name="HowlingAbyss">칼바람 스펠 </string>
     <string name="clean">정화</string>
     <string name="blue">총명</string>
     <string name="exhasuted">탈진</string>
     <string name="aiblue">표식</string>
     <string name="flash">점멸</string>
     <string name="heal">힐</string>
-    <string name="lol">리그 오브 레전드 스펠</string>
-    <string name="HowlingAbyss">칼바람 스펠 </string>
+
     <string name="includelol">(롤 스펠 포함)</string>
 
     <string name="lolspell">롤 스펠 모음</string>
@@ -163,5 +164,8 @@
 
     <string name="skin_tab_champion">챔피언별</string>
     <string name="skin_tab_theme">스킨 테마별</string>
+
+    <string name="lolText">리그 오브 레전드</string>
+    <string name="knifeWind">칼바람</string>
 </resources>
 
