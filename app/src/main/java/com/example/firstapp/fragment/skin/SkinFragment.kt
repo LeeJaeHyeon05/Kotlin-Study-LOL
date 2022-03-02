@@ -21,7 +21,7 @@ class SkinFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val view:View = inflater.inflate(R.layout.fragment_skin, container, false)
         viewPager = view.findViewById(R.id.skin_pager)
         tabLayout = view.findViewById(R.id.skin_tab_layout)
@@ -29,8 +29,6 @@ class SkinFragment : Fragment() {
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
         val pagerAdapter = SkinPagerFragmentAdapter(this)
 
         pagerAdapter.addFragment(SkinByChampionFragment())
