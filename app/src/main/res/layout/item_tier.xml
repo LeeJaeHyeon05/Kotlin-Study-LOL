@@ -14,7 +14,7 @@
         android:layout_height="60dp"
         app:civ_border_color="@color/red"
         app:civ_border_width="2.5dp"
-        android:src="@drawable/camille_chac"
+        android:src="@drawable/unknown"
         android:layout_gravity="center"
         />
 

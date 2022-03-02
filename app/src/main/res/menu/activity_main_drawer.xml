@@ -36,5 +36,9 @@
             android:id="@+id/nav_universe"
             android:icon="@drawable/ic_menu_gallery"
             android:title="룬" />
+        <item
+            android:id="@+id/nav_skin"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="스킨"/>
     </group>
 </menu>

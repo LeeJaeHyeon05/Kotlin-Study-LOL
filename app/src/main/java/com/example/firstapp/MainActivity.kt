@@ -15,7 +15,6 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.firstapp.databinding.ActivityMainBinding
 import com.example.firstapp.navigator.AppNavigator
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -39,7 +38,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         setSupportActionBar(binding.appBarMain.toolbar)
@@ -56,7 +54,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_item,
                 R.id.nav_summoner,
                 R.id.nav_summonerSpell,
-                R.id.nav_build_main
+                R.id.nav_build_main,
+                R.id.nav_skin
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

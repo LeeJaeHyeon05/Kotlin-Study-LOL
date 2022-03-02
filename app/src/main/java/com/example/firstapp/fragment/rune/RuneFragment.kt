@@ -20,7 +20,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class RuneFragment : BaseFragment<FragmentRuneBinding>(R.layout.fragment_rune) {
+
     override fun init() {
-        TODO("Not yet implemented")
+        
     }
 }
