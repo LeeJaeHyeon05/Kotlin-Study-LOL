@@ -1,7 +1,6 @@
 package com.example.firstapp.fragment.skin
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,12 +16,6 @@ class SkinFragment : Fragment() {
 
     private lateinit var viewPager: ViewPager2
     private lateinit var tabLayout: TabLayout
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Timber.plant(Timber.DebugTree())
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,11 +41,11 @@ class SkinFragment : Fragment() {
             //이전에 추가된 콜백 제거
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                Timber.e("Page ${position+1}")
+                Timber.d("Page ${position+1}")
             }
         })
 
-        val tabLayoutTextArray = arrayOf("챔피언별", "스킨 테마별")
+        val tabLayoutTextArray = arrayOf(getString(R.string.skin_tab_champion), getString(R.string.skin_tab_theme))
         TabLayoutMediator(tabLayout, viewPager){ tab, position ->
             tab.text = tabLayoutTextArray[position]
         }.attach()

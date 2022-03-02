@@ -71,4 +71,7 @@
     <string name="spash_lol">롤 사전</string>
 
     <string name="item_name">아이템 이름</string>
+
+    <string name="skin_tab_champion">챔피언별</string>
+    <string name="skin_tab_theme">스킨 테마별</string>
 </resources>
