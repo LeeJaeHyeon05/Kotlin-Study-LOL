@@ -15,7 +15,7 @@ class AddMyBuildViewModel @Inject constructor(
     private val myBuildRepository: MyBuildRepository
 ) : ViewModel() {
 
-    var myBuildNameET = MutableLiveData("test")
+    var myBuildNameET = MutableLiveData<String>()
     var myBuildNoteET = MutableLiveData<String>()
 
     fun saveAddBuild(newBuild: MyBuild) =

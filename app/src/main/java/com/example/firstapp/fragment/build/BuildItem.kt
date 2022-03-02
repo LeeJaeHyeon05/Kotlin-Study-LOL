@@ -22,7 +22,8 @@ class BuildItem(val dataNum: Datum) : BindableItem<ItemBuildMainBinding>() {
         binding.championData = dataNum
 
         binding.championImage.setOnClickListener {
-            it.findNavController().navigate(R.id.open_build_detail)
+            val action = BuildMainFragmentDirections.openBuildDetail(dataNum.name)
+            it.findNavController().navigate(action)
         }
     }
 

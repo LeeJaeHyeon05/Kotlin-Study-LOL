@@ -10,6 +10,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentBuildDetailMybuildBinding
+import com.example.firstapp.fragment.build.BuildDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -24,9 +25,10 @@ class DetailMyBuildFragment : Fragment() {
     ): View {
         binding = FragmentBuildDetailMybuildBinding.inflate(inflater,container,false)
 
-        detailMyBuildViewModel.championName = "champion name"
-        setupObserver()
+        val name = (activity as BuildDetailActivity).name
+        detailMyBuildViewModel.championName = name
 
+        setupObserver()
 
         return binding.root
     }

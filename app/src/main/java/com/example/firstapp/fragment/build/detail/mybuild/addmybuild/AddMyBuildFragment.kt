@@ -56,6 +56,8 @@ class AddMyBuildFragment : Fragment() {
         binding.addMyBuildViewModel = addMyBuildViewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
 
+        addMyBuildViewModel.myBuildNameET.value = (activity as BuildDetailActivity).name + " test"
+
         setFunctions()
         setObservers()
 
@@ -120,7 +122,7 @@ class AddMyBuildFragment : Fragment() {
 
         val newBuild = MyBuild(
             id = 0,
-            champion = "champion name",
+            champion = (activity as BuildDetailActivity).name,
             name = binding.myBuildNameET.text.toString(),
             skillTree = skillTreeList,
             notes = binding.myBuildNoteET.text.toString()

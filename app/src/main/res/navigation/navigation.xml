@@ -56,6 +56,11 @@
         android:id="@+id/nav_build_detail_activity"
         android:name="com.example.firstapp.fragment.build.BuildDetailActivity"
         android:label="BuildDetailActivity"
-        tools:layout="@layout/activity_build_detail"/>
+        tools:layout="@layout/activity_build_detail">
+        <argument
+            android:name="champion_name"
+            app:argType="string"
+            app:nullable="true" />
+    </activity>
 
 </navigation>
