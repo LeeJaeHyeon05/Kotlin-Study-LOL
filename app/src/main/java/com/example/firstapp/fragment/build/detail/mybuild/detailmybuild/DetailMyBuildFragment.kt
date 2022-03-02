@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.firstapp.R
 import com.example.firstapp.databinding.FragmentBuildDetailMybuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
+import com.example.firstapp.fragment.build.BuildDetailMainFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,13 +35,16 @@ class DetailMyBuildFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding.fabAddMyBuild.setOnClickListener {
-            it.findNavController().navigate(R.id.nav_add_my_build)
+            val num = detailMyBuildViewModel.list.value?.size?.plus(1) ?: 1
+
+            val action = BuildDetailMainFragmentDirections.openAddMyBuild(num)
+            it.findNavController().navigate(action)
         }
     }
 
     private fun setupObserver() {
         detailMyBuildViewModel.list.observe(viewLifecycleOwner){
-            val adapter = MyBuildItemAdapter() {id -> delete(id)}
+            val adapter = MyBuildItemAdapter {id -> delete(id)}
             if (it != null){
                 adapter.differ.submitList(it)
                 binding.buildMyBuildRv.apply {

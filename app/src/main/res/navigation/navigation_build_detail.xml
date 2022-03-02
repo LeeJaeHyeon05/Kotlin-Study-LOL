@@ -26,6 +26,9 @@
         <action
             android:id="@+id/open_item_build_dialog"
             app:destination="@id/itemBuildDialogFragment" />
+        <argument
+            android:name="num"
+            app:argType="integer" />
     </fragment>
     <dialog
         android:id="@+id/skillBuildDialogFragment"

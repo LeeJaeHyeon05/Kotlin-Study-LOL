@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.navArgs
 import com.example.firstapp.R
 import com.example.firstapp.database.Converters
 import com.example.firstapp.databinding.FragmentAddMyBuildBinding
@@ -22,6 +23,8 @@ class AddMyBuildFragment : Fragment() {
     private val addMyBuildViewModel : AddMyBuildViewModel by viewModels()
     private val skillBuildDialogViewModel : SkillBuildDialogViewModel by activityViewModels()
     private lateinit var binding: FragmentAddMyBuildBinding
+
+    val args: AddMyBuildFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,7 +59,7 @@ class AddMyBuildFragment : Fragment() {
         binding.addMyBuildViewModel = addMyBuildViewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
 
-        addMyBuildViewModel.myBuildNameET.value = (activity as BuildDetailActivity).name + " test"
+        addMyBuildViewModel.myBuildNameET.value = "#${args.num} " + (activity as BuildDetailActivity).name + "'s builds"
 
         setFunctions()
         setObservers()
