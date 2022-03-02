@@ -79,7 +79,11 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
                 return fragments[position]
             }
         }
-        binding.viewPager.adapter = adapter
+        binding.viewPager.run {
+            this.adapter = adapter
+            // viewPager2의 페이지를 초기화 하지 않게 한다
+            offscreenPageLimit = fragments.size
+        }
 
         // tab과 viewPager2를 연결시킨다
         TabLayoutMediator(binding.tabs, binding.viewPager) { tab: TabLayout.Tab, i: Int ->

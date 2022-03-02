@@ -18,6 +18,9 @@
     <color name="colorAccent">#D81B60</color>
     <color name="lightGreen">#FFC4B999</color>
 
+    <color name="veiled_base">#50586C</color>
+    <color name="veiled_highlight">#DCE2F0</color>
+
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">#D3D3D3</item>
     </style>
