@@ -15,14 +15,15 @@
     <string name="totheking">왕을 향해!</string>
     <string name="ghost">유체화</string>
     <string name="ignite">점화</string>
+    <string name="lol">리그 오브 레전드 스펠</string>
+    <string name="HowlingAbyss">칼바람 스펠 </string>
     <string name="clean">정화</string>
     <string name="blue">총명</string>
     <string name="exhasuted">탈진</string>
     <string name="aiblue">표식</string>
     <string name="flash">점멸</string>
     <string name="heal">힐</string>
-    <string name="lol">리그 오브 레전드 스펠</string>
-    <string name="HowlingAbyss">칼바람 스펠 </string>
+
     <string name="includelol">(롤 스펠 포함)</string>
 
     <string name="lolspell">롤 스펠 모음</string>
@@ -160,5 +161,22 @@
     <string name="summoner_tab_favorite">즐겨찾기</string>
     <string name="summoner_tab_recent">최근 보기</string>
     <string name="summoner_fab_none">즐겨찾기가 없습니다.</string>
+
+    <string name="skin_tab_champion">챔피언별</string>
+    <string name="skin_tab_theme">스킨 테마별</string>
+
+    <string name="lolText">리그 오브 레전드</string>
+    <string name="knifeWind">칼바람</string>
+    <string name="dominationText">지배</string>
+    <string name="dominationDesText">사냥감 추격 및 처치</string>
+    <string name="mainRuneText">핵심 룬</string>
+    <string name="precisionText">정밀</string>
+    <string name="precisionDesText">전설의 시작</string>
+    <string name="resolveText">결의</string>
+    <string name="resolveDesText">끈질긴 생명력</string>
+    <string name="sorceryText">마법</string>
+    <string name="sorceryDesText">강력한 파괴력</string>
+    <string name="whimsyText">영감</string>
+    <string name="whimsyDesText">비범한 능력</string>
 </resources>
 
