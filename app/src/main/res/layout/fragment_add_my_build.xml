@@ -12,13 +12,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".fragment.build.detail.mybuild.addmybuild.AddMyBuildFragment"
-        android:background="@color/white"
+        android:background="@color/black"
         android:orientation="vertical">
 
         <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:id="@+id/add_my_build_toolbar"/>
+            android:background="@color/brightGray"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,11 +36,13 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:text="빌드 이름"/>
                 <EditText
                     android:id="@+id/myBuildNameET"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:text="@={addMyBuildViewModel.myBuildNameET}"/>
 
             </LinearLayout>
@@ -48,6 +51,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="소환사 주문" />
 
             <LinearLayout
@@ -69,6 +73,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="아이템"/>
 
             <LinearLayout
@@ -82,6 +87,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/white"
                         android:text="전체 빌드"/>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -120,6 +126,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:textColor="@color/white"
                         android:text="장신구"/>
                     <ImageView
                         style="@style/SquareSlot"
@@ -142,6 +149,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="스킬 순서"/>
 
             <TableLayout
@@ -152,8 +160,7 @@
                     android:id="@+id/QRow">
 
                     <TextView
-                        style="@style/SkillBuildTextView"
-                        android:layout_height="19dp"
+                        style="@style/SkillBuildTextViewTitle"
                         android:text="Q" />
                     <TextView
                         style="@style/SkillBuildTextView" />
@@ -197,12 +204,11 @@
                 <TableRow
                     android:id="@+id/WRow">
                     <TextView
-                        style="@style/SkillBuildTextView"
+                        style="@style/SkillBuildTextViewTitle"
                         android:text="W"/>
 
                     <TextView
-                        style="@style/SkillBuildTextView"
-                        android:layout_height="match_parent" />
+                        style="@style/SkillBuildTextView" />
                     <TextView
                         style="@style/SkillBuildTextView" />
                     <TextView
@@ -242,13 +248,11 @@
                 <TableRow
                     android:id="@+id/ERow">
                     <TextView
-                        style="@style/SkillBuildTextView"
+                        style="@style/SkillBuildTextViewTitle"
                         android:text="E"/>
 
                     <TextView
-                        style="@style/SkillBuildTextView"
-                        android:layout_width="13dp"
-                        android:layout_height="19dp" />
+                        style="@style/SkillBuildTextView" />
                     <TextView
                         style="@style/SkillBuildTextView" />
                     <TextView
@@ -288,7 +292,7 @@
                 <TableRow
                     android:id="@+id/RRow">
                     <TextView
-                        style="@style/SkillBuildTextView"
+                        style="@style/SkillBuildTextViewTitle"
                         android:text="R"/>
                     <TextView
                         style="@style/SkillBuildTextView" />
@@ -333,18 +337,21 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="룬"/>
 
             <!--빌드 노트-->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="빌드 노트"/>
 
             <EditText
                 android:id="@+id/myBuildNoteET"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textColor="@color/white"
                 android:text="@={addMyBuildViewModel.myBuildNoteET}"/>
 
         </LinearLayout>

@@ -12,7 +12,11 @@
         tools:layout="@layout/fragment_build_detail_main">
         <action
             android:id="@+id/open_add_my_build"
-            app:destination="@id/nav_add_my_build" />
+            app:destination="@id/nav_add_my_build"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/wait_150"
+            app:popExitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/wait_150"/>
     </fragment>
 
     <fragment

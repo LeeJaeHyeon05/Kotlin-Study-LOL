@@ -1,8 +1,10 @@
 package com.example.firstapp.fragment.build.detail.mybuild.addmybuild
 
+import android.graphics.Color
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -40,7 +42,6 @@ class AddMyBuildFragment : Fragment() {
         when (item.itemId) {
             R.id.save_add_build -> {
                 saveAddBuild()
-
                 NavHostFragment.findNavController(this).navigateUp()
 
             }
@@ -59,6 +60,12 @@ class AddMyBuildFragment : Fragment() {
         binding.addMyBuildViewModel = addMyBuildViewModel
         binding.lifecycleOwner = this.viewLifecycleOwner
 
+        (activity as BuildDetailActivity).setSupportActionBar(binding.toolbar)
+        (activity as BuildDetailActivity).supportActionBar?.apply {
+            title = "Add Build ${(activity as BuildDetailActivity).name}"
+        }
+
+
         addMyBuildViewModel.myBuildNameET.value = "#${args.num} " + (activity as BuildDetailActivity).name + "'s builds"
 
         setFunctions()
@@ -76,7 +83,11 @@ class AddMyBuildFragment : Fragment() {
                 binding.RRow
             ).forEach {
                 for(i in 1 until it.childCount){
-                    (it.getChildAt(i) as TextView).text = ""
+                    (it.getChildAt(i) as TextView).apply {
+                        text = ""
+                        setBackgroundResource(R.color.brightGray)
+                        setTextColor(ContextCompat.getColor(requireContext(), R.color.white))
+                    }
                 }
             }
 
@@ -84,16 +95,32 @@ class AddMyBuildFragment : Fragment() {
                 val num = index + 1
                 when (skill) {
                     "Q" -> {
-                        (binding.QRow.getChildAt(num) as TextView).text = "$num"
+                        (binding.QRow.getChildAt(num) as TextView).apply {
+                            text = "$num"
+                            setBackgroundResource(R.color.beige)
+                            setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                        }
                     }
                     "W" -> {
-                        (binding.WRow.getChildAt(num) as TextView).text = "$num"
+                        (binding.WRow.getChildAt(num) as TextView).apply {
+                            text = "$num"
+                            setBackgroundResource(R.color.beige)
+                            setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                        }
                     }
                     "E" -> {
-                        (binding.ERow.getChildAt(num) as TextView).text = "$num"
+                        (binding.ERow.getChildAt(num) as TextView).apply {
+                            text = "$num"
+                            setBackgroundResource(R.color.beige)
+                            setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                        }
                     }
                     "R" -> {
-                        (binding.RRow.getChildAt(num) as TextView).text = "$num"
+                        (binding.RRow.getChildAt(num) as TextView).apply {
+                            text = "$num"
+                            setBackgroundResource(R.color.beige)
+                            setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
+                        }
                     }
                 }
             }
