@@ -3,16 +3,11 @@ package com.example.firstapp.fragment.ChampTier
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.Observer
-import androidx.room.Room
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.R
-import com.example.firstapp.data.api.TierData
 import com.example.firstapp.database.AppDatabase
 import com.example.firstapp.databinding.FragmentTierBinding
 import com.example.firstapp.model.TierViewModel
@@ -24,7 +19,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -46,6 +40,8 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
+
         // 챔피언 데이터를 받기 위한 객체
         // fragment 객체 생성
         val topFragment = EachLineTierFragment(0)
@@ -101,6 +97,11 @@ class TierFragment : Fragment(R.layout.fragment_tier) {
         }.attach()
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        menu.clear()
     }
 
     // 이 부분은 context를 사용하기 때문에 viewModel에서 동작을 지정할 경우 메모리 누수가 일어날 수 있음

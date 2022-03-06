@@ -1,4 +1,7 @@
 package com.example.firstapp.data.api
 
-class PatchData {
-}
+data class PatchData(
+    var champImageLink: String?,
+    var champName: String,
+    var summary: String,
+)
