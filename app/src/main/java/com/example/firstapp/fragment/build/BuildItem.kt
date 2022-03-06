@@ -1,5 +1,7 @@
 package com.example.firstapp.fragment.build
 
+import android.util.Log
+import androidx.navigation.findNavController
 import com.example.firstapp.R
 import com.example.firstapp.databinding.ItemBuildMainBinding
 import com.example.firstapp.model.mychampion.Datum
@@ -18,6 +20,11 @@ class BuildItem(val dataNum: Datum) : BindableItem<ItemBuildMainBinding>() {
 
     override fun bind(binding: ItemBuildMainBinding, position: Int) {
         binding.championData = dataNum
+
+        binding.championImage.setOnClickListener {
+            val action = BuildMainFragmentDirections.openBuildDetail(dataNum.name)
+            it.findNavController().navigate(action)
+        }
     }
 
     override fun getLayout(): Int {

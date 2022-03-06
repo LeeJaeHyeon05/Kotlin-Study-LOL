@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_build_detail"
+    app:startDestination="@id/nav_build_detail_main">
+
+    <fragment
+        android:id="@+id/nav_build_detail_main"
+        android:name="com.example.firstapp.fragment.build.BuildDetailMainFragment"
+        android:label="BuildDetailMainFragment"
+        tools:layout="@layout/fragment_build_detail_main">
+        <action
+            android:id="@+id/open_add_my_build"
+            app:destination="@id/nav_add_my_build"
+            app:enterAnim="@anim/slide_up"
+            app:exitAnim="@anim/wait_150"
+            app:popExitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/wait_150"/>
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_add_my_build"
+        android:name="com.example.firstapp.fragment.build.detail.mybuild.addmybuild.AddMyBuildFragment"
+        android:label="AddMyBuildFragment"
+        tools:layout="@layout/fragment_add_my_build">
+        <action
+            android:id="@+id/open_skill_build_dialog"
+            app:destination="@id/skillBuildDialogFragment" />
+        <action
+            android:id="@+id/open_item_build_dialog"
+            app:destination="@id/itemBuildDialogFragment" />
+        <argument
+            android:name="num"
+            app:argType="integer" />
+    </fragment>
+    <dialog
+        android:id="@+id/skillBuildDialogFragment"
+        android:name="com.example.firstapp.fragment.build.detail.mybuild.addmybuild.SkillBuildDialogFragment"
+        android:label="fragment_skill_build_dialog"
+        tools:layout="@layout/fragment_skill_build_dialog" />
+    <dialog
+        android:id="@+id/itemBuildDialogFragment"
+        android:name="com.example.firstapp.fragment.build.detail.mybuild.addmybuild.ItemBuildDialogFragment"
+        android:label="fragment_item_build_dialog"
+        tools:layout="@layout/fragment_item_build_dialog" />
+
+</navigation>

@@ -6,24 +6,125 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.activityViewModels
 import com.example.firstapp.databinding.FragmentSkillBuildDialogBinding
 
-class SkillBuildDialogFragment : DialogFragment(){
+class SkillBuildDialogFragment : DialogFragment() {
 
     lateinit var binding: FragmentSkillBuildDialogBinding
+    private val viewModel: SkillBuildDialogViewModel by activityViewModels()
+    private var bindingList = listOf<RadioGroup>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSkillBuildDialogBinding.inflate(inflater, container, false)
+        binding = FragmentSkillBuildDialogBinding.inflate(layoutInflater)
 
-        binding.skillBuildCancel.setOnClickListener { dismiss() }
-        binding.skillBuildConfirm.setOnClickListener {
+        bindingList = listOf(
+            binding.skillLv1,
+            binding.skillLv2,
+            binding.skillLv3,
+            binding.skillLv4,
+            binding.skillLv5,
+            binding.skillLv6,
+            binding.skillLv7,
+            binding.skillLv8,
+            binding.skillLv9,
+            binding.skillLv10,
+            binding.skillLv11,
+            binding.skillLv12,
+            binding.skillLv13,
+            binding.skillLv14,
+            binding.skillLv15,
+            binding.skillLv16,
+            binding.skillLv17,
+            binding.skillLv18,
+        )
+
+        setRadioButtonFunction()
+        setRadioButtons()
+        setObserver()
+
+        binding.skillBuildCancel.setOnClickListener {
+            viewModel.removeSkillTree()
             dismiss()
         }
+        binding.skillBuildConfirm.setOnClickListener {
+            viewModel.saveSkillTree()
+            viewModel.removeSkillTree()
+            dismiss()
+        }
+
         return binding.root
+    }
+
+    private fun setRadioButtons() {
+        viewModel.getSkillTree()
+
+        if (viewModel.skillTree.value != null) {
+            for (i in 0 until viewModel.skillTree.value!!.size) {
+                viewModel.skillTree.value?.forEachIndexed { index, skill ->
+                    val num = index + 1
+                    when (skill) {
+                        "Q" -> {
+                            (bindingList[i].getChildAt(0) as RadioButton).text = "$num"
+                        }
+                        "W" -> {
+                            (bindingList[i].getChildAt(1) as RadioButton).text = "$num"
+                        }
+                        "E" -> {
+                            (bindingList[i].getChildAt(2) as RadioButton).text = "$num"
+                        }
+                        "R" -> {
+                            (bindingList[i].getChildAt(3) as RadioButton).text = "$num"
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setRadioButtonFunction() {
+        bindingList.forEachIndexed { index, it ->
+            it.setOnCheckedChangeListener { radioGroup, _ ->
+                var skill = ""
+                for (i in 0 until radioGroup.childCount) {
+                    if ((radioGroup.getChildAt(i) as RadioButton).isChecked) {
+                        when (i) {
+                            0 -> skill = "Q"
+                            1 -> skill = "W"
+                            2 -> skill = "E"
+                            3 -> skill = "R"
+                        }
+                    }
+                }
+                viewModel.changeSkillTree(index, skill)
+            }
+        }
+    }
+
+    private fun setObserver() {
+        viewModel.skillTree.observe(viewLifecycleOwner) { skillTree ->
+            skillTree?.forEachIndexed { index: Int, skill: String ->
+                val rg = bindingList[index]
+                for (i in 0 until rg.childCount) {
+                    val rb = rg.getChildAt(i) as RadioButton
+                    rb.text = ""
+                }
+                val num = index + 1
+                when (skill) {
+                    "Q" -> (rg.getChildAt(0) as RadioButton).text = "$num"
+                    "W" -> (rg.getChildAt(1) as RadioButton).text = "$num"
+                    "E" -> (rg.getChildAt(2) as RadioButton).text = "$num"
+                    "R" -> (rg.getChildAt(3) as RadioButton).text = "$num"
+                }
+            }
+        }
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -31,6 +132,4 @@ class SkillBuildDialogFragment : DialogFragment(){
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         return dialog
     }
-
-
 }

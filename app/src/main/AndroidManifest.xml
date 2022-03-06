@@ -16,10 +16,6 @@
         android:usesCleartextTraffic="true">
 
         <activity
-            android:name=".fragment.build.BuildDetailActivity"
-            android:exported="false" />
-
-        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Splash">
@@ -30,12 +26,15 @@
             </intent-filter>
         </activity>
 
-
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:theme="@style/Theme.FirstApp.NoActionBar" />
 
+        <activity
+            android:name=".fragment.build.BuildDetailActivity"
+            android:exported="false"
+            android:theme="@style/Theme.FirstApp.NoActionBar"/>
 
         <provider
             android:name="androidx.startup.InitializationProvider"

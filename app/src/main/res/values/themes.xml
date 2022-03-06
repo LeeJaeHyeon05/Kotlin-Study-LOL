@@ -40,20 +40,29 @@
         <item name="android:layout_height">18dp</item>
         <item name="android:layout_margin">0.8dp</item>
     </style>
-    <style name="EditSkillBuildTextView">
-        <item name="android:background">#424242</item>
+
+    <style name="SkillBuildTextViewTitle">
+        <item name="android:background">#000000</item>
         <item name="android:textColor">#FFFFFF</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:textSize">10sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_width">25dp</item>
-        <item name="android:layout_height">25dp</item>
-        <item name="android:layout_margin">1dp</item>
+        <item name="android:layout_width">18dp</item>
+        <item name="android:layout_height">18dp</item>
+        <item name="android:layout_margin">0.8dp</item>
     </style>
 
     <style name="SquareSlot">
         <item name="android:layout_width">40dp</item>
         <item name="android:layout_height">40dp</item>
         <item name="android:layout_margin">5dp</item>
+    </style>
+
+    <style name="fullscreen_dialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
 </resources>

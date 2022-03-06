@@ -8,7 +8,7 @@ import com.example.firstapp.model.MyBuild
 
 class DetailViewPagerAdapter(fragment: FragmentActivity) : FragmentStateAdapter(fragment){
 
-     val fragments = mutableListOf<Fragment>(
+     val fragments = mutableListOf(
         DetailBuildFragment(),
         DetailProBuildFragment(),
         DetailEtcBuildFragment(),

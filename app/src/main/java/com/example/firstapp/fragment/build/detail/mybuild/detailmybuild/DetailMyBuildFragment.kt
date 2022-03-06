@@ -5,16 +5,18 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.firstapp.databinding.FragmentBuildDetailMybuildBinding
 import com.example.firstapp.fragment.build.BuildDetailActivity
+import com.example.firstapp.fragment.build.BuildDetailMainFragmentDirections
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class DetailMyBuildFragment : Fragment() {
 
-    private val viewModel : DetailMyBuildViewModel by activityViewModels()
+    private val detailMyBuildViewModel : DetailMyBuildViewModel by viewModels()
     lateinit var binding : FragmentBuildDetailMybuildBinding
 
     override fun onCreateView(
@@ -22,28 +24,38 @@ class DetailMyBuildFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentBuildDetailMybuildBinding.inflate(inflater,container,false)
-        setupUi()
-        setupObserver()
 
-        viewModel.getMyBuildListByChampionName("champion name")
+        val name = (activity as BuildDetailActivity).name
+        detailMyBuildViewModel.championName = name
+
+        setupObserver()
 
         return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding.fabAddMyBuild.setOnClickListener {
+            val num = detailMyBuildViewModel.list.value?.size?.plus(1) ?: 1
+
+            val action = BuildDetailMainFragmentDirections.openAddMyBuild(num)
+            it.findNavController().navigate(action)
+        }
+    }
+
     private fun setupObserver() {
-        viewModel.list.observe(viewLifecycleOwner){
-            val adapter = MyBuildItemAdapter(requireContext())
-            adapter.myBuildData = it
-            binding.buildMyBuildRv.apply {
-                this.adapter = adapter
-                layoutManager = LinearLayoutManager(this.context)
+        detailMyBuildViewModel.list.observe(viewLifecycleOwner){
+            val adapter = MyBuildItemAdapter {id -> delete(id)}
+            if (it != null){
+                adapter.differ.submitList(it)
+                binding.buildMyBuildRv.apply {
+                    this.adapter = adapter
+                    layoutManager = LinearLayoutManager(this.context)
+                }
             }
         }
     }
 
-    private fun setupUi() {
-        binding.fabAddMyBuild.setOnClickListener {
-            (activity as BuildDetailActivity).openAddMyBuild()
-        }
+    private fun delete(id: Int) {
+        detailMyBuildViewModel.deleteItem(id)
     }
 }

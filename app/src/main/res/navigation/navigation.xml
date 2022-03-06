@@ -40,7 +40,11 @@
     <fragment
         android:id="@+id/nav_build_main"
         android:name="com.example.firstapp.fragment.build.BuildMainFragment"
-        android:label="BuildMainFragment"/>
+        android:label="BuildMainFragment">
+        <action
+            android:id="@+id/open_build_detail"
+            app:destination="@id/nav_build_detail_activity" />
+    </fragment>
     <fragment
         android:id="@+id/nav_universe"
         android:name="com.example.firstapp.fragment.universe.UniverseFragment"
@@ -52,5 +56,16 @@
         android:name="com.example.firstapp.fragment.skin.SkinFragment"
         android:label="fragment_skin"
         tools:layout="@layout/fragment_skin" />
+
+    <activity
+        android:id="@+id/nav_build_detail_activity"
+        android:name="com.example.firstapp.fragment.build.BuildDetailActivity"
+        android:label="BuildDetailActivity"
+        tools:layout="@layout/activity_build_detail">
+        <argument
+            android:name="champion_name"
+            app:argType="string"
+            app:nullable="true" />
+    </activity>
 
 </navigation>
