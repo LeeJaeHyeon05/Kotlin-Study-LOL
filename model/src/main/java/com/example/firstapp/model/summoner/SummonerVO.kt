@@ -10,7 +10,7 @@ data class SummonerDTO (
     var summonerLevel: Long
 )
 
-data class Summoner (
+data class LeagueEntryDTO (
     var leagueId: String,
     var queueType: String,
     var tier: String,

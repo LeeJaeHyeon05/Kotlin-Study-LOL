@@ -8,7 +8,7 @@ class ApiKeyInterceptor : Interceptor {
         proceed(
             request()
             .newBuilder()
-            .addHeader("X-Riot-Token", "RGAPI-2e623a2b-c0bd-4478-b556-65f68bfd515d")
+            .addHeader("X-Riot-Token", "RGAPI-752dc5fd-9041-4aac-a30a-ac428001fbae")
             .build())
     }
 }
