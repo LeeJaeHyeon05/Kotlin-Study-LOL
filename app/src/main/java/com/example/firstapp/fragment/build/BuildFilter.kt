@@ -11,6 +11,7 @@ package com.example.firstapp.fragment.build
 data class BuildFilter(
     val name : String,
     val key : String,
+    val selected: Boolean = false
 )
 
 

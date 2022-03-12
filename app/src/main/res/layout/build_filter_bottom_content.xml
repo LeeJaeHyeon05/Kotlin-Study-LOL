@@ -10,7 +10,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycleBuildSort"
-            android:layout_width="409dp"
+            android:layout_width="0dp"
             android:layout_height="125dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

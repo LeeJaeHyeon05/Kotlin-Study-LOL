@@ -21,6 +21,9 @@
     <color name="veiled_base">#50586C</color>
     <color name="veiled_highlight">#DCE2F0</color>
 
+    <color name="noSelectColor">#9C9C9C</color>
+
+
     <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
         <item name="android:background">#D3D3D3</item>
     </style>
