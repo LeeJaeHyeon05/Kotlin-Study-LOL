@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.firstapp.R
-import com.example.firstapp.adapter.UniverseFragmentAdapter
+import com.example.firstapp.adapter.universe.UniverseFragmentAdapter
 import com.example.firstapp.databinding.FragmentUniverseBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -23,7 +23,7 @@ class UniverseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        _binding = FragmentUniverseBinding.inflate(inflater, container, false);
+        _binding = FragmentUniverseBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val adapter: FragmentStateAdapter = UniverseFragmentAdapter(this)

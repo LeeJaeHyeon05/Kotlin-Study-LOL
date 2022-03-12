@@ -20,6 +20,10 @@
             android:exported="false" />
 
         <activity
+            android:name=".fragment.universe.UniverseRegionDetailActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Splash">

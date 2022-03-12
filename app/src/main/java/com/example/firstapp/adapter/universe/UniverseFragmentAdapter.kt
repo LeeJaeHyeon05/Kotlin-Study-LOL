@@ -1,4 +1,4 @@
-package com.example.firstapp.adapter
+package com.example.firstapp.adapter.universe
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -6,7 +6,7 @@ import com.example.firstapp.fragment.universe.*
 
 class UniverseFragmentAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
-    val fragments: ArrayList<Fragment> = ArrayList()
+    private val fragments: ArrayList<Fragment> = ArrayList()
 
     init {
         fragments.add(UniverseChampFragment())

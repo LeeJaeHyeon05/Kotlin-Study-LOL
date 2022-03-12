@@ -23,7 +23,6 @@ class UniverseChampFragment: Fragment() {
         val root: View = binding.root
 
 
-
         return root
     }
 }
